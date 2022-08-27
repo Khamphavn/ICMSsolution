@@ -5,6 +5,10 @@ VisualStudioVersion = 17.3.32819.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ICMS", "ICMS\ICMS.csproj", "{98BEC250-6FB0-4C1D-96F6-D3EB94611977}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ICMS.Model", "ICMS.Model\ICMS.Model.csproj", "{D6486D5A-AC72-45FA-86EA-6A12F4C7BB53}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "ICMS.CreateDB", "ICMS.CreateDB\ICMS.CreateDB.sqlproj", "{552B5A8D-338B-4E10-B73A-95844A7B594A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,16 @@ Global
 		{98BEC250-6FB0-4C1D-96F6-D3EB94611977}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{98BEC250-6FB0-4C1D-96F6-D3EB94611977}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{98BEC250-6FB0-4C1D-96F6-D3EB94611977}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6486D5A-AC72-45FA-86EA-6A12F4C7BB53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6486D5A-AC72-45FA-86EA-6A12F4C7BB53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6486D5A-AC72-45FA-86EA-6A12F4C7BB53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6486D5A-AC72-45FA-86EA-6A12F4C7BB53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{552B5A8D-338B-4E10-B73A-95844A7B594A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{552B5A8D-338B-4E10-B73A-95844A7B594A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{552B5A8D-338B-4E10-B73A-95844A7B594A}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{552B5A8D-338B-4E10-B73A-95844A7B594A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{552B5A8D-338B-4E10-B73A-95844A7B594A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{552B5A8D-338B-4E10-B73A-95844A7B594A}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
