@@ -5,8 +5,86 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ICMS"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="INST Calibration Management System  (Beta version 1)" 
+        WindowStartupLocation="CenterScreen"
+        WindowState="Maximized" MinWidth="1200" MinHeight="700"
+        ResizeMode="CanResize"
         
+        
+        xmlns:viewmodel="clr-namespace:ICMS.ViewModel"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:control="clr-namespace:ICMS.View.UC_Component"
+            TextElement.Foreground="Black"
+            TextElement.FontWeight="Regular"
+            TextElement.FontSize="13"
+            TextOptions.TextFormattingMode="Ideal" 
+            TextOptions.TextRenderingMode="Auto"        
+            FontFamily="{DynamicResource MaterialDesignFont}"
+        Background="#eeeeee"
+        
+        >
+
+
+
+
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+
+        <control:UC_MenuBar Grid.Row="0"/>
+
+        <Grid Grid.Row="1">
+            <ContentControl Content="{Binding CurrentControl}">
+                <ContentControl.Resources>
+                    <DataTemplate DataType="{x:Type viewmodel:CustomerViewModel}">
+                        <control:UC_Customer/>
+                    </DataTemplate>
+
+                    <DataTemplate DataType="{x:Type viewmodel:UnitViewModel}">
+                        <control:UC_Unit/>
+                    </DataTemplate>
+
+                    <DataTemplate DataType="{x:Type viewmodel:UserViewModel}">
+                        <control:UC_User/>
+                    </DataTemplate>
+
+                    <DataTemplate DataType="{x:Type viewmodel:MachineViewModel}">
+                        <control:UC_Machine/>
+                    </DataTemplate>
+
+                    <DataTemplate DataType="{x:Type viewmodel:CertificateListViewModel}">
+                        <control:UC_CertificateList/>
+                    </DataTemplate>
+
+                    <DataTemplate DataType="{x:Type viewmodel:CertificateFormViewModel}">
+                        <control:UC_CertificateForm/>
+                    </DataTemplate>
+
+                    <DataTemplate DataType="{x:Type viewmodel:CityViewModel}">
+                        <control:UC_City/>
+                    </DataTemplate>
+
+                    <DataTemplate DataType="{x:Type viewmodel:TMViewModel}">
+                        <control:UC_TM/>
+                    </DataTemplate>
+
+                    <DataTemplate DataType="{x:Type viewmodel:RadQuantityViewModel}">
+                        <control:UC_RadQuantity/>
+                    </DataTemplate>
+
+                    <DataTemplate DataType="{x:Type viewmodel:DoseQuantityViewModel}">
+                        <control:UC_DoseQuantity/>
+                    </DataTemplate>
+
+
+                </ContentControl.Resources>
+            </ContentControl>
+        </Grid>
     </Grid>
+
+
 </Window>

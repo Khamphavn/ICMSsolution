@@ -31,7 +31,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.2.0.123\lib\net461\Dapper.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -41,7 +45,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataAccess\GlobalConfig.cs" />
+    <Compile Include="DataAccess\IDataConnection.cs" />
+    <Compile Include="DataAccess\SQLServerConnector.cs" />
+    <Compile Include="Models\CalibData.cs" />
+    <Compile Include="Models\Certificate.cs" />
+    <Compile Include="Models\City.cs" />
+    <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\DoseQuantity.cs" />
+    <Compile Include="Models\Machine.cs" />
+    <Compile Include="Models\MachineName.cs" />
+    <Compile Include="Models\MachineType.cs" />
+    <Compile Include="Models\RadQuantity.cs" />
+    <Compile Include="Models\Role.cs" />
+    <Compile Include="Models\Sensor.cs" />
+    <Compile Include="Models\SensorType.cs" />
+    <Compile Include="Models\TM.cs" />
+    <Compile Include="Models\Unit.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TableModels\CalibDataTable.cs" />
+    <Compile Include="TableModels\CertificateTable.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<appSettings>
+	<!-- Temperature in Celcius unit -->
+	<add key="MINTEMPERATURE" value="15"/>
+	<!--<add key="MAXTEMPERATURE" value="30"/>-->
+
+	<!-- Pressure in hPa unit -->
+	<add key="MINPRESSURE" value="990"/>
+	<add key="MAXPRESSURE" value="1300"/>
+
+	<!-- Humidity (eg: 40 for 40%) -->
+	<add key="MINHUMIDITY" value="30"/>
+	<add key="MAXHUMIDITY" value="60"/>
+
+	<!-- Number of sensors -->
+	<add key="MAXSENSORS" value ="4"/>
+
+	<!-- Number of Calibration data -->
+	<add key="MAXCALIBDATA" value ="10"/>
+
+	<!-- Month before today -->
+	<add key="MONTHBEFORETODAY" value ="5"/>
+
+	<!-- Change folder contains certificate template file -->
+	<!-- Default is $AppDirectory/CertificateTemplates -->
+	<!-- Comment thes below lines to use default -->
+	<add key="TEMPLATEFOLDER" value ="C:\Users\nnquynh-laptop\source\repos\QLCM_newVersion\NewDatabase\Test Menubar_UserControl\bin\Release\CertificateTemplates"/>
+
+
+	<!-- Select template file for each radiation quantity -->
+	<!-- Rad. Quantity: Cs137, Co60 -->
+	<!--                N40, N60 -->
+
+
+
+</appSettings>
+
+

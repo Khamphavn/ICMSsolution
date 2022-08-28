@@ -1,0 +1,11 @@
+﻿CREATE TABLE [dbo].[Unit]
+(
+	[UnitId] INT  IDENTITY(1,1) NOT NULL, 
+    [Name] NVARCHAR(128) NOT NULL,
+	[IsActive] BIT NOT NULL DEFAULT 1, 
+    [Order] INT NOT NULL DEFAULT 999, 
+
+    CONSTRAINT [PK_Unit] PRIMARY KEY CLUSTERED ([UnitId] ASC),
+	CONSTRAINT [Unit_UNIQUE_Name] UNIQUE([Name])
+	
+)

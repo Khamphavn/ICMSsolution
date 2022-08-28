@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.3.32819.101
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32802.440
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ICMS", "ICMS\ICMS.csproj", "{98BEC250-6FB0-4C1D-96F6-D3EB94611977}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ICMS.Model", "ICMS.Model\ICMS.Model.csproj", "{D6486D5A-AC72-45FA-86EA-6A12F4C7BB53}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "ICMS.CreateDB", "ICMS.CreateDB\ICMS.CreateDB.sqlproj", "{552B5A8D-338B-4E10-B73A-95844A7B594A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Convert_DB_QLCM_ICMS", "Convert_DB_QLCM_ICMS\Convert_DB_QLCM_ICMS.csproj", "{7CE5DE0F-34DE-40A7-82C0-55237A241243}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,6 +31,10 @@ Global
 		{552B5A8D-338B-4E10-B73A-95844A7B594A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{552B5A8D-338B-4E10-B73A-95844A7B594A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{552B5A8D-338B-4E10-B73A-95844A7B594A}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{7CE5DE0F-34DE-40A7-82C0-55237A241243}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CE5DE0F-34DE-40A7-82C0-55237A241243}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CE5DE0F-34DE-40A7-82C0-55237A241243}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CE5DE0F-34DE-40A7-82C0-55237A241243}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,8 @@
+﻿CREATE TABLE [dbo].[Role]
+(
+	[RoleId] INT  IDENTITY(1,1) NOT NULL, 
+    [Name] NVARCHAR(256) NOT NULL
+
+    CONSTRAINT [PK_Role] PRIMARY KEY CLUSTERED ([RoleId] ASC),
+	CONSTRAINT [Role_UNIQUE_Name] UNIQUE([Name])
+)

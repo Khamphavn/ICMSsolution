@@ -14,6 +14,23 @@
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -27,16 +44,72 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
+    <DebugType>none</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Images\INST-logo-128x128.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.17.1.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.2.17.1\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignColors, Version=2.0.6.0, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignColors.2.0.6\lib\net452\MaterialDesignColors.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.Wpf, Version=4.5.0.0, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignThemes.4.5.0\lib\net452\MaterialDesignThemes.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.WebView2.Core, Version=1.0.1293.44, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.WebView2.1.0.1293.44\lib\net45\Microsoft.Web.WebView2.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.WebView2.WinForms, Version=1.0.1293.44, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.WebView2.1.0.1293.44\lib\net45\Microsoft.Web.WebView2.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.WebView2.Wpf, Version=1.0.1293.44, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.WebView2.1.0.1293.44\lib\net45\Microsoft.Web.WebView2.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Compression.Base, Version=20.2460.0.45, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Compression.Base.20.2.0.45\lib\net46\Syncfusion.Compression.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.DocIO.Base, Version=20.2460.0.45, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.DocIO.Wpf.20.2.0.45\lib\net46\Syncfusion.DocIO.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.DocToPdfConverter.Base, Version=20.2460.0.45, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.DocToPDFConverter.Wpf.20.2.0.45\lib\net46\Syncfusion.DocToPdfConverter.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Licensing, Version=20.2460.0.45, Culture=neutral, PublicKeyToken=632609b4d040f6b4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Licensing.20.2.0.45\lib\net46\Syncfusion.Licensing.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.OfficeChart.Base, Version=20.2460.0.45, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.OfficeChart.Base.20.2.0.45\lib\net46\Syncfusion.OfficeChart.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.OfficeChartToImageConverter.Wpf, Version=20.2460.0.45, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.OfficeChartToImageConverter.WPF.20.2.0.45\lib\net46\Syncfusion.OfficeChartToImageConverter.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Pdf.Base, Version=20.2460.0.45, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Pdf.Wpf.20.2.0.45\lib\net46\Syncfusion.Pdf.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.PdfViewer.WPF, Version=20.2460.0.45, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.PdfViewer.WPF.20.2.0.45\lib\net46\Syncfusion.PdfViewer.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfChart.WPF, Version=20.2460.0.45, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.SfChart.WPF.20.2.0.45\lib\net46\Syncfusion.SfChart.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Shared.WPF, Version=20.2460.0.45, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Shared.WPF.20.2.0.45\lib\net46\Syncfusion.Shared.WPF.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -55,6 +128,93 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Bussiness\CertificateProcessing\CertificateHelper.cs" />
+    <Compile Include="Bussiness\CertificateProcessing\ProcessingCertificate.cs" />
+    <Compile Include="CustomControl\FilterableComboBox.cs" />
+    <Compile Include="HelperFunction\StringExtensions.cs" />
+    <Compile Include="HelperFunction\UncertaintyEvaluation.cs" />
+    <Compile Include="Validation\CalibData_MachineReading_Validation.cs" />
+    <Compile Include="Validation\CalibData_RefValue_Validation.cs" />
+    <Compile Include="Validation\City_Name_Validation.cs" />
+    <Compile Include="Validation\City_PhoneCode_Validation.cs" />
+    <Compile Include="Validation\ComboBoxNotNull_Validation.cs" />
+    <Compile Include="Validation\Customer_City_Validation.cs" />
+    <Compile Include="Validation\Customer_FullName_Unique_Validation.cs" />
+    <Compile Include="Validation\Customer_FullName_Validation.cs" />
+    <Compile Include="Validation\Customer_ShortName_Validation.cs" />
+    <Compile Include="Validation\DoseQuantity_Name_Validation.cs" />
+    <Compile Include="Validation\Humidity_Validation.cs" />
+    <Compile Include="Validation\Machine_Manufacturer_Validation.cs" />
+    <Compile Include="Validation\Machine_Model_Validation.cs" />
+    <Compile Include="Validation\Machine_Name_Validation.cs" />
+    <Compile Include="Validation\Machine_Serial_Validation.cs" />
+    <Compile Include="Validation\Machine_Type_Validation.cs" />
+    <Compile Include="Validation\NotEmptyValidationRule.cs" />
+    <Compile Include="Validation\Pressure_Validation.cs" />
+    <Compile Include="Validation\RadQuanity_ReUnc_Validation.cs" />
+    <Compile Include="Validation\RadQuantity_Energy_Validation.cs" />
+    <Compile Include="Validation\Sensor_Type_Validation.cs" />
+    <Compile Include="Validation\Temperature_Validation.cs" />
+    <Compile Include="Validation\TextBoxNotNull.cs" />
+    <Compile Include="Validation\Unit_Name_Validation.cs" />
+    <Compile Include="Validation\Unit_Order_Validation.cs" />
+    <Compile Include="Validation\User_FullName_Validation.cs" />
+    <Compile Include="Validation\User_Login_Validation.cs" />
+    <Compile Include="Validation\User_Role_Validation.cs" />
+    <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="ViewModel\CertificateFormViewModel.cs" />
+    <Compile Include="ViewModel\CertificateListViewModel.cs" />
+    <Compile Include="ViewModel\CityViewModel.cs" />
+    <Compile Include="ViewModel\CustomerViewModel.cs" />
+    <Compile Include="ViewModel\DoseQuantityViewModel.cs" />
+    <Compile Include="ViewModel\LoginFormViewModel.cs" />
+    <Compile Include="ViewModel\MachineViewModel.cs" />
+    <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\MenuBarViewModel.cs" />
+    <Compile Include="ViewModel\RadQuantityViewModel.cs" />
+    <Compile Include="ViewModel\TMViewModel.cs" />
+    <Compile Include="ViewModel\UnitViewModel.cs" />
+    <Compile Include="ViewModel\UserViewModel.cs" />
+    <Compile Include="ViewModel\ViewCertificatePdfFileDialogViewModel.cs" />
+    <Compile Include="View\LoginFormWindow.xaml.cs">
+      <DependentUpon>LoginFormWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UC_Component\UC_CertificateForm.xaml.cs">
+      <DependentUpon>UC_CertificateForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UC_Component\UC_CertificateList.xaml.cs">
+      <DependentUpon>UC_CertificateList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UC_Component\UC_City.xaml.cs">
+      <DependentUpon>UC_City.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UC_Component\UC_Customer.xaml.cs">
+      <DependentUpon>UC_Customer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UC_Component\UC_DoseQuantity.xaml.cs">
+      <DependentUpon>UC_DoseQuantity.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UC_Component\UC_Machine.xaml.cs">
+      <DependentUpon>UC_Machine.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UC_Component\UC_MenuBar.xaml.cs">
+      <DependentUpon>UC_MenuBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UC_Component\UC_RadQuantity.xaml.cs">
+      <DependentUpon>UC_RadQuantity.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UC_Component\UC_TM.xaml.cs">
+      <DependentUpon>UC_TM.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UC_Component\UC_Unit.xaml.cs">
+      <DependentUpon>UC_Unit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UC_Component\UC_User.xaml.cs">
+      <DependentUpon>UC_User.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UC_Dialog\UC_ViewCertificatePdfFile_Dialog.xaml.cs">
+      <DependentUpon>UC_ViewCertificatePdfFile_Dialog.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -63,12 +223,120 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="AppSettings\AppSettings.cs" />
+    <Compile Include="Command\RelayCommand.cs" />
+    <Compile Include="Converter\BooleanToRowDetailsVisibilityConverter.cs" />
+    <Compile Include="Converter\BooleanToVisibilityCollapsed.cs" />
+    <Compile Include="Converter\DateTimeConverter.cs" />
+    <Compile Include="Converter\InverseAndBooleansToBooleanConverter.cs" />
+    <Compile Include="Converter\InverseBooleanConverter.cs" />
+    <Compile Include="Converter\InverseBoolToVisibilityConverter.cs" />
+    <Compile Include="Converter\NoWhiteSpaceTextConverter.cs" />
+    <Compile Include="Converter\OneDecimalText_Converter.cs" />
+    <Compile Include="Converter\StringRemoveWhiteSpaceConverter.cs" />
+    <Compile Include="Converter\StringReplaceMultipleSpaceToOneConverter.cs" />
+    <Compile Include="Converter\StringToFormatttedStringConverter.cs" />
+    <Compile Include="Converter\StringToNullableDecimalConverter.cs" />
+    <Compile Include="HelperFunction\ConvertStringNumberHelper.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Styles\Button.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\ColorBrush.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\ComboBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\DataGrid.ComboBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\DataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\DatePicker.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\GroupBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\Menu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\TextBlock.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\TextBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\LoginFormWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UC_Component\UC_CertificateForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UC_Component\UC_CertificateList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UC_Component\UC_City.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UC_Component\UC_Customer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UC_Component\UC_DoseQuantity.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UC_Component\UC_Machine.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UC_Component\UC_MenuBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UC_Component\UC_RadQuantity.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UC_Component\UC_TM.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UC_Component\UC_Unit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UC_Component\UC_User.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UC_Dialog\UC_ViewCertificatePdfFile_Dialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\CalibDataDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -82,10 +350,23 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Resource Include="Images\INST-logo-128x128.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Content Include="CertificateTemplates\Template_Gamma.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CertificateTemplates\Template_Xray.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CertificateTemplates\Template_Xray_Gamma.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -94,5 +375,44 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\INST-logo-368-368.png" />
+    <Resource Include="Images\INST-logo-Circle.png" />
+    <Resource Include="Images\INST-Logo-Circle2.png" />
+    <Resource Include="Images\INST-logo.ico" />
+    <Resource Include="Images\LOGO_INST.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AppSettings.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ICMS.Model\ICMS.Model.csproj">
+      <Project>{d6486d5a-ac72-45fa-86ea-6a12f4c7bb53}</Project>
+      <Name>ICMS.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.8">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.8 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\MaterialDesignThemes.4.5.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.5.0\build\MaterialDesignThemes.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\MaterialDesignThemes.4.5.0\build\MaterialDesignThemes.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MaterialDesignThemes.4.5.0\build\MaterialDesignThemes.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.Web.WebView2.1.0.1293.44\build\Microsoft.Web.WebView2.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Web.WebView2.1.0.1293.44\build\Microsoft.Web.WebView2.targets'))" />
+  </Target>
+  <Import Project="..\packages\Microsoft.Web.WebView2.1.0.1293.44\build\Microsoft.Web.WebView2.targets" Condition="Exists('..\packages\Microsoft.Web.WebView2.1.0.1293.44\build\Microsoft.Web.WebView2.targets')" />
 </Project>

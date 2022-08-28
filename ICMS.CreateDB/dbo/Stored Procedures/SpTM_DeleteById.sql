@@ -1,0 +1,9 @@
+﻿CREATE PROCEDURE [dbo].[SpTM_DeleteById]
+	@TMId int
+AS
+BEGIN
+	SET NOCOUNT ON
+
+	DELETE FROM dbo.TM  WHERE [TMId] = @TMId
+
+END
