@@ -30,6 +30,7 @@ namespace ICMS
             AppSettings.AppSettings.InitializeAppSettings();
 
 
+
             MainWindow = new LoginFormWindow()
             {
                 DataContext = new LoginFormViewModel()

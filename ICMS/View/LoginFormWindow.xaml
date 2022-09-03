@@ -44,7 +44,8 @@
                              BorderThickness="2" BorderBrush="LightGray" 
                              FontSize="14"                    
                              materialDesign:HintAssist.Hint="Login Name"
-                             Text="nnQuynh"/>
+                                 materialDesign:TextFieldAssist.HasClearButton="True"
+                             Text="Admin"/>
 
                         <PasswordBox x:Name="PasswordBox"  Style="{StaticResource MaterialDesignOutlinedPasswordBox}"
                                  Margin="0 20 0 0" Width="280"

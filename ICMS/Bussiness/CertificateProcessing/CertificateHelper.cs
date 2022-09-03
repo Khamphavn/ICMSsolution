@@ -12,6 +12,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace ICMS.Bussiness.CertificateProcessing
 {
@@ -49,8 +50,9 @@ namespace ICMS.Bussiness.CertificateProcessing
                 wordDocument.Close();
                 return 1;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                MessageBox.Show(ex.Message);
                 return 0;
                 throw;
             }

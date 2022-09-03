@@ -14,16 +14,10 @@ namespace ICMS.ViewModel
 
 
 
-        public ViewCertificatePdfFileDialogViewModel(string certificatePdfFileFullPath)
+        public ViewCertificatePdfFileDialogViewModel(Stream documentStream)
         {
-            CertificatePdfFileFullPath = certificatePdfFileFullPath;
 
-            if (DocumentStream != null)
-            {
-                DocumentStream.Dispose();
-            }
-
-            DocumentStream = new FileStream(certificatePdfFileFullPath, FileMode.Open, FileAccess.Read, FileShare.Read);
+            DocumentStream = documentStream;
 
         }
     }

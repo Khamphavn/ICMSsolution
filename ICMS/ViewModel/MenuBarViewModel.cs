@@ -1,8 +1,10 @@
-﻿using System.Windows;
+﻿using System.IO;
+using System.Windows;
 using System.Windows.Input;
 using ICMS.Command;
 using ICMS.Model.Models;
 using ICMS.View;
+using ICMS.View.UC_Dialog;
 
 namespace ICMS.ViewModel
 {
@@ -48,7 +50,11 @@ namespace ICMS.ViewModel
         #endregion
 
 
+        private bool _IsDialogOpen;
+        public bool IsDialogOpen { get => _IsDialogOpen; set { _IsDialogOpen = value; OnPropertyChanged(); } }
 
+        private object _DialogContent;
+        public object DialogContent { get => _DialogContent; set { _DialogContent = value; OnPropertyChanged(); } }
 
         public MenuBarViewModel(MainViewModel mainViewModel)
         {
@@ -71,7 +77,7 @@ namespace ICMS.ViewModel
                 (p) => { return true; },
                 (p) =>
                 {
-                    MessageBox.Show("TODO");
+                    mainViewModel.CurrentControl = new DatabaseBackupViewModel();
                 }
                 );
             #endregion
@@ -82,7 +88,7 @@ namespace ICMS.ViewModel
                 (p) => { return true; },
                 (p) =>
                 {
-                    MessageBox.Show("TODO");
+                    mainViewModel.CurrentControl = new DatabaseRestoreViewModel();
                 }
                 );
             #endregion
@@ -177,7 +183,22 @@ namespace ICMS.ViewModel
                 (p) => { return true; },
                 (p) =>
                 {
-                    MessageBox.Show("TODO\n Open User Manual");
+                    try
+                    {
+                        string UserManualFile = Path.Combine(Directory.GetCurrentDirectory(), "Docs", "UserManual.pdf");
+                        System.Diagnostics.Process.Start(UserManualFile);
+                    }
+                    catch (System.Exception)
+                    {
+                        MessageBox.Show(
+                            messageBoxText:"Could not open file", 
+                            caption:"Error", 
+                            button:MessageBoxButton.OK, 
+                            icon:MessageBoxImage.Information,
+                            defaultResult:MessageBoxResult.OK
+                            );
+                    }
+                    
                 }
                 );
             #endregion
@@ -188,7 +209,11 @@ namespace ICMS.ViewModel
                 (p) => { return true; },
                 (p) =>
                 {
-                    MessageBox.Show("TODO\n Show software Infos");
+                    DialogContent = new UC_ICMS_infos_Dialog()
+                    {
+                       
+                    };
+                    IsDialogOpen = true;
                 }
                 );
             #endregion

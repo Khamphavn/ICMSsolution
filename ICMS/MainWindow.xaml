@@ -80,6 +80,14 @@
                         <control:UC_DoseQuantity/>
                     </DataTemplate>
 
+                    <DataTemplate DataType="{x:Type viewmodel:DatabaseBackupViewModel}">
+                        <control:UC_DatabaseBackup/>
+                    </DataTemplate>
+
+                    <DataTemplate DataType="{x:Type viewmodel:DatabaseRestoreViewModel}">
+                        <control:UC_DatabaseRestore/>
+                    </DataTemplate>
+
 
                 </ContentControl.Resources>
             </ContentControl>

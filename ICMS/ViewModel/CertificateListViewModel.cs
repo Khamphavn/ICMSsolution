@@ -17,6 +17,7 @@ using System.Diagnostics;
 using Microsoft.Win32;
 using System.Windows.Forms;
 using SaveFileDialog = System.Windows.Forms.SaveFileDialog;
+using System.IO;
 
 namespace ICMS.ViewModel
 {
@@ -62,8 +63,11 @@ namespace ICMS.ViewModel
         private object _DialogContent;
         public object DialogContent { get => _DialogContent; set { _DialogContent = value; OnPropertyChanged(); } }
 
+        private Stream _documentStream;
+        public Stream DocumentStream { get => _documentStream; set { _documentStream = value; OnPropertyChanged(); } }
+
         #region Commands
-        
+
         public ICommand ViewAndPrintCertificateCommand { get; set; }
         public ICommand ExportCertificateToWordCommand { get; set; }
         public ICommand ViewDetailsOnlyCertificateCommand { get; set; }
@@ -121,7 +125,10 @@ namespace ICMS.ViewModel
 
                         //Stopwatch stopWatch = new Stopwatch();
                         //stopWatch.Start();
-
+                        if (DocumentStream != null)
+                        {
+                            DocumentStream.Close();
+                        }
                         createTempoCertificatePdfSuccess = processingCertificate.CreateTemporaryCertificatePdf(SelectedCertificate);
 
                         //stopWatch.Stop();
@@ -386,15 +393,28 @@ namespace ICMS.ViewModel
         #region private
 
 
+        //private void OpenViewCertificatePdfDialog(string certificatePdfFileFullPath)
+        //{
+        //    DialogContent = new UC_ViewCertificatePdfFile_Dialog()
+        //    {
+        //        DataContext = new ViewCertificatePdfFileDialogViewModel(certificatePdfFileFullPath)
+        //    };
+        //    IsDialogOpen = true;
+        //}
+
         private void OpenViewCertificatePdfDialog(string certificatePdfFileFullPath)
         {
 
+                DocumentStream = new FileStream(certificatePdfFileFullPath, FileMode.Open, FileAccess.Read);
+                        
+
             DialogContent = new UC_ViewCertificatePdfFile_Dialog()
             {
-                DataContext = new ViewCertificatePdfFileDialogViewModel(certificatePdfFileFullPath)
+                DataContext = new ViewCertificatePdfFileDialogViewModel(DocumentStream)
             };
             IsDialogOpen = true;
         }
+
 
         #endregion
     }

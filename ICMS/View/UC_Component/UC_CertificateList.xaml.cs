@@ -26,12 +26,14 @@ namespace ICMS.View.UC_Component
             string searchString = txt.Text.Trim().ToLower();
 
             CertificateListViewModel viewModel = this.DataContext as CertificateListViewModel;
+            viewModel.FilterCertificateList = viewModel.CertificateList;
 
             // Customer Name
             if (Search_CustomerName_TextBox.Text.Length >= 3)
             {
                 Search_CustomerName_Field(viewModel);
             }
+            
             // CalibDate
             if (StringIsDate(Search_CalibDate_TextBox.Text))
             {
@@ -42,6 +44,18 @@ namespace ICMS.View.UC_Component
             if (Search_CertificateNumber_TextBox.Text.Length >= 3)
             {
                 Search_CertificateNumber_Field(viewModel);
+            }
+
+            // Machine Name 
+            if (Search_MachineName_TextBox.Text.Length >= 3)
+            {
+                Search_MachineName_Field(viewModel);
+            }
+
+            // Machine Model
+            if (Search_MachineModel_TextBox.Text.Length >= 3)
+            {
+                Search_MachineModel_Field(viewModel);
             }
 
             // Machine Serial 
@@ -56,17 +70,25 @@ namespace ICMS.View.UC_Component
                 Search_Performer_Field(viewModel);
             }
 
-            // if all search box is empty -> restore certificate List
-            if (string.IsNullOrWhiteSpace(Search_CustomerName_TextBox.Text) &
-                string.IsNullOrWhiteSpace(Search_CalibDate_TextBox.Text) &
-                string.IsNullOrWhiteSpace(Search_CertificateNumber_TextBox.Text) &
-                string.IsNullOrWhiteSpace(Search_MachineModel_TextBox.Text) &
-                string.IsNullOrWhiteSpace(Search_MachineSerial_TextBox.Text) &
-                string.IsNullOrWhiteSpace(Search_Performer_TextBox.Text)
-                )
+            // TM
+            if (Search_TM_TextBox.Text.Length >= 3)
             {
-                viewModel.FilterCertificateList = viewModel.CertificateList;
+                Search_TM_Field(viewModel);
             }
+
+            // if all search box is empty -> restore certificate List
+            //if (string.IsNullOrWhiteSpace(Search_CustomerName_TextBox.Text) &
+            //    string.IsNullOrWhiteSpace(Search_CalibDate_TextBox.Text) &
+            //    string.IsNullOrWhiteSpace(Search_CertificateNumber_TextBox.Text) &
+            //    string.IsNullOrWhiteSpace(Search_MachineName_TextBox.Text) &
+            //    string.IsNullOrWhiteSpace(Search_MachineModel_TextBox.Text) &
+            //    string.IsNullOrWhiteSpace(Search_MachineSerial_TextBox.Text) &
+            //    string.IsNullOrWhiteSpace(Search_Performer_TextBox.Text) &
+            //    string.IsNullOrWhiteSpace(Search_TM_TextBox.Text)
+            //    )
+            //{
+            //    viewModel.FilterCertificateList = viewModel.CertificateList;
+            //}
 
         }
 
@@ -114,6 +136,30 @@ namespace ICMS.View.UC_Component
             viewModel.FilterCertificateList = tempoFilterList;
         }
 
+        private void Search_MachineName_Field(CertificateListViewModel viewModel)
+        {
+            string searchString = Search_MachineName_TextBox.Text;
+            StringComparison comp = StringComparison.OrdinalIgnoreCase;
+
+            ObservableCollection<Certificate> tempoFilterList = new ObservableCollection<Certificate>
+                (
+                    viewModel.FilterCertificateList.Where(s => s.Machine.Name.ContainsWithOptionStringComparison(searchString, comp))
+                    );
+            viewModel.FilterCertificateList = tempoFilterList;
+        }
+
+        private void Search_MachineModel_Field(CertificateListViewModel viewModel)
+        {
+            string searchString = Search_MachineModel_TextBox.Text;
+            StringComparison comp = StringComparison.OrdinalIgnoreCase;
+
+            ObservableCollection<Certificate> tempoFilterList = new ObservableCollection<Certificate>
+                (
+                    viewModel.FilterCertificateList.Where(s => s.Machine.Model.ContainsWithOptionStringComparison(searchString, comp))
+                    );
+            viewModel.FilterCertificateList = tempoFilterList;
+        }
+
         private void Search_MachineSerial_Field(CertificateListViewModel viewModel)
         {
             string searchString = Search_MachineSerial_TextBox.Text;
@@ -138,126 +184,18 @@ namespace ICMS.View.UC_Component
 
         }
 
-        private void SearchCustomer_TextChanged(object sender, TextChangedEventArgs e)
+        private void Search_TM_Field(CertificateListViewModel viewModel)
         {
-            var txt = sender as TextBox;
-            string searchString = txt.Text.Trim().ToLower();
+            string searchString = Search_TM_TextBox.Text;
 
-            CertificateListViewModel viewModel = this.DataContext as CertificateListViewModel;
+            ObservableCollection<Certificate> tempoFilterList = new ObservableCollection<Certificate>
+                (
+                    viewModel.FilterCertificateList.Where(s => s.TM.ContainsWord(searchString))
+                    );
+            viewModel.FilterCertificateList = tempoFilterList;
 
-            if (searchString.Length >= 3)
-            {
-                bool isContain;
-                ObservableCollection<Certificate> tempoFilterList = new ObservableCollection<Certificate>();
-                foreach (Certificate certificate in viewModel.FilterCertificateList)
-                {
-                    isContain = certificate.Customer.FullName.ContainsWord(searchString);
-
-                    if (isContain == true)
-                    {
-                        tempoFilterList.Add(certificate);
-                    }
-                }
-                viewModel.FilterCertificateList = tempoFilterList;
-            }
-            else
-            {
-                viewModel.FilterCertificateList = viewModel.CertificateList;
-            }
         }
 
-        private void SearchCalibDate_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            var txt = sender as TextBox;
-            string searchString = txt.Text.Trim().ToLower();
 
-            CertificateListViewModel viewModel = this.DataContext as CertificateListViewModel;
-
-            if (searchString.Length >= 8 & searchString.Length <= 10)
-            {
-                bool isDate = DateTime.TryParseExact(searchString, "d/M/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime searchDate);
-                if (isDate)
-                {
-                    ObservableCollection<Certificate> tempoFilterList = new ObservableCollection<Certificate>
-                        (
-                        viewModel.FilterCertificateList.Where(s => s.CalibDate == searchDate)
-                        );
-                    viewModel.FilterCertificateList = tempoFilterList;
-                }
-            }
-            else
-            {
-                viewModel.FilterCertificateList = viewModel.CertificateList; // refresh certificate list when search box is empty
-            }
-        }
-
-        private void SearchCertificateNumber_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            var txt = sender as TextBox;
-            string searchString = txt.Text.Trim().ToLower();
-
-            CertificateListViewModel viewModel = this.DataContext as CertificateListViewModel;
-
-            if (searchString.Length >= 2 & searchString.Length <= 15)
-            {
-                //StringComparison comp = StringComparison.OrdinalIgnoreCase;
-
-                ObservableCollection<Certificate> tempoFilterList = new ObservableCollection<Certificate>
-                    (
-                        viewModel.FilterCertificateList.Where(s => s.CertificateNumber.Contains(searchString))
-                        );
-                viewModel.FilterCertificateList = tempoFilterList;
-            }
-            else
-            {
-                viewModel.FilterCertificateList = viewModel.CertificateList;
-            }
-        }
-
-        private void SearchMachineSerial_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            var txt = sender as TextBox;
-            string searchString = txt.Text.Trim().ToLower();
-
-            CertificateListViewModel viewModel = this.DataContext as CertificateListViewModel;
-
-            if (searchString.Length >= 2 & searchString.Length <= 20)
-            {
-                StringComparison comp = StringComparison.OrdinalIgnoreCase;
-
-                ObservableCollection<Certificate> tempoFilterList = new ObservableCollection<Certificate>
-                    (
-                        viewModel.FilterCertificateList.Where(s => s.Machine.Serial.ContainsWithOptionStringComparison(searchString, comp))
-                        );
-                viewModel.FilterCertificateList = tempoFilterList;
-            }
-            else
-            {
-                viewModel.FilterCertificateList = viewModel.CertificateList;
-            }
-        }
-
-        private void SearchPerformer_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            var txt = sender as TextBox;
-            string searchString = txt.Text.Trim().ToLower();
-
-            CertificateListViewModel viewModel = this.DataContext as CertificateListViewModel;
-
-            if (searchString.Length >= 3 & searchString.Length <= 30)
-            {
-                //StringComparison comp = StringComparison.InvariantCultureIgnoreCase;
-
-                ObservableCollection<Certificate> tempoFilterList = new ObservableCollection<Certificate>
-                    (
-                        viewModel.FilterCertificateList.Where(s => s.PerformedBy.ContainsWord(searchString))
-                        );
-                viewModel.FilterCertificateList = tempoFilterList;
-            }
-            else
-            {
-                viewModel.FilterCertificateList = viewModel.CertificateList;
-            }
-        }
     }
 }

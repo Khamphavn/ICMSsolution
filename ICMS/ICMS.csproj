@@ -131,8 +131,10 @@
     <Compile Include="Bussiness\CertificateProcessing\CertificateHelper.cs" />
     <Compile Include="Bussiness\CertificateProcessing\ProcessingCertificate.cs" />
     <Compile Include="CustomControl\FilterableComboBox.cs" />
+    <Compile Include="HelperFunction\BackupDB.cs" />
     <Compile Include="HelperFunction\StringExtensions.cs" />
     <Compile Include="HelperFunction\UncertaintyEvaluation.cs" />
+    <Compile Include="Settings.cs" />
     <Compile Include="Validation\CalibData_MachineReading_Validation.cs" />
     <Compile Include="Validation\CalibData_RefValue_Validation.cs" />
     <Compile Include="Validation\City_Name_Validation.cs" />
@@ -166,6 +168,8 @@
     <Compile Include="ViewModel\CertificateListViewModel.cs" />
     <Compile Include="ViewModel\CityViewModel.cs" />
     <Compile Include="ViewModel\CustomerViewModel.cs" />
+    <Compile Include="ViewModel\DatabaseBackupViewModel.cs" />
+    <Compile Include="ViewModel\DatabaseRestoreViewModel.cs" />
     <Compile Include="ViewModel\DoseQuantityViewModel.cs" />
     <Compile Include="ViewModel\LoginFormViewModel.cs" />
     <Compile Include="ViewModel\MachineViewModel.cs" />
@@ -191,6 +195,12 @@
     <Compile Include="View\UC_Component\UC_Customer.xaml.cs">
       <DependentUpon>UC_Customer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\UC_Component\UC_DatabaseBackup.xaml.cs">
+      <DependentUpon>UC_DatabaseBackup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UC_Component\UC_DatabaseRestore.xaml.cs">
+      <DependentUpon>UC_DatabaseRestore.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\UC_Component\UC_DoseQuantity.xaml.cs">
       <DependentUpon>UC_DoseQuantity.xaml</DependentUpon>
     </Compile>
@@ -211,6 +221,9 @@
     </Compile>
     <Compile Include="View\UC_Component\UC_User.xaml.cs">
       <DependentUpon>UC_User.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UC_Dialog\UC_ICMS_infos_Dialog.xaml.cs">
+      <DependentUpon>UC_ICMS_infos_Dialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\UC_Dialog\UC_ViewCertificatePdfFile_Dialog.xaml.cs">
       <DependentUpon>UC_ViewCertificatePdfFile_Dialog.xaml</DependentUpon>
@@ -302,6 +315,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\UC_Component\UC_DatabaseBackup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UC_Component\UC_DatabaseRestore.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\UC_Component\UC_DoseQuantity.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -327,6 +348,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\UC_Component\UC_User.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UC_Dialog\UC_ICMS_infos_Dialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -366,6 +391,15 @@
     <Content Include="CertificateTemplates\Template_Xray_Gamma.docx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="BackupDB\ICMS_BetaV1-backup-2022-09-03_20_20_39.bak">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="BackupDB\ICMS_BetaV1-init.bak">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Docs\UserManual.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -405,6 +439,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.5.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.5.0\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

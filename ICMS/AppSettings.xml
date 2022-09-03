@@ -25,7 +25,7 @@
 	<!-- Change folder contains certificate template file -->
 	<!-- Default is $AppDirectory/CertificateTemplates -->
 	<!-- Comment thes below lines to use default -->
-	<add key="TEMPLATEFOLDER" value ="C:\Users\nnquynh-laptop\source\repos\QLCM_newVersion\NewDatabase\Test Menubar_UserControl\bin\Release\CertificateTemplates"/>
+	<!--<add key="TEMPLATEFOLDER" value ="C:\Users\nnquynh-laptop\source\repos\QLCM_newVersion\NewDatabase\Test Menubar_UserControl\bin\Release\CertificateTemplates"/>-->
 
 
 	<!-- Select template file for each radiation quantity -->

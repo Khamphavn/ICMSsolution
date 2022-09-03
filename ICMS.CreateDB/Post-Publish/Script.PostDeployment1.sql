@@ -100,121 +100,121 @@ if not exists (SELECT * FROM  dbo.City where [Name] = N'Yên Bái') BEGIN INSERT
 
 end
 
-begin  -- MachineName
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Aloka') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Aloka'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Aloka Mydose mini') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Aloka Mydose mini'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Apvl') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Apvl'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'ARROW') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'ARROW'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'AT6101C') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'AT6101C'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'ATOMTEX') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'ATOMTEX'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Berthold') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Berthold'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Bleeper Sv') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Bleeper Sv'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'CANARY') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'CANARY'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'CAPINTEC') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'CAPINTEC'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'CLOVER') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'CLOVER'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'CRM 100') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'CRM 100'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Digilert 100') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Digilert 100'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'DKS-96') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'DKS-96'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'DMC 3000') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'DMC 3000'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Dose rate meter YF-9200') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Dose rate meter YF-9200'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Dosemeter') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Dosemeter'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'ĐP5 - CT') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'ĐP5 - CT'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Eberline') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Eberline'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'ECOTEST') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'ECOTEST'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Exploranium') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Exploranium'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'FAG') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'FAG'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'FH40F2') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'FH40F2'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'FLUKE') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'FLUKE'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Fuji Electric') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Fuji Electric'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Gamma - Scout') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Gamma - Scout'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Gamma Alarm System') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Gamma Alarm System'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Gamma Area Monitor') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Gamma Area Monitor'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Gamma RAE II R') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Gamma RAE II R'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'GammaRAE II R') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'GammaRAE II R'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'GammaTwin') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'GammaTwin'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Hand-held Neutron Monitor') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Hand-held Neutron Monitor'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'IDENTIFINDER') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'IDENTIFINDER'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'IDENTIFINDER 2') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'IDENTIFINDER 2'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Identify PAM 945') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Identify PAM 945'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'IJRAD ') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'IJRAD '); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Inspector') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Inspector'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'INSPECTOR 1000') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'INSPECTOR 1000'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'INSPECTOR ALERT') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'INSPECTOR ALERT'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Inspector EXP') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Inspector EXP'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Isotra') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Isotra'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Isotrak') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Isotrak'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'JB4020') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'JB4020'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'LUDLUM') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'LUDLUM'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Ludlum 3') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Ludlum 3'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Ludlum 375 digital area monitor') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Ludlum 375 digital area monitor'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'44684') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'44684'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Máy Đo Phóng Xạ 4 Kênh') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Máy Đo Phóng Xạ 4 Kênh'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'MAZUR') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'MAZUR'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'MicroSievert') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'MicroSievert'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Mini 900 Ratemeter') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Mini 900 Ratemeter'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Mini Telerad') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Mini Telerad'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'MIRION') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'MIRION'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Model 375 digital area monitor') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Model 375 digital area monitor'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Monitor 1000') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Monitor 1000'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Monitor 4') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Monitor 4'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Monitor 4EC') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Monitor 4EC'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'ND 2000') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'ND 2000'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'NDS') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'NDS'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'NovelDetector') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'NovelDetector'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'OHMART') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'OHMART'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Packeye') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Packeye'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Pico catch 100') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Pico catch 100'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Picoray') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Picoray'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'POLIMASTER') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'POLIMASTER'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'PRIMALERT DIGITAL AREA MONITOR') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'PRIMALERT DIGITAL AREA MONITOR'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Pudibei') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Pudibei'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'RAD 100') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'RAD 100'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'RAD IQ') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'RAD IQ'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Radalert 100') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Radalert 100'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Radalert 50') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Radalert 50'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Radex') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Radex'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'RadEye') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'RadEye'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Radi Horiba') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Radi Horiba'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'RADIAGEM') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'RADIAGEM'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'RADIATION ALERT') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'RADIATION ALERT'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Radiation Monitor') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Radiation Monitor'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Radiation Monitoring Controller - CGN') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Radiation Monitoring Controller - CGN'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Radiation Monitoring Station') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Radiation Monitoring Station'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Radiation Testing Machine') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Radiation Testing Machine'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'RADICO') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'RADICO'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Radiometer Dosimeter') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Radiometer Dosimeter'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'RADOS') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'RADOS'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'RADSOL') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'RADSOL'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'RANGER') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'RANGER'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'RAPISCAN') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'RAPISCAN'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Raysafe 452') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Raysafe 452'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'REN 200') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'REN 200'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'RI-02') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'RI-02'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'RIIDEye X') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'RIIDEye X'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'RTI Survey meter') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'RTI Survey meter'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'SAM 945 ') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'SAM 945 '); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'SARA Base Unit Fix Station (LAN)') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'SARA Base Unit Fix Station (LAN)'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'smart Rad') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'smart Rad'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'SPECTRA') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'SPECTRA'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Spectrometer') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Spectrometer'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Station Radiation Dosimeter') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Station Radiation Dosimeter'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'STEP') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'STEP'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'STORA-TU') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'STORA-TU'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'SVG - 2M') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'SVG - 2M'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Technidata') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Technidata'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'TENMARS') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'TENMARS'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'TERRA') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'TERRA'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'TERRA P') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'TERRA P'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Thermo') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Thermo'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Thermo Scientific EPD') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Thermo Scientific EPD'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Thiết bị đo phóng xạ') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Thiết bị đo phóng xạ'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Tracerco') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Tracerco'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'TROXLER') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'TROXLER'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'VICTOREEN') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'VICTOREEN'); END
-if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'X5CEx') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'X5CEx'); END
+--begin  -- MachineName
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Aloka') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Aloka'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Aloka Mydose mini') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Aloka Mydose mini'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Apvl') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Apvl'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'ARROW') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'ARROW'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'AT6101C') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'AT6101C'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'ATOMTEX') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'ATOMTEX'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Berthold') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Berthold'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Bleeper Sv') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Bleeper Sv'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'CANARY') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'CANARY'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'CAPINTEC') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'CAPINTEC'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'CLOVER') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'CLOVER'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'CRM 100') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'CRM 100'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Digilert 100') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Digilert 100'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'DKS-96') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'DKS-96'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'DMC 3000') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'DMC 3000'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Dose rate meter YF-9200') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Dose rate meter YF-9200'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Dosemeter') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Dosemeter'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'ĐP5 - CT') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'ĐP5 - CT'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Eberline') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Eberline'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'ECOTEST') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'ECOTEST'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Exploranium') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Exploranium'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'FAG') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'FAG'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'FH40F2') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'FH40F2'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'FLUKE') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'FLUKE'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Fuji Electric') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Fuji Electric'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Gamma - Scout') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Gamma - Scout'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Gamma Alarm System') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Gamma Alarm System'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Gamma Area Monitor') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Gamma Area Monitor'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Gamma RAE II R') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Gamma RAE II R'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'GammaRAE II R') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'GammaRAE II R'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'GammaTwin') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'GammaTwin'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Hand-held Neutron Monitor') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Hand-held Neutron Monitor'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'IDENTIFINDER') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'IDENTIFINDER'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'IDENTIFINDER 2') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'IDENTIFINDER 2'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Identify PAM 945') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Identify PAM 945'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'IJRAD ') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'IJRAD '); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Inspector') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Inspector'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'INSPECTOR 1000') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'INSPECTOR 1000'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'INSPECTOR ALERT') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'INSPECTOR ALERT'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Inspector EXP') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Inspector EXP'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Isotra') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Isotra'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Isotrak') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Isotrak'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'JB4020') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'JB4020'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'LUDLUM') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'LUDLUM'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Ludlum 3') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Ludlum 3'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Ludlum 375 digital area monitor') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Ludlum 375 digital area monitor'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'44684') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'44684'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Máy Đo Phóng Xạ 4 Kênh') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Máy Đo Phóng Xạ 4 Kênh'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'MAZUR') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'MAZUR'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'MicroSievert') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'MicroSievert'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Mini 900 Ratemeter') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Mini 900 Ratemeter'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Mini Telerad') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Mini Telerad'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'MIRION') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'MIRION'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Model 375 digital area monitor') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Model 375 digital area monitor'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Monitor 1000') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Monitor 1000'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Monitor 4') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Monitor 4'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Monitor 4EC') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Monitor 4EC'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'ND 2000') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'ND 2000'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'NDS') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'NDS'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'NovelDetector') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'NovelDetector'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'OHMART') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'OHMART'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Packeye') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Packeye'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Pico catch 100') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Pico catch 100'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Picoray') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Picoray'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'POLIMASTER') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'POLIMASTER'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'PRIMALERT DIGITAL AREA MONITOR') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'PRIMALERT DIGITAL AREA MONITOR'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Pudibei') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Pudibei'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'RAD 100') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'RAD 100'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'RAD IQ') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'RAD IQ'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Radalert 100') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Radalert 100'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Radalert 50') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Radalert 50'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Radex') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Radex'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'RadEye') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'RadEye'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Radi Horiba') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Radi Horiba'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'RADIAGEM') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'RADIAGEM'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'RADIATION ALERT') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'RADIATION ALERT'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Radiation Monitor') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Radiation Monitor'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Radiation Monitoring Controller - CGN') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Radiation Monitoring Controller - CGN'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Radiation Monitoring Station') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Radiation Monitoring Station'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Radiation Testing Machine') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Radiation Testing Machine'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'RADICO') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'RADICO'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Radiometer Dosimeter') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Radiometer Dosimeter'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'RADOS') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'RADOS'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'RADSOL') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'RADSOL'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'RANGER') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'RANGER'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'RAPISCAN') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'RAPISCAN'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Raysafe 452') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Raysafe 452'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'REN 200') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'REN 200'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'RI-02') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'RI-02'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'RIIDEye X') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'RIIDEye X'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'RTI Survey meter') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'RTI Survey meter'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'SAM 945 ') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'SAM 945 '); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'SARA Base Unit Fix Station (LAN)') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'SARA Base Unit Fix Station (LAN)'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'smart Rad') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'smart Rad'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'SPECTRA') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'SPECTRA'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Spectrometer') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Spectrometer'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Station Radiation Dosimeter') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Station Radiation Dosimeter'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'STEP') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'STEP'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'STORA-TU') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'STORA-TU'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'SVG - 2M') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'SVG - 2M'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Technidata') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Technidata'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'TENMARS') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'TENMARS'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'TERRA') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'TERRA'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'TERRA P') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'TERRA P'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Thermo') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Thermo'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Thermo Scientific EPD') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Thermo Scientific EPD'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Thiết bị đo phóng xạ') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Thiết bị đo phóng xạ'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'Tracerco') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'Tracerco'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'TROXLER') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'TROXLER'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'VICTOREEN') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'VICTOREEN'); END
+--if not exists (SELECT * FROM  dbo.MachineName where [Name] = N'X5CEx') BEGIN INSERT INTO dbo.MachineName ([Name]) VALUES (N'X5CEx'); END
 
 
-end
+--end
 
 begin   -- Role
 if not exists (SELECT * FROM  dbo.Role where [Name] = N'Viewer') BEGIN INSERT INTO dbo.Role  ([Name]) VALUES (N'Viewer' ); END													
@@ -264,10 +264,10 @@ if not exists (SELECT * FROM  dbo.DoseQuantity where [NameVN] = N'Liều cá nh�
 																						
 end
 
-begin   -- TM
-if not exists (SELECT * FROM  dbo.TM where [Name] = N'Hồ Quang Tuấn') BEGIN INSERT INTO dbo.TM ([Name]) VALUES (N'Hồ Quang Tuấn'); END
-if not exists (SELECT * FROM  dbo.TM where [Name] = N'Bùi Đức Kỳ') BEGIN INSERT INTO dbo.TM ([Name]) VALUES (N'Bùi Đức Kỳ'); END
-end
+--begin   -- TM
+--if not exists (SELECT * FROM  dbo.TM where [Name] = N'Hồ Quang Tuấn') BEGIN INSERT INTO dbo.TM ([Name]) VALUES (N'Hồ Quang Tuấn'); END
+--if not exists (SELECT * FROM  dbo.TM where [Name] = N'Bùi Đức Kỳ') BEGIN INSERT INTO dbo.TM ([Name]) VALUES (N'Bùi Đức Kỳ'); END
+--end
 
 begin  -- SensorType
 if not exists (SELECT * FROM  dbo.SensorType where [Name] = N'Ống đếm GM') BEGIN INSERT INTO dbo.SensorType ([Name],[IsActive]) VALUES (N'Ống đếm GM',1); END
@@ -294,15 +294,15 @@ end
 
 begin   -- User
 if not exists (SELECT * FROM  dbo.[User] WHERE [LoginName] = 'Admin') BEGIN INSERT INTO dbo.[User]  ([LoginName],[FullName],[Password],[RoleId],[IsActive]) VALUES ('Admin' , N'Admin ' ,'TQskzK3iLfbRVHeM1muvBCiKribfl6lh8+o91hb74G3OvsybvkzpPI4S3KIeWTXAiwlUU0iSxWi4wSuS8mokSA==', 5,1); END															
-if not exists (SELECT * FROM  dbo.[User] WHERE [LoginName] = 'lnThiem') BEGIN INSERT INTO dbo.[User]  ([LoginName],[FullName],[Password],[RoleId],[IsActive]) VALUES ('lnThiem' , N'Lê Ngọc Thiệm ' ,'f2Qf2j1eAZClDYP29qkk7/riT4Gw0C4/tZcyMW4f7daSj2MFIz6TPPD4KzKPVW9ZF4sl3Dz7zmPifGPNWKcK3w==', 4,1); END															
-if not exists (SELECT * FROM  dbo.[User] WHERE [LoginName] = 'hqTuan') BEGIN INSERT INTO dbo.[User]  ([LoginName],[FullName],[Password],[RoleId],[IsActive]) VALUES ('hqTuan' , N'Hồ Quang Tuấn ' ,'cYG4QUrPG6QEpRDXwqUC66aFPqRSSSiFJTHI+VyigoLL6d7vxIfofXWyJVvb9L55t80WL3qqg4k+egxtfplRDg==', 3,1); END															
-if not exists (SELECT * FROM  dbo.[User] WHERE [LoginName] = 'bdKy') BEGIN INSERT INTO dbo.[User]  ([LoginName],[FullName],[Password],[RoleId],[IsActive]) VALUES ('bdKy' , N'Bùi Đức Kỳ ' ,'JglrCxpRMDD1LFvthcjvA+ct7wnIK50Ukck7dpIU6RCWegfGusKRxzduTEHg9GyEK4WZE+zya31iXeqONI3FTQ==', 3,1); END															
-if not exists (SELECT * FROM  dbo.[User] WHERE [LoginName] = 'nnQuynh') BEGIN INSERT INTO dbo.[User]  ([LoginName],[FullName],[Password],[RoleId],[IsActive]) VALUES ('nnQuynh' , N'Nguyễn Ngọc Quỳnh ' ,'tMCtNNh0nlmHOpv06uidQd1FS0ckiRDKU09ytmppu0u0dqyZowqjgt8bqItNCwz3RuKNYJYDp5Klqka552nlNQ==', 2,1); END															
-if not exists (SELECT * FROM  dbo.[User] WHERE [LoginName] = 'dtmLinh') BEGIN INSERT INTO dbo.[User]  ([LoginName],[FullName],[Password],[RoleId],[IsActive]) VALUES ('dtmLinh' , N'Đặng Thị Mỹ Linh ' ,'2iT3AfhVRZ2arYq0QZdSyRCRttLP0L7KjI4UeoIGae85nBbasw5odwT/axqgXlo/1YzvdqWhg41+Cu+R+BP/5Q==', 2,1); END															
-if not exists (SELECT * FROM  dbo.[User] WHERE [LoginName] = 'dtNhung') BEGIN INSERT INTO dbo.[User]  ([LoginName],[FullName],[Password],[RoleId],[IsActive]) VALUES ('dtNhung' , N'Dương Thị Nhung ' ,'+E1es4c/AnApwiOCkMgtmOfExpTTzYHxZiLFQ2WIbWsJGUSUXzIIAElQf7PWQBl+abXJ8D1IXhQKywJeaF5ebg==', 2,1); END															
-if not exists (SELECT * FROM  dbo.[User] WHERE [LoginName] = 'tvTrung') BEGIN INSERT INTO dbo.[User]  ([LoginName],[FullName],[Password],[RoleId],[IsActive]) VALUES ('tvTrung' , N'Trần Văn Trung ' ,'TXukIr69sD/acAhanFVTZh44HrSibO9jOUb9LIWt0RrGJe0pfHGBSLzzBdCBWiQcfDQ9GAcFCa5g5tcVA3wBjg==', 2,1); END															
-if not exists (SELECT * FROM  dbo.[User] WHERE [LoginName] = 'ndNguyen') BEGIN INSERT INTO dbo.[User]  ([LoginName],[FullName],[Password],[RoleId],[IsActive]) VALUES ('ndNguyen' , N'Nguyễn Đăng Nguyên ' ,'73rhkewtQk97o09eOYHuXreXfWymiupSie6Ts2JIzdNgJRxdxHA4bASomRRHetOjzH7AZPhWrIFMVoK3ePdZ1g==', 2,1); END															
-if not exists (SELECT * FROM  dbo.[User] WHERE [LoginName] = 'btaDuong') BEGIN INSERT INTO dbo.[User]  ([LoginName],[FullName],[Password],[RoleId],[IsActive]) VALUES ('btaDuong' , N'Bùi Thị Ánh Dương ' ,'9ITEEAbeXcDswf8OlLPL6I53V7ewiKlsWtH/wkBx0im77qfzE1thi49YkBhdZVWTNbxtkdfy584zqZVf6va5FA==', 1,1); END															
+--if not exists (SELECT * FROM  dbo.[User] WHERE [LoginName] = 'lnThiem') BEGIN INSERT INTO dbo.[User]  ([LoginName],[FullName],[Password],[RoleId],[IsActive]) VALUES ('lnThiem' , N'Lê Ngọc Thiệm ' ,'f2Qf2j1eAZClDYP29qkk7/riT4Gw0C4/tZcyMW4f7daSj2MFIz6TPPD4KzKPVW9ZF4sl3Dz7zmPifGPNWKcK3w==', 4,1); END															
+--if not exists (SELECT * FROM  dbo.[User] WHERE [LoginName] = 'hqTuan') BEGIN INSERT INTO dbo.[User]  ([LoginName],[FullName],[Password],[RoleId],[IsActive]) VALUES ('hqTuan' , N'Hồ Quang Tuấn ' ,'cYG4QUrPG6QEpRDXwqUC66aFPqRSSSiFJTHI+VyigoLL6d7vxIfofXWyJVvb9L55t80WL3qqg4k+egxtfplRDg==', 3,1); END															
+--if not exists (SELECT * FROM  dbo.[User] WHERE [LoginName] = 'bdKy') BEGIN INSERT INTO dbo.[User]  ([LoginName],[FullName],[Password],[RoleId],[IsActive]) VALUES ('bdKy' , N'Bùi Đức Kỳ ' ,'JglrCxpRMDD1LFvthcjvA+ct7wnIK50Ukck7dpIU6RCWegfGusKRxzduTEHg9GyEK4WZE+zya31iXeqONI3FTQ==', 3,1); END															
+--if not exists (SELECT * FROM  dbo.[User] WHERE [LoginName] = 'nnQuynh') BEGIN INSERT INTO dbo.[User]  ([LoginName],[FullName],[Password],[RoleId],[IsActive]) VALUES ('nnQuynh' , N'Nguyễn Ngọc Quỳnh ' ,'tMCtNNh0nlmHOpv06uidQd1FS0ckiRDKU09ytmppu0u0dqyZowqjgt8bqItNCwz3RuKNYJYDp5Klqka552nlNQ==', 2,1); END															
+--if not exists (SELECT * FROM  dbo.[User] WHERE [LoginName] = 'dtmLinh') BEGIN INSERT INTO dbo.[User]  ([LoginName],[FullName],[Password],[RoleId],[IsActive]) VALUES ('dtmLinh' , N'Đặng Thị Mỹ Linh ' ,'2iT3AfhVRZ2arYq0QZdSyRCRttLP0L7KjI4UeoIGae85nBbasw5odwT/axqgXlo/1YzvdqWhg41+Cu+R+BP/5Q==', 2,1); END															
+--if not exists (SELECT * FROM  dbo.[User] WHERE [LoginName] = 'dtNhung') BEGIN INSERT INTO dbo.[User]  ([LoginName],[FullName],[Password],[RoleId],[IsActive]) VALUES ('dtNhung' , N'Dương Thị Nhung ' ,'+E1es4c/AnApwiOCkMgtmOfExpTTzYHxZiLFQ2WIbWsJGUSUXzIIAElQf7PWQBl+abXJ8D1IXhQKywJeaF5ebg==', 2,1); END															
+--if not exists (SELECT * FROM  dbo.[User] WHERE [LoginName] = 'tvTrung') BEGIN INSERT INTO dbo.[User]  ([LoginName],[FullName],[Password],[RoleId],[IsActive]) VALUES ('tvTrung' , N'Trần Văn Trung ' ,'TXukIr69sD/acAhanFVTZh44HrSibO9jOUb9LIWt0RrGJe0pfHGBSLzzBdCBWiQcfDQ9GAcFCa5g5tcVA3wBjg==', 2,1); END															
+--if not exists (SELECT * FROM  dbo.[User] WHERE [LoginName] = 'ndNguyen') BEGIN INSERT INTO dbo.[User]  ([LoginName],[FullName],[Password],[RoleId],[IsActive]) VALUES ('ndNguyen' , N'Nguyễn Đăng Nguyên ' ,'73rhkewtQk97o09eOYHuXreXfWymiupSie6Ts2JIzdNgJRxdxHA4bASomRRHetOjzH7AZPhWrIFMVoK3ePdZ1g==', 2,1); END															
+--if not exists (SELECT * FROM  dbo.[User] WHERE [LoginName] = 'btaDuong') BEGIN INSERT INTO dbo.[User]  ([LoginName],[FullName],[Password],[RoleId],[IsActive]) VALUES ('btaDuong' , N'Bùi Thị Ánh Dương ' ,'9ITEEAbeXcDswf8OlLPL6I53V7ewiKlsWtH/wkBx0im77qfzE1thi49YkBhdZVWTNbxtkdfy584zqZVf6va5FA==', 1,1); END															
 
 end
 

@@ -25,7 +25,7 @@ namespace ICMS.ViewModel
 
 
             //CurrentControl = new CertificateFormViewModel(this, null, "AddMode");
-            CurrentControl = new CertificateListViewModel(this);
+            //CurrentControl = new CertificateListViewModel(this);
             //CurrentControl = new CustomerViewModel();
             //CurrentControl = new CityViewModel();
             //CurrentControl = new MachineViewModel();
@@ -34,6 +34,8 @@ namespace ICMS.ViewModel
             //CurrentControl = new RadQuantityViewModel();
             //CurrentControl = new DoseQuantityViewModel();
             //CurrentControl = new UserViewModel();
+            //CurrentControl = new DatabaseBackupViewModel();
+            CurrentControl = new DatabaseRestoreViewModel();
         }
 
 

@@ -168,6 +168,7 @@ namespace ICMS.Bussiness.CertificateProcessing
 
                 docText = regexText.Replace(docText, certificate.CalibDate.Year.ToString());
 
+                result = Regex.Match(docText, "\\[\\[TM]]");
                 regexText = new Regex("\\[\\[TM]]");
                 docText = regexText.Replace(docText, certificate.TM);
 
