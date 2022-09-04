@@ -13,7 +13,7 @@ using ICMS.Model.Models;
 
 namespace ICMS.ViewModel
 {
-    public class UserViewModel : BaseViewModel
+    public class UserRoleManagementViewModel : BaseViewModel
     {
         private ObservableCollection<User> _ActiveUserList;
         public ObservableCollection<User> ActiveUserList {get => _ActiveUserList; set {_ActiveUserList = value; OnPropertyChanged();}}
@@ -124,7 +124,7 @@ namespace ICMS.ViewModel
         #endregion
 
         #region Constructor
-        public UserViewModel()
+        public UserRoleManagementViewModel()
         {
             AllUserList = new ObservableCollection<User>(GlobalConfig.Connection.User_GetAll(GlobalConfig.CnnString("ICMSdatabase")));
 

@@ -66,7 +66,7 @@ namespace ICMS.ViewModel
                 (p) => { return true; },
                 (p) =>
                 {
-                    mainViewModel.CurrentControl = new UserViewModel();
+                    mainViewModel.CurrentControl = new UserRoleManagementViewModel();
                 }
                 );
             #endregion

@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="bd6499bd-346a-4256-be9a-609d871c6ff2" ChangeDateTime="09/04/2022 03:33:29">
+    <Property Name="ElementName" Value="[dbo].[SpRole_GetAll]" />
+    <Property Name="ElementType" Value="SqlProcedure" />
+    <Property Name="ParentElementName" Value="[dbo]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[SpRoleTable_GetAll]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="c3de55a2-bec6-4498-8d01-6e5c9859cb63" ChangeDateTime="09/04/2022 11:52:35">
+    <Property Name="ElementName" Value="[dbo].[SpUser_GetAuthenticatedUser]" />
+    <Property Name="ElementType" Value="SqlProcedure" />
+    <Property Name="ParentElementName" Value="[dbo]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[SpUserTable_GetAuthenticatedUser]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="82ef3e06-1119-4724-80a0-7178f4d8e7af" ChangeDateTime="09/04/2022 11:56:22">
+    <Property Name="ElementName" Value="[dbo].[SpUser_GetAll]" />
+    <Property Name="ElementType" Value="SqlProcedure" />
+    <Property Name="ParentElementName" Value="[dbo]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[SpUserTable_GetAll]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="cd313696-f746-4aa4-ae00-21adb546d141" ChangeDateTime="09/04/2022 12:08:57">
+    <Property Name="ElementName" Value="[dbo].[SpRole_GetById]" />
+    <Property Name="ElementType" Value="SqlProcedure" />
+    <Property Name="ParentElementName" Value="[dbo]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[SpRoleTable_GetById]" />
+  </Operation>
+</Operations>

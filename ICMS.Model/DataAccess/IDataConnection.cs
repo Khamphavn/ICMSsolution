@@ -39,7 +39,7 @@ namespace ICMS.Model.DataAccess
 
         #region Role
         List<Role> Role_GetAll(string connectionString);
-        //Role Role_GetById(int Id, string connectionString);
+        Role Role_GetById(int Id, string connectionString);
         //Role Role_GetByName(string Name, string connectionString);
         //int Role_Update(Role model, string connectionString);
         //int Role_Insert(Role model, string connectionString);

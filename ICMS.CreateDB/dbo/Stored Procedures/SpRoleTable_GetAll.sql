@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[SpRole_GetAll]
+﻿CREATE PROCEDURE [dbo].[SpRoleTable_GetAll]
 AS
 BEGIN
 	SET NOCOUNT ON

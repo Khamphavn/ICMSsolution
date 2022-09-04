@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[SpRole_GetById]
+﻿CREATE PROCEDURE [dbo].[SpRoleTable_GetById]
       @roleID int
 AS
 BEGIN

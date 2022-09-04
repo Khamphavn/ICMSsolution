@@ -523,6 +523,8 @@ namespace ICMS.Model.DataAccess
         #endregion
 
         #region Role
+        
+
         public List<Role> Role_GetAll(string connectionString)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
@@ -533,35 +535,57 @@ namespace ICMS.Model.DataAccess
         }
         private List<Role> Role_GetAll(SqlConnection conn)
         {
-            List<Role> output = conn.Query<Role>("dbo.SpRole_GetAll", commandType: CommandType.StoredProcedure).ToList();
+            List<RoleTable> roleTables = RoleTable_GetAll(conn);
+
+            List<Role> roles = new List<Role>();
+            foreach (RoleTable roleTable in roleTables)
+            {
+                List<RoleAction> roleActions = RoleTableToRoleActions(roleTable);
+
+                Role role = new Role() 
+                { 
+                   RoleId = roleTable.RoleId,
+                   Name   = roleTable.Name,
+                   RoleActions = roleActions
+                };
+
+                roles.Add(role);
+            }
+
+            return roles;
+        }
+        private List<RoleTable> RoleTable_GetAll(SqlConnection conn)
+        {
+            List<RoleTable> output = conn.Query<RoleTable>("dbo.SpRoleTable_GetAll", commandType: CommandType.StoredProcedure).ToList();
             return output;
         }
 
-        public Role Role_GetByName(string name, string connectionString)
-        {
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                Role output = Role_GetByName(name, conn);
-                return output;
-            }
-        }
-        private Role Role_GetByName(string name, SqlConnection conn)
-        {
-            string procedure = "dbo.SpRole_GetByName";
-            var p = new DynamicParameters();
-            p.Add("@Name", name);
 
-            try
-            {
-                Role output = conn.Query<Role>(procedure, p, commandType: CommandType.StoredProcedure).FirstOrDefault();
-                return output;
-            }
-            catch (SqlException ex)
-            {
-                Console.WriteLine(ex.ToString());
-                return null;
-            }
-        }
+        //public Role Role_GetByName(string name, string connectionString)
+        //{
+        //    using (SqlConnection conn = new SqlConnection(connectionString))
+        //    {
+        //        Role output = Role_GetByName(name, conn);
+        //        return output;
+        //    }
+        //}
+        //private Role Role_GetByName(string name, SqlConnection conn)
+        //{
+        //    string procedure = "dbo.SpRole_GetByName";
+        //    var p = new DynamicParameters();
+        //    p.Add("@Name", name);
+
+        //    try
+        //    {
+        //        Role output = conn.Query<Role>(procedure, p, commandType: CommandType.StoredProcedure).FirstOrDefault();
+        //        return output;
+        //    }
+        //    catch (SqlException ex)
+        //    {
+        //        Console.WriteLine(ex.ToString());
+        //        return null;
+        //    }
+        //}
 
         public Role Role_GetById(int Id, string connectionString)
         {
@@ -573,19 +597,29 @@ namespace ICMS.Model.DataAccess
         }
         private Role Role_GetById(int Id, SqlConnection conn)
         {
-            string procedure = "dbo.SpRole_GetById";
+            string procedure = "dbo.SpRoleTable_GetById";
             var p = new DynamicParameters();
             p.Add("@RoleId", Id);
 
             try
             {
-                Role output = conn.Query<Role>(procedure, p, commandType: CommandType.StoredProcedure).FirstOrDefault();
-                return output;
+                RoleTable roleTable = conn.Query<RoleTable>(procedure, p, commandType: CommandType.StoredProcedure).FirstOrDefault();
+
+                List<RoleAction> roleActions = RoleTableToRoleActions(roleTable);
+
+                Role role = new Role()
+                {
+                    RoleId = roleTable.RoleId,
+                    Name = roleTable.Name,
+                    RoleActions = roleActions
+                };
+
+
+                return role;
             }
-            catch (SqlException ex)
+            catch (Exception)
             {
-                Console.WriteLine(ex.ToString());
-                return null;
+                throw;
             }
         }
 
@@ -618,59 +652,287 @@ namespace ICMS.Model.DataAccess
             return output;
         }
 
-        public int Role_Insert(Role model, string connectionString)
+        //public int Role_Insert(Role model, string connectionString)
+        //{
+        //    using (SqlConnection conn = new SqlConnection(connectionString))
+        //    {
+        //        int insertResult = Role_Insert(model, conn);
+        //        return insertResult;
+        //    }
+        //}
+        //private int Role_Insert(Role model, SqlConnection conn)
+        //{
+        //    int output = 0;
+
+        //    string procedure = "dbo.SpRole_Insert";
+        //    var p = new DynamicParameters();
+        //    p.Add("@Name", model.Name);
+        //    p.Add("@RoleId", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
+
+        //    try
+        //    {
+        //        conn.Execute(procedure, p, commandType: CommandType.StoredProcedure);
+        //        model.RoleId = p.Get<int>("@RoleId");
+        //        output = 1;
+        //    }
+        //    catch (SqlException)
+        //    {
+        //        throw;
+        //    }
+
+        //    return output;
+        //}
+
+        //public int Role_DeleteById(int Id, string connectionString)
+        //{
+        //    using (SqlConnection conn = new SqlConnection(connectionString))
+        //    {
+        //        int output = Role_DeleteById(Id, conn);
+        //        return output;
+        //    }
+        //}
+
+        //private int Role_DeleteById(int Id, SqlConnection conn)
+        //{
+        //    try
+        //    {
+        //        string procedure = "dbo.SpRole_DeleteById";
+        //        var p = new DynamicParameters();
+        //        p.Add("@RoleId", Id);
+        //        conn.Execute(procedure, p, commandType: CommandType.StoredProcedure);
+        //        return 1;
+        //    }
+        //    catch
+        //    {
+        //        throw;
+        //    }
+        //}
+
+        private bool ConvertAccessCodeToRoleAction(int accessCode, string action)
         {
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            string actionBinary = Convert.ToString(accessCode, 2).PadLeft(5);
+            int index ;
+
+            switch (action)
             {
-                int insertResult = Role_Insert(model, conn);
-                return insertResult;
+                case "View":
+                    index = 0;
+                    break;
+                    
+                case "Add":
+                    index = 1;
+                    break;
+
+                case "Edit":
+                    index = 2;
+                    break;
+
+                case "Delete":
+                    index = 3;
+                    break;
+
+                case "Print":
+                    index = 4;
+                    break;
+
+                default:
+                    index = 4;
+                    break;
             }
+
+            bool actionPermission = actionBinary[index] == '1';
+
+            return actionPermission;
         }
-        private int Role_Insert(Role model, SqlConnection conn)
+
+        private List<RoleAction> RoleTableToRoleActions(RoleTable roleTable)
         {
-            int output = 0;
+            List<RoleAction> roleActions = new List<RoleAction>();
 
-            string procedure = "dbo.SpRole_Insert";
-            var p = new DynamicParameters();
-            p.Add("@Name", model.Name);
-            p.Add("@RoleId", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
+            RoleAction userAction = new RoleAction()
+            {
+                STT = 1,
+                ActionCode = "User",
+                ActionName = "Quản lý tài khoản",
+                View = ConvertAccessCodeToRoleAction(roleTable.User, "View"),
+                Add = ConvertAccessCodeToRoleAction(roleTable.User, "Add"),
+                Edit = ConvertAccessCodeToRoleAction(roleTable.User, "Edit"),
+                Delete = ConvertAccessCodeToRoleAction(roleTable.User, "Delete"),
+                Print = ConvertAccessCodeToRoleAction(roleTable.User, "Print")
+            };
+            roleActions.Add(userAction);
 
-            try
+            RoleAction permissionAction = new RoleAction()
             {
-                conn.Execute(procedure, p, commandType: CommandType.StoredProcedure);
-                model.RoleId = p.Get<int>("@RoleId");
-                output = 1;
-            }
-            catch (SqlException)
-            {
-                throw;
-            }
+                STT = 2,
+                ActionCode = "Permission",
+                ActionName = "Quản lý nhóm",
+                View = ConvertAccessCodeToRoleAction(roleTable.Permission, "View"),
+                Add = ConvertAccessCodeToRoleAction(roleTable.Permission, "Add"),
+                Edit = ConvertAccessCodeToRoleAction(roleTable.Permission, "Edit"),
+                Delete = ConvertAccessCodeToRoleAction(roleTable.Permission, "Delete"),
+                Print = ConvertAccessCodeToRoleAction(roleTable.Permission, "Print")
+            };
+            roleActions.Add(permissionAction);
 
-            return output;
-        }
+            RoleAction backupDBAction = new RoleAction()
+            {
+                STT = 3,
+                ActionCode = "BackupDB",
+                ActionName = "Sao lưu dữ liệu",
+                View = ConvertAccessCodeToRoleAction(roleTable.BackupDB, "View"),
+                Add = ConvertAccessCodeToRoleAction(roleTable.BackupDB, "Add"),
+                Edit = ConvertAccessCodeToRoleAction(roleTable.BackupDB, "Edit"),
+                Delete = ConvertAccessCodeToRoleAction(roleTable.BackupDB, "Delete"),
+                Print = ConvertAccessCodeToRoleAction(roleTable.BackupDB, "Print")
+            };
+            roleActions.Add(backupDBAction);
 
-        public int Role_DeleteById(int Id, string connectionString)
-        {
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            RoleAction restoreDBAction = new RoleAction()
             {
-                int output = Role_DeleteById(Id, conn);
-                return output;
-            }
-        }
-        private int Role_DeleteById(int Id, SqlConnection conn)
-        {
-            try
+                STT = 4,
+                ActionCode = "RestoreDB",
+                ActionName = "Khôi phục dữ liệu",
+                View = ConvertAccessCodeToRoleAction(roleTable.RestoreDB, "View"),
+                Add = ConvertAccessCodeToRoleAction(roleTable.RestoreDB, "Add"),
+                Edit = ConvertAccessCodeToRoleAction(roleTable.RestoreDB, "Edit"),
+                Delete = ConvertAccessCodeToRoleAction(roleTable.RestoreDB, "Delete"),
+                Print = ConvertAccessCodeToRoleAction(roleTable.RestoreDB, "Print")
+            };
+            roleActions.Add(restoreDBAction);
+
+            RoleAction radQuantityAction = new RoleAction()
             {
-                string procedure = "dbo.SpRole_DeleteById";
-                var p = new DynamicParameters();
-                p.Add("@RoleId", Id);
-                conn.Execute(procedure, p, commandType: CommandType.StoredProcedure);
-                return 1;
-            }
-            catch
+                STT = 5,
+                ActionCode = "RadQuantity",
+                ActionName = "Phẩm chất bức xạ",
+                View = ConvertAccessCodeToRoleAction(roleTable.RadQuantity, "View"),
+                Add = ConvertAccessCodeToRoleAction(roleTable.RadQuantity, "Add"),
+                Edit = ConvertAccessCodeToRoleAction(roleTable.RadQuantity, "Edit"),
+                Delete = ConvertAccessCodeToRoleAction(roleTable.RadQuantity, "Delete"),
+                Print = ConvertAccessCodeToRoleAction(roleTable.RadQuantity, "Print")
+            };
+            roleActions.Add(radQuantityAction);
+
+            RoleAction doseQuantityAction = new RoleAction()
             {
-                throw;
-            }
+                STT = 6,
+                ActionCode = "DoseQuantity",
+                ActionName = "Đại lượng liều bức xạ",
+                View = ConvertAccessCodeToRoleAction(roleTable.DoseQuantity, "View"),
+                Add = ConvertAccessCodeToRoleAction(roleTable.DoseQuantity, "Add"),
+                Edit = ConvertAccessCodeToRoleAction(roleTable.DoseQuantity, "Edit"),
+                Delete = ConvertAccessCodeToRoleAction(roleTable.DoseQuantity, "Delete"),
+                Print = ConvertAccessCodeToRoleAction(roleTable.DoseQuantity, "Print")
+            };
+            roleActions.Add(doseQuantityAction);
+
+            RoleAction unitAction = new RoleAction()
+            {
+                STT = 7,
+                ActionCode = "Unit",
+                ActionName = "Đơn vị đo",
+                View = ConvertAccessCodeToRoleAction(roleTable.Unit, "View"),
+                Add = ConvertAccessCodeToRoleAction(roleTable.Unit, "Add"),
+                Edit = ConvertAccessCodeToRoleAction(roleTable.Unit, "Edit"),
+                Delete = ConvertAccessCodeToRoleAction(roleTable.Unit, "Delete"),
+                Print = ConvertAccessCodeToRoleAction(roleTable.Unit, "Print")
+            };
+            roleActions.Add(unitAction);
+
+            RoleAction TMAction = new RoleAction()
+            {
+                STT = 8,
+                ActionCode = "TM",
+                ActionName = "Danh sách TM",
+                View = ConvertAccessCodeToRoleAction(roleTable.TM, "View"),
+                Add = ConvertAccessCodeToRoleAction(roleTable.TM, "Add"),
+                Edit = ConvertAccessCodeToRoleAction(roleTable.TM, "Edit"),
+                Delete = ConvertAccessCodeToRoleAction(roleTable.TM, "Delete"),
+                Print = ConvertAccessCodeToRoleAction(roleTable.TM, "Print")
+            };
+            roleActions.Add(TMAction);
+
+            RoleAction certificateAction = new RoleAction()
+            {
+                STT = 9,
+                ActionCode = "Certificate",
+                ActionName = "Chứng chỉ",
+                View = ConvertAccessCodeToRoleAction(roleTable.Certificate, "View"),
+                Add = ConvertAccessCodeToRoleAction(roleTable.Certificate, "Add"),
+                Edit = ConvertAccessCodeToRoleAction(roleTable.Certificate, "Edit"),
+                Delete = ConvertAccessCodeToRoleAction(roleTable.Certificate, "Delete"),
+                Print = ConvertAccessCodeToRoleAction(roleTable.Certificate, "Print")
+            };
+            roleActions.Add(certificateAction);
+
+            RoleAction customerAction = new RoleAction()
+            {
+                STT = 10,
+                ActionCode = "Customer",
+                ActionName = "Khách hàng",
+                View = ConvertAccessCodeToRoleAction(roleTable.Customer, "View"),
+                Add = ConvertAccessCodeToRoleAction(roleTable.Customer, "Add"),
+                Edit = ConvertAccessCodeToRoleAction(roleTable.Customer, "Edit"),
+                Delete = ConvertAccessCodeToRoleAction(roleTable.Customer, "Delete"),
+                Print = ConvertAccessCodeToRoleAction(roleTable.Customer, "Print")
+            };
+            roleActions.Add(customerAction);
+
+            RoleAction cityAction = new RoleAction()
+            {
+                STT = 11,
+                ActionCode = "City",
+                ActionName = "Tỉnh/thành",
+                View = ConvertAccessCodeToRoleAction(roleTable.City, "View"),
+                Add = ConvertAccessCodeToRoleAction(roleTable.City, "Add"),
+                Edit = ConvertAccessCodeToRoleAction(roleTable.City, "Edit"),
+                Delete = ConvertAccessCodeToRoleAction(roleTable.City, "Delete"),
+                Print = ConvertAccessCodeToRoleAction(roleTable.City, "Print")
+            };
+            roleActions.Add(cityAction);
+
+            RoleAction machineNameAction = new RoleAction()
+            {
+                STT = 12,
+                ActionCode = "MachineName",
+                ActionName = "Tên thiết bị",
+                View = ConvertAccessCodeToRoleAction(roleTable.MachineName, "View"),
+                Add = ConvertAccessCodeToRoleAction(roleTable.MachineName, "Add"),
+                Edit = ConvertAccessCodeToRoleAction(roleTable.MachineName, "Edit"),
+                Delete = ConvertAccessCodeToRoleAction(roleTable.MachineName, "Delete"),
+                Print = ConvertAccessCodeToRoleAction(roleTable.MachineName, "Print")
+            };
+            roleActions.Add(machineNameAction);
+
+            RoleAction machineTypeAction = new RoleAction()
+            {
+                STT = 13,
+                ActionCode = "MachineType",
+                ActionName = "Loại thiết bị",
+                View = ConvertAccessCodeToRoleAction(roleTable.MachineType, "View"),
+                Add = ConvertAccessCodeToRoleAction(roleTable.MachineType, "Add"),
+                Edit = ConvertAccessCodeToRoleAction(roleTable.MachineType, "Edit"),
+                Delete = ConvertAccessCodeToRoleAction(roleTable.MachineType, "Delete"),
+                Print = ConvertAccessCodeToRoleAction(roleTable.MachineType, "Print")
+            };
+            roleActions.Add(machineTypeAction);
+
+            RoleAction sensorTypeAction = new RoleAction()
+            {
+                STT = 14,
+                ActionCode = "SensorType",
+                ActionName = "Loại đầu dò",
+                View = ConvertAccessCodeToRoleAction(roleTable.SensorType, "View"),
+                Add = ConvertAccessCodeToRoleAction(roleTable.SensorType, "Add"),
+                Edit = ConvertAccessCodeToRoleAction(roleTable.SensorType, "Edit"),
+                Delete = ConvertAccessCodeToRoleAction(roleTable.SensorType, "Delete"),
+                Print = ConvertAccessCodeToRoleAction(roleTable.SensorType, "Print")
+            };
+            roleActions.Add(sensorTypeAction);
+
+
+            return roleActions;
         }
 
         #endregion
@@ -686,7 +948,7 @@ namespace ICMS.Model.DataAccess
         }
         private List<User> User_GetAll(SqlConnection conn)
         {
-            string procedure = "SpUser_GetAll";
+            string procedure = "SpUserTable_GetAll";
             string splitColumns = "RoleId";
 
 
@@ -744,25 +1006,37 @@ namespace ICMS.Model.DataAccess
         }
         private User User_GetAuthenticatedUser(string loginName, string hashPassword, SqlConnection conn)
         {
-            string procedure = "SpUser_GetAuthenticatedUser";
-            string splitColumns = "RoleId";
+            string procedure = "SpUserTable_GetAuthenticatedUser";
             var p = new DynamicParameters();
             p.Add("@LoginName", loginName);
             p.Add("@Password", hashPassword);
 
-            User output = conn.Query<User, Role, User>(
-                sql: procedure,
-                commandType: CommandType.StoredProcedure,
-                param: p,
-                map: (userDTO, role) =>
-                {
-                    userDTO.Role = role;
-                    return userDTO;
-                },
-                splitOn: splitColumns
-                ).FirstOrDefault();
+            try
+            {
+                UserTable userTable = conn.Query<UserTable>(
+                    sql: procedure,
+                    commandType: CommandType.StoredProcedure,
+                    param: p
+                    ).FirstOrDefault();
 
-            return output;
+                Role role = Role_GetById(userTable.RoleId, conn);
+                
+                User user = new User() 
+                { 
+                    UserId = userTable.UserId,
+                    LoginName = userTable.LoginName,
+                    FullName = userTable.FullName,
+                    Password = userTable.Password,
+                    Role = role,
+                    IsActive = userTable.IsActive
+                };
+
+                return user;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public int User_Update_Infos(User model, string connectionString)

@@ -219,10 +219,20 @@ namespace ICMS.ViewModel
                             ProcessingCertificate processingCertificate = new ProcessingCertificate();
 
                             createCertificateWordSuccess = processingCertificate.ExportCertificateWordFile(SelectedCertificate, certificateWordFileFullPath);
+
+
+                           System.Windows.MessageBox.Show(
+                               messageBoxText: "Đã tạo thành công file chứng chỉ !",
+                               caption: "",
+                               button: MessageBoxButton.OK,
+                               icon: MessageBoxImage.Information,
+                               defaultResult: MessageBoxResult.OK
+                               );
+
                         }
                         catch (Exception ex)
                         {
-                            MessageBoxResult result = System.Windows.MessageBox.Show(
+                            System.Windows.MessageBox.Show(
                                                       messageBoxText: "Bị lỗi trong quá trình tạo chứng chỉ chuẩn\n\n" + ex.Message,
                                                       caption: "Error",
                                                       button: MessageBoxButton.OK,

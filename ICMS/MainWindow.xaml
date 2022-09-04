@@ -48,8 +48,8 @@
                         <control:UC_Unit/>
                     </DataTemplate>
 
-                    <DataTemplate DataType="{x:Type viewmodel:UserViewModel}">
-                        <control:UC_User/>
+                    <DataTemplate DataType="{x:Type viewmodel:UserRoleManagementViewModel}">
+                        <control:UC_UserRoleManagement/>
                     </DataTemplate>
 
                     <DataTemplate DataType="{x:Type viewmodel:MachineViewModel}">
@@ -86,6 +86,10 @@
 
                     <DataTemplate DataType="{x:Type viewmodel:DatabaseRestoreViewModel}">
                         <control:UC_DatabaseRestore/>
+                    </DataTemplate>
+
+                    <DataTemplate DataType="{x:Type viewmodel:RolePermissionViewModel}">
+                        <control:UC_RolePermission/>
                     </DataTemplate>
 
 
