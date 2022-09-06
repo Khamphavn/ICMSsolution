@@ -311,6 +311,7 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type DataGridRow}">
@@ -351,7 +352,7 @@
         </Setter>
         <Style.Triggers>
             <Trigger Property="IsSelected" Value="True">
-                <!--<Setter Property="Background" Value="{DynamicResource MaterialDesignSelection}" />-->
+                <Setter Property="Background" Value="{DynamicResource MaterialDesignSelection}" />
                 <Setter Property="Foreground" Value="{StaticResource PrimaryHueMidBrush }"/>
                 <Setter Property="FontWeight" Value="Bold"/>
             </Trigger>

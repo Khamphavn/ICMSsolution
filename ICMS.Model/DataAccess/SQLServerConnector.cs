@@ -523,8 +523,6 @@ namespace ICMS.Model.DataAccess
         #endregion
 
         #region Role
-        
-
         public List<Role> Role_GetAll(string connectionString)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
@@ -631,14 +629,32 @@ namespace ICMS.Model.DataAccess
                 return updateResult;
             }
         }
-        private int Role_Update(Role model, SqlConnection conn)
+        private int Role_Update(Role role, SqlConnection conn)
         {
             int output = 0;
 
-            string procedure = "dbo.SpRole_Update";
+            RoleTable roleTable = ConvertRoleToRoleTable(role);
+
+
+
+            string procedure = "dbo.SpRoleTable_Update";
             var p = new DynamicParameters();
-            p.Add("@RoleId", model.RoleId);
-            p.Add("@Name", model.Name);
+            p.Add("@RoleId", roleTable.RoleId);
+            p.Add("@Name", roleTable.Name);
+            p.Add("@User", roleTable.User);
+            p.Add("@Permission", roleTable.Permission);
+            p.Add("@BackupDB", roleTable.BackupDB);
+            p.Add("@RestoreDB", roleTable.RestoreDB);
+            p.Add("@RadQuantity", roleTable.RadQuantity);
+            p.Add("@DoseQuantity", roleTable.DoseQuantity);
+            p.Add("@Unit", roleTable.Unit);
+            p.Add("@TM", roleTable.TM);
+            p.Add("@Certificate", roleTable.Certificate);
+            p.Add("@Customer", roleTable.Customer);
+            p.Add("@City", roleTable.City);
+            p.Add("@MachineName", roleTable.MachineName);
+            p.Add("@MachineType", roleTable.MachineType);
+            p.Add("@SensorType", roleTable.SensorType);
 
             try
             {
@@ -745,6 +761,82 @@ namespace ICMS.Model.DataAccess
             return actionPermission;
         }
 
+        private int ConvertRoleActionToAccessCode(RoleAction roleAction)
+        {
+            int output = 0;
+
+            string accessCodeBinaryString = "";
+
+            accessCodeBinaryString += roleAction.View ? 1 : 0;
+
+            if(roleAction.Add == null)
+            {
+                accessCodeBinaryString += 0;
+            }
+            else
+            {
+                accessCodeBinaryString += (bool)roleAction.Add ? 1 : 0;
+            }
+
+            if (roleAction.Edit == null)
+            {
+                accessCodeBinaryString += 0;
+            }
+            else
+            {
+                accessCodeBinaryString += (bool)roleAction.Edit ? 1 : 0;
+            }
+
+            if (roleAction.Delete == null)
+            {
+                accessCodeBinaryString += 0;
+            }
+            else
+            {
+                accessCodeBinaryString += (bool)roleAction.Delete ? 1 : 0;
+            }
+
+            if (roleAction.Print == null)
+            {
+                accessCodeBinaryString += 0;
+            }
+            else
+            {
+                accessCodeBinaryString += (bool)roleAction.Print ? 1 : 0;
+            }
+
+            output = Convert.ToInt32(accessCodeBinaryString, 2);
+
+
+            return output;
+        }
+
+
+        private RoleTable ConvertRoleToRoleTable(Role role)
+        {
+            RoleTable roleTable = new RoleTable();
+
+            roleTable.RoleId = role.RoleId;
+            roleTable.Name = role.Name;
+            roleTable.User = ConvertRoleActionToAccessCode(role.RoleActions.FirstOrDefault(s => s.ActionCode == "User"));
+            roleTable.Permission = ConvertRoleActionToAccessCode(role.RoleActions.FirstOrDefault(s => s.ActionCode == "Permission"));
+            roleTable.BackupDB = ConvertRoleActionToAccessCode(role.RoleActions.FirstOrDefault(s => s.ActionCode == "BackupDB"));
+            roleTable.RestoreDB = ConvertRoleActionToAccessCode(role.RoleActions.FirstOrDefault(s => s.ActionCode == "RestoreDB"));
+            roleTable.RadQuantity = ConvertRoleActionToAccessCode(role.RoleActions.FirstOrDefault(s => s.ActionCode == "RadQuantity"));
+            roleTable.DoseQuantity = ConvertRoleActionToAccessCode(role.RoleActions.FirstOrDefault(s => s.ActionCode == "DoseQuantity"));
+            roleTable.Unit = ConvertRoleActionToAccessCode(role.RoleActions.FirstOrDefault(s => s.ActionCode == "Unit"));
+            roleTable.TM = ConvertRoleActionToAccessCode(role.RoleActions.FirstOrDefault(s => s.ActionCode == "TM"));
+            roleTable.Certificate = ConvertRoleActionToAccessCode(role.RoleActions.FirstOrDefault(s => s.ActionCode == "Certificate"));
+            roleTable.Customer = ConvertRoleActionToAccessCode(role.RoleActions.FirstOrDefault(s => s.ActionCode == "Customer"));
+            roleTable.City = ConvertRoleActionToAccessCode(role.RoleActions.FirstOrDefault(s => s.ActionCode == "City"));
+            roleTable.MachineName = ConvertRoleActionToAccessCode(role.RoleActions.FirstOrDefault(s => s.ActionCode == "MachineName"));
+            roleTable.MachineType = ConvertRoleActionToAccessCode(role.RoleActions.FirstOrDefault(s => s.ActionCode == "MachineType"));
+            roleTable.SensorType = ConvertRoleActionToAccessCode(role.RoleActions.FirstOrDefault(s => s.ActionCode == "SensorType"));
+
+            return roleTable;
+        }
+
+
         private List<RoleAction> RoleTableToRoleActions(RoleTable roleTable)
         {
             List<RoleAction> roleActions = new List<RoleAction>();
@@ -757,8 +849,8 @@ namespace ICMS.Model.DataAccess
                 View = ConvertAccessCodeToRoleAction(roleTable.User, "View"),
                 Add = ConvertAccessCodeToRoleAction(roleTable.User, "Add"),
                 Edit = ConvertAccessCodeToRoleAction(roleTable.User, "Edit"),
-                Delete = ConvertAccessCodeToRoleAction(roleTable.User, "Delete"),
-                Print = ConvertAccessCodeToRoleAction(roleTable.User, "Print")
+                Delete = null, //ConvertAccessCodeToRoleAction(roleTable.User, "Delete"),
+                Print = null //ConvertAccessCodeToRoleAction(roleTable.User, "Print")
             };
             roleActions.Add(userAction);
 
@@ -768,10 +860,10 @@ namespace ICMS.Model.DataAccess
                 ActionCode = "Permission",
                 ActionName = "Quản lý nhóm",
                 View = ConvertAccessCodeToRoleAction(roleTable.Permission, "View"),
-                Add = ConvertAccessCodeToRoleAction(roleTable.Permission, "Add"),
+                Add = null, //ConvertAccessCodeToRoleAction(roleTable.Permission, "Add"),
                 Edit = ConvertAccessCodeToRoleAction(roleTable.Permission, "Edit"),
-                Delete = ConvertAccessCodeToRoleAction(roleTable.Permission, "Delete"),
-                Print = ConvertAccessCodeToRoleAction(roleTable.Permission, "Print")
+                Delete = null, // ConvertAccessCodeToRoleAction(roleTable.Permission, "Delete"),
+                Print = null //ConvertAccessCodeToRoleAction(roleTable.Permission, "Print")
             };
             roleActions.Add(permissionAction);
 
@@ -783,8 +875,8 @@ namespace ICMS.Model.DataAccess
                 View = ConvertAccessCodeToRoleAction(roleTable.BackupDB, "View"),
                 Add = ConvertAccessCodeToRoleAction(roleTable.BackupDB, "Add"),
                 Edit = ConvertAccessCodeToRoleAction(roleTable.BackupDB, "Edit"),
-                Delete = ConvertAccessCodeToRoleAction(roleTable.BackupDB, "Delete"),
-                Print = ConvertAccessCodeToRoleAction(roleTable.BackupDB, "Print")
+                Delete = null, //ConvertAccessCodeToRoleAction(roleTable.BackupDB, "Delete"),
+                Print = null // = ConvertAccessCodeToRoleAction(roleTable.BackupDB, "Print")
             };
             roleActions.Add(backupDBAction);
 
@@ -796,8 +888,8 @@ namespace ICMS.Model.DataAccess
                 View = ConvertAccessCodeToRoleAction(roleTable.RestoreDB, "View"),
                 Add = ConvertAccessCodeToRoleAction(roleTable.RestoreDB, "Add"),
                 Edit = ConvertAccessCodeToRoleAction(roleTable.RestoreDB, "Edit"),
-                Delete = ConvertAccessCodeToRoleAction(roleTable.RestoreDB, "Delete"),
-                Print = ConvertAccessCodeToRoleAction(roleTable.RestoreDB, "Print")
+                Delete = null, // ConvertAccessCodeToRoleAction(roleTable.RestoreDB, "Delete"),
+                Print = null // ConvertAccessCodeToRoleAction(roleTable.RestoreDB, "Print")
             };
             roleActions.Add(restoreDBAction);
 
@@ -810,7 +902,7 @@ namespace ICMS.Model.DataAccess
                 Add = ConvertAccessCodeToRoleAction(roleTable.RadQuantity, "Add"),
                 Edit = ConvertAccessCodeToRoleAction(roleTable.RadQuantity, "Edit"),
                 Delete = ConvertAccessCodeToRoleAction(roleTable.RadQuantity, "Delete"),
-                Print = ConvertAccessCodeToRoleAction(roleTable.RadQuantity, "Print")
+                Print = null // ConvertAccessCodeToRoleAction(roleTable.RadQuantity, "Print")
             };
             roleActions.Add(radQuantityAction);
 
@@ -823,7 +915,7 @@ namespace ICMS.Model.DataAccess
                 Add = ConvertAccessCodeToRoleAction(roleTable.DoseQuantity, "Add"),
                 Edit = ConvertAccessCodeToRoleAction(roleTable.DoseQuantity, "Edit"),
                 Delete = ConvertAccessCodeToRoleAction(roleTable.DoseQuantity, "Delete"),
-                Print = ConvertAccessCodeToRoleAction(roleTable.DoseQuantity, "Print")
+                Print = null // ConvertAccessCodeToRoleAction(roleTable.DoseQuantity, "Print")
             };
             roleActions.Add(doseQuantityAction);
 
@@ -836,7 +928,7 @@ namespace ICMS.Model.DataAccess
                 Add = ConvertAccessCodeToRoleAction(roleTable.Unit, "Add"),
                 Edit = ConvertAccessCodeToRoleAction(roleTable.Unit, "Edit"),
                 Delete = ConvertAccessCodeToRoleAction(roleTable.Unit, "Delete"),
-                Print = ConvertAccessCodeToRoleAction(roleTable.Unit, "Print")
+                Print = null // ConvertAccessCodeToRoleAction(roleTable.Unit, "Print")
             };
             roleActions.Add(unitAction);
 
@@ -849,7 +941,7 @@ namespace ICMS.Model.DataAccess
                 Add = ConvertAccessCodeToRoleAction(roleTable.TM, "Add"),
                 Edit = ConvertAccessCodeToRoleAction(roleTable.TM, "Edit"),
                 Delete = ConvertAccessCodeToRoleAction(roleTable.TM, "Delete"),
-                Print = ConvertAccessCodeToRoleAction(roleTable.TM, "Print")
+                Print = null //  ConvertAccessCodeToRoleAction(roleTable.TM, "Print")
             };
             roleActions.Add(TMAction);
 
@@ -875,7 +967,7 @@ namespace ICMS.Model.DataAccess
                 Add = ConvertAccessCodeToRoleAction(roleTable.Customer, "Add"),
                 Edit = ConvertAccessCodeToRoleAction(roleTable.Customer, "Edit"),
                 Delete = ConvertAccessCodeToRoleAction(roleTable.Customer, "Delete"),
-                Print = ConvertAccessCodeToRoleAction(roleTable.Customer, "Print")
+                Print = null // ConvertAccessCodeToRoleAction(roleTable.Customer, "Print")
             };
             roleActions.Add(customerAction);
 
@@ -888,7 +980,7 @@ namespace ICMS.Model.DataAccess
                 Add = ConvertAccessCodeToRoleAction(roleTable.City, "Add"),
                 Edit = ConvertAccessCodeToRoleAction(roleTable.City, "Edit"),
                 Delete = ConvertAccessCodeToRoleAction(roleTable.City, "Delete"),
-                Print = ConvertAccessCodeToRoleAction(roleTable.City, "Print")
+                Print = null // ConvertAccessCodeToRoleAction(roleTable.City, "Print")
             };
             roleActions.Add(cityAction);
 
@@ -901,7 +993,7 @@ namespace ICMS.Model.DataAccess
                 Add = ConvertAccessCodeToRoleAction(roleTable.MachineName, "Add"),
                 Edit = ConvertAccessCodeToRoleAction(roleTable.MachineName, "Edit"),
                 Delete = ConvertAccessCodeToRoleAction(roleTable.MachineName, "Delete"),
-                Print = ConvertAccessCodeToRoleAction(roleTable.MachineName, "Print")
+                Print = null // ConvertAccessCodeToRoleAction(roleTable.MachineName, "Print")
             };
             roleActions.Add(machineNameAction);
 
@@ -914,7 +1006,7 @@ namespace ICMS.Model.DataAccess
                 Add = ConvertAccessCodeToRoleAction(roleTable.MachineType, "Add"),
                 Edit = ConvertAccessCodeToRoleAction(roleTable.MachineType, "Edit"),
                 Delete = ConvertAccessCodeToRoleAction(roleTable.MachineType, "Delete"),
-                Print = ConvertAccessCodeToRoleAction(roleTable.MachineType, "Print")
+                Print = null // ConvertAccessCodeToRoleAction(roleTable.MachineType, "Print")
             };
             roleActions.Add(machineTypeAction);
 
@@ -927,7 +1019,7 @@ namespace ICMS.Model.DataAccess
                 Add = ConvertAccessCodeToRoleAction(roleTable.SensorType, "Add"),
                 Edit = ConvertAccessCodeToRoleAction(roleTable.SensorType, "Edit"),
                 Delete = ConvertAccessCodeToRoleAction(roleTable.SensorType, "Delete"),
-                Print = ConvertAccessCodeToRoleAction(roleTable.SensorType, "Print")
+                Print = null // ConvertAccessCodeToRoleAction(roleTable.SensorType, "Print")
             };
             roleActions.Add(sensorTypeAction);
 
@@ -949,21 +1041,30 @@ namespace ICMS.Model.DataAccess
         private List<User> User_GetAll(SqlConnection conn)
         {
             string procedure = "SpUserTable_GetAll";
-            string splitColumns = "RoleId";
 
-
-            List<User> output = conn.Query<User, Role, User>(
+            List<UserTable> UserTables = conn.Query<UserTable>(
                 sql: procedure,
-                commandType: CommandType.StoredProcedure,
-                map: (user, role) =>
-                {
-                    user.Role = role;
-                    return user;
-                },
-                splitOn: splitColumns
+                commandType: CommandType.StoredProcedure
                 ).ToList();
 
-            return output;
+            List<User> Users = new List<User>();
+
+            foreach (var userTable in UserTables)
+            {
+                User user = new User();
+
+                user.UserId = userTable.UserId;
+                user.LoginName = userTable.LoginName;
+                user.FullName = userTable.FullName;
+                user.Password = userTable.Password;
+                user.IsActive = userTable.IsActive;
+                user.Role = Role_GetById(userTable.RoleId, conn);
+
+                Users.Add(user);
+            }
+
+
+            return Users;
         }
 
         public User User_GetById(int Id, string connectionString)

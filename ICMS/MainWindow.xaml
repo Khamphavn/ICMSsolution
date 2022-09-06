@@ -88,8 +88,8 @@
                         <control:UC_DatabaseRestore/>
                     </DataTemplate>
 
-                    <DataTemplate DataType="{x:Type viewmodel:RolePermissionViewModel}">
-                        <control:UC_RolePermission/>
+                    <DataTemplate DataType="{x:Type viewmodel:RoleManagementViewModel}">
+                        <control:UC_RoleManagement/>
                     </DataTemplate>
 
 

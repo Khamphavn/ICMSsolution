@@ -13,7 +13,7 @@
 
 
     <Grid>
-        <Grid  Margin="50 5 50 20" IsEnabled="False">
+        <Grid  Margin="50 5 50 20" IsEnabled="True">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>

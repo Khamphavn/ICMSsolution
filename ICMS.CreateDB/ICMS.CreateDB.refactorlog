@@ -28,4 +28,11 @@
     <Property Name="ParentElementType" Value="SqlSchema" />
     <Property Name="NewName" Value="[SpRoleTable_GetById]" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="603fe92b-4ff7-4251-9f8f-2cd7b4577b1c" ChangeDateTime="09/06/2022 11:12:54">
+    <Property Name="ElementName" Value="[dbo].[SpRole_Update]" />
+    <Property Name="ElementType" Value="SqlProcedure" />
+    <Property Name="ParentElementName" Value="[dbo]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[SpRoleTable_Update]" />
+  </Operation>
 </Operations>

@@ -41,7 +41,7 @@ namespace ICMS.Model.DataAccess
         List<Role> Role_GetAll(string connectionString);
         Role Role_GetById(int Id, string connectionString);
         //Role Role_GetByName(string Name, string connectionString);
-        //int Role_Update(Role model, string connectionString);
+        int Role_Update(Role model, string connectionString);
         //int Role_Insert(Role model, string connectionString);
         //int Role_DeleteById(int Id, string connectionString);
         #endregion
@@ -50,7 +50,7 @@ namespace ICMS.Model.DataAccess
         List<User> User_GetAll(string connectionString);
         //User User_GetById(int Id, string connectionString);
         User User_GetAuthenticatedUser(string loginName, string hashPassword, string connectionString);
-        //int User_Update_Infos(User model, string connectionString);
+        int User_Update_Infos(User model, string connectionString);
         //int User_Update_Password(User model, string connectionString);
         //int User_Insert(User model, string connectionString);
         //int User_DeleteById(int Id, string connectionString);

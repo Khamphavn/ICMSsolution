@@ -17,7 +17,7 @@
         <converter:InverseAndBooleansToBooleanConverter x:Key="InverseAndBooleansToBooleanConverter"/>
     </UserControl.Resources>
 
-    <Grid Margin="50 5 5 5" HorizontalAlignment="Center" IsEnabled="False">
+    <Grid Margin="50 5 5 5" HorizontalAlignment="Center" IsEnabled="True">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>

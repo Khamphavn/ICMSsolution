@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace ICMS.View.UC_Component
 {
     /// <summary>
-    /// Interaction logic for UC_RolePermission.xaml
+    /// Interaction logic for UC_UserManagement.xaml
     /// </summary>
-    public partial class UC_RolePermission : UserControl
+    public partial class UC_UserManagement : UserControl
     {
-        public UC_RolePermission()
+        public UC_UserManagement()
         {
             InitializeComponent();
         }

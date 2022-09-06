@@ -130,6 +130,7 @@
     </ApplicationDefinition>
     <Compile Include="Bussiness\CertificateProcessing\CertificateHelper.cs" />
     <Compile Include="Bussiness\CertificateProcessing\ProcessingCertificate.cs" />
+    <Compile Include="Converter\MaskPassword_Converter.cs" />
     <Compile Include="CustomControl\FilterableComboBox.cs" />
     <Compile Include="HelperFunction\BackupDB.cs" />
     <Compile Include="HelperFunction\StringExtensions.cs" />
@@ -155,6 +156,7 @@
     <Compile Include="Validation\Pressure_Validation.cs" />
     <Compile Include="Validation\RadQuanity_ReUnc_Validation.cs" />
     <Compile Include="Validation\RadQuantity_Energy_Validation.cs" />
+    <Compile Include="Validation\Role_RoleAction_Validation.cs" />
     <Compile Include="Validation\Sensor_Type_Validation.cs" />
     <Compile Include="Validation\Temperature_Validation.cs" />
     <Compile Include="Validation\TextBoxNotNull.cs" />
@@ -176,9 +178,10 @@
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\MenuBarViewModel.cs" />
     <Compile Include="ViewModel\RadQuantityViewModel.cs" />
-    <Compile Include="ViewModel\RolePermissionViewModel.cs" />
+    <Compile Include="ViewModel\RoleManagementViewModel.cs" />
     <Compile Include="ViewModel\TMViewModel.cs" />
     <Compile Include="ViewModel\UnitViewModel.cs" />
+    <Compile Include="ViewModel\UserManagementViewModel.cs" />
     <Compile Include="ViewModel\UserRoleManagementViewModel.cs" />
     <Compile Include="ViewModel\ViewCertificatePdfFileDialogViewModel.cs" />
     <Compile Include="View\LoginFormWindow.xaml.cs">
@@ -214,14 +217,17 @@
     <Compile Include="View\UC_Component\UC_RadQuantity.xaml.cs">
       <DependentUpon>UC_RadQuantity.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\UC_Component\UC_RolePermission.xaml.cs">
-      <DependentUpon>UC_RolePermission.xaml</DependentUpon>
+    <Compile Include="View\UC_Component\UC_RoleManagement.xaml.cs">
+      <DependentUpon>UC_RoleManagement.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\UC_Component\UC_TM.xaml.cs">
       <DependentUpon>UC_TM.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\UC_Component\UC_Unit.xaml.cs">
       <DependentUpon>UC_Unit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UC_Component\UC_UserManagement.xaml.cs">
+      <DependentUpon>UC_UserManagement.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\UC_Component\UC_UserRoleManagement.xaml.cs">
       <DependentUpon>UC_UserRoleManagement.xaml</DependentUpon>
@@ -343,7 +349,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\UC_Component\UC_RolePermission.xaml">
+    <Page Include="View\UC_Component\UC_RoleManagement.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -352,6 +358,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\UC_Component\UC_Unit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UC_Component\UC_UserManagement.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
