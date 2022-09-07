@@ -40,7 +40,8 @@
                 <DockPanel>
                     <StackPanel Orientation="Horizontal">
                         <!--Edit button-->
-                        <Button Margin="20 5 20 5" Width="80"  Command="{Binding MachineNameEditButtonCommand}">
+                        <Button Margin="20 5 20 5" Width="80"  Command="{Binding MachineNameEditButtonCommand}"
+                                IsEnabled="{Binding CurrentUser.Role.RoleActions[11].Edit}">
                             <Button.Style>
                                 <Style BasedOn="{StaticResource MaterialDesignRaisedButton}" TargetType="Button">
                                     <Style.Triggers>
@@ -75,7 +76,8 @@
                         </Button>
 
                         <!--Add button-->
-                        <Button Margin="20 5 20 5" Width="80" Command="{Binding MachineNameAddButtonCommand}">
+                        <Button Margin="20 5 20 5" Width="80" Command="{Binding MachineNameAddButtonCommand}"
+                                IsEnabled="{Binding CurrentUser.Role.RoleActions[11].Add}">
                             <Button.Style>
                                 <Style BasedOn="{StaticResource MaterialDesignRaisedButton}" TargetType="Button">
                                     <Style.Triggers>
@@ -139,6 +141,7 @@
                         <!--Delete button-->
                         <Button Margin="5 5 20 5" Width="80" Background="Red" BorderThickness="0" 
                         Command="{Binding MachineNameDeleteButtonCommand}"
+                                IsEnabled="{Binding CurrentUser.Role.RoleActions[11].Delete}"
                             ToolTip="Không nên xóa"
                         Content="Xóa">
                             <Button.Style>
@@ -254,9 +257,14 @@
                             <DataGrid.Resources>
                                 <ContextMenu x:Key="MachineNameRowContextMenu" 
                                      DataContext="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}, Path=DataContext.CurrentControl}">
-                                    <MenuItem Header="Edit" Command="{Binding MachineNameEditButtonCommand}"  />
-                                    <MenuItem Header="Add New" Command="{Binding MachineNameAddButtonCommand}" />
+                                    <MenuItem Header="Sửa" Command="{Binding MachineNameEditButtonCommand}" IsEnabled="{Binding CurrentUser.Role.RoleActions[11].Edit}" />
+                                    <MenuItem Header="Thêm mới" Command="{Binding MachineNameAddButtonCommand}" IsEnabled="{Binding CurrentUser.Role.RoleActions[11].Add}"/>
+                                    <Separator/>
+                                    <MenuItem Header="Xóa" Foreground="Red" Command="{Binding MachineNameDeleteButtonCommand}" IsEnabled="{Binding CurrentUser.Role.RoleActions[11].Delete}"/>
                                 </ContextMenu>
+
+                                <!--Remove black border when cell is slected-->
+                                <SolidColorBrush x:Key="MaterialDesignTextBoxBorder" Color="Transparent"/>
                             </DataGrid.Resources>
 
                             <!--Context menu appear only on row, not on header-->
@@ -298,7 +306,8 @@
                 <DockPanel>
                     <StackPanel Orientation="Horizontal">
                         <!--Edit button-->
-                        <Button Margin="20 5 20 5" Width="80"  Command="{Binding MachineTypeEditButtonCommand}">
+                        <Button Margin="20 5 20 5" Width="80"  Command="{Binding MachineTypeEditButtonCommand}"
+                                IsEnabled="{Binding CurrentUser.Role.RoleActions[12].Edit}">
                             <Button.Style>
                                 <Style BasedOn="{StaticResource MaterialDesignRaisedButton}" TargetType="Button">
                                     <Style.Triggers>
@@ -342,7 +351,8 @@
                         </Button>
 
                         <!--Add button-->
-                        <Button Margin="20 5 20 5" Width="80" Command="{Binding MachineTypeAddButtonCommand}">
+                        <Button Margin="20 5 20 5" Width="80" Command="{Binding MachineTypeAddButtonCommand}"
+                                IsEnabled="{Binding CurrentUser.Role.RoleActions[12].Add}">
                             <Button.Style>
                                 <Style BasedOn="{StaticResource MaterialDesignRaisedButton}" TargetType="Button">
                                     <Style.Triggers>
@@ -411,6 +421,7 @@
                         <!--Delete button-->
                         <Button Margin="5 5 20 5" Width="80" Background="Red" BorderThickness="0" 
                         Command="{Binding MachineTypeDeleteButtonCommand}"
+                                IsEnabled="{Binding CurrentUser.Role.RoleActions[12].Delete}"
                             ToolTip="Không nên xóa"
                         Content="Xóa">
                             <Button.Style>
@@ -539,9 +550,13 @@
                             <DataGrid.Resources>
                                 <ContextMenu x:Key="MachineTypeRowContextMenu" 
                                      DataContext="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}, Path=DataContext.CurrentControl}">
-                                    <MenuItem Header="Edit" Command="{Binding MachineTypeEditButtonCommand}"  />
-                                    <MenuItem Header="Add New" Command="{Binding MachineTypeAddButtonCommand}" />
+                                    <MenuItem Header="Sửa" Command="{Binding MachineTypeEditButtonCommand}"  IsEnabled="{Binding CurrentUser.Role.RoleActions[12].Edit}"/>
+                                    <MenuItem Header="Thêm mới" Command="{Binding MachineTypeAddButtonCommand}" IsEnabled="{Binding CurrentUser.Role.RoleActions[12].Add}"/>
+                                    <Separator/>
+                                    <MenuItem Header="Xóa" Foreground="Red" Command="{Binding MachineTypeDeleteButtonCommand}" IsEnabled="{Binding CurrentUser.Role.RoleActions[12].Delete}"/>
                                 </ContextMenu>
+                                <!--Remove black border when cell is slected-->
+                                <SolidColorBrush x:Key="MaterialDesignTextBoxBorder" Color="Transparent"/>
                             </DataGrid.Resources>
 
                             <!--Context menu appear only on row, not on header-->
@@ -590,7 +605,8 @@
                 <DockPanel>
                     <StackPanel Orientation="Horizontal">
                         <!--Edit button-->
-                        <Button Margin="20 5 20 5" Width="80"  Command="{Binding SensorTypeEditButtonCommand}">
+                        <Button Margin="20 5 20 5" Width="80"  Command="{Binding SensorTypeEditButtonCommand}"
+                                IsEnabled="{Binding CurrentUser.Role.RoleActions[13].Edit}">
                             <Button.Style>
                                 <Style BasedOn="{StaticResource MaterialDesignRaisedButton}" TargetType="Button">
                                     <Style.Triggers>
@@ -634,7 +650,8 @@
                         </Button>
 
                         <!--Add button-->
-                        <Button Margin="20 5 20 5" Width="80" Command="{Binding SensorTypeAddButtonCommand}">
+                        <Button Margin="20 5 20 5" Width="80" Command="{Binding SensorTypeAddButtonCommand}"
+                                IsEnabled="{Binding CurrentUser.Role.RoleActions[13].Add}">
                             <Button.Style>
                                 <Style BasedOn="{StaticResource MaterialDesignRaisedButton}" TargetType="Button">
                                     <Style.Triggers>
@@ -703,6 +720,7 @@
                         <!--Delete button-->
                         <Button Margin="5 5 20 5" Width="80" Background="Red" BorderThickness="0" 
                         Command="{Binding SensorTypeDeleteButtonCommand}"
+                                IsEnabled="{Binding CurrentUser.Role.RoleActions[13].Delete}"
                             ToolTip="Không nên xóa"
                         Content="Xóa">
                             <Button.Style>
@@ -831,9 +849,14 @@
                             <DataGrid.Resources>
                                 <ContextMenu x:Key="SensorTypeRowContextMenu" 
                                      DataContext="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}, Path=DataContext.CurrentControl}">
-                                    <MenuItem Header="Edit" Command="{Binding SensorTypeEditButtonCommand}"  />
-                                    <MenuItem Header="Add New" Command="{Binding SensorTypeAddButtonCommand}" />
+                                    <MenuItem Header="Sửa" Command="{Binding SensorTypeEditButtonCommand}"  IsEnabled="{Binding CurrentUser.Role.RoleActions[13].Edit}"/>
+                                    <MenuItem Header="Thêm mới" Command="{Binding SensorTypeAddButtonCommand}" IsEnabled="{Binding CurrentUser.Role.RoleActions[13].Add}"/>
+                                    <Separator/>
+                                    <MenuItem Header="Xóa" Foreground="Red" Command="{Binding SensorTypeDeleteButtonCommand}" IsEnabled="{Binding CurrentUser.Role.RoleActions[13].Delete}"/>
                                 </ContextMenu>
+
+                                <!--Remove black border when cell is slected-->
+                                <SolidColorBrush x:Key="MaterialDesignTextBoxBorder" Color="Transparent"/>
                             </DataGrid.Resources>
 
                             <!--Context menu appear only on row, not on header-->

@@ -24,7 +24,8 @@
                 <DockPanel>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                         <!--Edit button-->
-                        <Button Margin="20 5 20 5" Width="80"  Command="{Binding TMEditButtonCommand}">
+                        <Button Margin="20 5 20 5" Width="80"  Command="{Binding TMEditButtonCommand}"
+                                IsEnabled="{Binding CurrentUser.Role.RoleActions[7].Edit}">
                             <Button.Style>
                                 <Style BasedOn="{StaticResource MaterialDesignRaisedButton}" TargetType="Button">
                                     <Style.Triggers>
@@ -61,7 +62,8 @@
                         </Button>
 
                         <!--Add button-->
-                        <Button Margin="5 5 20 5" Width="80" Command="{Binding TMAddButtonCommand}">
+                        <Button Margin="5 5 20 5" Width="80" Command="{Binding TMAddButtonCommand}"
+                                IsEnabled="{Binding CurrentUser.Role.RoleActions[7].Add}">
                             <Button.Style>
                                 <Style BasedOn="{StaticResource MaterialDesignRaisedButton}" TargetType="Button">
                                     <Style.Triggers>
@@ -123,6 +125,7 @@
                         <!--Delete button-->
                         <Button Margin="5 5 20 5" Width="80" Background="Red" BorderThickness="0"
                             Command="{Binding TMDeleteButtonCommand}"
+                                IsEnabled="{Binding CurrentUser.Role.RoleActions[7].Delete}"
                             Content="Xóa">
                             <Button.Style>
                                 <Style BasedOn="{StaticResource MaterialDesignRaisedButton}" TargetType="Button">
@@ -236,11 +239,11 @@
                             <DataGrid.Resources>
                                 <ContextMenu x:Key="TMRowContextMenu" 
                                          DataContext="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}, Path=DataContext.CurrentControl}">
-                                    <MenuItem Header="Edit" Command="{Binding TMEditButtonCommand}"  />
+                                    <MenuItem Header="Sửa" Command="{Binding TMEditButtonCommand}"  IsEnabled="{Binding CurrentUser.Role.RoleActions[7].Edit}"/>
                                     <Separator/>
-                                    <MenuItem Header="Add New" Command="{Binding TMAddButtonCommand}" />
+                                    <MenuItem Header="Thêm mới" Command="{Binding TMAddButtonCommand}" IsEnabled="{Binding CurrentUser.Role.RoleActions[7].Add}"/>
                                     <Separator/>
-                                    <MenuItem Header="Delete" Foreground="Red" Command="{Binding TMDeleteButtonCommand}" />
+                                    <MenuItem Header="Xóa" Foreground="Red" Command="{Binding TMDeleteButtonCommand}" IsEnabled="{Binding CurrentUser.Role.RoleActions[7].Delete}"/>
                                 </ContextMenu>
                             </DataGrid.Resources>
 

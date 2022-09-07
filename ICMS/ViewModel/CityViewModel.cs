@@ -12,6 +12,10 @@ namespace ICMS.ViewModel
 {
     public class CityViewModel: BaseViewModel
     {
+        private User _CurrentUser;
+        public User CurrentUser { get => _CurrentUser; private set { _CurrentUser = value; OnPropertyChanged(); } }
+
+
         private ObservableCollection<City> _Cities;
         public ObservableCollection<City> Cities { get => _Cities; set { _Cities = value;   OnPropertyChanged(); }}
 
@@ -57,9 +61,11 @@ namespace ICMS.ViewModel
         public ICommand CityClearFieldButtonCommand { get; set; }
         #endregion
 
-        public CityViewModel()
+        public CityViewModel(User currentUser)
         {
             #region Init
+            CurrentUser = currentUser;
+
             Cities =  new ObservableCollection<City>(GlobalConfig.Connection.City_GetAll(GlobalConfig.CnnString("ICMSdatabase")));
             CurrentOperationMode = OperationMode.NormalMode.ToString();
             #endregion

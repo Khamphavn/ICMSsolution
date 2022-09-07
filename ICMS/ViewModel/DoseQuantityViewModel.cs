@@ -12,6 +12,9 @@ namespace ICMS.ViewModel
 {
     public class DoseQuantityViewModel : BaseViewModel
     {
+        private User _CurrentUser;
+        public User CurrentUser { get => _CurrentUser; private set { _CurrentUser = value; OnPropertyChanged(); } }
+
         private ObservableCollection<DoseQuantity> _DoseQuantities;
         public ObservableCollection<DoseQuantity> DoseQuantities { get => _DoseQuantities; set { _DoseQuantities = value; OnPropertyChanged(); } }
 
@@ -63,9 +66,11 @@ namespace ICMS.ViewModel
         #endregion
 
 
-        public DoseQuantityViewModel()
+        public DoseQuantityViewModel(User currentUser)
         {
             #region Init
+            CurrentUser = currentUser;
+
             DoseQuantities = new ObservableCollection<DoseQuantity>(GlobalConfig.Connection.DoseQuantity_GetAll(GlobalConfig.CnnString("ICMSdatabase")));
 
             CurrentOperationMode = OperationMode.NormalMode.ToString();

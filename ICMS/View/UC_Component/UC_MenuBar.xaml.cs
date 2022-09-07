@@ -24,5 +24,7 @@ namespace ICMS.View.UC_Component
         {
             InitializeComponent();
         }
+
+
     }
 }

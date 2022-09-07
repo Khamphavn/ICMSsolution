@@ -23,6 +23,9 @@ namespace ICMS.ViewModel
 {
     public class CertificateListViewModel : BaseViewModel
     {
+        private User _CurrentUser;
+        public User CurrentUser { get => _CurrentUser; private set { _CurrentUser = value; OnPropertyChanged(); } }
+
         private ObservableCollection<Certificate> _CertificateList;
         public ObservableCollection<Certificate> CertificateList
         {
@@ -81,6 +84,8 @@ namespace ICMS.ViewModel
         public CertificateListViewModel(MainViewModel mainViewModel)
         {
             #region Init
+            CurrentUser = mainViewModel.CurrentUser;
+
 
             FromDate = DateTime.Now.AddMonths(-AppSettings.AppSettings.MONTHBEFORETODAY);
             ToDate = DateTime.Today;
@@ -269,7 +274,7 @@ namespace ICMS.ViewModel
                 },
                 (p) =>
                 {
-                    mainViewModel.CurrentControl = new CertificateFormViewModel(mainViewModel, SelectedCertificate, "ViewMode");
+                    mainViewModel.CurrentControl = new CertificateFormViewModel(mainViewModel, SelectedCertificate, "ViewMode", CurrentUser);
                 }
                 );
             #endregion
@@ -291,7 +296,7 @@ namespace ICMS.ViewModel
                 },
                 (p) =>
                 {
-                    mainViewModel.CurrentControl = new CertificateFormViewModel(mainViewModel, SelectedCertificate, "EditMode");
+                    mainViewModel.CurrentControl = new CertificateFormViewModel(mainViewModel, SelectedCertificate, "EditMode", CurrentUser);
                 }
                 );
             #endregion
@@ -327,7 +332,7 @@ namespace ICMS.ViewModel
                         calibdata.MachineReading = null;
                     }
 
-                    mainViewModel.CurrentControl = new CertificateFormViewModel(mainViewModel, SelectedCertificate, "AddMode");
+                    mainViewModel.CurrentControl = new CertificateFormViewModel(mainViewModel, SelectedCertificate, "AddMode", CurrentUser);
                 }
                 );
             #endregion

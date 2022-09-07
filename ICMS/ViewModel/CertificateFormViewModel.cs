@@ -16,7 +16,8 @@ namespace ICMS.ViewModel
 {
     public class CertificateFormViewModel : BaseViewModel
     {
-        private readonly User CurrentUser;
+        private User _CurrentUser;
+        public User CurrentUser { get => _CurrentUser; private set { _CurrentUser = value; OnPropertyChanged(); } }
 
         //mode operation
         private string _CurrentOperationMode;
@@ -180,7 +181,7 @@ namespace ICMS.ViewModel
 
         #endregion
 
-        public CertificateFormViewModel(MainViewModel mainViewModel, Certificate certificate, string operationMode)
+        public CertificateFormViewModel(MainViewModel mainViewModel, Certificate certificate, string operationMode, User currentUser)
         {
             #region Init
             Mouse.OverrideCursor = Cursors.Wait;
@@ -275,7 +276,7 @@ namespace ICMS.ViewModel
                 CalibDatas.Add(new CalibDataDTO() { STT = 4, RefValue = 800.0 });
 
 
-                //CreateDemoCertificate();
+                CreateDemoCertificate();
             }
             Mouse.OverrideCursor = null;
 

@@ -16,7 +16,7 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0" Width="auto">
-            <GroupBox  Style="{StaticResource MaterialDesignGroupBox}" Header="Resore database" Margin="20 20 20 20" HorizontalAlignment="Left">
+            <GroupBox  Style="{StaticResource MaterialDesignGroupBox}" Header="Khôi phục cơ sở dữ liệu (CSDL)" Margin="20 20 20 20" HorizontalAlignment="Left">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
@@ -31,7 +31,7 @@
                     </Grid.ColumnDefinitions>
 
                     <!--   -->
-                    <Label Content="Database to backup"  Grid.Row="0" Grid.Column="0" Margin="5 10 0 0" 
+                    <Label Content="Chọn CSDL"  Grid.Row="0" Grid.Column="0" Margin="5 10 0 0" 
                            Foreground="Black" VerticalAlignment="Top"/>
 
 
@@ -41,14 +41,14 @@
                                          IsReadOnly="True" Opacity="1" IsEnabled="False" Focusable="False"
                                          materialDesign:TextFieldAssist.HasClearButton="False"/>
 
-                    <Button Grid.Row="0" Grid.Column="2" Content="Select Files"  Margin="5 5 5 5" 
+                    <Button Grid.Row="0" Grid.Column="2" Content="Chọn CSDL"  Margin="5 5 5 5" 
                             Style="{StaticResource MaterialDesignRaisedButton}"
                             Command="{Binding SelectDatabaseCommand}"/>
 
 
 
                     <!--Restore -->
-                    <Button Grid.Row="3" Grid.ColumnSpan="3" Content="Restore"  Width="150" Margin="0 30 0 5"
+                    <Button Grid.Row="3" Grid.ColumnSpan="3" Content="Khôi phục"  Width="150" Margin="0 30 0 5"
                             Style="{StaticResource MaterialDesignRaisedDarkButton}"
                             Command="{Binding RestoreDatabaseCommand}"/>
 

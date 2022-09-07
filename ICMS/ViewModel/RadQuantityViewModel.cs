@@ -12,6 +12,9 @@ namespace ICMS.ViewModel
 {
     public class RadQuantityViewModel : BaseViewModel
     {
+        private User _CurrentUser;
+        public User CurrentUser { get => _CurrentUser; private set { _CurrentUser = value; OnPropertyChanged(); } }
+
         private ObservableCollection<RadQuantity> _RadQuantities;
         public ObservableCollection<RadQuantity> RadQuantities { get => _RadQuantities; set { _RadQuantities = value; OnPropertyChanged(); } }
 
@@ -63,9 +66,10 @@ namespace ICMS.ViewModel
         #endregion
 
 
-        public RadQuantityViewModel()
+        public RadQuantityViewModel(User currentUser)
         {
             #region Init
+            CurrentUser = currentUser;
             RadQuantities = new ObservableCollection<RadQuantity>(GlobalConfig.Connection.RadQuantity_GetAll(GlobalConfig.CnnString("ICMSdatabase")));
 
             CurrentOperationMode = OperationMode.NormalMode.ToString();

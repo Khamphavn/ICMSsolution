@@ -11,6 +11,10 @@ namespace ICMS.ViewModel
 {
     public class TMViewModel : BaseViewModel
     {
+        private User _CurrentUser;
+        public User CurrentUser { get => _CurrentUser; private set { _CurrentUser = value; OnPropertyChanged(); } }
+
+
         private ObservableCollection<TM> _TMs;
         public ObservableCollection<TM> TMs { get => _TMs; set { _TMs = value; OnPropertyChanged(); } }
 
@@ -46,9 +50,11 @@ namespace ICMS.ViewModel
         #endregion
 
 
-        public TMViewModel()
+        public TMViewModel(User currentUser)
         {
             #region Init
+            CurrentUser = currentUser;
+
             TMs = new ObservableCollection<TM>(GlobalConfig.Connection.TM_GetAll(GlobalConfig.CnnString("ICMSdatabase")));
 
             TMCurrentOperationMode = OperationMode.NormalMode.ToString();

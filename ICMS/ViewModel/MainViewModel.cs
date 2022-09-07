@@ -24,16 +24,16 @@ namespace ICMS.ViewModel
 
 
 
-            //CurrentControl = new CertificateFormViewModel(this, null, "AddMode");
+            //CurrentControl = new CertificateFormViewModel(this, null, "AddMode", CurrentUser);
             //CurrentControl = new CertificateListViewModel(this);
-            //CurrentControl = new CustomerViewModel();
-            //CurrentControl = new CityViewModel();
-            //CurrentControl = new MachineViewModel();
-            //CurrentControl = new UnitViewModel();
-            //CurrentControl = new TMViewModel();
-            //CurrentControl = new RadQuantityViewModel();
-            //CurrentControl = new DoseQuantityViewModel();
-            CurrentControl = new UserRoleManagementViewModel(CurrentUser);
+            //CurrentControl = new CustomerViewModel(CurrentUser);
+            //CurrentControl = new CityViewModel(CurrentUser);
+            //CurrentControl = new MachineViewModel(CurrentUser);
+            //CurrentControl = new UnitViewModel(CurrentUser);
+            //CurrentControl = new TMViewModel(CurrentUser);
+            //CurrentControl = new RadQuantityViewModel(CurrentUser);
+            //CurrentControl = new DoseQuantityViewModel(CurrentUser);
+            //CurrentControl = new UserRoleManagementViewModel(CurrentUser);
             //CurrentControl = new DatabaseBackupViewModel();
             //CurrentControl = new DatabaseRestoreViewModel();
             //CurrentControl = new RoleManagementViewModel();

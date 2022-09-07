@@ -12,6 +12,11 @@ namespace ICMS.ViewModel
 {
     public class UnitViewModel : BaseViewModel
     {
+        private User _CurrentUser;
+        public User CurrentUser { get => _CurrentUser; private set { _CurrentUser = value; OnPropertyChanged(); } }
+
+
+
         private ObservableCollection<Unit> _AllUnitList;
         public ObservableCollection<Unit> AllUnitList
         {
@@ -79,8 +84,10 @@ namespace ICMS.ViewModel
 
 
         #region Constructor
-        public UnitViewModel()
+        public UnitViewModel(User currentUser)
         {
+            CurrentUser = currentUser;
+
             AllUnitList = new ObservableCollection<Unit>(GlobalConfig.Connection.Unit_GetAll(GlobalConfig.CnnString("ICMSdatabase")));
 
             SelectedUnit = null;

@@ -2,4 +2,6 @@
 (
 	[MachineNameId] INT NOT NULL PRIMARY KEY IDENTITY(1,1),
 	[Name] NVARCHAR(512) NOT NULL
+
+	CONSTRAINT [MachineName_UNIQUE_Name] UNIQUE([Name])
 )

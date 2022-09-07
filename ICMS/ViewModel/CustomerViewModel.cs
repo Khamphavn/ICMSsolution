@@ -12,6 +12,9 @@ namespace ICMS.ViewModel
 {
     public class CustomerViewModel : BaseViewModel
     {
+        private User _CurrentUser;
+        public User CurrentUser { get => _CurrentUser; private set { _CurrentUser = value; OnPropertyChanged(); } }
+
         private ObservableCollection<Customer> _CustomerList;
         public ObservableCollection<Customer> CustomerList { get => _CustomerList; set { 
                 _CustomerList = value; 
@@ -118,11 +121,11 @@ namespace ICMS.ViewModel
         #endregion
 
           
-        public CustomerViewModel()
+        public CustomerViewModel(User currentUser)
         {
             #region Init
-            //List<Customer> test = new List<Customer>();
-            //test = (GlobalConfig.Connection.Customer_GetAll(GlobalConfig.CnnString("ICMSdatabase")));
+            CurrentUser = currentUser;
+
             CustomerList = new ObservableCollection<Customer>(GlobalConfig.Connection.Customer_GetAll(GlobalConfig.CnnString("ICMSdatabase")));
             FilterCustomerList = CustomerList;
             CityList = GlobalConfig.Connection.City_GetActive(GlobalConfig.CnnString("ICMSdatabase"));

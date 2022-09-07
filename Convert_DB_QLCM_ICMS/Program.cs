@@ -568,6 +568,7 @@ namespace Convert_DB_QLCM_ICMS
             foreach (Certificate certificate in newCertificateList)
             {
 
+
                 try
                 {
                     Console.WriteLine($"   - Certificate Number: {certificate.CertificateNumber}    Calib.Date: {certificate.CalibDate}");
@@ -584,6 +585,18 @@ namespace Convert_DB_QLCM_ICMS
 
                     Customer exsistedCustomer = sqlConnectorNew.Customer_GetByFullName(certificate.Customer.FullName, QLCMnew_connString);
                     certificate.Customer.CustomerId = exsistedCustomer.CustomerId;
+                }
+
+
+                try
+                {
+                    MachineName machineName = new MachineName() { Name = certificate.Machine.Name };
+
+                    sqlConnectorNew.MachineName_Insert(machineName, QLCMnew_connString);
+                }
+                catch (Exception ex)
+                {
+                    //Console.Write(ex.Message);
                 }
 
                 try

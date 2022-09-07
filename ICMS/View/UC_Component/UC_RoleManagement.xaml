@@ -9,7 +9,7 @@
              xmlns:validation="clr-namespace:ICMS.Validation"
              >
     <Grid>
-        <GroupBox Header="Role permission" Margin="10"
+        <GroupBox Header="Quản lý nhóm" Margin="10"
                   Visibility="{Binding CurrentUser.Role.RoleActions[1].View, Converter={StaticResource BooleanToVisibilityConverter}}">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -79,7 +79,7 @@
                             </DataGridTextColumn>
 
 
-                            <DataGridTextColumn Header="Permission" Binding="{Binding ActionName}"
+                            <DataGridTextColumn Header="Chức năng" Binding="{Binding ActionName}"
                                                 ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
                                                 EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}"
                                                 IsReadOnly="True"
@@ -88,12 +88,12 @@
                             </DataGridTextColumn>
 
                             <!-- View -->
-                            <DataGridCheckBoxColumn Header="View" Binding="{Binding View, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                            <DataGridCheckBoxColumn Header="Xem" Binding="{Binding View, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                                                 ElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnStyle}"
                                                 EditingElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnEditingStyle}"
                                                     />
                             <!-- Add -->
-                            <DataGridCheckBoxColumn Header="Add" Binding="{Binding Add, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                            <DataGridCheckBoxColumn Header="Thêm" Binding="{Binding Add, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                                 <DataGridCheckBoxColumn.ElementStyle>
                                     <Style TargetType="CheckBox" BasedOn="{StaticResource MaterialDesignDataGridCheckBoxColumnStyle}">
                                         <Style.Triggers>
@@ -124,7 +124,7 @@
                             </DataGridCheckBoxColumn>
 
                             <!-- Edit -->
-                            <DataGridCheckBoxColumn Header="Edit" Binding="{Binding Edit, UpdateSourceTrigger=PropertyChanged}"
+                            <DataGridCheckBoxColumn Header="Sửa" Binding="{Binding Edit, UpdateSourceTrigger=PropertyChanged}"
                                                     >
                                 <DataGridCheckBoxColumn.ElementStyle>
                                     <Style TargetType="CheckBox" BasedOn="{StaticResource MaterialDesignDataGridCheckBoxColumnStyle}">
@@ -150,7 +150,7 @@
                             </DataGridCheckBoxColumn>
                                                  
 
-                            <DataGridCheckBoxColumn Header="Delete" Binding="{Binding Delete, UpdateSourceTrigger=PropertyChanged}" 
+                            <DataGridCheckBoxColumn Header="Xóa" Binding="{Binding Delete, UpdateSourceTrigger=PropertyChanged}" 
                                                     >
                                 <DataGridCheckBoxColumn.ElementStyle>
                                     <Style TargetType="CheckBox"  BasedOn="{StaticResource MaterialDesignDataGridCheckBoxColumnStyle}">
@@ -175,7 +175,7 @@
                                 </DataGridCheckBoxColumn.EditingElementStyle>
                             </DataGridCheckBoxColumn>
 
-                            <DataGridCheckBoxColumn Header="Print" Binding="{Binding Print, UpdateSourceTrigger=PropertyChanged}"
+                            <DataGridCheckBoxColumn Header="In" Binding="{Binding Print, UpdateSourceTrigger=PropertyChanged}"
                                                     >
                                 <DataGridCheckBoxColumn.ElementStyle>
                                     <Style TargetType="CheckBox" BasedOn="{StaticResource MaterialDesignDataGridCheckBoxColumnStyle}">

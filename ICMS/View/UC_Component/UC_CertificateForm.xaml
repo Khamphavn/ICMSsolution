@@ -819,6 +819,7 @@
 
                 <!-- Save -->
                 <Button Grid.Column="0" Content="Lưu"  Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                       
                     Command="{Binding SaveCertificateFormCommand}">
                     <Button.IsEnabled>
                         <MultiBinding Converter="{StaticResource InverseAndBooleansToBooleanConverter}" Mode="TwoWay">
@@ -832,6 +833,7 @@
                             <Binding ElementName="MachineSerialTextBox" Path="(Validation.HasError)"/>
                             <Binding ElementName="MachineManufacturerTextBox" Path="(Validation.HasError)"/>
                             <Binding ElementName="CalibDataDataGrid" Path="(Validation.HasError)"/>
+                            <Binding RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=UserControl}" Path="DataContext. CurrentUser.Role.RoleActions[8].Add" />
                         </MultiBinding>
                     </Button.IsEnabled>
                 </Button>

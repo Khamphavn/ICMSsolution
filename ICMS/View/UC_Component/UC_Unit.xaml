@@ -33,7 +33,8 @@
                 <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
                     <!--Edit button-->
                     <Button Margin="20 5 20 5" Width="80"
-                    Command="{Binding UnitEditButtonCommand}">
+                            Command="{Binding UnitEditButtonCommand}"
+                            IsEnabled="{Binding CurrentUser.Role.RoleActions[6].Edit}">
                         <Button.Style>
                             <Style BasedOn="{StaticResource MaterialDesignRaisedButton}" TargetType="Button">
                                 <Style.Triggers>
@@ -80,7 +81,8 @@
 
                     <!--Add button-->
                     <Button Margin="10 5 20 5" Width="80"
-                    Command="{Binding UnitAddButtonCommand}">
+                    Command="{Binding UnitAddButtonCommand}"
+                            IsEnabled="{Binding CurrentUser.Role.RoleActions[6].Add}">
                         <Button.Style>
                             <Style BasedOn="{StaticResource MaterialDesignRaisedButton}" TargetType="Button">
                                 <Style.Triggers>
@@ -152,6 +154,7 @@
                     <!--Delete button-->
                     <Button Margin="5 5 20 5" Width="80" Background="Red" BorderThickness="0" 
                         Command="{Binding UnitDeleteButtonCommand}"
+                            IsEnabled="{Binding CurrentUser.Role.RoleActions[6].Delete}"
                         Content="Xóa">
                         <Button.Style>
                             <Style BasedOn="{StaticResource MaterialDesignRaisedButton}" TargetType="Button">
@@ -319,9 +322,13 @@
                         <DataGrid.Resources>
                             <ContextMenu x:Key="UnitRowContextMenu" 
                                      DataContext="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}, Path=DataContext.CurrentControl}">
-                                <MenuItem Header="Edit" Command="{Binding UnitEditButtonCommand}"  />
-                                <MenuItem Header="Add New" Command="{Binding UnitAddButtonCommand}" />
+                                <MenuItem Header="Sửa" Command="{Binding UnitEditButtonCommand}"  IsEnabled="{Binding CurrentUser.Role.RoleActions[6].Edit}" />
+                                <MenuItem Header="Thêm mới" Command="{Binding UnitAddButtonCommand}" IsEnabled="{Binding CurrentUser.Role.RoleActions[6].Add}"/>
+                                <Separator/>
+                                <MenuItem Header="Xóa" Foreground="Red" Command="{Binding UnitDeleteButtonCommand}" IsEnabled="{Binding CurrentUser.Role.RoleActions[6].Delete}"/>
                             </ContextMenu>
+                            <!--Remove black border when cell is slected-->
+                            <SolidColorBrush x:Key="MaterialDesignTextBoxBorder" Color="Transparent"/>
                         </DataGrid.Resources>
 
                         <!--Context menu appear only on row, not on header-->
@@ -340,19 +347,19 @@
 
                             </DataGridTextColumn>
 
-                            <DataGridTextColumn Header="Name" x:Name="Unit_Name"
+                            <DataGridTextColumn Header="Đơn vị" x:Name="Unit_Name"
                                             ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
                                             EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}"
                                             Binding="{Binding Name}"
                                             Width="*" MinWidth="100" MaxWidth="150"/>
 
-                            <DataGridCheckBoxColumn Header="Is Active" x:Name="Unit_IsActive"
+                            <DataGridCheckBoxColumn Header="Hiệu lức" x:Name="Unit_IsActive"
                                                 ElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnStyle}"
                                                 EditingElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnEditingStyle}"
                                                 Binding="{Binding IsActive}"
                                                 Width="*" MinWidth="50" MaxWidth="150"/>
 
-                            <DataGridTextColumn Header="Order"  x:Name="Unit_Order"
+                            <DataGridTextColumn Header="Thứ tự"  x:Name="Unit_Order"
                                             ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
                                             EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}"
                                             Binding="{Binding Order}"

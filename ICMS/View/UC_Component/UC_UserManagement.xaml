@@ -17,7 +17,7 @@
     </UserControl.Resources>
 
     <Grid>
-        <GroupBox Header="User management" Margin="10" 
+        <GroupBox Header="Quản lý tài khoản" Margin="10" 
                   Visibility="{Binding CurrentUser.Role.RoleActions[0].View, Converter={StaticResource BooleanToVisibilityConverter}}">
             <Grid>
                 <Grid.RowDefinitions>
@@ -37,7 +37,7 @@
                                     <Style.Triggers>
                                         <DataTrigger Binding="{Binding CurrentOperationMode}" Value="NormalMode">
                                             <Setter Property="IsEnabled" Value="True"/>
-                                            <Setter Property="Content" Value="Edit"/>
+                                            <Setter Property="Content" Value="Sửa"/>
                                         </DataTrigger>
 
                                         <MultiDataTrigger>
@@ -46,7 +46,7 @@
                                                 <Condition Binding="{Binding Path=(Validation.HasError), ElementName=User_LoginName_txb}" Value="True"/>
                                             </MultiDataTrigger.Conditions>
                                             <Setter Property="IsEnabled" Value="False"/>
-                                            <Setter Property="Content" Value="Save"/>
+                                            <Setter Property="Content" Value="Lưu"/>
                                         </MultiDataTrigger>
                                         <MultiDataTrigger>
                                             <MultiDataTrigger.Conditions>
@@ -54,7 +54,7 @@
                                                 <Condition Binding="{Binding Path=(Validation.HasError), ElementName=User_FullName_txb}" Value="True"/>
                                             </MultiDataTrigger.Conditions>
                                             <Setter Property="IsEnabled" Value="False"/>
-                                            <Setter Property="Content" Value="Save"/>
+                                            <Setter Property="Content" Value="Lưu"/>
                                         </MultiDataTrigger>
                                         <MultiDataTrigger>
                                             <MultiDataTrigger.Conditions>
@@ -63,12 +63,12 @@
                                                 <Condition Binding="{Binding Path=(Validation.HasError), ElementName=User_FullName_txb}" Value="False"/>
                                             </MultiDataTrigger.Conditions>
                                             <Setter Property="IsEnabled" Value="True"/>
-                                            <Setter Property="Content" Value="Save"/>
+                                            <Setter Property="Content" Value="Lưu"/>
                                         </MultiDataTrigger>
 
                                         <DataTrigger Binding="{Binding CurrentOperationMode}" Value="AddMode">
                                             <Setter Property="IsEnabled" Value="False"/>
-                                            <Setter Property="Content" Value="Edit"/>
+                                            <Setter Property="Content" Value="Sửa"/>
                                         </DataTrigger>
                                     </Style.Triggers>
                                 </Style>
@@ -83,16 +83,16 @@
                                     <Style.Triggers>
                                         <DataTrigger Binding="{Binding CurrentOperationMode}" Value="NormalMode">
                                             <Setter Property="IsEnabled" Value="True"/>
-                                            <Setter Property="Content" Value="Add"/>
+                                            <Setter Property="Content" Value="Lưu"/>
                                         </DataTrigger>
                                         <DataTrigger Binding="{Binding CurrentOperationMode}" Value="EditMode">
                                             <Setter Property="Visibility" Value="Collapsed"/>
                                             <Setter Property="IsEnabled" Value="False"/>
-                                            <Setter Property="Content" Value="Add"/>
+                                            <Setter Property="Content" Value="Lưu"/>
                                         </DataTrigger>
                                         <DataTrigger Binding="{Binding CurrentOperationMode}" Value="AddMode">
                                             <Setter Property="IsEnabled" Value="True"/>
-                                            <Setter Property="Content" Value="Save"/>
+                                            <Setter Property="Content" Value="Lưu"/>
                                         </DataTrigger>
                                     </Style.Triggers>
                                 </Style>
@@ -100,7 +100,7 @@
                         </Button>
 
                         <!--Cancel button-->
-                        <Button Margin="10 0 20 0" Width="80"  Command="{Binding UserCancelButtonCommand}"  Content="Cancel">
+                        <Button Margin="10 0 20 0" Width="80"  Command="{Binding UserCancelButtonCommand}"  Content="Hủy">
                             <Button.Style>
                                 <Style BasedOn="{StaticResource MaterialDesignRaisedButton}" TargetType="Button">
                                     <Style.Triggers>
@@ -175,7 +175,7 @@
                                  materialDesign:HintAssist.IsFloating="True"
                                  materialDesign:TextBlockAssist.AutoToolTip="True"
                                  materialDesign:ValidationAssist.HorizontalAlignment="Left"
-                                 ToolTip="Tên đăng nhập">
+                                 ToolTip="Họ và tên">
                             <TextBox.Text>
                                 <Binding Path="User_FullName" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
                                     <Binding.ValidationRules>
@@ -213,7 +213,7 @@
                         <StackPanel Orientation="Vertical" Grid.Column="3"
                             HorizontalAlignment="Center" VerticalAlignment="Top"
                             Width="{Binding ElementName=User_IsActive, Path=ActualWidth}">
-                            <TextBlock Text="Is Active" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0 -7 0 0"  FontSize="12" />
+                            <TextBlock Text="Kích hoạt" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0 -7 0 0"  FontSize="12" />
                             <CheckBox VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0 10 0 0" 
                               IsThreeState="False"
                               IsChecked="{Binding User_IsActive}"/>
@@ -263,8 +263,10 @@
                             <DataGrid.Resources>
                                 <ContextMenu x:Key="UserRowContextMenu" 
                                      DataContext="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}, Path=DataContext.CurrentControl.UserManagementControl}">
-                                    <MenuItem Header="Edit User" Command="{Binding UserEditButtonCommand}" IsEnabled="{Binding  CurrentUser.Role.RoleActions[0].Edit}" />
-                                    <MenuItem Header="Add New User" Command="{Binding UserAddButtonCommand}" IsEnabled="{Binding  CurrentUser.Role.RoleActions[0].Add}"/>
+                                    <MenuItem Header="Sửa" Command="{Binding UserEditButtonCommand}" IsEnabled="{Binding  CurrentUser.Role.RoleActions[0].Edit}" />
+                                    <MenuItem Header="Thêm mới" Command="{Binding UserAddButtonCommand}" IsEnabled="{Binding  CurrentUser.Role.RoleActions[0].Add}"/>
+                                    <Separator/>
+                                    <MenuItem Header="Xóa" Foreground="Red" Command="{Binding UserDeleteButtonCommand}" IsEnabled="{Binding CurrentUser.Role.RoleActions[0].Delete}"/>
                                 </ContextMenu>
 
                                 <!--Remove black border when cell is slected-->
@@ -287,7 +289,7 @@
 
                             <DataGrid.Columns>
 
-                                <DataGridTextColumn Header="Login Name" x:Name="User_LoginName"
+                                <DataGridTextColumn Header="Tên đăng nhập" x:Name="User_LoginName"
                                             ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
                                             EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
                                     <DataGridTextColumn.Binding>
@@ -299,7 +301,7 @@
                                     </DataGridTextColumn.Binding>
                                 </DataGridTextColumn>
 
-                                <DataGridTextColumn Header="Full Name"  x:Name="User_FullName" MinWidth="180"
+                                <DataGridTextColumn Header="Họ và tên"  x:Name="User_FullName" MinWidth="180"
                                             ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
                                             EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
                                     <DataGridTextColumn.Binding>
@@ -311,7 +313,7 @@
                                     </DataGridTextColumn.Binding>
                                 </DataGridTextColumn>
 
-                                <DataGridTextColumn Header="Role Name" x:Name="User_Role" MinWidth="110"
+                                <DataGridTextColumn Header="Nhóm" x:Name="User_Role" MinWidth="110"
                                             ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
                                             EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
                                     <DataGridTextColumn.Binding>
@@ -319,7 +321,7 @@
                                     </DataGridTextColumn.Binding>
                                 </DataGridTextColumn>
 
-                                <DataGridTextColumn Header="Password" x:Name="User_Password" MinWidth="110"
+                                <DataGridTextColumn Header="Mật khẩu" x:Name="User_Password" MinWidth="110"
                                             ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
                                             EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
                                     <DataGridTextColumn.Binding>
@@ -332,7 +334,7 @@
                                     
                                 </DataGridTextColumn>
 
-                                <DataGridCheckBoxColumn Header="IsActive" x:Name="User_IsActive" MinWidth="90"
+                                <DataGridCheckBoxColumn Header="Kích hoạt" x:Name="User_IsActive" MinWidth="90"
                                                 ElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnStyle}"
                                                 EditingElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnEditingStyle}">
                                     <DataGridCheckBoxColumn.Binding>

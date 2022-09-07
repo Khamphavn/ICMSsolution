@@ -53,7 +53,7 @@
                                     <MenuItem Header="Thoát" Foreground="Black"  FontWeight="Normal"  Command="{Binding MenubarViewModel.NavigateAppShutdownCommand}"/>
                                 </MenuItem>
 
-                                <MenuItem Header="Cài đặt" Foreground="White" Background="Transparent" FontWeight="DemiBold" >
+                                <MenuItem Header="Cài đặt" Foreground="White" Background="Transparent" FontWeight="DemiBold">
                                     <MenuItem Header="Phẩm chất bức xạ" Foreground="Black"  FontWeight="Normal" 
                                               Command="{Binding MenubarViewModel.NavigateRadQuantityCommand}"
                                               Visibility="{Binding CurrentUser.Role.RoleActions[4].View, Converter={StaticResource BooleanToVisibilityConverter}}"/>
@@ -109,6 +109,7 @@
                     <Grid Grid.Column="1" Height="25">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <Button ToolTip="Show Certificate List" Command="{Binding MenubarViewModel.NavigateCertificateListCommand}"
+                                    IsEnabled="{Binding CurrentUser.Role.RoleActions[8].View}"
                                 Width="50" Height="50" 
                                 Style="{StaticResource MaterialDesignPaperSecondaryDarkButton}"
                                 Margin="20 0 5 0"  
@@ -120,6 +121,7 @@
                             </Button>
 
                             <Button ToolTip="New calibration"  Command="{Binding MenubarViewModel.NavigateCertificateFormCommand}"
+                                    IsEnabled="{Binding CurrentUser.Role.RoleActions[8].Add}"
                                 Width="50" Height="50" 
                                 Style="{StaticResource MaterialDesignPaperSecondaryDarkButton}"
                                 Margin="20 0 5 0"  

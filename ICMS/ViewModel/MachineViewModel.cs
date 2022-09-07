@@ -13,6 +13,9 @@ namespace ICMS.ViewModel
 {
     public class MachineViewModel : BaseViewModel
     {
+        private User _CurrentUser;
+        public User CurrentUser { get => _CurrentUser; private set { _CurrentUser = value; OnPropertyChanged(); } }
+
         #region Machine Name
         private ObservableCollection<MachineName> _MachineNames;
         public ObservableCollection<MachineName> MachineNames { get => _MachineNames; set { _MachineNames = value; OnPropertyChanged(); }}
@@ -124,9 +127,11 @@ namespace ICMS.ViewModel
         #endregion
 
 
-        public MachineViewModel()
+        public MachineViewModel(User currentUser)
         {
             #region Init
+            CurrentUser = currentUser;
+
             MachineNames = new ObservableCollection<MachineName>(GlobalConfig.Connection.MachineName_GetAll(GlobalConfig.CnnString("ICMSdatabase")));
             MachineTypes = new ObservableCollection<MachineType>(GlobalConfig.Connection.MachineType_GetAll(GlobalConfig.CnnString("ICMSdatabase")));
             SensorTypes = new ObservableCollection<SensorType>(GlobalConfig.Connection.SensorType_GetAll(GlobalConfig.CnnString("ICMSdatabase")));

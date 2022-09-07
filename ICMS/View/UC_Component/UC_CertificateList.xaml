@@ -70,8 +70,9 @@
                     Command="{Binding GetCertificateFromDateToDateCommand}" IsDefault="True" />
 
                         <Button Grid.Column="5" Content="In chứng chỉ" Margin="50 0 0 0"
-                        Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                    Command="{Binding ViewAndPrintCertificateCommand}" />
+                                Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                                Command="{Binding ViewAndPrintCertificateCommand}" 
+                                IsEnabled="{Binding CurrentUser.Role.RoleActions[8].Print}"/>
 
                         <Label Grid.Column="7" Content="Xem chi tiết" Margin="5 8 5 8" VerticalAlignment="Center"/>
 
@@ -252,16 +253,28 @@
                                    >
                                     <!--<MenuItem Header="In chứng chỉ" Command="{Binding PrintCertificateCommand}"/>-->
                                     <!--<MenuItem Header="Xem và in chứng chỉ" Command="{Binding ViewAndPrintCertificateCommand}"/>-->
-                                    <MenuItem Header="Xem và in chứng chỉ" Command="{Binding ViewAndPrintCertificateCommand}"/>
+                                    <MenuItem Header="Xem và in chứng chỉ" Command="{Binding ViewAndPrintCertificateCommand}"
+                                              IsEnabled="{Binding CurrentUser.Role.RoleActions[8].Print}"/>
+                                    
                                     <Separator/>
-                                    <MenuItem Header="Xuất file word" Command="{Binding ExportCertificateToWordCommand}"/>
+                                    
+                                    <MenuItem Header="Xuất file word" Command="{Binding ExportCertificateToWordCommand}"
+                                               IsEnabled="{Binding CurrentUser.Role.RoleActions[8].Print}"/>
+                                    
                                     <Separator/>
-                                    <MenuItem Header="Xem chi tiết dữ liệu" Command="{Binding ViewDetailsOnlyCertificateCommand}"/>
-                                    <MenuItem Header="Sửa dữ liệu" Command="{Binding EditCertificateCommand}"/>
+                                    
+                                    <MenuItem Header="Xem chi tiết dữ liệu" Command="{Binding ViewDetailsOnlyCertificateCommand}"
+                                              IsEnabled="{Binding CurrentUser.Role.RoleActions[8].View}"/>
+                                    
+                                    <MenuItem Header="Sửa dữ liệu" Command="{Binding EditCertificateCommand}"
+                                               IsEnabled="{Binding CurrentUser.Role.RoleActions[8].Edit}"/>
                                     <Separator/>
-                                    <MenuItem Header="Hiệu chuẩn thiết bị này" Command="{Binding AddNewCertificateBaseOnThisMachineCommand}"/>
+                                    
+                                    <MenuItem Header="Hiệu chuẩn thiết bị này" Command="{Binding AddNewCertificateBaseOnThisMachineCommand}"
+                                               IsEnabled="{Binding CurrentUser.Role.RoleActions[8].Add}"/>
                                     <Separator/>
-                                    <MenuItem Header="Xóa" Foreground="Red" Command="{Binding DeleteCertificateCommand}"/>
+                                    <MenuItem Header="Xóa" Foreground="Red" Command="{Binding DeleteCertificateCommand}"
+                                               IsEnabled="{Binding CurrentUser.Role.RoleActions[8].Delete}"/>
                                 </ContextMenu>
 
                                 <!--Remove black border when cell is slected-->

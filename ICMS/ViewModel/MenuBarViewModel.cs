@@ -72,8 +72,6 @@ namespace ICMS.ViewModel
 
 
 
-
-
             #region NavigateUserConfigurationCommand
             NavigateUserConfigurationCommand = new RelayCommand<object>
                 (
@@ -124,7 +122,7 @@ namespace ICMS.ViewModel
             NavigateRadQuantityCommand = new RelayCommand<object>
                 (
                 (p) => { return true; },
-                (p) => { mainViewModel.CurrentControl = new RadQuantityViewModel(); }
+                (p) => { mainViewModel.CurrentControl = new RadQuantityViewModel(CurrentUser); }
                 );
             #endregion
 
@@ -132,7 +130,7 @@ namespace ICMS.ViewModel
             NavigateDoseQuantityCommand = new RelayCommand<object>
                 (
                 (p) => { return true; },
-                (p) => { mainViewModel.CurrentControl = new DoseQuantityViewModel(); }
+                (p) => { mainViewModel.CurrentControl = new DoseQuantityViewModel(CurrentUser); }
                 );
             #endregion
 
@@ -140,7 +138,7 @@ namespace ICMS.ViewModel
             NavigateUnitCommand = new RelayCommand<object>
                 (
                 (p) => { return true; },
-                (p) => { mainViewModel.CurrentControl = new UnitViewModel(); }
+                (p) => { mainViewModel.CurrentControl = new UnitViewModel(CurrentUser); }
                 );
             #endregion
 
@@ -148,7 +146,7 @@ namespace ICMS.ViewModel
             NavigateTMCommand = new RelayCommand<object>
                (
                 (p) => { return true; },
-                (p) => { mainViewModel.CurrentControl = new TMViewModel(); }
+                (p) => { mainViewModel.CurrentControl = new TMViewModel(CurrentUser); }
                 );
             #endregion
 
@@ -169,7 +167,7 @@ namespace ICMS.ViewModel
             NavigateCustomerCommand = new RelayCommand<object>
                 (
                 (p) => { return true; },
-                (p) => { mainViewModel.CurrentControl = new CustomerViewModel(); }
+                (p) => { mainViewModel.CurrentControl = new CustomerViewModel(CurrentUser); }
                 );
             #endregion
 
@@ -177,7 +175,7 @@ namespace ICMS.ViewModel
             NavigateCityCommand = new RelayCommand<object>
                 (
                 (p) => { return true; },
-                (p) => { mainViewModel.CurrentControl = new CityViewModel(); }
+                (p) => { mainViewModel.CurrentControl = new CityViewModel(CurrentUser); }
                 );
             #endregion
 
@@ -185,7 +183,7 @@ namespace ICMS.ViewModel
             NavigateMachineCommand = new RelayCommand<object>
                 (
                 (p) => { return true; },
-                (p) => { mainViewModel.CurrentControl = new MachineViewModel(); }
+                (p) => { mainViewModel.CurrentControl = new MachineViewModel(CurrentUser); }
                 );
             #endregion
 
@@ -239,7 +237,7 @@ namespace ICMS.ViewModel
                 (p) => { return true; },
                 (p) =>
                 {
-                    mainViewModel.CurrentControl = new CertificateFormViewModel(mainViewModel,null, "AddMode");
+                    mainViewModel.CurrentControl = new CertificateFormViewModel(mainViewModel,null, "AddMode", CurrentUser);
                 }
                 );
             #endregion
@@ -252,7 +250,7 @@ namespace ICMS.ViewModel
                 (p) => { return true; },
                 (p) =>
                 {
-                    MessageBox.Show("TODO\n User can change Login name, password");
+                    mainViewModel.CurrentControl = new UserEditInfo(mainViewModel);
                 }
                 );
             #endregion

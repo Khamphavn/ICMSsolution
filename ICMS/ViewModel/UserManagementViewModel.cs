@@ -122,6 +122,7 @@ namespace ICMS.ViewModel
         #region Commands
         public ICommand UserEditButtonCommand { get; set; }
         public ICommand UserAddButtonCommand { get; set; }
+        public ICommand UserDeleteButtonCommand { get; set; }
         public ICommand UserCancelButtonCommand { get; set; }
         #endregion
 
