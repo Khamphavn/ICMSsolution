@@ -9,7 +9,7 @@ BEGIN
 
 	FROM [dbo].[User] 
 
-	WHERE  [LoginName] = @LoginName AND [Password] = @Password
+	WHERE  [LoginName] = @LoginName AND [Password] = @Password AND [IsActive] = 1
 
 END 
 

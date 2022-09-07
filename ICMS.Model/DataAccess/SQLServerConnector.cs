@@ -635,8 +635,6 @@ namespace ICMS.Model.DataAccess
 
             RoleTable roleTable = ConvertRoleToRoleTable(role);
 
-
-
             string procedure = "dbo.SpRoleTable_Update";
             var p = new DynamicParameters();
             p.Add("@RoleId", roleTable.RoleId);
@@ -849,7 +847,7 @@ namespace ICMS.Model.DataAccess
                 View = ConvertAccessCodeToRoleAction(roleTable.User, "View"),
                 Add = ConvertAccessCodeToRoleAction(roleTable.User, "Add"),
                 Edit = ConvertAccessCodeToRoleAction(roleTable.User, "Edit"),
-                Delete = null, //ConvertAccessCodeToRoleAction(roleTable.User, "Delete"),
+                Delete = ConvertAccessCodeToRoleAction(roleTable.User, "Delete"),
                 Print = null //ConvertAccessCodeToRoleAction(roleTable.User, "Print")
             };
             roleActions.Add(userAction);
@@ -1120,19 +1118,29 @@ namespace ICMS.Model.DataAccess
                     param: p
                     ).FirstOrDefault();
 
-                Role role = Role_GetById(userTable.RoleId, conn);
-                
-                User user = new User() 
-                { 
-                    UserId = userTable.UserId,
-                    LoginName = userTable.LoginName,
-                    FullName = userTable.FullName,
-                    Password = userTable.Password,
-                    Role = role,
-                    IsActive = userTable.IsActive
-                };
 
-                return user;
+                if(userTable != null)
+                {
+                    Role role = Role_GetById(userTable.RoleId, conn);
+
+                    User user = new User()
+                    {
+                        UserId = userTable.UserId,
+                        LoginName = userTable.LoginName,
+                        FullName = userTable.FullName,
+                        Password = userTable.Password,
+                        Role = role,
+                        IsActive = userTable.IsActive
+                    };
+
+                    return user;
+                }
+                else
+                {
+                    return null;
+                }
+
+               
             }
             catch (Exception)
             {
@@ -1189,11 +1197,7 @@ namespace ICMS.Model.DataAccess
 
                 var p = new DynamicParameters();
                 p.Add("@UserId", model.UserId);
-                p.Add("@LoginName", model.LoginName);
-                p.Add("@FullName", model.FullName);
                 p.Add("@Password", model.Password);
-                p.Add("@RoleId", model.Role.RoleId);
-                p.Add("@IsActive", model.IsActive);
                 var result = conn.Execute(procedure, p, commandType: CommandType.StoredProcedure);
 
                 output = 1;

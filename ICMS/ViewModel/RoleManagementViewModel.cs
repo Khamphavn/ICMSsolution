@@ -16,6 +16,9 @@ namespace ICMS.ViewModel
 {
     public class RoleManagementViewModel : BaseViewModel
     {
+        private User _CurrentUser;
+        public User CurrentUser { get => _CurrentUser; private set { _CurrentUser = value; OnPropertyChanged(); } }
+
         private ObservableCollection<Role> _Roles;
         public ObservableCollection<Role> Roles { get => _Roles; set { _Roles = value; OnPropertyChanged(); } }
 
@@ -52,9 +55,13 @@ namespace ICMS.ViewModel
 
 
 
-        public RoleManagementViewModel()
+        public RoleManagementViewModel(User currentUser)
         {
             #region Init
+            CurrentUser = currentUser;
+
+
+
             Roles = new ObservableCollection<Role>(GlobalConfig.Connection.Role_GetAll(GlobalConfig.CnnString("ICMSdatabase")));
 
             Roles.Remove(Roles.Where(s => s.Name.ToLower() == "admin").Single());

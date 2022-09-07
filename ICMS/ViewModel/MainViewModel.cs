@@ -33,10 +33,11 @@ namespace ICMS.ViewModel
             //CurrentControl = new TMViewModel();
             //CurrentControl = new RadQuantityViewModel();
             //CurrentControl = new DoseQuantityViewModel();
-            CurrentControl = new UserRoleManagementViewModel();
+            CurrentControl = new UserRoleManagementViewModel(CurrentUser);
             //CurrentControl = new DatabaseBackupViewModel();
             //CurrentControl = new DatabaseRestoreViewModel();
             //CurrentControl = new RoleManagementViewModel();
+            //CurrentControl = new UserEditInfo(this);
 
         }
 

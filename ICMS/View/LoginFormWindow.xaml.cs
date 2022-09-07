@@ -49,7 +49,13 @@ namespace ICMS.View
             }
             else
             {
-                MessageBox.Show("Login unsuccessful");
+                MessageBox.Show(
+                       messageBoxText: "Đăng nhập không thành công",
+                       caption: "Error",
+                       button: MessageBoxButton.OK,
+                       icon: MessageBoxImage.Information,
+                       defaultResult: MessageBoxResult.OK
+                       );
             }
 
         }

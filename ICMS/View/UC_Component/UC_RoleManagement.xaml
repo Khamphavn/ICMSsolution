@@ -9,7 +9,8 @@
              xmlns:validation="clr-namespace:ICMS.Validation"
              >
     <Grid>
-        <GroupBox Header="Role permission" Margin="10">
+        <GroupBox Header="Role permission" Margin="10"
+                  Visibility="{Binding CurrentUser.Role.RoleActions[1].View, Converter={StaticResource BooleanToVisibilityConverter}}">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -47,9 +48,9 @@
                             CanUserReorderColumns="False" CanUserResizeColumns="True"  CanUserResizeRows="False"
                             EnableRowVirtualization="True"  VirtualizingPanel.VirtualizationMode="Standard"
                             SelectionMode="Single"       SelectionUnit="FullRow"
-                            IsReadOnly="False"
-
-                          ScrollViewer.CanContentScroll="True" 
+                            IsReadOnly="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.CurrentUser.Role.RoleActions[1].Edit }"
+                         
+                              ScrollViewer.CanContentScroll="True" 
                           HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                         
                         <DataGrid.RowValidationRules>
@@ -206,7 +207,8 @@
                             <Button Content="Lưu" Margin="20 0 20 0"
                                     Style="{StaticResource MaterialDesignRaisedDarkButton}"
                                
-                                Command="{Binding SaveRolePermissionCommand}" IsDefault="True">
+                                Command="{Binding SaveRolePermissionCommand}" IsDefault="True"
+                                    IsEnabled="{Binding  CurrentUser.Role.RoleActions[1].Edit}">
                                 <!--<Button.IsEnabled>
                                     <Binding ElementName="RolePermissionDataGrid" Path="(Validation.HasError)"/>
                                 </Button.IsEnabled>-->

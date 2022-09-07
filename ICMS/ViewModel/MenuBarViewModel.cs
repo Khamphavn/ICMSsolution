@@ -10,9 +10,16 @@ namespace ICMS.ViewModel
 {
     public class MenuBarViewModel : BaseViewModel
     {
-        private readonly User CurrentUser;
+        public User CurrentUser;
 
 
+        private bool _UserRoleViewPermission;
+        public bool UserRoleViewPermission { get => _UserRoleViewPermission; set { _UserRoleViewPermission = value; OnPropertyChanged(); } }
+
+
+
+        private bool _MachineViewPermission;
+        public bool MachineViewPermission { get => _MachineViewPermission; set { _MachineViewPermission = value; OnPropertyChanged(); } }
 
         #region System
         public ICommand NavigateUserConfigurationCommand { get; set; }
@@ -60,13 +67,20 @@ namespace ICMS.ViewModel
         {
             CurrentUser = mainViewModel.CurrentUser;
 
+            UserRoleViewPermission = CurrentUser.Role.RoleActions[0].View | CurrentUser.Role.RoleActions[1].View;
+            MachineViewPermission = CurrentUser.Role.RoleActions[11].View | CurrentUser.Role.RoleActions[12].View | CurrentUser.Role.RoleActions[13].View;
+
+
+
+
+
             #region NavigateUserConfigurationCommand
             NavigateUserConfigurationCommand = new RelayCommand<object>
                 (
                 (p) => { return true; },
                 (p) =>
                 {
-                    mainViewModel.CurrentControl = new UserRoleManagementViewModel();
+                    mainViewModel.CurrentControl = new UserRoleManagementViewModel(CurrentUser);
                 }
                 );
             #endregion

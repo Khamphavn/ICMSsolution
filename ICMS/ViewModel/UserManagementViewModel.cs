@@ -14,6 +14,10 @@ namespace ICMS.ViewModel
 {
     public  class UserManagementViewModel : BaseViewModel
     {
+        private User _CurrentUser;
+        public User CurrentUser { get => _CurrentUser; private set { _CurrentUser = value; OnPropertyChanged(); } }
+
+
         private ObservableCollection<User> _ActiveUserList;
         public ObservableCollection<User> ActiveUserList { get => _ActiveUserList; set { _ActiveUserList = value; OnPropertyChanged(); } }
 
@@ -122,9 +126,15 @@ namespace ICMS.ViewModel
         #endregion
 
         #region Constructor
-        public UserManagementViewModel()
+        public UserManagementViewModel(User currentUser)
         {
+            CurrentUser = currentUser;
+
+
             AllUserList = new ObservableCollection<User>(GlobalConfig.Connection.User_GetAll(GlobalConfig.CnnString("ICMSdatabase")));
+            AllUserList.Remove(AllUserList.Where(s => s.LoginName == "Admin").Single());
+
+
 
             RoleList = new ObservableCollection<Role>(GlobalConfig.Connection.Role_GetAll(GlobalConfig.CnnString("ICMSdatabase")));
 

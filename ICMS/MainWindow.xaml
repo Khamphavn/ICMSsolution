@@ -92,6 +92,10 @@
                         <control:UC_RoleManagement/>
                     </DataTemplate>
 
+                    <DataTemplate DataType="{x:Type viewmodel:UserEditInfo}">
+                        <control:UC_UserEditInfo/>
+                    </DataTemplate>
+
 
                 </ContentControl.Resources>
             </ContentControl>

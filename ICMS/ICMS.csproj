@@ -181,6 +181,7 @@
     <Compile Include="ViewModel\RoleManagementViewModel.cs" />
     <Compile Include="ViewModel\TMViewModel.cs" />
     <Compile Include="ViewModel\UnitViewModel.cs" />
+    <Compile Include="ViewModel\UserEditInfo.cs" />
     <Compile Include="ViewModel\UserManagementViewModel.cs" />
     <Compile Include="ViewModel\UserRoleManagementViewModel.cs" />
     <Compile Include="ViewModel\ViewCertificatePdfFileDialogViewModel.cs" />
@@ -225,6 +226,9 @@
     </Compile>
     <Compile Include="View\UC_Component\UC_Unit.xaml.cs">
       <DependentUpon>UC_Unit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UC_Component\UC_UserEditInfo.xaml.cs">
+      <DependentUpon>UC_UserEditInfo.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\UC_Component\UC_UserManagement.xaml.cs">
       <DependentUpon>UC_UserManagement.xaml</DependentUpon>
@@ -358,6 +362,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\UC_Component\UC_Unit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UC_Component\UC_UserEditInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

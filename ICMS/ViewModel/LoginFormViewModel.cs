@@ -1,6 +1,8 @@
-﻿using ICMS.Model.DataAccess;
+﻿using ICMS.Command;
+using ICMS.Model.DataAccess;
 using System.Data.SqlClient;
-
+using System.Windows;
+using System.Windows.Input;
 
 namespace ICMS.ViewModel
 {
@@ -25,11 +27,25 @@ namespace ICMS.ViewModel
         private string _CheckMessageText;
         public string CheckMessageText { get => _CheckMessageText; set { _CheckMessageText = value; OnPropertyChanged(); } }
 
-        //public ICommand LoginCommand { get; }
+        public ICommand NavigateAppShutdownCommand { get; set; }
+
+
         public LoginFormViewModel()
         {
             IsAllCheckPass = true;
             IsFinishChecking = true;
+
+
+            #region NavigateAppShutdownCommand
+            NavigateAppShutdownCommand = new RelayCommand<object>
+                (
+                (p) => { return true; },
+                (p) =>
+                {
+                    Application.Current.Shutdown();
+                }
+                );
+            #endregion
 
         }
 

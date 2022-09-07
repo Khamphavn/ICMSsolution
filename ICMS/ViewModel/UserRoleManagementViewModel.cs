@@ -15,6 +15,10 @@ namespace ICMS.ViewModel
 {
     public class UserRoleManagementViewModel : BaseViewModel
     {
+        private readonly User CurrentUser;
+
+
+
         private BaseViewModel _UserManagementControl;
         public BaseViewModel UserManagementControl { get => _UserManagementControl; set { _UserManagementControl = value; OnPropertyChanged(); } }
 
@@ -22,11 +26,14 @@ namespace ICMS.ViewModel
         public BaseViewModel RoleManagementControl { get => _RoleManagementControl; set { _RoleManagementControl = value; OnPropertyChanged(); } }
 
         #region Constructor
-        public UserRoleManagementViewModel()
+        public UserRoleManagementViewModel(User currentUser)
         {
-            UserManagementControl = new UserManagementViewModel();
+            CurrentUser = currentUser;
 
-            RoleManagementControl = new RoleManagementViewModel();
+            UserManagementControl = new UserManagementViewModel(currentUser);
+
+            RoleManagementControl = new RoleManagementViewModel(currentUser);
+            CurrentUser = currentUser;
         }
 
 

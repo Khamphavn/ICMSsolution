@@ -34,30 +34,67 @@
                                     </Style>
                                 </Menu.Resources>
                                 <MenuItem Header="Hệ thống" Foreground="White" Background="Transparent" FontWeight="DemiBold">
-                                    <MenuItem Header="Quản lý tài khoản"  Foreground="Black"  FontWeight="Normal" Command="{Binding MenubarViewModel.NavigateUserConfigurationCommand}"/>
+                                    <MenuItem Header="Quản lý tài khoản"  Foreground="Black"  FontWeight="Normal" 
+                                              Command="{Binding MenubarViewModel.NavigateUserConfigurationCommand}"
+                                              Visibility="{Binding MenubarViewModel.UserRoleViewPermission, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                    
                                     <Separator Height="5"/>
-                                    <MenuItem Header="Lưu cơ sở dữ liệu" Foreground="Black"  FontWeight="Normal"  Command="{Binding MenubarViewModel.NavigateDatabaseBackupCommand}"/>
-                                    <MenuItem Header="Phục hồi cơ sở dữ liệu" Foreground="Black"  FontWeight="Normal"  Command="{Binding MenubarViewModel.NavigateDatabaseRestoreCommand}"/>
+                                    
+                                    <MenuItem Header="Lưu cơ sở dữ liệu" Foreground="Black"  FontWeight="Normal"  
+                                              Command="{Binding MenubarViewModel.NavigateDatabaseBackupCommand}"
+                                              Visibility="{Binding CurrentUser.Role.RoleActions[2].View, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                    
+                                    <MenuItem Header="Phục hồi cơ sở dữ liệu" Foreground="Black"  FontWeight="Normal"  
+                                              Command="{Binding MenubarViewModel.NavigateDatabaseRestoreCommand}"
+                                              Visibility="{Binding CurrentUser.Role.RoleActions[3].View, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                              
+                                              />
                                     <Separator Height="5"/>
                                     <MenuItem Header="Thoát" Foreground="Black"  FontWeight="Normal"  Command="{Binding MenubarViewModel.NavigateAppShutdownCommand}"/>
                                 </MenuItem>
 
                                 <MenuItem Header="Cài đặt" Foreground="White" Background="Transparent" FontWeight="DemiBold" >
-                                    <MenuItem Header="Phẩm chất bức xạ" Foreground="Black"  FontWeight="Normal" Command="{Binding MenubarViewModel.NavigateRadQuantityCommand}"/>
-                                    <MenuItem Header="Liều bức xạ" Foreground="Black"  FontWeight="Normal" Command="{Binding MenubarViewModel.NavigateDoseQuantityCommand}"/>
+                                    <MenuItem Header="Phẩm chất bức xạ" Foreground="Black"  FontWeight="Normal" 
+                                              Command="{Binding MenubarViewModel.NavigateRadQuantityCommand}"
+                                              Visibility="{Binding CurrentUser.Role.RoleActions[4].View, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                    
+                                    <MenuItem Header="Liều bức xạ" Foreground="Black"  FontWeight="Normal" 
+                                              Command="{Binding MenubarViewModel.NavigateDoseQuantityCommand}"
+                                              Visibility="{Binding CurrentUser.Role.RoleActions[5].View, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                    
                                     <Separator Height="5"/>
-                                    <MenuItem Header="Đơn vị đo" Foreground="Black"  FontWeight="Normal" Command="{Binding MenubarViewModel.NavigateUnitCommand}"/>
+                                    <MenuItem Header="Đơn vị đo" Foreground="Black"  FontWeight="Normal" 
+                                              Command="{Binding MenubarViewModel.NavigateUnitCommand}"
+                                               Visibility="{Binding CurrentUser.Role.RoleActions[6].View, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                    
                                     <Separator Height="5"/>
-                                    <MenuItem Header="Quản lý kỹ thuật" Foreground="Black" FontWeight="Normal" Command="{Binding MenubarViewModel.NavigateTMCommand}"/>
+                                    <MenuItem Header="Quản lý kỹ thuật" Foreground="Black" FontWeight="Normal" 
+                                              Command="{Binding MenubarViewModel.NavigateTMCommand}"
+                                               Visibility="{Binding CurrentUser.Role.RoleActions[7].View, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                                 </MenuItem>
 
                                 <MenuItem Header="Danh sách" Foreground="White" Background="Transparent"  FontWeight="DemiBold">
-                                    <MenuItem Header="Chứng chỉ" Foreground="Black" FontWeight="Normal"  Command="{Binding MenubarViewModel.NavigateCertificateListCommand}"/>
+                                    <MenuItem Header="Chứng chỉ" Foreground="Black" FontWeight="Normal"  
+                                              Command="{Binding MenubarViewModel.NavigateCertificateListCommand}"
+                                              Visibility="{Binding CurrentUser.Role.RoleActions[8].View, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                              />
+                                    
                                     <Separator Height="5"/>
-                                    <MenuItem Header="Khách hàng" Foreground="Black" FontWeight="Normal"  MinWidth="100" Command="{Binding MenubarViewModel.NavigateCustomerCommand}"/>
-                                    <MenuItem Header="Tỉnh/thành" Foreground="Black" FontWeight="Normal" Command="{Binding MenubarViewModel.NavigateCityCommand}"/>
+                                    
+                                    <MenuItem Header="Khách hàng" Foreground="Black" FontWeight="Normal"  MinWidth="100" 
+                                              Command="{Binding MenubarViewModel.NavigateCustomerCommand}"
+                                              Visibility="{Binding CurrentUser.Role.RoleActions[9].View, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                    
+                                    <MenuItem Header="Tỉnh/thành" Foreground="Black" FontWeight="Normal" 
+                                              Command="{Binding MenubarViewModel.NavigateCityCommand}"
+                                              Visibility="{Binding CurrentUser.Role.RoleActions[10].View, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                    
                                     <Separator Height="5"/>
-                                    <MenuItem Header="Tên máy/Loại máy" Foreground="Black" FontWeight="Normal" Command="{Binding MenubarViewModel.NavigateMachineCommand}"/>
+                                    
+                                    <MenuItem Header="Tên máy/Loại máy" Foreground="Black" FontWeight="Normal" 
+                                              Command="{Binding MenubarViewModel.NavigateMachineCommand}"
+                                              Visibility="{Binding MenubarViewModel.MachineViewPermission, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                    
                                 </MenuItem>
                                 <MenuItem Header="Trợ giúp" Foreground="White" Background="Transparent"  FontWeight="DemiBold">
                                     <MenuItem Header="Hướng dẫn sử dụng" Foreground="Black" FontWeight="Normal"  Command="{Binding MenubarViewModel.OpenUserManualCommand}"/>

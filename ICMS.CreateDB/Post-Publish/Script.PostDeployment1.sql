@@ -218,12 +218,11 @@ end
 
 begin   -- Role
 if not exists (SELECT * FROM  dbo.Role where [Name] = N'Viewer') BEGIN INSERT INTO dbo.Role  ([Name], [User], [Permission],[BackupDB], [RestoreDB],[RadQuantity],[DoseQuantity],[Unit],[TM],[Certificate],[Customer],[City],[MachineName],[MachineType],[SensorType]) VALUES (N'Viewer', 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16); END																			
-if not exists (SELECT * FROM  dbo.Role where [Name] = N'Technical') BEGIN INSERT INTO dbo.Role  ([Name], [User], [Permission],[BackupDB], [RestoreDB],[RadQuantity],[DoseQuantity],[Unit],[TM],[Certificate],[Customer],[City],[MachineName],[MachineType],[SensorType]) VALUES (N'Technical', 0, 0, 0, 0, 17, 16, 16, 29, 31, 29, 16, 31, 29, 29); END																			
-if not exists (SELECT * FROM  dbo.Role where [Name] = N'TM') BEGIN INSERT INTO dbo.Role  ([Name], [User], [Permission],[BackupDB], [RestoreDB],[RadQuantity],[DoseQuantity],[Unit],[TM],[Certificate],[Customer],[City],[MachineName],[MachineType],[SensorType]) VALUES (N'TM', 29, 16, 28, 16, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31); END																			
-if not exists (SELECT * FROM  dbo.Role where [Name] = N'QM') BEGIN INSERT INTO dbo.Role  ([Name], [User], [Permission],[BackupDB], [RestoreDB],[RadQuantity],[DoseQuantity],[Unit],[TM],[Certificate],[Customer],[City],[MachineName],[MachineType],[SensorType]) VALUES (N'QM', 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31); END																			
-if not exists (SELECT * FROM  dbo.Role where [Name] = N'Admin') BEGIN INSERT INTO dbo.Role  ([Name], [User], [Permission],[BackupDB], [RestoreDB],[RadQuantity],[DoseQuantity],[Unit],[TM],[Certificate],[Customer],[City],[MachineName],[MachineType],[SensorType]) VALUES (N'Admin', 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31); END																			
-								
-												
+if not exists (SELECT * FROM  dbo.Role where [Name] = N'Technical') BEGIN INSERT INTO dbo.Role  ([Name], [User], [Permission],[BackupDB], [RestoreDB],[RadQuantity],[DoseQuantity],[Unit],[TM],[Certificate],[Customer],[City],[MachineName],[MachineType],[SensorType]) VALUES (N'Technical', 0, 0, 0, 0, 16, 16, 16, 28, 31, 28, 28, 30, 28, 28); END																			
+if not exists (SELECT * FROM  dbo.Role where [Name] = N'TM') BEGIN INSERT INTO dbo.Role  ([Name], [User], [Permission],[BackupDB], [RestoreDB],[RadQuantity],[DoseQuantity],[Unit],[TM],[Certificate],[Customer],[City],[MachineName],[MachineType],[SensorType]) VALUES (N'TM', 28, 16, 28, 16, 30, 30, 30, 30, 31, 30, 30, 30, 30, 30); END																			
+if not exists (SELECT * FROM  dbo.Role where [Name] = N'QM') BEGIN INSERT INTO dbo.Role  ([Name], [User], [Permission],[BackupDB], [RestoreDB],[RadQuantity],[DoseQuantity],[Unit],[TM],[Certificate],[Customer],[City],[MachineName],[MachineType],[SensorType]) VALUES (N'QM', 30, 20, 30, 30, 30, 30, 30, 30, 31, 30, 30, 30, 30, 30); END																			
+if not exists (SELECT * FROM  dbo.Role where [Name] = N'Admin') BEGIN INSERT INTO dbo.Role  ([Name], [User], [Permission],[BackupDB], [RestoreDB],[RadQuantity],[DoseQuantity],[Unit],[TM],[Certificate],[Customer],[City],[MachineName],[MachineType],[SensorType]) VALUES (N'Admin', 30, 20, 30, 30, 30, 30, 30, 30, 31, 30, 30, 30, 30, 30); END																			
+											
 end
 
 begin   -- RadQuantity
@@ -264,10 +263,10 @@ if not exists (SELECT * FROM  dbo.DoseQuantity where [NameVN] = N'Liều cá nh�
 																						
 end
 
---begin   -- TM
---if not exists (SELECT * FROM  dbo.TM where [Name] = N'Hồ Quang Tuấn') BEGIN INSERT INTO dbo.TM ([Name]) VALUES (N'Hồ Quang Tuấn'); END
---if not exists (SELECT * FROM  dbo.TM where [Name] = N'Bùi Đức Kỳ') BEGIN INSERT INTO dbo.TM ([Name]) VALUES (N'Bùi Đức Kỳ'); END
---end
+begin   -- TM
+if not exists (SELECT * FROM  dbo.TM where [Name] = N'Hồ Quang Tuấn') BEGIN INSERT INTO dbo.TM ([Name]) VALUES (N'Hồ Quang Tuấn'); END
+if not exists (SELECT * FROM  dbo.TM where [Name] = N'Bùi Đức Kỳ') BEGIN INSERT INTO dbo.TM ([Name]) VALUES (N'Bùi Đức Kỳ'); END
+end
 
 begin  -- SensorType
 if not exists (SELECT * FROM  dbo.SensorType where [Name] = N'Ống đếm GM') BEGIN INSERT INTO dbo.SensorType ([Name],[IsActive]) VALUES (N'Ống đếm GM',1); END
@@ -294,23 +293,23 @@ end
 
 begin   -- User
 
+--if not exists (SELECT * FROM  dbo.[User] WHERE [LoginName] = 'Admin') BEGIN INSERT INTO dbo.[User]  ([LoginName],[FullName],[Password],[RoleId],[IsActive]) VALUES ('Admin' , N'Admin ' ,'WVgZZJlK4DiBSMOfTVUXTQy+IdL6U0848zWYE83qp6TvPgIRCfn/x9vjecqzP08HQcnMihHCdw8qujAORNx9Yg==', 5,1); END															
+--if not exists (SELECT * FROM  dbo.[User] WHERE [LoginName] = 'QMUser') BEGIN INSERT INTO dbo.[User]  ([LoginName],[FullName],[Password],[RoleId],[IsActive]) VALUES ('QMUser' , N'QMUser ' ,'/b34hjwbowrYt0PYDxmySU/rHd4eTPO89ADlxxGFZDhryi/xcAe1VEB9PovL4o0evuMJKmqwj2hYQnmt2CqU0w==', 4,1); END															
+--if not exists (SELECT * FROM  dbo.[User] WHERE [LoginName] = 'TMUser') BEGIN INSERT INTO dbo.[User]  ([LoginName],[FullName],[Password],[RoleId],[IsActive]) VALUES ('TMUser' , N'TMUser ' ,'dyIaSbysQgbWiaClXRFf4U26ArDaQUiNRtJpKZdzDAY9ok3w+pyOBa5hTkC7HsQL9qDt13e60i3byXf8iJznTg==', 3,1); END															
+--if not exists (SELECT * FROM  dbo.[User] WHERE [LoginName] = 'TechnicalUser') BEGIN INSERT INTO dbo.[User]  ([LoginName],[FullName],[Password],[RoleId],[IsActive]) VALUES ('TechnicalUser' , N'TechnicalUser ' ,'6E3C+VKtXBH4oiKZxnP1r5UrXmVIrgV0I/lgyCsVCvkYCJnwx5UXkx0i13ULd+cy2v7XYOV1yYSvvX0/UYEQAQ==', 2,1); END															
+--if not exists (SELECT * FROM  dbo.[User] WHERE [LoginName] = 'ViewerUser') BEGIN INSERT INTO dbo.[User]  ([LoginName],[FullName],[Password],[RoleId],[IsActive]) VALUES ('ViewerUser' , N'ViewerUser ' ,'gh1L3AT7o0glM3DiTIjL+/aFhueNgQ0qMLW8+kCYpGmwTY9Lm7tEGZ3Kot6GnUhSlcHTEIXkZgwB8LzdpXIIRQ==', 1,1); END															
+
+
 if not exists (SELECT * FROM  dbo.[User] WHERE [LoginName] = 'Admin') BEGIN INSERT INTO dbo.[User]  ([LoginName],[FullName],[Password],[RoleId],[IsActive]) VALUES ('Admin' , N'Admin ' ,'WVgZZJlK4DiBSMOfTVUXTQy+IdL6U0848zWYE83qp6TvPgIRCfn/x9vjecqzP08HQcnMihHCdw8qujAORNx9Yg==', 5,1); END															
-if not exists (SELECT * FROM  dbo.[User] WHERE [LoginName] = 'QMUser') BEGIN INSERT INTO dbo.[User]  ([LoginName],[FullName],[Password],[RoleId],[IsActive]) VALUES ('QMUser' , N'QMUser ' ,'/b34hjwbowrYt0PYDxmySU/rHd4eTPO89ADlxxGFZDhryi/xcAe1VEB9PovL4o0evuMJKmqwj2hYQnmt2CqU0w==', 4,1); END															
-if not exists (SELECT * FROM  dbo.[User] WHERE [LoginName] = 'TMUser') BEGIN INSERT INTO dbo.[User]  ([LoginName],[FullName],[Password],[RoleId],[IsActive]) VALUES ('TMUser' , N'TMUser ' ,'dyIaSbysQgbWiaClXRFf4U26ArDaQUiNRtJpKZdzDAY9ok3w+pyOBa5hTkC7HsQL9qDt13e60i3byXf8iJznTg==', 3,1); END															
-if not exists (SELECT * FROM  dbo.[User] WHERE [LoginName] = 'TechnicalUser') BEGIN INSERT INTO dbo.[User]  ([LoginName],[FullName],[Password],[RoleId],[IsActive]) VALUES ('TechnicalUser' , N'TechnicalUser ' ,'6E3C+VKtXBH4oiKZxnP1r5UrXmVIrgV0I/lgyCsVCvkYCJnwx5UXkx0i13ULd+cy2v7XYOV1yYSvvX0/UYEQAQ==', 2,1); END															
-if not exists (SELECT * FROM  dbo.[User] WHERE [LoginName] = 'ViewerUser') BEGIN INSERT INTO dbo.[User]  ([LoginName],[FullName],[Password],[RoleId],[IsActive]) VALUES ('ViewerUser' , N'ViewerUser ' ,'gh1L3AT7o0glM3DiTIjL+/aFhueNgQ0qMLW8+kCYpGmwTY9Lm7tEGZ3Kot6GnUhSlcHTEIXkZgwB8LzdpXIIRQ==', 1,1); END															
-
-
---if not exists (SELECT * FROM  dbo.[User] WHERE [LoginName] = 'Admin') BEGIN INSERT INTO dbo.[User]  ([LoginName],[FullName],[Password],[RoleId],[IsActive]) VALUES ('Admin' , N'Admin ' ,'TQskzK3iLfbRVHeM1muvBCiKribfl6lh8+o91hb74G3OvsybvkzpPI4S3KIeWTXAiwlUU0iSxWi4wSuS8mokSA==', 5,1); END															
---if not exists (SELECT * FROM  dbo.[User] WHERE [LoginName] = 'lnThiem') BEGIN INSERT INTO dbo.[User]  ([LoginName],[FullName],[Password],[RoleId],[IsActive]) VALUES ('lnThiem' , N'Lê Ngọc Thiệm ' ,'f2Qf2j1eAZClDYP29qkk7/riT4Gw0C4/tZcyMW4f7daSj2MFIz6TPPD4KzKPVW9ZF4sl3Dz7zmPifGPNWKcK3w==', 4,1); END															
---if not exists (SELECT * FROM  dbo.[User] WHERE [LoginName] = 'hqTuan') BEGIN INSERT INTO dbo.[User]  ([LoginName],[FullName],[Password],[RoleId],[IsActive]) VALUES ('hqTuan' , N'Hồ Quang Tuấn ' ,'cYG4QUrPG6QEpRDXwqUC66aFPqRSSSiFJTHI+VyigoLL6d7vxIfofXWyJVvb9L55t80WL3qqg4k+egxtfplRDg==', 3,1); END															
---if not exists (SELECT * FROM  dbo.[User] WHERE [LoginName] = 'bdKy') BEGIN INSERT INTO dbo.[User]  ([LoginName],[FullName],[Password],[RoleId],[IsActive]) VALUES ('bdKy' , N'Bùi Đức Kỳ ' ,'JglrCxpRMDD1LFvthcjvA+ct7wnIK50Ukck7dpIU6RCWegfGusKRxzduTEHg9GyEK4WZE+zya31iXeqONI3FTQ==', 3,1); END															
---if not exists (SELECT * FROM  dbo.[User] WHERE [LoginName] = 'nnQuynh') BEGIN INSERT INTO dbo.[User]  ([LoginName],[FullName],[Password],[RoleId],[IsActive]) VALUES ('nnQuynh' , N'Nguyễn Ngọc Quỳnh ' ,'tMCtNNh0nlmHOpv06uidQd1FS0ckiRDKU09ytmppu0u0dqyZowqjgt8bqItNCwz3RuKNYJYDp5Klqka552nlNQ==', 2,1); END															
---if not exists (SELECT * FROM  dbo.[User] WHERE [LoginName] = 'dtmLinh') BEGIN INSERT INTO dbo.[User]  ([LoginName],[FullName],[Password],[RoleId],[IsActive]) VALUES ('dtmLinh' , N'Đặng Thị Mỹ Linh ' ,'2iT3AfhVRZ2arYq0QZdSyRCRttLP0L7KjI4UeoIGae85nBbasw5odwT/axqgXlo/1YzvdqWhg41+Cu+R+BP/5Q==', 2,1); END															
---if not exists (SELECT * FROM  dbo.[User] WHERE [LoginName] = 'dtNhung') BEGIN INSERT INTO dbo.[User]  ([LoginName],[FullName],[Password],[RoleId],[IsActive]) VALUES ('dtNhung' , N'Dương Thị Nhung ' ,'+E1es4c/AnApwiOCkMgtmOfExpTTzYHxZiLFQ2WIbWsJGUSUXzIIAElQf7PWQBl+abXJ8D1IXhQKywJeaF5ebg==', 2,1); END															
---if not exists (SELECT * FROM  dbo.[User] WHERE [LoginName] = 'tvTrung') BEGIN INSERT INTO dbo.[User]  ([LoginName],[FullName],[Password],[RoleId],[IsActive]) VALUES ('tvTrung' , N'Trần Văn Trung ' ,'TXukIr69sD/acAhanFVTZh44HrSibO9jOUb9LIWt0RrGJe0pfHGBSLzzBdCBWiQcfDQ9GAcFCa5g5tcVA3wBjg==', 2,1); END															
---if not exists (SELECT * FROM  dbo.[User] WHERE [LoginName] = 'ndNguyen') BEGIN INSERT INTO dbo.[User]  ([LoginName],[FullName],[Password],[RoleId],[IsActive]) VALUES ('ndNguyen' , N'Nguyễn Đăng Nguyên ' ,'73rhkewtQk97o09eOYHuXreXfWymiupSie6Ts2JIzdNgJRxdxHA4bASomRRHetOjzH7AZPhWrIFMVoK3ePdZ1g==', 2,1); END															
---if not exists (SELECT * FROM  dbo.[User] WHERE [LoginName] = 'btaDuong') BEGIN INSERT INTO dbo.[User]  ([LoginName],[FullName],[Password],[RoleId],[IsActive]) VALUES ('btaDuong' , N'Bùi Thị Ánh Dương ' ,'9ITEEAbeXcDswf8OlLPL6I53V7ewiKlsWtH/wkBx0im77qfzE1thi49YkBhdZVWTNbxtkdfy584zqZVf6va5FA==', 1,1); END															
+if not exists (SELECT * FROM  dbo.[User] WHERE [LoginName] = 'lnThiem') BEGIN INSERT INTO dbo.[User]  ([LoginName],[FullName],[Password],[RoleId],[IsActive]) VALUES ('lnThiem' , N'Lê Ngọc Thiệm ' ,'q+tmTNslobCit/b76f1S2oPDVW5BKYwsExTklgzqKap98+GPTuxZnTCtHfWQwCNfRmuAyicp09LvHolelYJhuw==', 4,1); END															
+if not exists (SELECT * FROM  dbo.[User] WHERE [LoginName] = 'hqTuan') BEGIN INSERT INTO dbo.[User]  ([LoginName],[FullName],[Password],[RoleId],[IsActive]) VALUES ('hqTuan' , N'Hồ Quang Tuấn ' ,'Qpg33dheP8YId/V227rSwJBGsaFBiCiS+gSmH7v3UGe/srMWJLKxaXixYtGn8bVjDTAZUTLkUWd2gozVxGdL4Q==', 3,1); END															
+if not exists (SELECT * FROM  dbo.[User] WHERE [LoginName] = 'bdKy') BEGIN INSERT INTO dbo.[User]  ([LoginName],[FullName],[Password],[RoleId],[IsActive]) VALUES ('bdKy' , N'Bùi Đức Kỳ ' ,'mrPKbRbcgI3Y7GyXhTJ1YGYtYmDPiyLMTBcVQr44EKNCqt7iQv6QJj8syq5r5E2Kz+E99I8XDod1fMb+QgOWQA==', 3,1); END															
+if not exists (SELECT * FROM  dbo.[User] WHERE [LoginName] = 'nnQuynh') BEGIN INSERT INTO dbo.[User]  ([LoginName],[FullName],[Password],[RoleId],[IsActive]) VALUES ('nnQuynh' , N'Nguyễn Ngọc Quỳnh ' ,'tMCtNNh0nlmHOpv06uidQd1FS0ckiRDKU09ytmppu0u0dqyZowqjgt8bqItNCwz3RuKNYJYDp5Klqka552nlNQ==', 2,1); END															
+if not exists (SELECT * FROM  dbo.[User] WHERE [LoginName] = 'dtmLinh') BEGIN INSERT INTO dbo.[User]  ([LoginName],[FullName],[Password],[RoleId],[IsActive]) VALUES ('dtmLinh' , N'Đặng Thị Mỹ Linh ' ,'BeNMFjHskO3r+12WlQA19WT8do+abIFeOcpjNfZJb7dJ45BaLOuI3u0fuoYMEwnTNUX6JRmhkxGcR8I/8iLhQA==', 2,1); END															
+if not exists (SELECT * FROM  dbo.[User] WHERE [LoginName] = 'dtNhung') BEGIN INSERT INTO dbo.[User]  ([LoginName],[FullName],[Password],[RoleId],[IsActive]) VALUES ('dtNhung' , N'Dương Thị Nhung ' ,'P2tpNrpjnDjmn09SUfEYS+B7guWs2dYTDqEk2EwKgubblvNXSsFTshkdPR1ooop1EZl6q/qazCZR7pTjDmIgSw==', 2,1); END															
+if not exists (SELECT * FROM  dbo.[User] WHERE [LoginName] = 'tvTrung') BEGIN INSERT INTO dbo.[User]  ([LoginName],[FullName],[Password],[RoleId],[IsActive]) VALUES ('tvTrung' , N'Trần Văn Trung ' ,'BQ+sFebCIVZkcxHJ3Yf+KgfHov0d1LAkuffI043niSoS8Q+vR5uEfcF/TUSPONsVOUWVx/Gowz+7nVmdkC6xiw==', 2,1); END															
+if not exists (SELECT * FROM  dbo.[User] WHERE [LoginName] = 'ndNguyen') BEGIN INSERT INTO dbo.[User]  ([LoginName],[FullName],[Password],[RoleId],[IsActive]) VALUES ('ndNguyen' , N'Nguyễn Đăng Nguyên ' ,'79smKIES14OHozxHO7CdtyeYMIBz7tX/C+7Zz0osYsz/WmGoUg9vriHKaBPDyIr6dywcVTwUI+Ub/D5ut/i+GQ==', 2,1); END															
+if not exists (SELECT * FROM  dbo.[User] WHERE [LoginName] = 'btaDuong') BEGIN INSERT INTO dbo.[User]  ([LoginName],[FullName],[Password],[RoleId],[IsActive]) VALUES ('btaDuong' , N'Bùi Thị Ánh Dương ' ,'YU8M7uEnGPjxcgFRhsIYY0zmZ2R27HhKSOPhctSc1Xo6DN7uCucjctayrOFEychlsVjWevlpywZAubG41J8Wyw==', 1,1); END															
 
 end
 

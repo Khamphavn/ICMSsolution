@@ -45,7 +45,7 @@
                              FontSize="14"                    
                              materialDesign:HintAssist.Hint="Login Name"
                                  materialDesign:TextFieldAssist.HasClearButton="True"
-                             Text="Admin"/>
+                             Text="nnQuynh"/>
 
                         <PasswordBox x:Name="PasswordBox"  Style="{StaticResource MaterialDesignOutlinedPasswordBox}"
                                  Margin="0 20 0 0" Width="280"
@@ -62,6 +62,7 @@
 
 
                         <Button Content="Cancel"  Style="{StaticResource MaterialDesignFlatButton}"
+                                Command="{Binding NavigateAppShutdownCommand}"
                             materialDesign:ShadowAssist.ShadowDepth="Depth0"
                             Margin="0 20 0 0" Width="280" Height="50" FontSize="16"
                             materialDesign:ButtonAssist.CornerRadius="10"/>

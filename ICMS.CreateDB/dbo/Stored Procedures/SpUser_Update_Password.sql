@@ -1,22 +1,13 @@
 ﻿CREATE PROCEDURE [dbo].[SpUser_Update_Password]
 	@UserId int ,
-	@LoginName nvarchar(64),
-	@FullName nvarchar(128),
-	@Password nvarchar(512),
-	@RoleId int,
-	@IsActive bit
-
+	@Password nvarchar(512)
 AS
 BEGIN
     SET NOCOUNT ON
 
     UPDATE [dbo].[User] 
-    SET [LoginName] = @LoginName,
-		[FullName] = @FullName,
-		[Password] = @Password,
-		[RoleId] = @RoleId,
-		[IsActive] = @IsActive
-       
+    SET [Password] = @Password
+
     WHERE [UserId] = @UserId
 
 end
