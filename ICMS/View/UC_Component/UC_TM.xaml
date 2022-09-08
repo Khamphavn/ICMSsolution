@@ -9,7 +9,7 @@
              
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:validation="clr-namespace:ICMS.Validation"
-             
+             xmlns:converter="clr-namespace:ICMS.Converter"
              >
     <Grid>
         <Grid  Margin="100 5 100 20">
@@ -24,13 +24,12 @@
                 <DockPanel>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                         <!--Edit button-->
-                        <Button Margin="20 5 20 5" Width="80"  Command="{Binding TMEditButtonCommand}"
-                                IsEnabled="{Binding CurrentUser.Role.RoleActions[7].Edit}">
+                        <Button Margin="20 5 20 5" Width="80"  Command="{Binding TMEditButtonCommand}">
                             <Button.Style>
                                 <Style BasedOn="{StaticResource MaterialDesignRaisedButton}" TargetType="Button">
                                     <Style.Triggers>
                                         <DataTrigger Binding="{Binding TMCurrentOperationMode}" Value="NormalMode">
-                                            <Setter Property="IsEnabled" Value="True"/>
+                                            <Setter Property="IsEnabled" Value="{Binding CurrentUser.Role.RoleActions[7].Edit}"/>
                                             <Setter Property="Content" Value="Sửa"/>
                                         </DataTrigger>
                                         <DataTrigger Binding="{Binding TMCurrentOperationMode}" Value="EditMode">
@@ -62,13 +61,12 @@
                         </Button>
 
                         <!--Add button-->
-                        <Button Margin="5 5 20 5" Width="80" Command="{Binding TMAddButtonCommand}"
-                                IsEnabled="{Binding CurrentUser.Role.RoleActions[7].Add}">
+                        <Button Margin="5 5 20 5" Width="80" Command="{Binding TMAddButtonCommand}">
                             <Button.Style>
                                 <Style BasedOn="{StaticResource MaterialDesignRaisedButton}" TargetType="Button">
                                     <Style.Triggers>
                                         <DataTrigger Binding="{Binding TMCurrentOperationMode}" Value="NormalMode">
-                                            <Setter Property="IsEnabled" Value="True"/>
+                                            <Setter Property="IsEnabled" Value="{Binding CurrentUser.Role.RoleActions[7].Add}"/>
                                             <Setter Property="Content" Value="Thêm"/>
                                         </DataTrigger>
                                         <DataTrigger Binding="{Binding TMCurrentOperationMode}" Value="AddMode">
@@ -125,14 +123,13 @@
                         <!--Delete button-->
                         <Button Margin="5 5 20 5" Width="80" Background="Red" BorderThickness="0"
                             Command="{Binding TMDeleteButtonCommand}"
-                                IsEnabled="{Binding CurrentUser.Role.RoleActions[7].Delete}"
                             Content="Xóa">
                             <Button.Style>
                                 <Style BasedOn="{StaticResource MaterialDesignRaisedButton}" TargetType="Button">
                                     <Style.Triggers>
                                         <DataTrigger Binding="{Binding TMCurrentOperationMode}" Value="NormalMode">
                                             <Setter Property="Visibility" Value="Visible"/>
-                                            <Setter Property="IsEnabled" Value="True"/>
+                                            <Setter Property="IsEnabled" Value="{Binding CurrentUser.Role.RoleActions[7].Delete}"/>
                                         </DataTrigger>
                                         <DataTrigger Binding="{Binding TMCurrentOperationMode}" Value="EditMode">
                                             <Setter Property="Visibility" Value="Hidden"/>
@@ -191,6 +188,9 @@
                                 <Binding.ValidationRules>
                                     <validation:NotEmptyValidationRule ValidatesOnTargetUpdated="True"/>
                                 </Binding.ValidationRules>
+                                <Binding.Converter>
+                                    <converter:StringReplaceMultipleSpaceToOneConverter/>
+                                </Binding.Converter>
                             </Binding>
                         </TextBox.Text>
                     </TextBox>

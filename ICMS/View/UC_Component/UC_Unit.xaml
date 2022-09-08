@@ -33,13 +33,12 @@
                 <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
                     <!--Edit button-->
                     <Button Margin="20 5 20 5" Width="80"
-                            Command="{Binding UnitEditButtonCommand}"
-                            IsEnabled="{Binding CurrentUser.Role.RoleActions[6].Edit}">
+                            Command="{Binding UnitEditButtonCommand}">
                         <Button.Style>
                             <Style BasedOn="{StaticResource MaterialDesignRaisedButton}" TargetType="Button">
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding CurrentOperationMode}" Value="NormalMode">
-                                        <Setter Property="IsEnabled" Value="True"/>
+                                        <Setter Property="IsEnabled" Value="{Binding CurrentUser.Role.RoleActions[6].Edit}"/>
                                         <Setter Property="Content" Value="Sửa"/>
                                     </DataTrigger>
                                     <DataTrigger Binding="{Binding CurrentOperationMode}" Value="EditMode">
@@ -80,14 +79,12 @@
                     </Button>
 
                     <!--Add button-->
-                    <Button Margin="10 5 20 5" Width="80"
-                    Command="{Binding UnitAddButtonCommand}"
-                            IsEnabled="{Binding CurrentUser.Role.RoleActions[6].Add}">
+                    <Button Margin="10 5 20 5" Width="80"   Command="{Binding UnitAddButtonCommand}">
                         <Button.Style>
                             <Style BasedOn="{StaticResource MaterialDesignRaisedButton}" TargetType="Button">
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding CurrentOperationMode}" Value="NormalMode">
-                                        <Setter Property="IsEnabled" Value="True"/>
+                                        <Setter Property="IsEnabled" Value="{Binding CurrentUser.Role.RoleActions[6].Add}"/>
                                         <Setter Property="Content" Value="Thêm"/>
                                     </DataTrigger>
                                     <DataTrigger Binding="{Binding CurrentOperationMode}" Value="AddMode">
@@ -154,14 +151,13 @@
                     <!--Delete button-->
                     <Button Margin="5 5 20 5" Width="80" Background="Red" BorderThickness="0" 
                         Command="{Binding UnitDeleteButtonCommand}"
-                            IsEnabled="{Binding CurrentUser.Role.RoleActions[6].Delete}"
                         Content="Xóa">
                         <Button.Style>
                             <Style BasedOn="{StaticResource MaterialDesignRaisedButton}" TargetType="Button">
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding CurrentOperationMode}" Value="NormalMode">
                                         <Setter Property="Visibility" Value="Visible"/>
-                                        <Setter Property="IsEnabled" Value="True"/>
+                                        <Setter Property="IsEnabled" Value="{Binding CurrentUser.Role.RoleActions[6].Delete}"/>
                                     </DataTrigger>
                                     <DataTrigger Binding="{Binding CurrentOperationMode}" Value="EditMode">
                                         <Setter Property="Visibility" Value="Hidden"/>
@@ -217,20 +213,10 @@
                 <!--Unit Name-->
                 <TextBox x:Name="Unit_Name_txb" Grid.Column="1"
                          Margin="1 0 1 10" 
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          Width="{Binding ElementName=Unit_Name, Path=ActualWidth}"
                          materialDesign:HintAssist.Hint="Tên Đơn vị"  
-                         materialDesign:ValidationAssist.PopupPlacement="Bottom"
-                         materialDesign:ValidationAssist.HorizontalAlignment="Left"
-                         ToolTip="Unit Name">
-                    <!--<TextBox.Style>
-                        <Style BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}" TargetType="TextBox">
-                            <Setter Property="ContextMenu">
-                                <Setter.Value>
-                                    <ContextMenu IsEnabled="True"/>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </TextBox.Style>-->
+                         >
                     <TextBox.Text>
                         <Binding Path="Unit_Name" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
                             <Binding.ValidationRules>

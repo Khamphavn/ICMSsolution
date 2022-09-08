@@ -30,13 +30,12 @@
                 <materialDesign:Card Grid.Row="0" Margin="5 10 5 5"  Padding="0 5 0 5">
                     <StackPanel Orientation="Horizontal">
                         <!--Edit button-->
-                        <Button Margin="10 0 20 0" Width="80" Command="{Binding UserEditButtonCommand}"
-                                IsEnabled="{Binding  CurrentUser.Role.RoleActions[0].Edit}">
+                        <Button Margin="10 0 20 0" Width="80" Command="{Binding UserEditButtonCommand}">
                             <Button.Style>
                                 <Style BasedOn="{StaticResource MaterialDesignRaisedButton}" TargetType="Button">
                                     <Style.Triggers>
                                         <DataTrigger Binding="{Binding CurrentOperationMode}" Value="NormalMode">
-                                            <Setter Property="IsEnabled" Value="True"/>
+                                            <Setter Property="IsEnabled" Value="{Binding  CurrentUser.Role.RoleActions[0].Edit}"/>
                                             <Setter Property="Content" Value="Sửa"/>
                                         </DataTrigger>
 
@@ -76,14 +75,13 @@
                         </Button>
 
                         <!--Add button-->
-                        <Button Margin="10 0 20 0" Width="80"  Command="{Binding UserAddButtonCommand}"
-                                IsEnabled="{Binding  CurrentUser.Role.RoleActions[0].Add}">
+                        <Button Margin="10 0 20 0" Width="80"  Command="{Binding UserAddButtonCommand}">
                             <Button.Style>
                                 <Style BasedOn="{StaticResource MaterialDesignRaisedButton}" TargetType="Button">
                                     <Style.Triggers>
                                         <DataTrigger Binding="{Binding CurrentOperationMode}" Value="NormalMode">
-                                            <Setter Property="IsEnabled" Value="True"/>
-                                            <Setter Property="Content" Value="Lưu"/>
+                                            <Setter Property="IsEnabled" Value="{Binding CurrentUser.Role.RoleActions[0].Add}"/>
+                                            <Setter Property="Content" Value="Thêm"/>
                                         </DataTrigger>
                                         <DataTrigger Binding="{Binding CurrentOperationMode}" Value="EditMode">
                                             <Setter Property="Visibility" Value="Collapsed"/>

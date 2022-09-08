@@ -146,6 +146,7 @@
     <Compile Include="Validation\Customer_FullName_Validation.cs" />
     <Compile Include="Validation\Customer_ShortName_Validation.cs" />
     <Compile Include="Validation\DoseQuantity_Name_Validation.cs" />
+    <Compile Include="Validation\Helper\ValidationHelper.cs" />
     <Compile Include="Validation\Humidity_Validation.cs" />
     <Compile Include="Validation\Machine_Manufacturer_Validation.cs" />
     <Compile Include="Validation\Machine_Model_Validation.cs" />

@@ -48,7 +48,7 @@
                             CanUserReorderColumns="False" CanUserResizeColumns="True"  CanUserResizeRows="False"
                             EnableRowVirtualization="True"  VirtualizingPanel.VirtualizationMode="Standard"
                             SelectionMode="Single"       SelectionUnit="FullRow"
-                            IsReadOnly="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.CurrentUser.Role.RoleActions[1].Edit }"
+                            IsReadOnly="{Binding Converter={StaticResource InvertBooleanConverter}, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.CurrentUser.Role.RoleActions[1].Edit}"
                          
                               ScrollViewer.CanContentScroll="True" 
                           HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">

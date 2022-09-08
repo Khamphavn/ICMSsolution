@@ -797,7 +797,7 @@ namespace ICMS.Bussiness.CertificateProcessing
 
                 Run run5 = new Run();
                 Text text4 = new Text();
-                text4.Text = CalibDatas[i].RefValue.ToString();
+                text4.Text = CertificateHelper.DoubleToStringWithDecimalNumber(CalibDatas[i].RefValue,1).ToString();
                 run5.Append(runPropertiesNormal.CloneNode(true));
                 run5.Append(text4);
 

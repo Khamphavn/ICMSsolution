@@ -325,7 +325,7 @@ namespace ICMS.ViewModel
                             //messageBoxText: "Không thể xóa thông tin về khách hàng này !",
                            
                                 MessageBox.Show(
-                                    messageBoxText: $"{ex.Message}\n{ex.StackTrace}",
+                                    messageBoxText: $"{ex.Message}",
                                     caption: "SQL Error",
                                     button: MessageBoxButton.OK,
                                     icon: MessageBoxImage.Error

@@ -15,6 +15,7 @@
 
     <UserControl.Resources>
         <converter:InverseAndBooleansToBooleanConverter x:Key="InverseAndBooleansToBooleanConverter"/>
+        <converter:StringRemoveWhiteSpaceConverter x:Key="StringRemoveWhiteSpaceConverter"/>
     </UserControl.Resources>
 
     <Grid Margin="50 5 5 5" HorizontalAlignment="Center" IsEnabled="True">
@@ -31,12 +32,12 @@
 
                     <!--Edit button-->
                     <Button Margin="20 5 20 5" Width="80"  Command="{Binding CityEditButtonCommand}"
-                             IsEnabled="{Binding CurrentUser.Role.RoleActions[10].Edit}">
+                             >
                         <Button.Style>
                             <Style BasedOn="{StaticResource MaterialDesignRaisedButton}" TargetType="Button">
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding CurrentOperationMode}" Value="NormalMode">
-                                        <Setter Property="IsEnabled" Value="True"/>
+                                        <Setter Property="IsEnabled" Value="{Binding CurrentUser.Role.RoleActions[10].Edit}"/>
                                         <Setter Property="Content" Value="Sửa"/>
                                     </DataTrigger>
                                     <DataTrigger Binding="{Binding CurrentOperationMode}" Value="EditMode">
@@ -46,7 +47,6 @@
                                         <Setter Property="IsEnabled" Value="False"/>
                                         <Setter Property="Visibility" Value="Collapsed"/>
                                     </DataTrigger>
-
 
                                     <MultiDataTrigger>
                                         <MultiDataTrigger.Conditions>
@@ -59,7 +59,7 @@
                                     <MultiDataTrigger>
                                         <MultiDataTrigger.Conditions>
                                             <Condition Binding="{Binding CurrentOperationMode}" Value="EditMode"/>
-                                            <Condition Binding="{Binding Path=(Validation.HasError), ElementName=City_PhoneCode}" Value="True"/>
+                                            <Condition Binding="{Binding Path=(Validation.HasError), ElementName=City_PhoneCode_txb}" Value="True"/>
                                         </MultiDataTrigger.Conditions>
                                         <Setter Property="IsEnabled" Value="False"/>
                                     </MultiDataTrigger>
@@ -68,7 +68,7 @@
                                         <MultiDataTrigger.Conditions>
                                             <Condition Binding="{Binding CurrentOperationMode}" Value="EditMode"/>
                                             <Condition Binding="{Binding Path=(Validation.HasError), ElementName=City_Name_txb}" Value="False"/>
-                                            <Condition Binding="{Binding Path=(Validation.HasError), ElementName=City_PhoneCode}" Value="False"/>
+                                            <Condition Binding="{Binding Path=(Validation.HasError), ElementName=City_PhoneCode_txb}" Value="False"/>
                                         </MultiDataTrigger.Conditions>
                                         <Setter Property="IsEnabled" Value="True"/>
                                     </MultiDataTrigger>
@@ -78,13 +78,12 @@
                     </Button>
 
                     <!--Add button-->
-                    <Button Margin="20 5 20 5" Width="80" Command="{Binding CityAddButtonCommand}"
-                            IsEnabled="{Binding CurrentUser.Role.RoleActions[10].Add}">
+                    <Button Margin="20 5 20 5" Width="80" Command="{Binding CityAddButtonCommand}">
                         <Button.Style>
                             <Style BasedOn="{StaticResource MaterialDesignRaisedButton}" TargetType="Button">
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding CurrentOperationMode}" Value="NormalMode">
-                                        <Setter Property="IsEnabled" Value="True"/>
+                                        <Setter Property="IsEnabled" Value="{Binding CurrentUser.Role.RoleActions[10].Edit}"/>
                                         <Setter Property="Content" Value="Thêm"/>
                                     </DataTrigger>
                                     <DataTrigger Binding="{Binding CurrentOperationMode}" Value="AddMode">
@@ -106,7 +105,7 @@
                                     <MultiDataTrigger>
                                         <MultiDataTrigger.Conditions>
                                             <Condition Binding="{Binding CurrentOperationMode}" Value="AddMode"/>
-                                            <Condition Binding="{Binding Path=(Validation.HasError), ElementName=City_PhoneCode}" Value="True"/>
+                                            <Condition Binding="{Binding Path=(Validation.HasError), ElementName=City_PhoneCode_txb}" Value="True"/>
                                         </MultiDataTrigger.Conditions>
                                         <Setter Property="IsEnabled" Value="False"/>
                                     </MultiDataTrigger>
@@ -115,7 +114,7 @@
                                         <MultiDataTrigger.Conditions>
                                             <Condition Binding="{Binding CurrentOperationMode}" Value="AddMode"/>
                                             <Condition Binding="{Binding Path=(Validation.HasError), ElementName=City_Name_txb}" Value="False"/>
-                                            <Condition Binding="{Binding Path=(Validation.HasError), ElementName=City_PhoneCode}" Value="False"/>
+                                            <Condition Binding="{Binding Path=(Validation.HasError), ElementName=City_PhoneCode_txb}" Value="False"/>
                                         </MultiDataTrigger.Conditions>
                                         <Setter Property="IsEnabled" Value="True"/>
                                     </MultiDataTrigger>
@@ -151,7 +150,6 @@
                 <StackPanel DockPanel.Dock="Right" HorizontalAlignment="Right">
                     <!--Delete button-->
                     <Button Margin="5 5 20 5" Width="80" Background="Red" BorderThickness="0" 
-                            IsEnabled="{Binding CurrentUser.Role.RoleActions[10].Delete}"
                         Command="{Binding CityDeleteButtonCommand}"
                             ToolTip="Không nên xóa"
                         Content="Xóa">
@@ -160,7 +158,7 @@
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding CurrentOperationMode}" Value="NormalMode">
                                         <Setter Property="Visibility" Value="Visible"/>
-                                        <Setter Property="IsEnabled" Value="False"/>
+                                        <Setter Property="IsEnabled" Value="{Binding CurrentUser.Role.RoleActions[10].Delete}"/>
                                     </DataTrigger>
                                     <DataTrigger Binding="{Binding CurrentOperationMode}" Value="EditMode">
                                         <Setter Property="Visibility" Value="Hidden"/>
@@ -221,6 +219,9 @@
                             <Binding.ValidationRules>
                                 <validation:City_Name_Validation ValidatesOnTargetUpdated="True"/>
                             </Binding.ValidationRules>
+                            <Binding.Converter>
+                                <converter:StringReplaceMultipleSpaceToOneConverter/>
+                            </Binding.Converter>
                         </Binding>
                     </TextBox.Text>
                 </TextBox>
@@ -236,6 +237,9 @@
                             <Binding.ValidationRules>
                                 <validation:City_PhoneCode_Validation ValidatesOnTargetUpdated="True"/>
                             </Binding.ValidationRules>
+                            <Binding.Converter>
+                                <converter:StringRemoveWhiteSpaceConverter/>
+                            </Binding.Converter>
                         </Binding>
                     </TextBox.Text>
                 </TextBox>

@@ -40,13 +40,12 @@
                 <DockPanel>
                     <StackPanel Orientation="Horizontal">
                         <!--Edit button-->
-                        <Button Margin="20 5 20 5" Width="80"  Command="{Binding MachineNameEditButtonCommand}"
-                                IsEnabled="{Binding CurrentUser.Role.RoleActions[11].Edit}">
+                        <Button Margin="20 5 20 5" Width="80"  Command="{Binding MachineNameEditButtonCommand}">
                             <Button.Style>
                                 <Style BasedOn="{StaticResource MaterialDesignRaisedButton}" TargetType="Button">
                                     <Style.Triggers>
                                         <DataTrigger Binding="{Binding MachineNameCurrentOperationMode}" Value="NormalMode">
-                                            <Setter Property="IsEnabled" Value="True"/>
+                                            <Setter Property="IsEnabled" Value="{Binding CurrentUser.Role.RoleActions[11].Edit}"/>
                                             <Setter Property="Content" Value="Sửa"/>
                                         </DataTrigger>
                                         <DataTrigger Binding="{Binding MachineNameCurrentOperationMode}" Value="EditMode">
@@ -76,13 +75,12 @@
                         </Button>
 
                         <!--Add button-->
-                        <Button Margin="20 5 20 5" Width="80" Command="{Binding MachineNameAddButtonCommand}"
-                                IsEnabled="{Binding CurrentUser.Role.RoleActions[11].Add}">
+                        <Button Margin="20 5 20 5" Width="80" Command="{Binding MachineNameAddButtonCommand}">
                             <Button.Style>
                                 <Style BasedOn="{StaticResource MaterialDesignRaisedButton}" TargetType="Button">
                                     <Style.Triggers>
                                         <DataTrigger Binding="{Binding MachineNameCurrentOperationMode}" Value="NormalMode">
-                                            <Setter Property="IsEnabled" Value="True"/>
+                                            <Setter Property="IsEnabled" Value="{Binding CurrentUser.Role.RoleActions[11].Add}"/>
                                             <Setter Property="Content" Value="Thêm"/>
                                         </DataTrigger>
                                         <DataTrigger Binding="{Binding MachineNameCurrentOperationMode}" Value="AddMode">
@@ -141,7 +139,6 @@
                         <!--Delete button-->
                         <Button Margin="5 5 20 5" Width="80" Background="Red" BorderThickness="0" 
                         Command="{Binding MachineNameDeleteButtonCommand}"
-                                IsEnabled="{Binding CurrentUser.Role.RoleActions[11].Delete}"
                             ToolTip="Không nên xóa"
                         Content="Xóa">
                             <Button.Style>
@@ -149,7 +146,7 @@
                                     <Style.Triggers>
                                         <DataTrigger Binding="{Binding MachineNameCurrentOperationMode}" Value="NormalMode">
                                             <Setter Property="Visibility" Value="Visible"/>
-                                            <Setter Property="IsEnabled" Value="True"/>
+                                            <Setter Property="IsEnabled" Value="{Binding CurrentUser.Role.RoleActions[11].Delete}"/>
                                         </DataTrigger>
                                         <DataTrigger Binding="{Binding MachineNameCurrentOperationMode}" Value="EditMode">
                                             <Setter Property="Visibility" Value="Hidden"/>
@@ -199,8 +196,7 @@
                          materialDesign:HintAssist.IsFloating="True"
                          
                          materialDesign:TextBlockAssist.AutoToolTip="True"
-                         materialDesign:ValidationAssist.HorizontalAlignment="Left"
-                         ToolTip="Không cần thiết">
+                         materialDesign:ValidationAssist.HorizontalAlignment="Left">
                         <TextBox.Text>
                             <Binding Path="MachineName_Name"  Mode="TwoWay"   UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
@@ -306,13 +302,12 @@
                 <DockPanel>
                     <StackPanel Orientation="Horizontal">
                         <!--Edit button-->
-                        <Button Margin="20 5 20 5" Width="80"  Command="{Binding MachineTypeEditButtonCommand}"
-                                IsEnabled="{Binding CurrentUser.Role.RoleActions[12].Edit}">
+                        <Button Margin="20 5 20 5" Width="80"  Command="{Binding MachineTypeEditButtonCommand}">
                             <Button.Style>
                                 <Style BasedOn="{StaticResource MaterialDesignRaisedButton}" TargetType="Button">
                                     <Style.Triggers>
                                         <DataTrigger Binding="{Binding MachineTypeCurrentOperationMode}" Value="NormalMode">
-                                            <Setter Property="IsEnabled" Value="True"/>
+                                            <Setter Property="IsEnabled" Value="{Binding CurrentUser.Role.RoleActions[12].Edit}"/>
                                             <Setter Property="Content" Value="Sửa"/>
                                         </DataTrigger>
                                         <DataTrigger Binding="{Binding MachineTypeCurrentOperationMode}" Value="EditMode">
@@ -351,13 +346,12 @@
                         </Button>
 
                         <!--Add button-->
-                        <Button Margin="20 5 20 5" Width="80" Command="{Binding MachineTypeAddButtonCommand}"
-                                IsEnabled="{Binding CurrentUser.Role.RoleActions[12].Add}">
+                        <Button Margin="20 5 20 5" Width="80" Command="{Binding MachineTypeAddButtonCommand}">
                             <Button.Style>
                                 <Style BasedOn="{StaticResource MaterialDesignRaisedButton}" TargetType="Button">
                                     <Style.Triggers>
                                         <DataTrigger Binding="{Binding MachineTypeCurrentOperationMode}" Value="NormalMode">
-                                            <Setter Property="IsEnabled" Value="True"/>
+                                            <Setter Property="IsEnabled" Value="{Binding CurrentUser.Role.RoleActions[12].Add}"/>
                                             <Setter Property="Content" Value="Thêm"/>
                                         </DataTrigger>
                                         <DataTrigger Binding="{Binding MachineTypeCurrentOperationMode}" Value="AddMode">
@@ -421,7 +415,6 @@
                         <!--Delete button-->
                         <Button Margin="5 5 20 5" Width="80" Background="Red" BorderThickness="0" 
                         Command="{Binding MachineTypeDeleteButtonCommand}"
-                                IsEnabled="{Binding CurrentUser.Role.RoleActions[12].Delete}"
                             ToolTip="Không nên xóa"
                         Content="Xóa">
                             <Button.Style>
@@ -429,7 +422,7 @@
                                     <Style.Triggers>
                                         <DataTrigger Binding="{Binding MachineTypeCurrentOperationMode}" Value="NormalMode">
                                             <Setter Property="Visibility" Value="Visible"/>
-                                            <Setter Property="IsEnabled" Value="True"/>
+                                            <Setter Property="IsEnabled" Value="{Binding CurrentUser.Role.RoleActions[12].Delete}"/>
                                         </DataTrigger>
                                         <DataTrigger Binding="{Binding MachineTypeCurrentOperationMode}" Value="EditMode">
                                             <Setter Property="Visibility" Value="Hidden"/>
@@ -480,8 +473,7 @@
                          materialDesign:HintAssist.IsFloating="True"
                          
                          materialDesign:TextBlockAssist.AutoToolTip="True"
-                         materialDesign:ValidationAssist.HorizontalAlignment="Left"
-                         ToolTip="Không cần thiết">
+                         materialDesign:ValidationAssist.HorizontalAlignment="Left">
                         <TextBox.Text>
                             <Binding Path="MachineType_Name"  Mode="TwoWay"   UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
@@ -605,13 +597,12 @@
                 <DockPanel>
                     <StackPanel Orientation="Horizontal">
                         <!--Edit button-->
-                        <Button Margin="20 5 20 5" Width="80"  Command="{Binding SensorTypeEditButtonCommand}"
-                                IsEnabled="{Binding CurrentUser.Role.RoleActions[13].Edit}">
+                        <Button Margin="20 5 20 5" Width="80"  Command="{Binding SensorTypeEditButtonCommand}">
                             <Button.Style>
                                 <Style BasedOn="{StaticResource MaterialDesignRaisedButton}" TargetType="Button">
                                     <Style.Triggers>
                                         <DataTrigger Binding="{Binding SensorTypeCurrentOperationMode}" Value="NormalMode">
-                                            <Setter Property="IsEnabled" Value="True"/>
+                                            <Setter Property="IsEnabled" Value="{Binding CurrentUser.Role.RoleActions[13].Edit}"/>
                                             <Setter Property="Content" Value="Sửa"/>
                                         </DataTrigger>
                                         <DataTrigger Binding="{Binding SensorTypeCurrentOperationMode}" Value="EditMode">
@@ -650,13 +641,12 @@
                         </Button>
 
                         <!--Add button-->
-                        <Button Margin="20 5 20 5" Width="80" Command="{Binding SensorTypeAddButtonCommand}"
-                                IsEnabled="{Binding CurrentUser.Role.RoleActions[13].Add}">
+                        <Button Margin="20 5 20 5" Width="80" Command="{Binding SensorTypeAddButtonCommand}">
                             <Button.Style>
                                 <Style BasedOn="{StaticResource MaterialDesignRaisedButton}" TargetType="Button">
                                     <Style.Triggers>
                                         <DataTrigger Binding="{Binding SensorTypeCurrentOperationMode}" Value="NormalMode">
-                                            <Setter Property="IsEnabled" Value="True"/>
+                                            <Setter Property="IsEnabled" Value="{Binding CurrentUser.Role.RoleActions[13].Add}"/>
                                             <Setter Property="Content" Value="Thêm"/>
                                         </DataTrigger>
                                         <DataTrigger Binding="{Binding SensorTypeCurrentOperationMode}" Value="AddMode">
@@ -720,7 +710,6 @@
                         <!--Delete button-->
                         <Button Margin="5 5 20 5" Width="80" Background="Red" BorderThickness="0" 
                         Command="{Binding SensorTypeDeleteButtonCommand}"
-                                IsEnabled="{Binding CurrentUser.Role.RoleActions[13].Delete}"
                             ToolTip="Không nên xóa"
                         Content="Xóa">
                             <Button.Style>
@@ -728,7 +717,7 @@
                                     <Style.Triggers>
                                         <DataTrigger Binding="{Binding SensorTypeCurrentOperationMode}" Value="NormalMode">
                                             <Setter Property="Visibility" Value="Visible"/>
-                                            <Setter Property="IsEnabled" Value="True"/>
+                                            <Setter Property="IsEnabled" Value="{Binding CurrentUser.Role.RoleActions[13].Delete}"/>
                                         </DataTrigger>
                                         <DataTrigger Binding="{Binding SensorTypeCurrentOperationMode}" Value="EditMode">
                                             <Setter Property="Visibility" Value="Hidden"/>
@@ -779,8 +768,7 @@
                          materialDesign:HintAssist.IsFloating="True"
                          
                          materialDesign:TextBlockAssist.AutoToolTip="True"
-                         materialDesign:ValidationAssist.HorizontalAlignment="Left"
-                         ToolTip="Không cần thiết">
+                         materialDesign:ValidationAssist.HorizontalAlignment="Left">
                         <TextBox.Text>
                             <Binding Path="SensorType_Name"  Mode="TwoWay"   UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>

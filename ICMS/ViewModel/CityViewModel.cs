@@ -105,14 +105,20 @@ namespace ICMS.ViewModel
 
                         if (isUniqueName & isUniquePhoneCode)
                         {
-                            MessageBox.Show("Update city infos into database !");
-
                             try
                             {
                                 updateCityResult = GlobalConfig.Connection.City_Update(updateCity, GlobalConfig.CnnString("ICMSdatabase"));
                                 Cities = new ObservableCollection<City>(GlobalConfig.Connection.City_GetAll(GlobalConfig.CnnString("ICMSdatabase")));
                                 SelectedCity = Cities.FirstOrDefault(s => s.CityId == updateCity.CityId);
                                 CurrentOperationMode = OperationMode.NormalMode.ToString();
+
+                                MessageBox.Show(
+                                            messageBoxText: "Cập nhật tỉnh/thành thành công",
+                                            caption: "",
+                                            button: MessageBoxButton.OK,
+                                            icon: MessageBoxImage.Information
+                                            );
+
                             }
                             catch (Exception ex)
                             {

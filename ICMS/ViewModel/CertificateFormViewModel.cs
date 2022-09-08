@@ -453,42 +453,6 @@ namespace ICMS.ViewModel
                                 MessageBox.Show($"Could not insert this certificate into database !\n\n{ex.Message}\n{ex.StackTrace}", "Unknown Error", MessageBoxButton.OK, MessageBoxImage.Error);
                                 IsCertificateSaved = false;
                             }
-                            
-
-                        //MessageBox.Show(newCertificate.CalibDate.ToString());
-                        //MessageBox.Show(newCertificate.Customer.FullName + "\n" + newCertificate.Customer.Address);
-                        //MessageBox.Show("Temperature: " + "\n" + newCertificate.Temperature.ToString());
-                        //MessageBox.Show("Humidity: " + "\n" + newCertificate.Humidity.ToString());
-                        //MessageBox.Show("Pressure: " + "\n" + newCertificate.Pressure.ToString());
-                        //MessageBox.Show("Performed By: " + "\n" + newCertificate.PerformedBy);
-                        //MessageBox.Show("Certificate no: " + "\n" + newCertificate.CertificateNumber);
-                        // MessageBox.Show("TM: " + "\n" + newCertificate.TM);
-                        //MessageBox.Show("Machine Name " + "\n" + newCertificate.Machine.Name);
-                        //MessageBox.Show("Machine Type " + "\n" + newCertificate.Machine.MachineType.Name);
-                        //MessageBox.Show("Machine Model: " + "\n" + newCertificate.Machine.Model);
-                        //MessageBox.Show("Machine Model: " + "\n" + newCertificate.Machine.Serial);
-                        //MessageBox.Show("Machine Manufacturer: " + "\n" + newCertificate.Machine.Manufacturer);
-
-                            //MessageBox.Show("Machine sensor: " + "\n" + "Number of sensor: " + Sensors.Count);
-                            //MessageBox.Show("Machine sensor 1: \n" + "  SensorType: " + Sensors[0].SensorType.Name + "\n  Sensor Model: " + Sensors[0].Model + "\n  Sensor Serial: " + Sensors[0].Serial);
-
-                            //MessageBox.Show("Machine sensor: " + "\n" + "Number of sensor: " + newCertificate.Machine.Sensors.Count);
-                            //MessageBox.Show("Machine sensor 2: \n" + "  " +
-                            //    "SensorType: " + newCertificate.Machine.Sensors[1].SensorType.Name + 
-                            //    "\n  Sensor Model: " +  newCertificate.Machine.Sensors[1].Model + 
-                            //    "\n  Sensor Serial: " + newCertificate.Machine.Sensors[1].Serial);
-
-                            //MessageBox.Show("Calibdata: " + "\n" + "Number of data: " + CalibDatas.Count());
-                            //MessageBox.Show("Calib Data 1: \n" + 
-                            //    "Rad. Quantity " + CalibDatas[0].RadQuantity.Name
-                            //    + "\n  Ref. Value: " + CalibDatas[0].RefValue
-                            //    + "\n  Ref. Unit: " + CalibDatas[0].RefUnit.Name
-                            //    //+ "\n  Machie. Unit: " + CalibDatas[0].MachineUnit 
-                            //    );
-
-                            //MessageBox.Show("Machine reading: " + CalibDatas[0].MachineReading)
-                            //MessageBox.Show("Avg Reading: " + CalibDatas[0].AvgReading);
-
                         }
                     );
             #endregion

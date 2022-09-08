@@ -203,16 +203,14 @@
 
                                 <!-- Dose Quantity -->
                                 <Label Content="Đại lượng liều "  Grid.Row="0" Grid.Column="0" Margin="-5 7 0 20" Foreground="Black"/>
-                                <ComboBox Grid.Row="0" Grid.Column="1"   Margin="0 4 -5 20"
+                                <ComboBox Grid.Row="0" Grid.Column="1"   Margin="0 4 -5 20" x:Name="DoseQuantityComboBox"
                                           Style="{StaticResource MaterialDesignComboBox}"
                                           
                                           ItemsSource="{Binding AvailableDoseQuantities}"   DisplayMemberPath="Notation">
                                     <ComboBox.SelectedItem>
                                         <Binding Path="SelectedDoseQuantity">
                                             <Binding.ValidationRules>
-                                                <validation:ComboBoxNotNull_Validation 
-                                                ValidatesOnTargetUpdated="True"
-                                                />
+                                                <validation:ComboBoxNotNull_Validation ValidatesOnTargetUpdated="True"/>
                                             </Binding.ValidationRules>
                                         </Binding>
                                     </ComboBox.SelectedItem>
@@ -247,7 +245,7 @@
                                 <!-- Certificate No. -->
                                 <Label Content="Số chứng chỉ"  Grid.Row="2" Grid.Column="0"  Margin="-5 13 0 20" Foreground="Black"/>
 
-                                <TextBox Grid.Row="2" Grid.Column="1"   Margin="0 4 -5 10"
+                                <TextBox Grid.Row="2" Grid.Column="1"  x:Name="CertificateNumberTextBox" Margin="0 4 -5 10"
                                          Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                         
                                          materialDesign:HintAssist.Hint="Format: YYMMn">
@@ -294,13 +292,19 @@
 
                                 <!-- TM -->
                                 <Label Content="Quản lý kỹ thuật"  Grid.Row="1" Grid.Column="0"  Margin="-5 7 0 20" Foreground="Black"/>
-                                <ComboBox Grid.Row="1" Grid.Column="1"  Margin="0 4 -5 20"
+                                <ComboBox Grid.Row="1" Grid.Column="1"  Margin="0 4 -5 20"   x:Name="TMTextBox"
                                           Style="{StaticResource MaterialDesignComboBox}"
                                           materialDesign:HintAssist.Hint=" (Select one) "
-                                          ItemsSource="{Binding AvailableTMs}"   DisplayMemberPath="Name"
-                                          SelectedItem="{Binding SelectedTM}">
-                                </ComboBox>
+                                          ItemsSource="{Binding AvailableTMs}"   DisplayMemberPath="Name">
 
+                                    <ComboBox.SelectedItem>
+                                        <Binding Path="SelectedTM">
+                                            <Binding.ValidationRules>
+                                                <validation:ComboBoxNotNull_Validation ValidatesOnTargetUpdated="True"/>
+                                            </Binding.ValidationRules>
+                                        </Binding>
+                                    </ComboBox.SelectedItem>
+                                </ComboBox>
 
                             </Grid>
 
@@ -585,16 +589,14 @@
                                 <!-- RefUnit -->
                                 <Label Content="Bức xạ"  Grid.Row="0" Grid.Column="0" Margin="2 7 2 20" Foreground="Black"/>
 
-                                <ComboBox Grid.Row="0" Grid.Column="1"
+                                <ComboBox Grid.Row="0" Grid.Column="1"  x:Name="RefUnitComboBox"
                                           Style="{StaticResource MaterialDesignComboBox}"
                                           Margin="5 5 0 20"
                                           ItemsSource="{Binding AvailableUnits}"   DisplayMemberPath="Name">
                                     <ComboBox.SelectedItem>
                                         <Binding Path="SelectedRefUnit" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
                                             <Binding.ValidationRules>
-                                                <validation:ComboBoxNotNull_Validation 
-                                                ValidatesOnTargetUpdated="True"
-                                                />
+                                                <validation:ComboBoxNotNull_Validation  ValidatesOnTargetUpdated="True"/>
                                             </Binding.ValidationRules>
                                         </Binding>
                                     </ComboBox.SelectedItem>
@@ -602,15 +604,13 @@
 
                                 <!-- Machine Unit -->
                                 <Label Content="Thiết bị"  Grid.Row="1" Grid.Column="0" Margin="2 8 5 20" Foreground="Black"/>
-                                <ComboBox Grid.Row="1" Grid.Column="1"
+                                <ComboBox Grid.Row="1" Grid.Column="1"  x:Name="MachineUnitComboBox"
                                           Style="{StaticResource MaterialDesignComboBox}"  Margin="5 5 0 20"
                                           ItemsSource="{Binding AvailableUnits}"   DisplayMemberPath="Name">
                                     <ComboBox.SelectedItem>
                                         <Binding Path="SelectedMachineUnit">
                                             <Binding.ValidationRules>
-                                                <validation:ComboBoxNotNull_Validation 
-                                                ValidatesOnTargetUpdated="True"
-                                                />
+                                                <validation:ComboBoxNotNull_Validation ValidatesOnTargetUpdated="True"/>
                                             </Binding.ValidationRules>
                                         </Binding>
                                     </ComboBox.SelectedItem>
@@ -695,7 +695,7 @@
                                 </materialDesign:DataGridComboBoxColumn>
 
                                 <!-- Ref. Value -->
-                                <DataGridTextColumn Header="Giá trị chuẩn" 
+                                <DataGridTextColumn Header="Giá trị chuẩn"   x:Name="RefValueDataGridTextColumn"
                                                     CellStyle="{StaticResource MaterialDesignDataGridCell}"
                                                 ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
                                                 EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}"
@@ -717,7 +717,7 @@
                                 </DataGridTextColumn>
 
                                 <!-- Machine Reading -->
-                                <DataGridTextColumn Header="Số đọc của thiết bị" x:Name="MachineReading" 
+                                <DataGridTextColumn Header="Số đọc của thiết bị"  x:Name="MachineReadingDataGridTextColumn"
                                                     CellStyle="{StaticResource MaterialDesignDataGridCell}"
                                                 ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
                                                 EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}"
@@ -829,11 +829,19 @@
                             <Binding ElementName="CustomerNameComboBox" Path="(Validation.HasError)"/>
                             <Binding ElementName="MachineNameComboBox" Path="(Validation.HasError)"/>
                             <Binding ElementName="MachineTypeComboBox" Path="(Validation.HasError)"/>
+                            <Binding ElementName="CertificateNumberTextBox" Path="(Validation.HasError)"/>
+                            <Binding ElementName="DoseQuantityComboBox" Path="(Validation.HasError)"/>
+                            <Binding ElementName="PerformedByTextBox" Path="(Validation.HasError)"/>
+                            <Binding ElementName="TMTextBox" Path="(Validation.HasError)"/>
                             <!--<Binding ElementName="MachineModelTextBox" Path="(Validation.HasError)"/>-->
                             <Binding ElementName="MachineSerialTextBox" Path="(Validation.HasError)"/>
                             <Binding ElementName="MachineManufacturerTextBox" Path="(Validation.HasError)"/>
+                            <Binding ElementName="RefUnitComboBox" Path="(Validation.HasError)"/>
+                            <Binding ElementName="MachineUnitComboBox" Path="(Validation.HasError)"/>
                             <Binding ElementName="CalibDataDataGrid" Path="(Validation.HasError)"/>
-                            <Binding RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=UserControl}" Path="DataContext. CurrentUser.Role.RoleActions[8].Add" />
+                            <Binding ElementName="RefValueDataGridTextColumn" Path="(Validation.HasError)"/>
+                            <Binding ElementName="MachineReadingDataGridTextColumn" Path="(Validation.HasError)"/>
+                            <Binding Converter="{StaticResource InverseBooleanConverter}" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=UserControl}" Path="DataContext.CurrentUser.Role.RoleActions[8].Add" />
                         </MultiBinding>
                     </Button.IsEnabled>
                 </Button>
