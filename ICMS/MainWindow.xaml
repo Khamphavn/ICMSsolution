@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ICMS"
         mc:Ignorable="d"
-        Title="INST Calibration Management System  (Beta version 1)" 
+        Title="INST Calibration Management System  (Beta version 1.1)" 
         WindowStartupLocation="CenterScreen"
         WindowState="Maximized" MinWidth="1200" MinHeight="700"
         ResizeMode="CanResize"

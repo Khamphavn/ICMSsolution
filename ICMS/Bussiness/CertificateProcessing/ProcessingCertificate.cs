@@ -121,7 +121,15 @@ namespace ICMS.Bussiness.CertificateProcessing
                 docText = regexText.Replace(docText, certificate.Machine.Name);
 
                 regexText = new Regex("\\[\\[MachineModel]]");
-                docText = regexText.Replace(docText, certificate.Machine.Model);
+                if (certificate.Machine.Manufacturer != null)
+                {
+                    docText = regexText.Replace(docText, certificate.Machine.Model);
+                }
+                else
+                {
+                    docText = regexText.Replace(docText, "");
+                }
+
 
                 regexText = new Regex("\\[\\[MachineSeri]]");
                 docText = regexText.Replace(docText, certificate.Machine.Serial);
@@ -147,7 +155,15 @@ namespace ICMS.Bussiness.CertificateProcessing
                 docText = regexText.Replace(docText, certificate.Machine.Sensors[0].Serial);
 
                 regexText = new Regex("\\[\\[Manufacturer]]");
-                docText = regexText.Replace(docText, certificate.Machine.Manufacturer);
+                if (certificate.Machine.Manufacturer != null)
+                {
+                    docText = regexText.Replace(docText, certificate.Machine.Manufacturer);
+                }
+                else
+                {
+                    docText = regexText.Replace(docText,"");
+                }
+               
 
                 regexText = new Regex("\\[\\[T]]");
                 docText = regexText.Replace(docText, CertificateHelper.DoubleToStringWithDecimalNumber(certificate.Temperature, 1));
@@ -247,7 +263,7 @@ namespace ICMS.Bussiness.CertificateProcessing
 
                 #region Table data
 
-                TableRow headerRow = GenerateHeaderRow();
+                TableRow headerRow = GenerateHeaderRow(certificate);
                 table1.Append(headerRow);
 
                 GenerateDataRow(table1, certificate);
@@ -273,7 +289,7 @@ namespace ICMS.Bussiness.CertificateProcessing
 
        
 
-        private TableRow GenerateHeaderRow()
+        private TableRow GenerateHeaderRow(Certificate certificate)
         {
             TableRow tableRow1 = new TableRow() { };
 
@@ -311,6 +327,7 @@ namespace ICMS.Bussiness.CertificateProcessing
             RunFonts runFontsTimesNewRoman = new RunFonts() { Ascii = "Times New Roman", HighAnsi = "Times New Roman", ComplexScript = "Times New Roman" };
 
             TableCellVerticalAlignment tableCellVerticalAlignmentCenter = new TableCellVerticalAlignment() { Val = TableVerticalAlignmentValues.Center };
+            TableCellVerticalAlignment tableCellVerticalAlignmentTop = new TableCellVerticalAlignment() { Val = TableVerticalAlignmentValues.Top };
             VerticalTextAlignment verticalTextAlignmentSubscrip = new VerticalTextAlignment() { Val = VerticalPositionValues.Subscript };
 
             Italic italic = new Italic();
@@ -388,7 +405,7 @@ namespace ICMS.Bussiness.CertificateProcessing
 
             tableCellProperties2.Append(tableCellWidth2);
             tableCellProperties2.Append(tableCellMargin8.CloneNode(true));
-            tableCellProperties2.Append(tableCellVerticalAlignmentCenter);
+            tableCellProperties2.Append(tableCellVerticalAlignmentTop);
 
             Paragraph paragraph2 = new Paragraph() { };
 
@@ -430,7 +447,7 @@ namespace ICMS.Bussiness.CertificateProcessing
             tableCell2.Append(paragraph2);
             #endregion
 
-            #region Raf Values
+            #region Ref Values
             TableCell tableCell3 = new TableCell();
 
             TableCellProperties tableCellProperties3 = new TableCellProperties();
@@ -438,13 +455,37 @@ namespace ICMS.Bussiness.CertificateProcessing
 
             tableCellProperties3.Append(tableCellWidth3);
             tableCellProperties3.Append(tableCellMargin8.CloneNode(true));
-            tableCellProperties3.Append(tableCellVerticalAlignmentCenter.CloneNode(true));
+            tableCellProperties3.Append(tableCellVerticalAlignmentTop.CloneNode(true));
 
             Paragraph paragraph3 = new Paragraph() { };
 
             Run run8 = new Run();
-            Text text6 = new Text();
-            text6.Text = "Giá trị chuẩn, H*(10)";
+            Text text6 = new Text();       
+            switch (certificate.DoseQuantity.NameEN.Trim())
+            {
+                case "Air-Kerma":
+                    text6.Text = "Giá trị chuẩn, Kair";
+                    break;
+                case "Ambient Dose Equivalent":
+                    text6.Text = "Giá trị chuẩn, H*(10)";
+                    break;
+                case "Personal Dose Equivalent":
+                    text6.Text = "Giá trị chuẩn, Hp(10)";
+                    break;
+                case "Absorbed Dose":
+                    text6.Text = "Giá trị chuẩn, D";
+                    break;
+                case "Ambient Dose":
+                    text6.Text = "Giá trị chuẩn, H*";
+                    break;
+                case "Personal Dose":
+                    text6.Text = "Giá trị chuẩn, Hp";
+                    break;
+                default:
+                    text6.Text = "Giá trị chuẩn";
+                    break;
+            }
+
 
             run8.Append(runPropertiesNormal.CloneNode(true));
             run8.Append(text6);
@@ -489,7 +530,7 @@ namespace ICMS.Bussiness.CertificateProcessing
 
             tableCellProperties4.Append(tableCellWidth4);
             tableCellProperties4.Append(tableCellMargin8.CloneNode(true));
-            tableCellProperties4.Append(tableCellVerticalAlignmentCenter.CloneNode(true));
+            tableCellProperties4.Append(tableCellVerticalAlignmentTop.CloneNode(true));
 
             Paragraph paragraph4 = new Paragraph() { };
 
@@ -595,6 +636,21 @@ namespace ICMS.Bussiness.CertificateProcessing
             run21.Append(runPropertiesNormal.CloneNode(true));
             run21.Append(text16);
 
+
+            Run run22 = new Run();
+            Break break10 = new Break();
+            run22.Append(runPropertiesNormal.CloneNode(true));
+            run22.Append(break10);
+
+            Run run23 = new Run();
+            Text text17 = new Text();
+            text17.Text = certificate.CalibDatas[0].CF_unit;
+
+            run23.Append(runPropertiesNormal.CloneNode(true));
+            run23.Append(text17);
+
+
+
             paragraph5.Append(paragraphPropertiesNormal.CloneNode(true));
             paragraph5.Append(run16);
             paragraph5.Append(run17);
@@ -602,6 +658,8 @@ namespace ICMS.Bussiness.CertificateProcessing
             paragraph5.Append(run19);
             paragraph5.Append(run20);
             paragraph5.Append(run21);
+            paragraph5.Append(run22);
+            paragraph5.Append(run23);
 
             tableCell5.Append(tableCellProperties5);
             tableCell5.Append(paragraph5);

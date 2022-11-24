@@ -1,0 +1,4 @@
+Đơn vị đo và thiết bị không đúng ở đầu ra                DONE
+Ô đại lượng liều không đúng khi sửa chứng chỉ            DONE
+Sửa chứng chỉ không lưu lại số cc cũ được
+Không có ô chú thích các thông tin trên cc  

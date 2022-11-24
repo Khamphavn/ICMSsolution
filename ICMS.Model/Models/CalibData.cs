@@ -20,6 +20,8 @@ namespace ICMS.Model.Models
         public double CF { get; set; }
         public double CF_reUnc { get; set; }
 
+        public string CF_unit { get; set; }
+
         public RadQuantity RadQuantity { get; set; }
     }
 }

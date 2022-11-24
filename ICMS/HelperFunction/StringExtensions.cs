@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace ICMS.HelperFunction
@@ -56,6 +57,13 @@ namespace ICMS.HelperFunction
                 return false;
             }
 
+        }
+
+        public static string RemoveAllWhiteSpaces(string str)
+        {
+            str = str.Trim();
+            String newStr = Regex.Replace(str, @"\s", "");
+            return newStr;
         }
     }
 }

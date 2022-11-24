@@ -20,7 +20,7 @@
 	<add key="MAXCALIBDATA" value ="10"/>
 
 	<!-- Month before today -->
-	<add key="MONTHBEFORETODAY" value ="5"/>
+	<add key="MONTHBEFORETODAY" value ="2"/>
 
 	<!-- Change folder contains certificate template file -->
 	<!-- Default is $AppDirectory/CertificateTemplates -->

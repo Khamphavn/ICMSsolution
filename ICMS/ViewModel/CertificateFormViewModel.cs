@@ -208,7 +208,7 @@ namespace ICMS.ViewModel
                 Pressure = certificate.Pressure.ToString();
                 Humidity = certificate.Humidity.ToString();
 
-                SelectedDoseQuantity = certificate.DoseQuantity;
+                SelectedDoseQuantity = AvailableDoseQuantities.FirstOrDefault(s => s.DoseQuantityId == certificate.DoseQuantity.DoseQuantityId);   // certificate.DoseQuantity;
                 CalibDate = certificate.CalibDate;
                 CertificateNo = certificate.CertificateNumber;
 
@@ -276,17 +276,13 @@ namespace ICMS.ViewModel
                 CalibDatas.Add(new CalibDataDTO() { STT = 4, RefValue = 800.0 });
 
 
-                CreateDemoCertificate();
+                //CreateDemoCertificate();
             }
             Mouse.OverrideCursor = null;
 
 
 
 
-
-
-
-            //CreateDemoCertificate();
 
 
             #endregion
@@ -437,7 +433,17 @@ namespace ICMS.ViewModel
                                 {
                                     //MessageBox.Show("Certificate has been saved to the databse !", "Infos", MessageBoxButton.OK, MessageBoxImage.Information, MessageBoxResult.OK);
                                     Certificate newCertificate = CreateCertificateFromInputForm();
-                                    GlobalConfig.Connection.Certificate_Insert(newCertificate, GlobalConfig.CnnString("ICMSdatabase"));
+
+                                    if (operationMode == OperationMode.AddMode.ToString())
+                                    {
+                                        GlobalConfig.Connection.Certificate_Insert(newCertificate, GlobalConfig.CnnString("ICMSdatabase"));
+                                    }
+                                    if (operationMode == OperationMode.EditMode.ToString())
+                                    {
+                                        GlobalConfig.Connection.Certificate_Update(newCertificate, GlobalConfig.CnnString("ICMSdatabase"));
+                                    }
+
+
 
                                     IsCertificateSaved = true;
                                 }

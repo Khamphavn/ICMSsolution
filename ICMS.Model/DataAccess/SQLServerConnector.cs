@@ -2676,6 +2676,15 @@ namespace ICMS.Model.DataAccess
                     CF_reUnc = calibDataTable.CF_reUnc
                 };
 
+                if (calibDataTable.MachineUnit != calibDataTable.RefUnit)
+                {
+                    calibData.CF_unit = "(" + calibDataTable.RefUnit + ")/(" + calibDataTable.MachineUnit + ")";
+                }
+                else
+                {
+                    calibData.CF_unit = "";
+                }
+
                 calibDatas.Add(calibData);
             }
             return calibDatas;

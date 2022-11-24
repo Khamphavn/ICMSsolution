@@ -1,6 +1,7 @@
 ﻿using ICMS.Model.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -143,6 +144,11 @@ namespace ICMS.Model.DataAccess
         //int Certificate_Update(Certificate model, string connectionString);
         int Certificate_Insert(Certificate model, string connectionString);
         //int Certificate_Delete(Certificate certificate, string connectionString);
+
+        int Certificate_Update(Certificate model, string connectionString);
+
+
+
         #endregion
     }
 }

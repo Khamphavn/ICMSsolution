@@ -138,6 +138,21 @@
                                     </StackPanel>
                                 </materialDesign:HintAssist.Hint>
                             </TextBox>
+                            
+                            <!-- Search by Dose quantity - hide -->
+                            <!--TextChanged="SearchTextBox_TextChanged"-->
+                            <TextBox x:Name="Search_DoseQuantity_TextBox" Margin="0 0 0 0"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"  
+                             ToolTip="Tìm kiếm đại lượng liều"
+                             Visibility="Hidden"
+                             Width="{Binding ElementName=CertificateList_DoseQuantity, Path=ActualWidth}">
+                                <materialDesign:HintAssist.Hint>
+                                    <StackPanel  Orientation="Horizontal" Margin="-2 0 0 0">
+                                        <materialDesign:PackIcon Kind="Magnify" />
+                                        <TextBlock   Text="Search" />
+                                    </StackPanel>
+                                </materialDesign:HintAssist.Hint>
+                            </TextBox>
 
                             <!-- Search by Machine Name-->
                             <TextBox x:Name="Search_MachineName_TextBox" Margin="0 0 0 0"
@@ -313,6 +328,12 @@
                                             ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
                                             EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}"
                                             Binding="{Binding CertificateNumber}"
+                                            Width="*" MinWidth="80" MaxWidth="250"/>
+
+                                <DataGridTextColumn Header="Đại lượng liều" x:Name="CertificateList_DoseQuantity"
+                                            ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+                                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}"
+                                            Binding="{Binding DoseQuantity.Notation}"
                                             Width="*" MinWidth="80" MaxWidth="250"/>
 
                                 <DataGridTextColumn Header="Thiết bị"  x:Name="CertificateList_Machine_Name"
