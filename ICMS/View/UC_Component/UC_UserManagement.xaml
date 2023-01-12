@@ -31,23 +31,41 @@
 
                 <!--Operation button-->
                 <materialDesign:Card Grid.Row="0" Margin="5 10 5 5"  Padding="0 5 0 5">
-                    <StackPanel Orientation="Horizontal">
+                    <DockPanel>
+                            <StackPanel Orientation="Horizontal">
                         <!--Edit button-->
-                            <Button Margin="10 0 20 0" Width="80"  Content="Sửa" Command="{Binding UserEditButtonCommand}">
-                           
-                        </Button>
+                        <Button Margin="10 0 20 0" Width="80"  Content="Sửa" Command="{Binding UserEditButtonCommand}">
+                                <Button.Style>
+                                    <Style BasedOn="{StaticResource MaterialDesignRaisedButton}" TargetType="Button">
+                                            <Setter Property="IsEnabled" Value="{Binding CurrentUser.Role.RoleActions[0].Edit}"/>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
 
                         <!--Add button-->
                             <Button Margin="10 0 20 0" Width="80" Content="Thêm"  Command="{Binding UserAddButtonCommand}">
-                            
-                        </Button>
+                                <Button.Style>
+                                    <Style BasedOn="{StaticResource MaterialDesignRaisedButton}" TargetType="Button">
+                                            <Setter Property="IsEnabled" Value="{Binding CurrentUser.Role.RoleActions[0].Add}"/>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
+                        </StackPanel>
 
-                        <!-- Delete button-->
-                            <Button Margin="10 0 20 0" Width="80"  Content="Xóa"  Command="{Binding UserCancelButtonCommand}">
-                            
-                        </Button>
-                    </StackPanel>
-                </materialDesign:Card>
+                        <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" HorizontalAlignment="Right">
+                                <!--Delete button-->
+                                <Button Margin="5 5 50 5" Width="80" Background="Red" BorderThickness="0" 
+                        Command="{Binding UserDeleteButtonCommand}"     Content="Xóa">
+                                    <Button.Style>
+                                        <Style BasedOn="{StaticResource MaterialDesignRaisedButton}" TargetType="Button">
+                                            <Setter Property="IsEnabled" Value="{Binding CurrentUser.Role.RoleActions[0].Delete}"/>
+                                        </Style>
+                                    </Button.Style>
+                                </Button>
+                            </StackPanel>
+
+                        </DockPanel>
+                    </materialDesign:Card>
 
 
                 <!--Info on slected item-->

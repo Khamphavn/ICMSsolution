@@ -233,7 +233,53 @@ namespace ICMS.ViewModel
                 );
             #endregion
 
+            #region UserDeleteButtonCommand
+            UserDeleteButtonCommand = new RelayCommand<object>
+                (
+                (p) =>
+                {
+                    if (SelectedUser == null)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        return true;
+                    }
+                },
+                (p) =>
+                {
+                        MessageBoxResult result = MessageBox.Show(
+                            messageBoxText: "Thay vì xóa tài khoản, hãy tạm khóa tài khoản này ! \n\nBạn có chắc chắn muốn xóa ?",
+                            caption: "YES/NO",
+                            button: MessageBoxButton.YesNo,
+                            icon: MessageBoxImage.Warning,
+                            defaultResult: MessageBoxResult.No
+                            );
 
+                        if (result == MessageBoxResult.Yes)
+                        {
+                            try
+                            {
+                                GlobalConfig.Connection.User_DeleteById(SelectedUser.UserId, GlobalConfig.CnnString("ICMSdatabase"));
+                            AllUserList.Remove(SelectedUser);
+                                //TMs = new ObservableCollection<TM>(GlobalConfig.Connection.TM_GetAll(GlobalConfig.CnnString("ICMSdatabase")));
+                            }
+                            catch (Exception ex)
+                            {
+                                // messageBoxText: "Không thể xóa phẩm chất bức xạ này này !",
+                                MessageBox.Show(
+
+                                    messageBoxText: $"{ex.Message}\n{ex.StackTrace}",
+                                    caption: "Error",
+                                    button: MessageBoxButton.OK,
+                                    icon: MessageBoxImage.Error
+                                    );
+                            }
+                        }
+                }
+                );
+            #endregion
 
             #endregion
         }

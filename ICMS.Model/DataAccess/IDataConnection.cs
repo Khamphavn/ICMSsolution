@@ -53,8 +53,8 @@ namespace ICMS.Model.DataAccess
         User User_GetAuthenticatedUser(string loginName, string hashPassword, string connectionString);
         int User_Update_Infos(User model, string connectionString);
         int User_Update_Password(User model, string connectionString);
-        //int User_Insert(User model, string connectionString);
-        //int User_DeleteById(int Id, string connectionString);
+        int User_Insert(User model, string connectionString);
+        int User_DeleteById(int Id, string connectionString);
         #endregion
 
         #region TM
