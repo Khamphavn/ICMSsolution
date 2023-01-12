@@ -36,7 +36,7 @@ namespace ICMS.View.UC_Component
             var vm = (UserEditInfo)this.DataContext;
 
 
-            string hashCurrentPasswordInput = GenerateSHA512String(vm.CurrentUser.LoginName + CurrentPasswordBox.Password);
+            string hashCurrentPasswordInput = GenerateSHA512String(CurrentPasswordBox.Password.ToLower());
 
 
             bool isCurrentPasswordCorrect = GetAuthenticatedUser(vm.CurrentUser.LoginName, hashCurrentPasswordInput) != null;
@@ -54,7 +54,7 @@ namespace ICMS.View.UC_Component
                         defaultResult: MessageBoxResult.OK
                         );
                 }
-                else if (NewPasswordBox1.Password != NewPasswordBox2.Password)
+                else if (NewPasswordBox1.Password.ToLower() != NewPasswordBox2.Password.ToLower())
                 {
                     MessageBox.Show(
                         messageBoxText: "Mật khẩu mới khác nhau",
@@ -66,7 +66,7 @@ namespace ICMS.View.UC_Component
                 }
                 else
                 {
-                    string hashNewPasswordInput = GenerateSHA512String(vm.CurrentUser.LoginName + NewPasswordBox2.Password);
+                    string hashNewPasswordInput = GenerateSHA512String(NewPasswordBox2.Password.ToLower());
 
                     vm.CurrentUser.Password = hashNewPasswordInput;
 
@@ -106,13 +106,6 @@ namespace ICMS.View.UC_Component
                        defaultResult: MessageBoxResult.OK
                        );
             }
-
-
-
-
-            
-
-
 
             int i = 1;
 

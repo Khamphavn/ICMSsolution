@@ -1,9 +1,12 @@
-﻿using ICMS.Command;
+﻿using DocumentFormat.OpenXml.Drawing.Diagrams;
+using ICMS.Command;
 using ICMS.Model.DataAccess;
 using ICMS.Model.Models;
+using ICMS.View.UC_Dialog;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -118,6 +121,12 @@ namespace ICMS.ViewModel
 
         private enum OperationMode { NormalMode, EditMode, AddMode };
 
+        private bool _IsDialogOpen;
+        public bool IsDialogOpen { get => _IsDialogOpen; set { _IsDialogOpen = value; OnPropertyChanged(); } }
+
+        private object _DialogContent;
+        public object DialogContent { get => _DialogContent; set { _DialogContent = value; OnPropertyChanged(); } }
+
 
         #region Commands
         public ICommand UserEditButtonCommand { get; set; }
@@ -163,45 +172,34 @@ namespace ICMS.ViewModel
                 },
                 (p) =>
                 {
-                    if (CurrentOperationMode == OperationMode.NormalMode.ToString())
-                    {
-                        CurrentOperationMode = OperationMode.EditMode.ToString();
-                    }
-                    else if (CurrentOperationMode == OperationMode.EditMode.ToString())
-                    {
-                        // Update User to Database.
-                        User updateUser = new User()
-                        {
-                            UserId = SelectedUser.UserId,
-                            LoginName = User_LoginName.Trim(),
-                            FullName = User_FullName.Trim(),
-                            Password = User_Password.Trim(),
-                            Role = new Role() { Name = User_RoleName.Trim() },
-                            IsActive = User_IsActive
-                        };
+                        //// Update User to Database.
+                        //User updateUser = new User()
+                        //{
+                        //    UserId = SelectedUser.UserId,
+                        //    LoginName = User_LoginName.Trim(),
+                        //    FullName = User_FullName.Trim(),
+                        //    //Password = User_Password.Trim(),
+                        //    Role = RoleList.FirstOrDefault(s => s.Name == User_RoleName.Trim()),
+                        //    IsActive = User_IsActive
+                        //};
 
-                        int updateUserResult = GlobalConfig.Connection.User_Update_Infos(updateUser, GlobalConfig.CnnString("ICMSdatabase"));
+                        //int updateUserResult = GlobalConfig.Connection.User_Update_Infos(updateUser, GlobalConfig.CnnString("ICMSdatabase"));
 
-                        if (updateUserResult == 1)
-                        {
-                            AllUserList = new ObservableCollection<User>(GlobalConfig.Connection.User_GetAll(GlobalConfig.CnnString("ICMSdatabase")));
-                        }
-                        else
-                        {
-                            MessageBox.Show(
-                                messageBoxText: "Could not update User !",
-                                caption: "Update User Failed",
-                                button: MessageBoxButton.OK,
-                                icon: MessageBoxImage.Error
-                                );
-                        }
-                        CurrentOperationMode = OperationMode.NormalMode.ToString();
-                    }
-                    else
-                    {
-                        CurrentOperationMode = OperationMode.NormalMode.ToString();
-                    }
+                        //if (updateUserResult == 1)
+                        //{
+                        //    AllUserList = new ObservableCollection<User>(GlobalConfig.Connection.User_GetAll(GlobalConfig.CnnString("ICMSdatabase")));
+                        //}
+                        //else
+                        //{
+                        //    MessageBox.Show(
+                        //        messageBoxText: "Could not update User !",
+                        //        caption: "Update User Failed",
+                        //        button: MessageBoxButton.OK,
+                        //        icon: MessageBoxImage.Error
+                        //        );
+                        //}
 
+                        OpenUserEditDialog(SelectedUser, RoleList);
                 }
                 );
             #endregion
@@ -212,36 +210,56 @@ namespace ICMS.ViewModel
                 (p) => { return true; },
                 (p) =>
                 {
-                    if (CurrentOperationMode == OperationMode.NormalMode.ToString())
-                    {
-                        CurrentOperationMode = OperationMode.AddMode.ToString();
-                        User_LoginName = "";
-                        User_FullName = "";
-                        User_RoleName = "";
-                        User_IsActive = false;
-                        User_Password = "";
+                    //if (CurrentOperationMode == OperationMode.NormalMode.ToString())
+                    //{
+                    //    CurrentOperationMode = OperationMode.AddMode.ToString();
+                    //    User_LoginName = "";
+                    //    User_FullName = "";
+                    //    User_RoleName = "";
+                    //    User_IsActive = false;
+                    //    User_Password = "";
 
-                        SelectedRole = null;
-                        SelectedUser = null;
-                    }
-                    else
-                    {
-                        CurrentOperationMode = OperationMode.NormalMode.ToString();
-                    }
+                    //    SelectedRole = null;
+                    //    SelectedUser = null;
+                    //}
+                    //else
+                    //{
+                    //    CurrentOperationMode = OperationMode.NormalMode.ToString();
+                    //}
+
+                    OpenUserAddNewDialog(RoleList);
 
                 }
                 );
             #endregion
 
-            #region UserCancelButtonCommand
-            UserCancelButtonCommand = new RelayCommand<object>
-                (
-                (p) => { return true; },
-                (p) => { CurrentOperationMode = OperationMode.NormalMode.ToString(); }
-                );
-            #endregion
+
 
             #endregion
+        }
+
+
+        #endregion
+
+        #region private
+        private void OpenUserEditDialog(User selectedUser, ObservableCollection<Role> roleList)
+        {
+            
+            DialogContent = new UC_UserEdit_Dialog()
+            {
+                DataContext = new UserEditDialogViewModel(selectedUser, roleList)
+            };
+            IsDialogOpen = true;
+        }
+
+        private void OpenUserAddNewDialog(ObservableCollection<Role> roleList)
+        {
+
+            DialogContent = new UC_UserAddNew_Dialog()
+            {
+                DataContext = new UserAddNewDialogViewModel(roleList)
+            };
+            IsDialogOpen = true;
         }
 
 

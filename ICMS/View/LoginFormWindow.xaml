@@ -45,12 +45,13 @@
                              FontSize="14"                    
                              materialDesign:HintAssist.Hint="Login Name"
                                  materialDesign:TextFieldAssist.HasClearButton="True"
-                             Text=""/>
+                             Text="admin"/>
 
                         <PasswordBox x:Name="PasswordBox"  Style="{StaticResource MaterialDesignOutlinedPasswordBox}"
                                  Margin="0 20 0 0" Width="280"
                                  BorderThickness="2" BorderBrush="LightGray"
                                      FontSize="14"
+                                     
                                  materialDesign:HintAssist.Hint="Password"
                                  materialDesign:TextFieldAssist.HasClearButton="True"/>
 

@@ -12,6 +12,11 @@ namespace ICMS.Validation
     {
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
+            if (value == null)
+            {
+                return new ValidationResult(false, "Field is required.");
+            }
+
             return string.IsNullOrWhiteSpace((value ?? "").ToString())
                 ? new ValidationResult(false, "Field is required.")
                 : ValidationResult.ValidResult;

@@ -141,7 +141,19 @@
                                 VerticalAlignment="Center"        
                                 Margin="16 0 0 0"         
                                 FontWeight="Bold" Foreground="White" Background="Transparent"/>
-
+                            <TextBlock  Text="("         
+                                VerticalAlignment="Center"        
+                                Margin="5 0 0 0"         
+                                FontWeight="Normal"  Foreground="White" Background="Transparent"/>
+                            <TextBlock  Text="{Binding CurrentUser.LoginName, Mode=OneWay}"         
+                                VerticalAlignment="Center"        
+                                Margin="1 0 0 0"         
+                                FontWeight="Bold" FontStyle="Italic" Foreground="White" Background="Transparent"/>
+                            <TextBlock  Text=")"         
+                                VerticalAlignment="Center"        
+                                Margin="1 0 0 0"         
+                                FontWeight="Normal" Foreground="White" Background="Transparent"/>
+                            
                             <materialDesign:PopupBox PlacementMode="BottomAndAlignRightEdges" 
                                                  StaysOpen="True"  
                                                  Padding="0 0 -1 0"      

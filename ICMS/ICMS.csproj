@@ -133,6 +133,7 @@
     <Compile Include="Converter\MaskPassword_Converter.cs" />
     <Compile Include="CustomControl\FilterableComboBox.cs" />
     <Compile Include="HelperFunction\BackupDB.cs" />
+    <Compile Include="HelperFunction\PasswordHelper.cs" />
     <Compile Include="HelperFunction\StringExtensions.cs" />
     <Compile Include="HelperFunction\UncertaintyEvaluation.cs" />
     <Compile Include="Settings.cs" />
@@ -182,7 +183,9 @@
     <Compile Include="ViewModel\RoleManagementViewModel.cs" />
     <Compile Include="ViewModel\TMViewModel.cs" />
     <Compile Include="ViewModel\UnitViewModel.cs" />
+    <Compile Include="ViewModel\UserAddNewDialogViewModel.cs" />
     <Compile Include="ViewModel\UserEditInfo.cs" />
+    <Compile Include="ViewModel\UserEditDialogViewModel.cs" />
     <Compile Include="ViewModel\UserManagementViewModel.cs" />
     <Compile Include="ViewModel\UserRoleManagementViewModel.cs" />
     <Compile Include="ViewModel\ViewCertificatePdfFileDialogViewModel.cs" />
@@ -239,6 +242,12 @@
     </Compile>
     <Compile Include="View\UC_Dialog\UC_ICMS_infos_Dialog.xaml.cs">
       <DependentUpon>UC_ICMS_infos_Dialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UC_Dialog\UC_UserAddNew_Dialog.xaml.cs">
+      <DependentUpon>UC_UserAddNew_Dialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UC_Dialog\UC_UserEdit_Dialog.xaml.cs">
+      <DependentUpon>UC_UserEdit_Dialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\UC_Dialog\UC_ViewCertificatePdfFile_Dialog.xaml.cs">
       <DependentUpon>UC_ViewCertificatePdfFile_Dialog.xaml</DependentUpon>
@@ -379,6 +388,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\UC_Dialog\UC_ICMS_infos_Dialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UC_Dialog\UC_UserAddNew_Dialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UC_Dialog\UC_UserEdit_Dialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

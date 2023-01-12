@@ -2072,7 +2072,7 @@ namespace ICMS.Model.DataAccess
             {
                 string procedure = "dbo.SpSensor_Delete";
                 var p = new DynamicParameters();
-                p.Add("@SensorId", model.MachineId);
+                p.Add("@SensorId", model.SensorId);
                 var result = conn.Execute(procedure, p, commandType: CommandType.StoredProcedure);
                 output = 1;
             }

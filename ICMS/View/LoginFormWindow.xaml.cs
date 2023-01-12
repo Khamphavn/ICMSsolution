@@ -30,8 +30,8 @@ namespace ICMS.View
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
-            string hashPasswordInput = GenerateSHA512String(LoginNameTxtBox.Text + PasswordBox.Password);
+           
+            string hashPasswordInput = GenerateSHA512String(PasswordBox.Password.ToLower());
 
 
             User user = GetAuthenticatedUser(LoginNameTxtBox.Text, hashPasswordInput);

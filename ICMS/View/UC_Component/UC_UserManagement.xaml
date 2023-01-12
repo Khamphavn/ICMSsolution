@@ -15,8 +15,11 @@
     <UserControl.Resources>
         <converter:MaskPassword_Converter x:Key="MasksPassword_Converter"/>
     </UserControl.Resources>
+    <materialDesign:DialogHost Identifier="RootDialog" CloseOnClickAway="True" IsOpen="{Binding IsDialogOpen}"
+                               DialogContent="{Binding DialogContent}"
+                               Style="{StaticResource MaterialDesignEmbeddedDialogHost}">
 
-    <Grid>
+        <Grid>
         <GroupBox Header="Quản lý tài khoản" Margin="10" 
                   Visibility="{Binding CurrentUser.Role.RoleActions[0].View, Converter={StaticResource BooleanToVisibilityConverter}}">
             <Grid>
@@ -30,98 +33,25 @@
                 <materialDesign:Card Grid.Row="0" Margin="5 10 5 5"  Padding="0 5 0 5">
                     <StackPanel Orientation="Horizontal">
                         <!--Edit button-->
-                        <Button Margin="10 0 20 0" Width="80" Command="{Binding UserEditButtonCommand}">
-                            <Button.Style>
-                                <Style BasedOn="{StaticResource MaterialDesignRaisedButton}" TargetType="Button">
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding CurrentOperationMode}" Value="NormalMode">
-                                            <Setter Property="IsEnabled" Value="{Binding  CurrentUser.Role.RoleActions[0].Edit}"/>
-                                            <Setter Property="Content" Value="Sửa"/>
-                                        </DataTrigger>
-
-                                        <MultiDataTrigger>
-                                            <MultiDataTrigger.Conditions>
-                                                <Condition Binding="{Binding CurrentOperationMode}" Value="EditMode"/>
-                                                <Condition Binding="{Binding Path=(Validation.HasError), ElementName=User_LoginName_txb}" Value="True"/>
-                                            </MultiDataTrigger.Conditions>
-                                            <Setter Property="IsEnabled" Value="False"/>
-                                            <Setter Property="Content" Value="Lưu"/>
-                                        </MultiDataTrigger>
-                                        <MultiDataTrigger>
-                                            <MultiDataTrigger.Conditions>
-                                                <Condition Binding="{Binding CurrentOperationMode}" Value="EditMode"/>
-                                                <Condition Binding="{Binding Path=(Validation.HasError), ElementName=User_FullName_txb}" Value="True"/>
-                                            </MultiDataTrigger.Conditions>
-                                            <Setter Property="IsEnabled" Value="False"/>
-                                            <Setter Property="Content" Value="Lưu"/>
-                                        </MultiDataTrigger>
-                                        <MultiDataTrigger>
-                                            <MultiDataTrigger.Conditions>
-                                                <Condition Binding="{Binding CurrentOperationMode}" Value="EditMode"/>
-                                                <Condition Binding="{Binding Path=(Validation.HasError), ElementName=User_LoginName_txb}" Value="False"/>
-                                                <Condition Binding="{Binding Path=(Validation.HasError), ElementName=User_FullName_txb}" Value="False"/>
-                                            </MultiDataTrigger.Conditions>
-                                            <Setter Property="IsEnabled" Value="True"/>
-                                            <Setter Property="Content" Value="Lưu"/>
-                                        </MultiDataTrigger>
-
-                                        <DataTrigger Binding="{Binding CurrentOperationMode}" Value="AddMode">
-                                            <Setter Property="IsEnabled" Value="False"/>
-                                            <Setter Property="Content" Value="Sửa"/>
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Button.Style>
+                            <Button Margin="10 0 20 0" Width="80"  Content="Sửa" Command="{Binding UserEditButtonCommand}">
+                           
                         </Button>
 
                         <!--Add button-->
-                        <Button Margin="10 0 20 0" Width="80"  Command="{Binding UserAddButtonCommand}">
-                            <Button.Style>
-                                <Style BasedOn="{StaticResource MaterialDesignRaisedButton}" TargetType="Button">
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding CurrentOperationMode}" Value="NormalMode">
-                                            <Setter Property="IsEnabled" Value="{Binding CurrentUser.Role.RoleActions[0].Add}"/>
-                                            <Setter Property="Content" Value="Thêm"/>
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding CurrentOperationMode}" Value="EditMode">
-                                            <Setter Property="Visibility" Value="Collapsed"/>
-                                            <Setter Property="IsEnabled" Value="False"/>
-                                            <Setter Property="Content" Value="Lưu"/>
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding CurrentOperationMode}" Value="AddMode">
-                                            <Setter Property="IsEnabled" Value="True"/>
-                                            <Setter Property="Content" Value="Lưu"/>
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Button.Style>
+                            <Button Margin="10 0 20 0" Width="80" Content="Thêm"  Command="{Binding UserAddButtonCommand}">
+                            
                         </Button>
 
-                        <!--Cancel button-->
-                        <Button Margin="10 0 20 0" Width="80"  Command="{Binding UserCancelButtonCommand}"  Content="Hủy">
-                            <Button.Style>
-                                <Style BasedOn="{StaticResource MaterialDesignRaisedButton}" TargetType="Button">
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding CurrentOperationMode}" Value="NormalMode">
-                                            <Setter Property="Visibility" Value="Hidden"/>
-                                            <Setter Property="IsEnabled" Value="False"/>
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding CurrentOperationMode}" Value="EditMode">
-                                            <Setter Property="IsEnabled" Value="True"/>
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding CurrentOperationMode}" Value="AddMode">
-                                            <Setter Property="IsEnabled" Value="True"/>
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Button.Style>
+                        <!-- Delete button-->
+                            <Button Margin="10 0 20 0" Width="80"  Content="Xóa"  Command="{Binding UserCancelButtonCommand}">
+                            
                         </Button>
                     </StackPanel>
                 </materialDesign:Card>
 
 
                 <!--Info on slected item-->
-                <materialDesign:Card Grid.Row="1" Margin="5 10 5 5"  Padding="0 10 0 10">
+                <!--<materialDesign:Card Grid.Row="1" Margin="5 10 5 5"  Padding="0 10 0 10">
                     <materialDesign:Card.Style>
                         <Style TargetType="materialDesign:Card">
                             <Style.Triggers>
@@ -146,7 +76,7 @@
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
 
-                        <!--Login Name-->
+                        --><!--Login Name--><!--
                         <TextBox x:Name="User_LoginName_txb" Grid.Column="0" Margin="5 0 0 15" 
                                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                  Width="{Binding ElementName=User_LoginName, Path=ActualWidth}"
@@ -165,7 +95,7 @@
                             </TextBox.Text>
                         </TextBox>
 
-                        <!--Full Name-->
+                        --><!--Full Name--><!--
                         <TextBox x:Name="User_FullName_txb" Grid.Column="1" Margin="5 0 0 15"
                                  Width="{Binding ElementName=User_FullName, Path=ActualWidth}"
                                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
@@ -183,7 +113,7 @@
                             </TextBox.Text>
                         </TextBox>
 
-                        <!--Role name-->
+                        --><!--Role name--><!--
                         <ComboBox x:Name="User_Role_cbox" Grid.Column="2"
                                    Margin="1 0 0 15"  Padding="0 7 3 5" Height="30"
                                   Width="{Binding ElementName=User_Role, Path=ActualWidth}"
@@ -202,23 +132,51 @@
                             </ComboBox.SelectedItem>
                         </ComboBox>
 
-                        <!--IsActive-->
-                        <!--<CheckBox  x:Name="ClassicModeCheckBox" Grid.Column="3"
-                           Width="{Binding ElementName=User_IsActive, Path=ActualWidth}"
-                           IsThreeState="False"
-                           IsChecked="{Binding User_IsActive}"
-                           Content="Is Active" />-->
+
+                        --><!--Password -->
+                        <!--<TextBox x:Name="User_Password_box" Grid.Column="3"
+                                     Margin="1 0 0 15"  Padding="0 7 3 5" Height="30"
+                                     Width="{Binding ElementName=User_Password, Path=ActualWidth}"
+                                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                 materialDesign:HintAssist.Hint="Full Name"  
+                                 materialDesign:HintAssist.IsFloating="True"
+                                 materialDesign:TextBlockAssist.AutoToolTip="True"
+                                 materialDesign:ValidationAssist.HorizontalAlignment="Left"
+                                      >
+                        </TextBox>-->
+                        
+                        <!--IsActive--><!--
                         <StackPanel Orientation="Vertical" Grid.Column="3"
                             HorizontalAlignment="Center" VerticalAlignment="Top"
                             Width="{Binding ElementName=User_IsActive, Path=ActualWidth}">
                             <TextBlock Text="Kích hoạt" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0 -7 0 0"  FontSize="12" />
-                            <CheckBox VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0 10 0 0" 
+                            <CheckBox VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0 5 0 0" 
                               IsThreeState="False"
                               IsChecked="{Binding User_IsActive}"/>
                         </StackPanel>
+
+                        --><!-- Reset button --><!--
+                        <Button Margin="0 0 5 0" Width="120" Grid.Column="4"  Command="{Binding UserCancelButtonCommand}"  Content="Đổi mật khẩu">
+                            <Button.Style>
+                                <Style BasedOn="{StaticResource MaterialDesignRaisedDarkButton}" TargetType="Button">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding CurrentOperationMode}" Value="NormalMode">
+                                            <Setter Property="Visibility" Value="Hidden"/>
+                                            <Setter Property="IsEnabled" Value="False"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding CurrentOperationMode}" Value="EditMode">
+                                            <Setter Property="IsEnabled" Value="True"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding CurrentOperationMode}" Value="AddMode">
+                                            <Setter Property="IsEnabled" Value="True"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
                     </Grid>
 
-                </materialDesign:Card>
+                </materialDesign:Card>-->
 
 
                 <!--User datagrid-->
@@ -383,4 +341,5 @@
             </Grid>
         </GroupBox>
     </Grid>
+    </materialDesign:DialogHost>
 </UserControl>

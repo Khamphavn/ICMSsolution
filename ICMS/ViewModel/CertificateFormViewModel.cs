@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
+using DocumentFormat.OpenXml.Office2010.ExcelAc;
 using ICMS.Command;
 using ICMS.Model;
 using ICMS.Model.DataAccess;
@@ -276,7 +277,7 @@ namespace ICMS.ViewModel
                 CalibDatas.Add(new CalibDataDTO() { STT = 4, RefValue = 800.0 });
 
 
-                //CreateDemoCertificate();
+                CreateDemoCertificate();
             }
             Mouse.OverrideCursor = null;
 
@@ -304,8 +305,8 @@ namespace ICMS.ViewModel
                         {
                             Sensors.Add(new Sensor()
                             {
-                                Model = "newmodel",
-                                Serial = "N/A",
+                                //Model = "newmodel",
+                                //Serial = "N/A",
                                 SensorType = new SensorType(),
                                 //AvailbleSensorType = AvailableSensorType,
                                 //AvailbleSensorTypeString = availbleSensorTypeString
@@ -423,23 +424,29 @@ namespace ICMS.ViewModel
                                 {
                                     foreach (string message in messages)
                                     {
-                                        var result = MessageBox.Show($"{message}\n\nAre you sure ?", "Infos", MessageBoxButton.YesNo, MessageBoxImage.Warning, MessageBoxResult.No);
-                                        if (result == MessageBoxResult.No) { finalResult = MessageBoxResult.No; }
-                                        break;
+                                        var result = MessageBox.Show($"{message}\n\nBỏ qua thông tin này ?", "Warning", MessageBoxButton.YesNo, MessageBoxImage.Warning, MessageBoxResult.No);
+                                        if (result == MessageBoxResult.No) { 
+                                            finalResult = MessageBoxResult.No;
+                                            break;
+                                        }
+
                                     }
                                 }
 
                                 if (finalResult == MessageBoxResult.Yes)
                                 {
                                     //MessageBox.Show("Certificate has been saved to the databse !", "Infos", MessageBoxButton.OK, MessageBoxImage.Information, MessageBoxResult.OK);
-                                    Certificate newCertificate = CreateCertificateFromInputForm();
+                                    //Certificate newCertificate = CreateCertificateFromInputForm();
 
                                     if (operationMode == OperationMode.AddMode.ToString())
                                     {
+                                        Certificate newCertificate = CreateCertificateFromInputForm(certificate);
                                         GlobalConfig.Connection.Certificate_Insert(newCertificate, GlobalConfig.CnnString("ICMSdatabase"));
                                     }
                                     if (operationMode == OperationMode.EditMode.ToString())
                                     {
+                                        Certificate newCertificate = CreateCertificateFromInputForm(certificate);
+                                        //newCertificate.CertificateId = certificate.CertificateId;
                                         GlobalConfig.Connection.Certificate_Update(newCertificate, GlobalConfig.CnnString("ICMSdatabase"));
                                     }
 
@@ -525,9 +532,15 @@ namespace ICMS.ViewModel
 
 
         #region private function
-        private Certificate CreateCertificateFromInputForm()
+        private Certificate CreateCertificateFromInputForm(Certificate certificate)
         {
             Certificate newCertificate = new Certificate();
+
+            if (certificate != null)
+            {
+                newCertificate.CertificateId = certificate.CertificateId;
+            }
+           
 
             newCertificate.Customer = SelectedCustomer;
 
@@ -550,6 +563,12 @@ namespace ICMS.ViewModel
 
 
             Machine newMachine = new Machine();
+
+            if (certificate != null)
+            {
+                newMachine.MachineId = certificate.Machine.MachineId;
+            }
+            
             newMachine.Name = SelectedMachineName.Name;
             newMachine.MachineType = SelectedMachineType;
             newMachine.Model = MachineModel;
@@ -557,7 +576,10 @@ namespace ICMS.ViewModel
             newMachine.Manufacturer = MachineManufacturer;
             newMachine.MadeIn = MachineMadeIn;
 
-            newMachine.Sensors = Sensors.ToList();
+
+            List<Sensor> listSensors = Sensors.ToList();
+            listSensors.RemoveAll(p => p.SensorType == null);
+            newMachine.Sensors = listSensors;
 
             newCertificate.Machine = newMachine;
 
@@ -566,6 +588,13 @@ namespace ICMS.ViewModel
             foreach (CalibDataDTO calib in CalibDatas)
             {
                 CalibData newCalibData = new CalibData();
+
+                if (certificate != null)
+                {
+                    newCalibData.CertificateId = certificate.CertificateId;
+                }
+                
+
                 newCalibData.RadQuantity = calib.RadQuantity;
                 newCalibData.MachineReading = calib.MachineReading;
                 newCalibData.AvgReading = calib.AvgReading;
@@ -655,7 +684,7 @@ namespace ICMS.ViewModel
             // Machine.Serial
             if (string.IsNullOrWhiteSpace(MachineSerial)) { return false; }
 
-            // Sensors
+            // Sensors: eacrh sensor should have at least sensortype'name
             //if (Sensors.Count() >= 1)
             //{
             //    foreach (Sensor sensor in Sensors)
@@ -663,6 +692,17 @@ namespace ICMS.ViewModel
             //        bool hasModel = !string.IsNullOrWhiteSpace(sensor.Model);
             //        bool hasSerial = !string.IsNullOrWhiteSpace(sensor.Serial);
             //        bool hasSensorType = sensor.SensorType != null;
+
+            //        if (hasSensorType)
+            //        {
+            //            if (string.IsNullOrWhiteSpace(sensor.SensorType.Name))
+            //            {
+            //                if (hasModel | hasSerial)
+            //                {
+            //                    return false;
+            //                }
+            //            }
+            //        }
             //    }
             //}
 
@@ -698,17 +738,17 @@ namespace ICMS.ViewModel
         {
             List<string> recommendMessage = new List<string>();
 
-            if ( string.IsNullOrWhiteSpace(MachineModel) ) { recommendMessage.Add("Machine model is empty"); }
+            if ( string.IsNullOrWhiteSpace(MachineModel) ) { recommendMessage.Add("Thiếu thông tin về model của thiết bị."); }
 
-            if ( string.IsNullOrWhiteSpace(MachineSerial) ) { recommendMessage.Add("Machine serial is empty"); }
+            //if ( string.IsNullOrWhiteSpace(MachineSerial) ) { recommendMessage.Add("Machine serial is empty"); }
 
-            if ( string.IsNullOrWhiteSpace(MachineManufacturer) ) { recommendMessage.Add("Machine's manufacturer is empty"); }
+            if ( string.IsNullOrWhiteSpace(MachineManufacturer) ) { recommendMessage.Add("Thiếu thông tin về hãng sản xuất."); }
 
-            if ( string.IsNullOrWhiteSpace(MachineMadeIn) ) { recommendMessage.Add("Country is empty"); }
+            if ( string.IsNullOrWhiteSpace(MachineMadeIn) ) { recommendMessage.Add("Thiếu thông tin về nước sản xuất"); }
 
-            if (SelectedTM == null) { recommendMessage.Add("Technical Manager (TM) is empty"); }
+            //if (SelectedTM == null) { recommendMessage.Add("Technical Manager (TM) is empty"); }
 
-            if (Sensors == null) { recommendMessage.Add("No information abount machine's sensor"); }
+            //if (Sensors == null) { recommendMessage.Add("No information abount machine's sensor"); }
 
             return recommendMessage;
         }
