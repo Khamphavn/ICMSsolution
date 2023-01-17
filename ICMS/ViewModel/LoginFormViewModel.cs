@@ -47,6 +47,7 @@ namespace ICMS.ViewModel
                 Application.Current.Shutdown();
             }
 
+            IsAllCheckPass = true;
 
             #region NavigateAppShutdownCommand
             NavigateAppShutdownCommand = new RelayCommand<object>

@@ -181,7 +181,6 @@
     <Compile Include="ViewModel\MenuBarViewModel.cs" />
     <Compile Include="ViewModel\RadQuantityViewModel.cs" />
     <Compile Include="ViewModel\RoleManagementViewModel.cs" />
-    <Compile Include="ViewModel\SplashScreenViewModel.cs" />
     <Compile Include="ViewModel\TMViewModel.cs" />
     <Compile Include="ViewModel\UnitViewModel.cs" />
     <Compile Include="ViewModel\UserAddNewDialogViewModel.cs" />
@@ -192,9 +191,6 @@
     <Compile Include="ViewModel\ViewCertificatePdfFileDialogViewModel.cs" />
     <Compile Include="View\LoginFormWindow.xaml.cs">
       <DependentUpon>LoginFormWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\SplashScreenWindow.xaml.cs">
-      <DependentUpon>SplashScreenWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\UC_Component\UC_CertificateForm.xaml.cs">
       <DependentUpon>UC_CertificateForm.xaml</DependentUpon>
@@ -324,10 +320,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\LoginFormWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\SplashScreenWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

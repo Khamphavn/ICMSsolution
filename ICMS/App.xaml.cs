@@ -14,15 +14,10 @@ namespace ICMS
     /// </summary>
     public partial class App : Application
     {
-        DateTime LastBackup;
-
-
         public App()
         {
             //Register Syncfusion license
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NzA1NzE2QDMyMzAyZTMyMmUzMFNyMTNveWZnbkF6b0F2TFAwNzBVUVF1RThQakFHZnp0cW1MbjVNcWhYdkk9");
-
-
             
         }
 

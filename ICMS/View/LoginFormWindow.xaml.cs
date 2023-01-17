@@ -38,8 +38,8 @@ namespace ICMS.View
 
             if (user != null)
             {
-                //MessageBox.Show("Login successful");
                 User currentUser = user;
+
                 MainWindow mainWindow = new MainWindow()
                 {
                     DataContext = new MainViewModel(currentUser)

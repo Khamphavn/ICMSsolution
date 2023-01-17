@@ -296,6 +296,7 @@ namespace ICMS.Bussiness.CertificateProcessing
                 table1.Append(headerRow);
 
                 GenerateDataRow(table1, certificate);
+                GenerateComment(table1, certificate);
 
                 #endregion
 
@@ -315,8 +316,6 @@ namespace ICMS.Bussiness.CertificateProcessing
             return 1;
         }
 
-
-       
 
         private TableRow GenerateHeaderRow(Certificate certificate)
         {
@@ -744,7 +743,6 @@ namespace ICMS.Bussiness.CertificateProcessing
                 FontSizeComplexScript fontSizeComplexScript26 = new FontSizeComplexScript() { Val = "26" };
                 FontSize fontSize26 = new FontSize() { Val = "26" };
 
-
                 ParagraphMarkRunProperties paragraphMarkRunPropertiesNormal = new ParagraphMarkRunProperties();
                 paragraphMarkRunPropertiesNormal.Append(runFontsTimeNewRoman);
                 paragraphMarkRunPropertiesNormal.Append(fontSize26);
@@ -935,8 +933,7 @@ namespace ICMS.Bussiness.CertificateProcessing
                 tableCell5.Append(paragraph5);
                 #endregion
 
-
-
+                #region Add all cells to table
                 tableRow1.Append(tablePropertyExceptions1);
                 tableRow1.Append(tableRowProperties1);
                 tableRow1.Append(tableCell1);
@@ -946,10 +943,245 @@ namespace ICMS.Bussiness.CertificateProcessing
                 tableRow1.Append(tableCell5);
 
                 table.Append(tableRow1);
+                #endregion
             }
+
+
         }
 
+        private void GenerateComment(Table table, Certificate certificate)
+        {
+            #region Common properties
+            Justification justificationCenter = new Justification() { Val = JustificationValues.Center };
+            Justification justificationBoth = new Justification() { Val = JustificationValues.Both };
 
+            RunFonts runFontsTimeNewRoman = new RunFonts() { Ascii = "Times New Roman", HighAnsi = "Times New Roman", ComplexScript = "Times New Roman" };
+            FontSizeComplexScript fontSizeComplexScript11 = new FontSizeComplexScript() { Val = "22" };
+            FontSizeComplexScript fontSizeComplexScript12 = new FontSizeComplexScript() { Val = "24" };
+            FontSize fontSize11 = new FontSize() { Val = "22" };
+            FontSize fontSize12 = new FontSize() { Val = "24" };
+
+            Italic italicFont = new Italic();
+            ItalicComplexScript italicComplexScript = new ItalicComplexScript();
+
+            ParagraphMarkRunProperties paragraphMarkRunPropertiesNormal = new ParagraphMarkRunProperties();
+            paragraphMarkRunPropertiesNormal.Append(runFontsTimeNewRoman.CloneNode(true));
+            paragraphMarkRunPropertiesNormal.Append(fontSize12.CloneNode(true));
+            paragraphMarkRunPropertiesNormal.Append(fontSizeComplexScript12.CloneNode(true));
+
+            ParagraphProperties paragraphPropertiesNormal = new ParagraphProperties();
+            SpacingBetweenLines spacingBetweenLinesNormal = new SpacingBetweenLines() { Before = "40", After = "40" };
+            paragraphPropertiesNormal.Append(spacingBetweenLinesNormal);
+            paragraphPropertiesNormal.Append(justificationCenter);
+            paragraphPropertiesNormal.Append(paragraphMarkRunPropertiesNormal);
+
+            //
+            ParagraphProperties paragraphPropertiesItalic = new ParagraphProperties();
+            SpacingBetweenLines spacingBetweenLines18 = new SpacingBetweenLines() { Before = "120", After = "40" };
+
+            ParagraphMarkRunProperties paragraphMarkRunPropertiesItalic = new ParagraphMarkRunProperties();
+            paragraphMarkRunPropertiesItalic.Append(runFontsTimeNewRoman);
+            paragraphMarkRunPropertiesItalic.Append(italicFont);
+            paragraphMarkRunPropertiesItalic.Append(italicComplexScript);
+
+            paragraphPropertiesItalic.Append(spacingBetweenLines18);
+            paragraphPropertiesItalic.Append(justificationBoth);
+            paragraphPropertiesItalic.Append(paragraphMarkRunPropertiesItalic);
+
+
+            //
+            ParagraphProperties paragraphPropertiesItalicSmall = new ParagraphProperties();
+            SpacingBetweenLines spacingBetweenLinesSmall = new SpacingBetweenLines() { Before = "40", After = "40" };
+
+            ParagraphMarkRunProperties paragraphMarkRunPropertiesItalicSmall = new ParagraphMarkRunProperties();
+            paragraphMarkRunPropertiesItalicSmall.Append(runFontsTimeNewRoman.CloneNode(true));
+            paragraphMarkRunPropertiesItalicSmall.Append(italicFont.CloneNode(true));
+            paragraphMarkRunPropertiesItalicSmall.Append(italicComplexScript.CloneNode(true));
+
+            paragraphPropertiesItalicSmall.Append(spacingBetweenLinesSmall);
+            paragraphPropertiesItalicSmall.Append(justificationBoth.CloneNode(true));
+            paragraphPropertiesItalicSmall.Append(paragraphMarkRunPropertiesItalicSmall);
+
+
+            //
+            RunProperties runPropertiesNormal = new RunProperties();
+            runPropertiesNormal.Append(runFontsTimeNewRoman.CloneNode(true));
+            runPropertiesNormal.Append(fontSize12.CloneNode(true));
+            runPropertiesNormal.Append(fontSizeComplexScript12.CloneNode(true));
+
+            RunProperties runPropertiesItalic11 = new RunProperties();
+            runPropertiesItalic11.Append(italicFont.CloneNode(true));
+            runPropertiesItalic11.Append(runFontsTimeNewRoman.CloneNode(true));
+            runPropertiesItalic11.Append(fontSize11.CloneNode(true));
+            runPropertiesItalic11.Append(fontSizeComplexScript11.CloneNode(true));
+
+
+            RunProperties runPropertiesItalic12 = new RunProperties();
+            runPropertiesItalic12.Append(italicFont.CloneNode(true));
+            runPropertiesItalic12.Append(runFontsTimeNewRoman.CloneNode(true));
+            runPropertiesItalic12.Append(fontSize12.CloneNode(true));
+            runPropertiesItalic12.Append(fontSizeComplexScript12.CloneNode(true));
+
+            RunProperties runPropertiesItalic12Subscript = new RunProperties();
+            runPropertiesItalic12Subscript.Append(italicFont.CloneNode(true));
+            runPropertiesItalic12Subscript.Append(runFontsTimeNewRoman.CloneNode(true));
+            runPropertiesItalic12Subscript.Append(fontSize12.CloneNode(true));
+            runPropertiesItalic12Subscript.Append(fontSizeComplexScript12.CloneNode(true));
+            VerticalTextAlignment verticalTextAlignment2 = new VerticalTextAlignment() { Val = VerticalPositionValues.Subscript };
+            runPropertiesItalic12Subscript.Append(verticalTextAlignment2);
+
+            TableJustification tableJustificationCenter = new TableJustification() { Val = TableRowAlignmentValues.Center };
+            TableJustification tableJustificationLeft = new TableJustification() { Val = TableRowAlignmentValues.Left };
+
+            #endregion
+
+            #region Table properties
+
+            TableRow tableRowComment = new TableRow();
+            TableRowProperties tableRowPropertiesComment = new TableRowProperties();
+            TableRowHeight tableRowHeightComment = new TableRowHeight() { Val = (UInt32Value)372U };
+
+            tableRowPropertiesComment.Append(tableRowHeightComment.CloneNode(true));
+            tableRowPropertiesComment.Append(tableJustificationLeft.CloneNode(true));
+
+            TableCell tableCell16 = new TableCell();
+
+            TableCellProperties tableCellProperties16 = new TableCellProperties();
+            TableCellWidth tableCellWidth16 = new TableCellWidth() { Width = "9777", Type = TableWidthUnitValues.Dxa };
+            GridSpan gridSpan1 = new GridSpan() { Val = 5 };
+
+            //tableCellProperties16.Append(tableCellWidth16);
+            tableCellProperties16.Append(gridSpan1);
+
+            tableCell16.Append(tableCellProperties16);
+
+            #endregion
+
+            #region Dose Quanity
+
+            Paragraph paragraphDoseQuanity = new Paragraph();
+
+            // Dosimetry quantity - VN
+            Run run18 = new Run();
+            Text text18 = new Text() { Space = SpaceProcessingModeValues.Preserve };
+            text18.Text = "- " 
+                + certificate.DoseQuantity.Notation 
+                + " là suất " 
+                + certificate.DoseQuantity.NameVN.ToLower()
+                + ". "
+                ;
+            run18.Append(runPropertiesItalic12);
+            run18.Append(text18);
+
+            // Dosimetry quantity - EN
+            Run run19 = new Run();
+            Text text19 = new Text() { Space = SpaceProcessingModeValues.Preserve };
+            text19.Text = " ( "
+                + certificate.DoseQuantity.Notation
+                + " is the "
+                + certificate.DoseQuantity.NameEN.ToLower()
+                + " rate)";
+            run19.Append(runPropertiesItalic11);
+            run19.Append(text19);
+
+            paragraphDoseQuanity.Append(paragraphPropertiesItalic);
+            paragraphDoseQuanity.Append(run18); // Dosimetry quantity - VN
+            paragraphDoseQuanity.Append(run19); // Dosimetry quantity - EN
+   
+            
+            tableCell16.Append(paragraphDoseQuanity);
+
+            #endregion
+
+            #region CF definition
+            // CF definition - VN
+            Paragraph paragraphCFDefinitionVN = new Paragraph();
+            
+            Run run28 = new Run();
+            Text text28 = new Text();
+            text28.Text = "- Hệ số chuẩn = Giá trị chuẩn / Chỉ thị của thiết bị";
+            run28.Append(runPropertiesItalic12.CloneNode(true));
+            run28.Append(text28);
+            paragraphCFDefinitionVN.Append(paragraphPropertiesItalic.CloneNode(true));
+            paragraphCFDefinitionVN.Append(run28); // definition - VN
+
+            // CF definition - EN
+            Paragraph paragraphCFDefinitionEN = new Paragraph();
+            Run run29 = new Run();
+            Text text29 = new Text() { Space = SpaceProcessingModeValues.Preserve };
+            text29.Text = "   (Calibration factor = Reference value / Instrument indicator) \n";
+            run29.Append(runPropertiesItalic11.CloneNode(true));
+            run29.Append(text29);
+            paragraphCFDefinitionEN.Append(paragraphPropertiesItalicSmall.CloneNode(true));
+            paragraphCFDefinitionEN.Append(run29); 
+            
+            // Add to paragraph and table
+            tableCell16.Append(paragraphCFDefinitionVN);
+            tableCell16.Append(paragraphCFDefinitionEN);
+
+            #endregion
+
+            #region Uncertainty declaration
+            Paragraph paragraphUncertainty = new Paragraph();
+
+            // Uncertainty - VN
+            Run run31 = new Run();
+            Text text31 = new Text() { Space = SpaceProcessingModeValues.Preserve };
+            text31.Text = "- U";
+            run31.Append(runPropertiesItalic12.CloneNode(true));
+            run31.Append(text31);
+
+            Run run32 = new Run();
+            Text text32 = new Text() { Space = SpaceProcessingModeValues.Preserve };
+            text32.Text = "c";
+            run32.Append(runPropertiesItalic12Subscript);
+            run32.Append(text32);
+
+            Run run33 = new Run();
+            Text text33 = new Text() { Space = SpaceProcessingModeValues.Preserve };
+            text33.Text = " là độ không đảm bảo đo mở rộng, được công bố với hệ số phủ k = 2 tương ứng mức tin cậy xấp xỉ 95%. ";
+            run33.Append(runPropertiesItalic12.CloneNode(true));
+            run33.Append(text33);
+
+            // Uncertainty - EN
+            Run run41 = new Run();
+            Text text41 = new Text() { Space = SpaceProcessingModeValues.Preserve };
+            text41.Text = " (U";
+            run41.Append(runPropertiesItalic11.CloneNode(true));
+            run41.Append(text41);
+
+            Run run42 = new Run();
+            Text text42 = new Text() { Space = SpaceProcessingModeValues.Preserve };
+            text42.Text = "c";
+            run42.Append(runPropertiesItalic12Subscript.CloneNode(true));
+            run42.Append(text42);
+
+            Run run43 = new Run();
+            Text text43 = new Text() { Space = SpaceProcessingModeValues.Preserve };
+            text43.Text = "  is the expanded uncertainty corresponding to a coverage factor, k=2 and a confidence level, P ~ 95% )";
+            run43.Append(runPropertiesItalic11.CloneNode(true));
+            run43.Append(text43);
+
+
+            // Add text to paragraph
+            paragraphUncertainty.Append(paragraphPropertiesItalic.CloneNode(true));
+            paragraphUncertainty.Append(run31);
+            paragraphUncertainty.Append(run32);
+            paragraphUncertainty.Append(run33);
+            paragraphUncertainty.Append(run41);
+            paragraphUncertainty.Append(run42);
+            paragraphUncertainty.Append(run43);
+
+            // Add to paragraph and table
+            tableCell16.Append(paragraphUncertainty);
+            #endregion
+
+            tableRowComment.Append(tableRowPropertiesComment);
+            tableRowComment.Append(tableCell16);
+
+
+            table.Append(tableRowComment);
+        }
 
         #endregion
 

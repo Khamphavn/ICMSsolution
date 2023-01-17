@@ -230,9 +230,11 @@ namespace ICMS.ViewModel
 
                 foreach (Sensor sensor in Sensors)
                 {
-                    sensor.SensorType = AvailableSensorTypes.FirstOrDefault(s => s.Name == sensor.SensorType.Name) ;
+                    if (sensor.SensorType != null){
+                        sensor.SensorType = AvailableSensorTypes.FirstOrDefault(s => s.Name == sensor.SensorType.Name);
+                    }
+                    
                 }
-
 
                 SelectedRefUnit = AvailableUnits.FirstOrDefault(s => s.Name == certificate.CalibDatas[0].RefUnit);
                 SelectedMachineUnit = AvailableUnits.FirstOrDefault(s => s.Name == certificate.CalibDatas[0].MachineUnit);
