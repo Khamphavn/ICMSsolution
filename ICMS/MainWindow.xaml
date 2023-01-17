@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ICMS"
         mc:Ignorable="d"
-        Title="INST Calibration Management System  (Beta version 1.1)" 
+        Title="INST Calibration Management System" 
         WindowStartupLocation="CenterScreen"
         WindowState="Maximized" MinWidth="1200" MinHeight="700"
         ResizeMode="CanResize"
@@ -24,16 +24,11 @@
         
         >
 
-
-
-
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-
 
         <control:UC_MenuBar Grid.Row="0"/>
 
@@ -101,6 +96,5 @@
             </ContentControl>
         </Grid>
     </Grid>
-
 
 </Window>

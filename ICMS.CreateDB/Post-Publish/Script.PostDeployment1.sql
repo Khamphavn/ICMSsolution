@@ -10,7 +10,7 @@ Post-Deployment Script Template
 --------------------------------------------------------------------------------------
 */
 
-USE ICMS_BetaV1
+USE ICMS
 GO
 
 

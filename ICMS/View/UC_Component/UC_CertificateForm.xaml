@@ -9,7 +9,7 @@
              
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:converter="clr-namespace:ICMS.Converter"
-            xmlns:validation="clr-namespace:ICMS.Validation"
+             xmlns:validation="clr-namespace:ICMS.Validation"
              xmlns:MyControls="clr-namespace:ICMS.CustomControl"
              >
 
@@ -78,13 +78,11 @@
                                     <ComboBox.SelectedItem>
                                         <Binding Path="SelectedCustomer" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
                                             <Binding.ValidationRules>
-                                                <validation:Customer_FullName_Validation
-                                            ValidatesOnTargetUpdated="True" 
-                                            ValidationStep="RawProposedValue"/>
+                                                <validation:Customer_FullName_Validation ValidatesOnTargetUpdated="True" 
+                                                                                         ValidationStep="RawProposedValue"/>
                                             </Binding.ValidationRules>
                                         </Binding>
                                     </ComboBox.SelectedItem>
-
 
                                     <MyControls:FilterableComboBox.ItemsPanel>
                                         <ItemsPanelTemplate>
@@ -92,11 +90,6 @@
                                         </ItemsPanelTemplate>
                                     </MyControls:FilterableComboBox.ItemsPanel>
                                 </MyControls:FilterableComboBox>
-
-                                <!--<ComboBox   Grid.Row="0" Grid.Column="1"
-                                    ItemsSource="{Binding AvailableCustomerList, Mode=TwoWay, NotifyOnSourceUpdated=True}" 
-                                       DisplayMemberPath="CustomerName" SelectedItem="{Binding SelectedCustomer}"                                     
-                                       DockPanel.Dock="Right" VerticalContentAlignment="Center" />-->
 
                                 <!-- Customer Address -->
                                 <Label Content="Địa chỉ" Grid.Row="1" Grid.Column="0" Margin="-5 4 0 0" Foreground="Black"/>
@@ -127,15 +120,14 @@
                                 <Label Content="Nhiệt độ (°C)"  Grid.Row="0" Grid.Column="0" Margin="-5 5 0 0" Foreground="Black" VerticalAlignment="Top"/>
 
                                 <TextBox Grid.Row="0" Grid.Column="1" x:Name="TemperatureTextBox" Margin="0 4 -5 15"
-                                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                                          materialDesign:ValidationAssist.PopupPlacement="Bottom"
+                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                         materialDesign:ValidationAssist.PopupPlacement="Bottom"
                                          materialDesign:TextFieldAssist.TextBoxViewMargin="5 0 5 0">
                                     <TextBox.Text>
                                         <Binding Path="Temperature" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
                                             <Binding.ValidationRules>
-                                                <validation:Temperature_Validation
-                                                                           ValidationStep="RawProposedValue"
-                                                                           ValidatesOnTargetUpdated="True"/>
+                                                <validation:Temperature_Validation ValidationStep="RawProposedValue"
+                                                                                   ValidatesOnTargetUpdated="True"/>
                                             </Binding.ValidationRules>
                                             <Binding.Converter>
                                                 <converter:OneDecimalText_Converter/>
@@ -149,15 +141,13 @@
 
                                 <TextBox Grid.Row="1" Grid.Column="1" x:Name="PressureTextBox"   Margin="0 4 -5 15"                               
                                          Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                                          materialDesign:ValidationAssist.PopupPlacement="Bottom"
-                                         >
+                                          materialDesign:ValidationAssist.PopupPlacement="Bottom">
                                     <TextBox.Text>
                                         <Binding Path="Pressure" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
                                             <Binding.ValidationRules>
-                                                <validation:Pressure_Validation MinPressure="990"
-                                                                        MaxPressure="1030"
-                                                                        ValidationStep="RawProposedValue"
-                                                                        ValidatesOnTargetUpdated="True"/>
+                                                <validation:Pressure_Validation MinPressure="990"    MaxPressure="1030"
+                                                                                ValidationStep="RawProposedValue"
+                                                                                ValidatesOnTargetUpdated="True"/>
                                             </Binding.ValidationRules>
                                             <Binding.Converter>
                                                 <converter:OneDecimalText_Converter/>
@@ -170,15 +160,12 @@
                                 <Label Content="Độ ẩm (%)"  Grid.Row="2" Grid.Column="0"  Margin="-5 7 0 0" Foreground="Black" VerticalAlignment="Top"/>
                                 <TextBox Grid.Row="2" Grid.Column="1" x:Name="HumidityTextBox"  Margin="0 4 -5 20"
                                          Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                                          materialDesign:ValidationAssist.PopupPlacement="Bottom"
-                                        >
+                                          materialDesign:ValidationAssist.PopupPlacement="Bottom">
                                     <TextBox.Text>
                                         <Binding Path="Humidity" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
                                             <Binding.ValidationRules>
-                                                <validation:Humidity_Validation MinHumidity="30"
-                                                                        MaxHumidity="70"
-                                                                        
-                                                                        ValidatesOnTargetUpdated="True"/>
+                                                <validation:Humidity_Validation MinHumidity="30" MaxHumidity="70"
+                                                                                ValidatesOnTargetUpdated="True"/>
                                             </Binding.ValidationRules>
                                             <Binding.Converter>
                                                 <converter:OneDecimalText_Converter/>
@@ -208,7 +195,6 @@
                                 <Label Content="Đại lượng liều "  Grid.Row="0" Grid.Column="0" Margin="-5 5 0 15" Foreground="Black"/>
                                 <ComboBox Grid.Row="0" Grid.Column="1"   Margin="0 4 -5 15" x:Name="DoseQuantityComboBox"
                                           Style="{StaticResource MaterialDesignComboBox}"
-                                          
                                           ItemsSource="{Binding AvailableDoseQuantities}"   DisplayMemberPath="Notation">
                                     <ComboBox.SelectedItem>
                                         <Binding Path="SelectedDoseQuantity">
@@ -226,23 +212,7 @@
                                         Style="{StaticResource MaterialDesignOutlinedDatePicker}"
                                         materialDesign:HintAssist.HelperText="Format: dd/MM/yyyy"
                                         materialDesign:TextFieldAssist.TextBoxViewMargin="0 0 0 0"
-                                        SelectedDateFormat="Short"
-                                        SelectedDate="{Binding CalibDate}">
-                                    <DatePicker.Resources>
-                                        <!--<Style TargetType="{x:Type DatePickerTextBox}">
-                                            <Setter Property="Control.Template">
-                                                <Setter.Value>
-                                                    <ControlTemplate>
-                                                        <TextBox x:Name="PART_TextBox"
-                                     Text="{Binding Path=SelectedDate, 
-                                            RelativeSource={RelativeSource AncestorType={x:Type DatePicker}}, 
-                                            StringFormat=dd/MM/yyyy}" />
-                                                    </ControlTemplate>
-                                                </Setter.Value>
-                                            </Setter>
-                                        </Style>-->
-                                    </DatePicker.Resources>
-
+                                        SelectedDateFormat="Short"  SelectedDate="{Binding CalibDate}">
                                 </DatePicker>
 
                                 <!-- Certificate No. -->
@@ -250,7 +220,6 @@
 
                                 <TextBox Grid.Row="2" Grid.Column="1"  x:Name="CertificateNumberTextBox" Margin="0 4 -5 10"
                                          Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                                        
                                          materialDesign:HintAssist.Hint="Format: YYMMn">
                                     <TextBox.Text>
                                         <Binding Path="CertificateNo" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
@@ -283,8 +252,7 @@
 
                                 <TextBox Grid.Row="0" Grid.Column="1" x:Name="PerformedByTextBox" Margin="0 4 -5 20"
                                          Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                                          materialDesign:ValidationAssist.PopupPlacement="Center"
-                                        >
+                                          materialDesign:ValidationAssist.PopupPlacement="Center">
                                     <TextBox.Text>
                                         <Binding Path="PerformedBy" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
                                             <Binding.ValidationRules>
@@ -298,7 +266,6 @@
                                 <Label Content="Quản lý kỹ thuật"  Grid.Row="1" Grid.Column="0"  Margin="-5 7 0 20" Foreground="Black"/>
                                 <ComboBox Grid.Row="1" Grid.Column="1"  Margin="0 4 -5 20"   x:Name="TMTextBox"
                                           Style="{StaticResource MaterialDesignComboBox}"
-                                         
                                           ItemsSource="{Binding AvailableTMs}"   DisplayMemberPath="Name">
 
                                     <ComboBox.SelectedItem>
@@ -311,7 +278,6 @@
                                 </ComboBox>
 
                             </Grid>
-
                         </GroupBox>
                     </Grid>
                 </Grid>
@@ -490,11 +456,6 @@
                                                 <Style TargetType="ComboBox" BasedOn="{StaticResource {ComponentResourceKey TypeInTargetAssembly={x:Type ComboBox}, ResourceId=MaterialDataGridComboBoxColumnEditingStyle}}" >
                                                     <Setter Property="DisplayMemberPath" Value="Name"/>
                                                     <Setter Property="SelectedItem" Value="{Binding SensorType, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}"/>
-                                                    <!--<Style.Triggers>
-                                                        <DataTrigger  Binding="{Binding Path=(Validation.HasError), 
-                                                        RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGridRow}}}" Value="True">
-                                                        </DataTrigger>
-                                                    </Style.Triggers>-->
                                                 </Style>
                                             </materialDesign:DataGridComboBoxColumn.EditingElementStyle>
                                         </materialDesign:DataGridComboBoxColumn>
@@ -503,7 +464,7 @@
                                         <DataGridTextColumn Header="Model" Binding="{Binding Model}" 
                                                         CanUserResize="True"
                                                         Width="150" MinWidth="80" MaxWidth="200"
-                                                            CellStyle="{StaticResource MaterialDesignDataGridCell}"
+                                                        CellStyle="{StaticResource MaterialDesignDataGridCell}"
                                                         ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
                                                         EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}"
                                                         />
@@ -513,8 +474,7 @@
                                                             CanUserResize="True"
                                                         Width="150" MinWidth="80" MaxWidth="200"
                                                         ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
-                                                        EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}"
-                                                        />
+                                                        EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}"/>
                                     </DataGrid.Columns>
                                 </DataGrid>
 
@@ -526,18 +486,16 @@
                                                 ToolTip="Remove last sensor"  ToolTipService.Placement="Right"
                                                 Background="Black"
                                                 Margin="5"
-                                                Width="25" Height="25"
-                                       >
+                                                Width="25" Height="25">
                                             <materialDesign:PackIcon Kind="Minus" Foreground="White" Height="20"/>
                                         </Button>
 
                                         <Button Command="{Binding AddSensorRowCommand}" 
-                                        Style="{StaticResource MaterialDesignIconButton}"
-                                        ToolTip="Add new sensor"
-                                                ToolTipService.Placement="Right"
-                                        Background="Black"
-                                        Margin="5" Padding="0 0 0 0"
-                                        Width="25" Height="25" >
+                                                Style="{StaticResource MaterialDesignIconButton}"
+                                                ToolTip="Add new sensor" ToolTipService.Placement="Right"
+                                                Background="Black"
+                                                Margin="5" Padding="0 0 0 0"
+                                                Width="25" Height="25" >
                                             <materialDesign:PackIcon Kind="Plus" Foreground="White" Height="20"/>
                                         </Button>
                                     </StackPanel>
