@@ -500,17 +500,6 @@ namespace ICMS.ViewModel
         }
 
         #region private
-
-
-        //private void OpenViewCertificatePdfDialog(string certificatePdfFileFullPath)
-        //{
-        //    DialogContent = new UC_ViewCertificatePdfFile_Dialog()
-        //    {
-        //        DataContext = new ViewCertificatePdfFileDialogViewModel(certificatePdfFileFullPath)
-        //    };
-        //    IsDialogOpen = true;
-        //}
-
         private void OpenViewCertificatePdfDialog(string certificatePdfFileFullPath)
         {
 
@@ -536,7 +525,7 @@ namespace ICMS.ViewModel
             string line;
             for (int i = 0; i < FilterCertificates.Count(); i++)
             {
-                line = string.Join(separator, FilterCertificates[i].CalibDate, FilterCertificates[i].Customer.FullName, FilterCertificates[i].CertificateNumber,
+                line = string.Join(separator, FilterCertificates[i].CalibDate.ToString("dd-MMM-yyyy"), FilterCertificates[i].Customer.FullName, FilterCertificates[i].CertificateNumber,
                                               FilterCertificates[i].Machine.Name, FilterCertificates[i].Machine.Model, FilterCertificates[i].Machine.Serial,
                                               FilterCertificates[i].DoseQuantity.Notation, FilterCertificates[i].PerformedBy, FilterCertificates[i].TM);
                 lines.Add(line);

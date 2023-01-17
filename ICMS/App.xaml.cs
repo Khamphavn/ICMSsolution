@@ -18,7 +18,6 @@ namespace ICMS
         {
             //Register Syncfusion license
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NzA1NzE2QDMyMzAyZTMyMmUzMFNyMTNveWZnbkF6b0F2TFAwNzBVUVF1RThQakFHZnp0cW1MbjVNcWhYdkk9");
-            
         }
 
 
@@ -32,6 +31,7 @@ namespace ICMS
 
             AppSettings.AppSettings.InitializeAppSettings();
 
+           
 
             MainWindow = new LoginFormWindow()
             {

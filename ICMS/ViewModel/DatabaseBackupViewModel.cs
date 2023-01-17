@@ -1,4 +1,5 @@
 ﻿using ICMS.Command;
+using ICMS.HelperFunction;
 using ICMS.Model;
 using ICMS.Model.DataAccess;
 using ICMS.Model.Models;
@@ -53,9 +54,7 @@ namespace ICMS.ViewModel
         public DatabaseBackupViewModel()
         {
             #region init
-            BackupDBOptions = new ObservableCollection<string>(new List<string> { "2", "4", "6"});
-
-           
+            BackupDBOptions = new ObservableCollection<string>(new List<string> { "1", "2", "3", "6"});
 
             LastBackupDate = Properties.Settings.Default.LastBackupDate;
 
@@ -131,12 +130,12 @@ namespace ICMS.ViewModel
                     {
                         if (Directory.Exists(BackupFolder1))
                         {
-                            BackupDatabase(BackupFolder1);
+                            BackupDB.BackupDatabase(BackupFolder1);
                         }
 
                         if (Directory.Exists(BackupFolder2))
                         {
-                            BackupDatabase(BackupFolder2);
+                            BackupDB.BackupDatabase(BackupFolder2);
                         }
                         LastBackupDate = DateTime.Now;
                         Properties.Settings.Default.LastBackupDate = LastBackupDate;
@@ -183,25 +182,25 @@ namespace ICMS.ViewModel
         }
 
 
-        private int BackupDatabase(string backupFolderFullPath)
-        {
-            using (var connection = new SqlConnection(GlobalConfig.CnnString("ICMSdatabase")))
-            {
-                string databaseName = connection.Database;
+        //private int BackupDatabase(string backupFolderFullPath)
+        //{
+        //    using (var connection = new SqlConnection(GlobalConfig.CnnString("ICMSdatabase")))
+        //    {
+        //        string databaseName = connection.Database;
 
-                string fileName = string.Format("{0}-backup-{1}.bak", databaseName, DateTime.Now.ToString("yyyy-MMM-dd_HH_mm"));
+        //        string fileName = string.Format("{0}-backup-{1}.bak", databaseName, DateTime.Now.ToString("yyyy-MMM-dd_HH_mm"));
 
-                string filePath = Path.Combine(backupFolderFullPath, fileName);
+        //        string filePath = Path.Combine(backupFolderFullPath, fileName);
 
-                var query = String.Format("BACKUP DATABASE [{0}] TO DISK='{1}'", databaseName, filePath);
+        //        var query = String.Format("BACKUP DATABASE [{0}] TO DISK='{1}'", databaseName, filePath);
 
-                using (var command = new SqlCommand(query, connection))
-                {
-                    connection.Open();
-                    command.ExecuteNonQuery();
-                }
-                return 1;
-            }
-        }
+        //        using (var command = new SqlCommand(query, connection))
+        //        {
+        //            connection.Open();
+        //            command.ExecuteNonQuery();
+        //        }
+        //        return 1;
+        //    }
+        //}
     }
 }
