@@ -10,7 +10,7 @@ BEGIN
 	SET NOCOUNT ON
 
 	SELECT s.[SensorId], s.[MachineId], s.[Model], s.[Serial], s.[SensorTypeId],
-		   st.[Name]
+		   st.[Name], st.[IsActive]
 
 	FROM [dbo].[Sensor] AS s
 	LEFT JOIN [dbo].[SensorType] AS st

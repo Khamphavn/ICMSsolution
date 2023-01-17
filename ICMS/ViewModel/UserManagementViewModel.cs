@@ -259,10 +259,20 @@ namespace ICMS.ViewModel
 
                         if (result == MessageBoxResult.Yes)
                         {
+                            MessageBoxResult result2 = MessageBox.Show(
+                                messageBoxText: "Bạn vẫn muốn xóa tài khoản này ?",
+                                caption: "YES/NO",
+                                button: MessageBoxButton.YesNo,
+                                icon: MessageBoxImage.Warning,
+                                defaultResult: MessageBoxResult.No
+                                );
+
+                            if (result2 == MessageBoxResult.Yes)
+                        {
                             try
                             {
                                 GlobalConfig.Connection.User_DeleteById(SelectedUser.UserId, GlobalConfig.CnnString("ICMSdatabase"));
-                            AllUserList.Remove(SelectedUser);
+                                AllUserList.Remove(SelectedUser);
                                 //TMs = new ObservableCollection<TM>(GlobalConfig.Connection.TM_GetAll(GlobalConfig.CnnString("ICMSdatabase")));
                             }
                             catch (Exception ex)
@@ -276,6 +286,10 @@ namespace ICMS.ViewModel
                                     icon: MessageBoxImage.Error
                                     );
                             }
+                        }
+
+
+                           
                         }
                 }
                 );

@@ -17,10 +17,10 @@
 	<add key="MAXSENSORS" value ="4"/>
 
 	<!-- Number of Calibration data -->
-	<add key="MAXCALIBDATA" value ="10"/>
+	<add key="MAXCALIBDATA" value ="15"/>
 
 	<!-- Month before today -->
-	<add key="MONTHBEFORETODAY" value ="2"/>
+	<add key="MONTHBEFORETODAY" value ="6"/>
 
 	<!-- Change folder contains certificate template file -->
 	<!-- Default is $AppDirectory/CertificateTemplates -->

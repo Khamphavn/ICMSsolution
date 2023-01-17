@@ -203,15 +203,9 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
-                <!-- Unit Id - Hidden -->
-                <TextBox x:Name="Unit_Id_txb" Grid.Column="0" Visibility="Hidden"
-                         Margin="20 0 1 10" 
-                         Width="{Binding ElementName=Unit_Id, Path=ActualWidth}"
-                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                         />
-
+           
                 <!--Unit Name-->
-                <TextBox x:Name="Unit_Name_txb" Grid.Column="1"
+                <TextBox x:Name="Unit_Name_txb" Grid.Column="0"
                          Margin="1 0 1 10" 
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          Width="{Binding ElementName=Unit_Name, Path=ActualWidth}"
@@ -230,7 +224,7 @@
                 </TextBox>
 
                 <!--Is Active-->
-                <Border Grid.Column="2" BorderThickness="1" BorderBrush="Black" Margin="1 0 1 10" >
+                <Border Grid.Column="1" BorderThickness="1" BorderBrush="Black" Margin="1 0 1 10" >
                     <StackPanel Orientation="Horizontal" 
                             HorizontalAlignment="Center" VerticalAlignment="Top"
                             Width="{Binding ElementName=Unit_IsActive, Path=ActualWidth}">
@@ -244,10 +238,8 @@
                     </StackPanel>
                 </Border>
 
-
-
                 <!--Order-->
-                <TextBox x:Name="Unit_Order_txb" materialDesign:HintAssist.Hint="Thứ tự" Grid.Column="3"
+                <TextBox x:Name="Unit_Order_txb" materialDesign:HintAssist.Hint="Thứ tự" Grid.Column="2"
                           Margin="1 0 1 10"
                          Width="{Binding ElementName=Unit_Order, Path=ActualWidth}"
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}">
@@ -325,14 +317,6 @@
                         </DataGrid.RowStyle>
 
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Id" x:Name="Unit_Id"
-                                            ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
-                                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}"
-                                            Binding="{Binding UnitId}"
-                                            Width="*" MinWidth="30" MaxWidth="70">
-
-                            </DataGridTextColumn>
-
                             <DataGridTextColumn Header="Đơn vị" x:Name="Unit_Name"
                                             ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
                                             EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}"

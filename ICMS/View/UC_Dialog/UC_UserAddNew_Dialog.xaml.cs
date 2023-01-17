@@ -36,9 +36,12 @@ namespace ICMS.View.UC_Dialog
             var vm = (UserAddNewDialogViewModel)this.DataContext;
 
             // new User to Database.
+
+            string login = StringExtensions.RemoveAllWhiteSpaces(vm.User_LoginName.Trim().ToLower());
+
             User newUser = new User()
             {
-                LoginName = vm.User_LoginName.Trim().ToLower(),
+                LoginName = login,
                 FullName = vm.User_FullName.Trim(),
 
                 Role = vm.RoleList.FirstOrDefault(s => s.Name == vm.User_RoleName.Trim()),
@@ -69,7 +72,8 @@ namespace ICMS.View.UC_Dialog
                 }
                 else
                 {
-                    string hashNewPasswordInput = PasswordHelper.GenerateSHA512String(NewPasswordBox2.Password.ToLower());
+                    string password = StringExtensions.RemoveAllWhiteSpaces(NewPasswordBox2.Password.ToLower());
+                    string hashNewPasswordInput = PasswordHelper.GenerateSHA512String(password);
 
                     newUser.Password = hashNewPasswordInput;
 

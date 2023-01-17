@@ -293,7 +293,7 @@
                 <!--Tỉnh/thành-->
 
                 <ComboBox x:Name="Customer_City_cbox" Grid.Column="3"
-                          Margin="1 0 0 0"  Padding="0 7 3 5" Height="30"
+                          Margin="1 0 0 0"  Padding="0 7 3 5" Height="28"
                           Width="{Binding ElementName=Customer_City, Path=ActualWidth}"
                           Style="{StaticResource MaterialDesignComboBox}"
                           materialDesign:ValidationAssist.PopupPlacement ="Bottom"

@@ -138,21 +138,50 @@ namespace ICMS.Bussiness.CertificateProcessing
 
                 var result = Regex.Match(docText, "\\[\\[SensorType]]");
 
-                if (certificate.Machine.Sensors[0].SensorType != null)
+
+                if (certificate.Machine.Sensors.Count != 0)
                 {
-                    docText = regexText.Replace(docText, certificate.Machine.Sensors[0].SensorType.Name);
+                    if (certificate.Machine.Sensors[0].SensorType != null)
+                    {
+                        docText = regexText.Replace(docText, certificate.Machine.Sensors[0].SensorType.Name);
+                    }
+                    else
+                    {
+                        docText = regexText.Replace(docText, " ");
+                    }
                 }
                 else
                 {
                     docText = regexText.Replace(docText, " ");
                 }
 
-
                 regexText = new Regex("\\[\\[SensorModel]]");
-                docText = regexText.Replace(docText, certificate.Machine.Sensors[0].Model);
+                if (certificate.Machine.Sensors.Count != 0)
+                {
+                    if (certificate.Machine.Sensors[0].Model != null)
+                    {
+                        docText = regexText.Replace(docText, certificate.Machine.Sensors[0].Model);
+                    }
+                }
+                else
+                {
+                    docText = regexText.Replace(docText, "");
+                }
+                
 
                 regexText = new Regex("\\[\\[SensorSeri]]");
-                docText = regexText.Replace(docText, certificate.Machine.Sensors[0].Serial);
+                if (certificate.Machine.Sensors.Count != 0)
+                {
+                    if (certificate.Machine.Sensors[0].Serial != null)
+                    {
+                        docText = regexText.Replace(docText, certificate.Machine.Sensors[0].Serial);
+                    }
+                }
+                else
+                {
+                    docText = regexText.Replace(docText, "");
+                }
+                
 
                 regexText = new Regex("\\[\\[Manufacturer]]");
                 if (certificate.Machine.Manufacturer != null)
@@ -648,7 +677,7 @@ namespace ICMS.Bussiness.CertificateProcessing
 
             run23.Append(runPropertiesNormal.CloneNode(true));
             run23.Append(text17);
-
+            
 
 
             paragraph5.Append(paragraphPropertiesNormal.CloneNode(true));
@@ -905,6 +934,8 @@ namespace ICMS.Bussiness.CertificateProcessing
                 tableCell5.Append(tableCellProperties_Center.CloneNode(true));
                 tableCell5.Append(paragraph5);
                 #endregion
+
+
 
                 tableRow1.Append(tablePropertyExceptions1);
                 tableRow1.Append(tableRowProperties1);

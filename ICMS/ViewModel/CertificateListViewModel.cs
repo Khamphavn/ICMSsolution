@@ -18,6 +18,11 @@ using Microsoft.Win32;
 using System.Windows.Forms;
 using SaveFileDialog = System.Windows.Forms.SaveFileDialog;
 using System.IO;
+using System.Data.SqlClient;
+using MessageBox = System.Windows.MessageBox;
+using System.Collections.Generic;
+using System.ComponentModel;
+using DocumentFormat.OpenXml.Spreadsheet;
 
 namespace ICMS.ViewModel
 {
@@ -70,9 +75,9 @@ namespace ICMS.ViewModel
         public Stream DocumentStream { get => _documentStream; set { _documentStream = value; OnPropertyChanged(); } }
 
         #region Commands
-
         public ICommand ViewAndPrintCertificateCommand { get; set; }
         public ICommand ExportCertificateToWordCommand { get; set; }
+        public ICommand ExportFilterCertificatesToCSVCommand { get; set; }
         public ICommand ViewDetailsOnlyCertificateCommand { get; set; }
         public ICommand EditCertificateCommand { get; set; }
         public ICommand AddNewCertificateBaseOnThisMachineCommand { get; set; }
@@ -254,8 +259,64 @@ namespace ICMS.ViewModel
                 );
             #endregion
 
+            #region ExportFilterCertificatesToCSVCommand
+            ExportFilterCertificatesToCSVCommand = new RelayCommand<object>
+                (
+                (p) =>
+                {
+                    if (FilterCertificateList.Count() >=1)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
 
+                },
+                (p) =>
+                {
+                    SaveFileDialog saveFileDialog = new SaveFileDialog();
+                    saveFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
 
+                    saveFileDialog.Title = "Export Certificate List to CSV File";
+                    saveFileDialog.CheckFileExists = false;
+                    saveFileDialog.CheckPathExists = true;
+                    saveFileDialog.DefaultExt = "csv";
+                    saveFileDialog.Filter = "CSV file (*.csv)|*.csv";
+                    saveFileDialog.FilterIndex = 2;
+                    saveFileDialog.RestoreDirectory = true;
+                    saveFileDialog.FileName = "CertificateList";
+
+                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        Mouse.OverrideCursor = System.Windows.Input.Cursors.Wait;
+                        string CSVFileFullPath = saveFileDialog.FileName;
+                        
+                        try
+                        {
+                            ExportFilterCertificatesToCSV(FilterCertificateList, CSVFileFullPath);
+                        }
+                        catch (Exception ex)
+                        {
+                            System.Windows.MessageBox.Show(
+                                                      messageBoxText: "Bị lỗi trong quá trình xuất file\n\n" + ex.Message,
+                                                      caption: "Error",
+                                                      button: MessageBoxButton.OK,
+                                                      icon: MessageBoxImage.Error,
+                                                      defaultResult: MessageBoxResult.OK
+                                                      );
+                        }
+                        finally
+                        {
+                            Mouse.OverrideCursor = null;
+                        }
+                    }
+
+                    
+                }
+                );
+            #endregion
 
             #region ViewDetailsOnlyCertificateCommand
             ViewDetailsOnlyCertificateCommand = new RelayCommand<object>
@@ -354,8 +415,41 @@ namespace ICMS.ViewModel
                 },
                 (p) =>
                 {
-                    //CertificateFormViewModel certificate = p as CertificateFormViewModel;
-                    System.Windows.MessageBox.Show($"TODO");
+                    MessageBoxResult result1 = MessageBox.Show(
+                            messageBoxText: "Bạn có chắc chắn muốn xóa chứng chỉ này ?",
+                            caption: "YES/NO",
+                            button: MessageBoxButton.YesNo,
+                            icon: MessageBoxImage.Warning,
+                            defaultResult: MessageBoxResult.No
+                            );
+
+                    if (result1 == MessageBoxResult.Yes)
+                    {
+                        MessageBoxResult result2 = MessageBox.Show(
+                            messageBoxText: "Bạn vẫn muốn xóa chứng chỉ này ?",
+                            caption: "YES/NO",
+                            button: MessageBoxButton.YesNo,
+                            icon: MessageBoxImage.Warning,
+                            defaultResult: MessageBoxResult.No
+                            );
+
+                        if (result2 == MessageBoxResult.Yes)
+                        {
+                            try
+                            {
+                                GlobalConfig.Connection.Certificate_Delete(SelectedCertificate, GlobalConfig.CnnString("ICMSdatabase"));
+                                CertificateList.Remove(SelectedCertificate);
+                            }
+                            catch (SqlException ex)
+                            {
+                                    MessageBox.Show(messageBoxText: $"{ex.Number}\n{ex.Message}\n{ex.StackTrace}",
+                                                                        caption: "SQL Error",
+                                                                        button: MessageBoxButton.OK,
+                                                                        icon: MessageBoxImage.Error
+                                                                        );
+                            }
+                        }
+                    }
                 }
                 );
             #endregion
@@ -430,6 +524,26 @@ namespace ICMS.ViewModel
             IsDialogOpen = true;
         }
 
+        private void ExportFilterCertificatesToCSV(ObservableCollection<Certificate> FilterCertificates, string path)
+        {
+            string separator = ";";
+            var lines = new List<string>();
+ 
+            var header = string.Join(separator, "Calib. Date", "Customer", "Certificate No.", "Machine Name", "Model", "Serial",
+                                                "Dose Quantity","Performed By", "Reviewed By");
+            lines.Add(header);
+
+            string line;
+            for (int i = 0; i < FilterCertificates.Count(); i++)
+            {
+                line = string.Join(separator, FilterCertificates[i].CalibDate, FilterCertificates[i].Customer.FullName, FilterCertificates[i].CertificateNumber,
+                                              FilterCertificates[i].Machine.Name, FilterCertificates[i].Machine.Model, FilterCertificates[i].Machine.Serial,
+                                              FilterCertificates[i].DoseQuantity.Notation, FilterCertificates[i].PerformedBy, FilterCertificates[i].TM);
+                lines.Add(line);
+            }
+
+            File.WriteAllLines(path, lines.ToArray());
+        }
 
         #endregion
     }

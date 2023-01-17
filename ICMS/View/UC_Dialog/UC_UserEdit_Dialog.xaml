@@ -6,7 +6,13 @@
              xmlns:local="clr-namespace:ICMS.View.UC_Dialog"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
+             xmlns:validation="clr-namespace:ICMS.Validation"
+             xmlns:converter="clr-namespace:ICMS.Converter"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
+
+    <UserControl.Resources>
+        <converter:InverseAndBooleansToBooleanConverter x:Key="InverseAndBooleansToBooleanConverter"/>
+    </UserControl.Resources>
     
     <Grid Margin="20 20 20 20">
         <Grid.RowDefinitions>
@@ -32,11 +38,9 @@
                                          Margin="5 4 4 5">
             <TextBox.Text>
                 <Binding Path="User_FullName" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
-                    <!--<Binding.ValidationRules>
-                        <validation:Machine_Serial_Validation 
-                                            ValidatesOnTargetUpdated="True"
-                                            ValidationStep="RawProposedValue"/>
-                    </Binding.ValidationRules>-->
+                    <Binding.ValidationRules>
+                        <validation:User_FullName_Validation ValidatesOnTargetUpdated="True"/>
+                    </Binding.ValidationRules>
                 </Binding>
             </TextBox.Text>
         </TextBox>
@@ -50,11 +54,9 @@
                                          Margin="5 4 4 5">
             <TextBox.Text>
                 <Binding Path="User_LoginName" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
-                    <!--<Binding.ValidationRules>
-                        <validation:Machine_Serial_Validation 
-                                            ValidatesOnTargetUpdated="True"
-                                            ValidationStep="RawProposedValue"/>
-                    </Binding.ValidationRules>-->
+                    <Binding.ValidationRules>
+                        <validation:User_Login_Validation ValidatesOnTargetUpdated="True"/>
+                    </Binding.ValidationRules>
                 </Binding>
             </TextBox.Text>
         </TextBox>
@@ -66,15 +68,13 @@
                                    Margin="5 4 5 5"  Padding="0 7 3 5" Height="30"
                                                            
                                   Style="{StaticResource MaterialDesignComboBox}"
-                                  materialDesign:ValidationAssist.PopupPlacement ="Bottom"
-                                  materialDesign:HintAssist.Hint="Nhóm" 
-                          
+                                  materialDesign:ValidationAssist.PopupPlacement ="Center"
                           ItemsSource="{Binding RoleList}"  DisplayMemberPath="Name">
             <ComboBox.SelectedItem>
                 <Binding Path="SelectedRole" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged" >
-                    <!--<Binding.ValidationRules>
+                    <Binding.ValidationRules>
                         <validation:User_Role_Validation ValidatesOnTargetUpdated="True"/>
-                    </Binding.ValidationRules>-->
+                    </Binding.ValidationRules>
                 </Binding>
             </ComboBox.SelectedItem>
         </ComboBox>
@@ -93,8 +93,9 @@
                              Style="{StaticResource MaterialDesignOutlinedPasswordBox}"
                                  Margin="5 5 0 0" MinWidth="200"
                                  BorderThickness="2" BorderBrush="LightGray"
-                                
-                                 materialDesign:TextFieldAssist.HasClearButton="True"/>
+                                materialDesign:HintAssist.IsFloating="False"
+                     materialDesign:HintAssist.Hint="Bỏ trống nếu không thay đổi mật khẩu"
+                     materialDesign:TextFieldAssist.HasClearButton="True"/>
 
         <!-- New password 2 -->
         <Label Grid.Row="5" Grid.Column="0" Content="Mật khẩu mới" Margin="0 20 0 10"/>
@@ -102,7 +103,7 @@
                              Style="{StaticResource MaterialDesignOutlinedPasswordBox}"
                                  Margin="5 5 0 0"  
                                  BorderThickness="2" BorderBrush="LightGray"
-                                
+                                materialDesign:HintAssist.HelperText="Bỏ trống nếu không thay đổi mật khẩu"
                                  materialDesign:TextFieldAssist.HasClearButton="True"/>
         
         
@@ -110,6 +111,13 @@
         <Button Grid.Row="6" Grid.Column="0" Content="Lưu" Margin="50 40 0 0" Width="100"
                         Style="{StaticResource MaterialDesignRaisedDarkButton}"
                         Click="Button_Click">
+            <Button.IsEnabled>
+                <MultiBinding Converter="{StaticResource InverseAndBooleansToBooleanConverter}" Mode="TwoWay">
+                    <Binding ElementName="FullName_txb" Path="(Validation.HasError)"/>
+                    <Binding ElementName="LoginName_txb" Path="(Validation.HasError)"/>
+                    <Binding ElementName="User_Role_cbox" Path="(Validation.HasError)"/>
+                </MultiBinding>
+            </Button.IsEnabled>
         </Button>
 
         <!-- Cancel button -->

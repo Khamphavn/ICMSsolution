@@ -224,7 +224,15 @@ namespace ICMS.ViewModel
                 MachineManufacturer = certificate.Machine.Manufacturer;
                 MachineMadeIn = certificate.Machine.MadeIn;
 
+
+                // Sensors
                 Sensors = new ObservableCollection<Sensor>(certificate.Machine.Sensors);
+
+                foreach (Sensor sensor in Sensors)
+                {
+                    sensor.SensorType = AvailableSensorTypes.FirstOrDefault(s => s.Name == sensor.SensorType.Name) ;
+                }
+
 
                 SelectedRefUnit = AvailableUnits.FirstOrDefault(s => s.Name == certificate.CalibDatas[0].RefUnit);
                 SelectedMachineUnit = AvailableUnits.FirstOrDefault(s => s.Name == certificate.CalibDatas[0].MachineUnit);
@@ -276,14 +284,9 @@ namespace ICMS.ViewModel
                 CalibDatas.Add(new CalibDataDTO() { STT = 3, RefValue = 200.0 });
                 CalibDatas.Add(new CalibDataDTO() { STT = 4, RefValue = 800.0 });
 
-
                 CreateDemoCertificate();
             }
             Mouse.OverrideCursor = null;
-
-
-
-
 
 
             #endregion
@@ -322,7 +325,7 @@ namespace ICMS.ViewModel
                      (
                         (p) => 
                         {
-                            if (Sensors.Count <= 1)
+                            if (Sensors.Count < 1)
                             {
                                 return false;
                             }
@@ -333,7 +336,7 @@ namespace ICMS.ViewModel
                         },
                         (p) =>
                         {
-                            if (Sensors.Count >= 2)
+                            if (Sensors.Count >= 1)
                             {
                                 Sensors.RemoveAt(Sensors.Count - 1);
                                 Trace.WriteLine(Sensors.Count);
@@ -398,8 +401,7 @@ namespace ICMS.ViewModel
                         {
                             if (CertificateFormIsValid())
                             {
-                                if (IsCertificateSaved)
-                                {
+                                if (IsCertificateSaved) {
                                     return false;
                                 }
                                 else
@@ -546,11 +548,11 @@ namespace ICMS.ViewModel
 
             newCertificate.DoseQuantity = SelectedDoseQuantity;
 
-            newCertificate.Temperature = double.Parse(Temperature);
+            newCertificate.Temperature = Math.Round(double.Parse(Temperature), 2, MidpointRounding.AwayFromZero) ;
 
-            newCertificate.Humidity = double.Parse(Humidity);
+            newCertificate.Humidity = Math.Round(double.Parse(Humidity), 2, MidpointRounding.AwayFromZero)  ;
 
-            newCertificate.Pressure = double.Parse(Pressure);
+            newCertificate.Pressure = Math.Round(double.Parse(Pressure), 2, MidpointRounding.AwayFromZero);
 
             newCertificate.CalibDate = CalibDate;
             newCertificate.CertificateNumber = CertificateNo;
@@ -559,7 +561,6 @@ namespace ICMS.ViewModel
             {
                 newCertificate.TM = SelectedTM.Name;
             }
-            
 
 
             Machine newMachine = new Machine();
@@ -579,6 +580,7 @@ namespace ICMS.ViewModel
 
             List<Sensor> listSensors = Sensors.ToList();
             listSensors.RemoveAll(p => p.SensorType == null);
+            listSensors.RemoveAll(p => p.SensorType.Name == null);
             newMachine.Sensors = listSensors;
 
             newCertificate.Machine = newMachine;

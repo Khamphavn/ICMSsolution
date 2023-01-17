@@ -14,11 +14,11 @@ namespace ICMS.Validation
         {
             if (value == null)
             {
-                return new ValidationResult(false, "Field is required.");
+                return new ValidationResult(false, "Please select one");
             }
 
             return string.IsNullOrWhiteSpace((value ?? "").ToString())
-                ? new ValidationResult(false, "Field is required.")
+                ? new ValidationResult(false, "Please select one")
                 : ValidationResult.ValidResult;
         }
     }

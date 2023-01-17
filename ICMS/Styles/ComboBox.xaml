@@ -22,7 +22,7 @@
 
         <Setter Property="Foreground" Value="Black"/>
         <Setter Property="Background" Value="White"/>
-        <Setter Property="Padding" Value="0 6 2 6"/>
+        <Setter Property="Padding" Value="0 3 2 3"/>
         <Setter Property="BorderThickness" Value="1"/>
 
 

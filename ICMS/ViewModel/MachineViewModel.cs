@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
@@ -492,16 +493,25 @@ namespace ICMS.ViewModel
                                 GlobalConfig.Connection.MachineType_DeleteById(SelectedMachineType.MachineTypeId, GlobalConfig.CnnString("ICMSdatabase"));
                                 MachineTypes.Remove(SelectedMachineType);
                             }
-                            catch (Exception ex)
+                            catch (SqlException ex)
                             {
-                                //messageBoxText: "Không thể xóa thông tin về tỉnh/thành này !",
-
-                                MessageBox.Show(
-                                    messageBoxText: $"{ex.Message}\n{ex.StackTrace}",
-                                    caption: "SQL Error",
-                                    button: MessageBoxButton.OK,
-                                    icon: MessageBoxImage.Error
-                                    );
+                                if (ex.Number == 547)
+                                {
+                                    MessageBox.Show(messageBoxText: $"Không thể xóa loại thiết bị \"{SelectedMachineType.Name}\"\n\nHãy tạm khóa loại thiết bị này nếu không sử dụng.",
+                                                    caption: "SQL Error",
+                                                    button: MessageBoxButton.OK,
+                                                    icon: MessageBoxImage.Error
+                                                    );
+                                }
+                                else
+                                {
+                                    MessageBox.Show(
+                                                                        messageBoxText: $"{ex.Number}\n{ex.Message}\n{ex.StackTrace}",
+                                                                        caption: "SQL Error",
+                                                                        button: MessageBoxButton.OK,
+                                                                        icon: MessageBoxImage.Error
+                                                                        );
+                                }
                             }
                         }
                     }
@@ -680,14 +690,25 @@ namespace ICMS.ViewModel
                                 GlobalConfig.Connection.SensorType_DeleteById(SelectedSensorType.SensorTypeId, GlobalConfig.CnnString("ICMSdatabase"));
                                 SensorTypes.Remove(SelectedSensorType);
                             }
-                            catch (Exception ex)
+                            catch (SqlException ex)
                             {
-                                MessageBox.Show(
-                                    messageBoxText: $"{ex.Message}\n{ex.StackTrace}",
-                                    caption: "SQL Error",
-                                    button: MessageBoxButton.OK,
-                                    icon: MessageBoxImage.Error
-                                    );
+                                if (ex.Number == 547)
+                                {
+                                    MessageBox.Show(messageBoxText: $"Không thể xóa loại đầu đo \"{SelectedSensorType.Name}\"\n\nHãy tạm khóa loại đầu đo này nếu không sử dụng.",
+                                                    caption: "SQL Error",
+                                                    button: MessageBoxButton.OK,
+                                                    icon: MessageBoxImage.Error
+                                                    );
+                                }
+                                else
+                                {
+                                    MessageBox.Show(
+                                                                        messageBoxText: $"{ex.Number}\n{ex.Message}\n{ex.StackTrace}",
+                                                                        caption: "SQL Error",
+                                                                        button: MessageBoxButton.OK,
+                                                                        icon: MessageBoxImage.Error
+                                                                        );
+                                }
                             }
                         }
                     }

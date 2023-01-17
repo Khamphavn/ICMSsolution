@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ICMS.View.UC_Component"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800"
+             d:DesignHeight="900" d:DesignWidth="1200"
              
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:converter="clr-namespace:ICMS.Converter"
@@ -124,11 +124,12 @@
                                 </Grid.ColumnDefinitions>
 
                                 <!-- Temperature -->
-                                <Label Content="Nhiệt độ (°C)"  Grid.Row="0" Grid.Column="0" Margin="-5 7 0 0" Foreground="Black" VerticalAlignment="Top"/>
+                                <Label Content="Nhiệt độ (°C)"  Grid.Row="0" Grid.Column="0" Margin="-5 5 0 0" Foreground="Black" VerticalAlignment="Top"/>
 
-                                <TextBox Grid.Row="0" Grid.Column="1" x:Name="TemperatureTextBox" Margin="0 4 0 20"
+                                <TextBox Grid.Row="0" Grid.Column="1" x:Name="TemperatureTextBox" Margin="0 4 -5 15"
                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                                         >
+                                          materialDesign:ValidationAssist.PopupPlacement="Bottom"
+                                         materialDesign:TextFieldAssist.TextBoxViewMargin="5 0 5 0">
                                     <TextBox.Text>
                                         <Binding Path="Temperature" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
                                             <Binding.ValidationRules>
@@ -144,10 +145,11 @@
                                 </TextBox>
 
                                 <!-- Pressure -->
-                                <Label Content="Áp suất (hPa)"  Grid.Row="1" Grid.Column="0" Margin="-5 7 0 0" Foreground="Black" VerticalAlignment="Top"/>
+                                <Label Content="Áp suất (hPa)"  Grid.Row="1" Grid.Column="0" Margin="-5 5 0 0" Foreground="Black" VerticalAlignment="Top"/>
 
-                                <TextBox Grid.Row="1" Grid.Column="1" x:Name="PressureTextBox"   Margin="0 4 0 20"                               
+                                <TextBox Grid.Row="1" Grid.Column="1" x:Name="PressureTextBox"   Margin="0 4 -5 15"                               
                                          Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                          materialDesign:ValidationAssist.PopupPlacement="Bottom"
                                          >
                                     <TextBox.Text>
                                         <Binding Path="Pressure" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
@@ -166,8 +168,9 @@
 
                                 <!-- Humidity -->
                                 <Label Content="Độ ẩm (%)"  Grid.Row="2" Grid.Column="0"  Margin="-5 7 0 0" Foreground="Black" VerticalAlignment="Top"/>
-                                <TextBox Grid.Row="2" Grid.Column="1" x:Name="HumidityTextBox"  Margin="0 4 0 20"
+                                <TextBox Grid.Row="2" Grid.Column="1" x:Name="HumidityTextBox"  Margin="0 4 -5 20"
                                          Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                          materialDesign:ValidationAssist.PopupPlacement="Bottom"
                                         >
                                     <TextBox.Text>
                                         <Binding Path="Humidity" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
@@ -202,8 +205,8 @@
                                 </Grid.ColumnDefinitions>
 
                                 <!-- Dose Quantity -->
-                                <Label Content="Đại lượng liều "  Grid.Row="0" Grid.Column="0" Margin="-5 7 0 20" Foreground="Black"/>
-                                <ComboBox Grid.Row="0" Grid.Column="1"   Margin="0 4 -5 20" x:Name="DoseQuantityComboBox"
+                                <Label Content="Đại lượng liều "  Grid.Row="0" Grid.Column="0" Margin="-5 5 0 15" Foreground="Black"/>
+                                <ComboBox Grid.Row="0" Grid.Column="1"   Margin="0 4 -5 15" x:Name="DoseQuantityComboBox"
                                           Style="{StaticResource MaterialDesignComboBox}"
                                           
                                           ItemsSource="{Binding AvailableDoseQuantities}"   DisplayMemberPath="Notation">
@@ -217,9 +220,9 @@
                                 </ComboBox>
 
                                 <!-- Calib Date -->
-                                <Label Content="Ngày hiệu chuẩn"  Grid.Row="1" Grid.Column="0"  Margin="-5 2 0 20" Foreground="Black"/>
+                                <Label Content="Ngày hiệu chuẩn"  Grid.Row="1" Grid.Column="0"  Margin="-5 2 0 10" Foreground="Black"/>
 
-                                <DatePicker Grid.Row="1" Grid.Column="1" Margin="0 0 -5 20"  Padding="5 5 5 5" 
+                                <DatePicker Grid.Row="1" Grid.Column="1" Margin="0 0 -5 10"  Padding="5 5 5 5" 
                                         Style="{StaticResource MaterialDesignOutlinedDatePicker}"
                                         materialDesign:HintAssist.HelperText="Format: dd/MM/yyyy"
                                         materialDesign:TextFieldAssist.TextBoxViewMargin="0 0 0 0"
@@ -243,7 +246,7 @@
                                 </DatePicker>
 
                                 <!-- Certificate No. -->
-                                <Label Content="Số chứng chỉ"  Grid.Row="2" Grid.Column="0"  Margin="-5 13 0 20" Foreground="Black"/>
+                                <Label Content="Số chứng chỉ"  Grid.Row="2" Grid.Column="0"  Margin="-5 13 0 15" Foreground="Black"/>
 
                                 <TextBox Grid.Row="2" Grid.Column="1"  x:Name="CertificateNumberTextBox" Margin="0 4 -5 10"
                                          Style="{StaticResource MaterialDesignFloatingHintTextBox}"
@@ -280,6 +283,7 @@
 
                                 <TextBox Grid.Row="0" Grid.Column="1" x:Name="PerformedByTextBox" Margin="0 4 -5 20"
                                          Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                          materialDesign:ValidationAssist.PopupPlacement="Center"
                                         >
                                     <TextBox.Text>
                                         <Binding Path="PerformedBy" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
@@ -294,7 +298,7 @@
                                 <Label Content="Quản lý kỹ thuật"  Grid.Row="1" Grid.Column="0"  Margin="-5 7 0 20" Foreground="Black"/>
                                 <ComboBox Grid.Row="1" Grid.Column="1"  Margin="0 4 -5 20"   x:Name="TMTextBox"
                                           Style="{StaticResource MaterialDesignComboBox}"
-                                          materialDesign:HintAssist.Hint=" (Select one) "
+                                         
                                           ItemsSource="{Binding AvailableTMs}"   DisplayMemberPath="Name">
 
                                     <ComboBox.SelectedItem>
@@ -451,60 +455,46 @@
                                 <DataGrid Grid.Column="0" Name="sensorDataGrid"   
                                           Style="{StaticResource MaterialDesignDataGrid}"
                                           ColumnHeaderStyle="{StaticResource MaterialDesignDataGridColumnHeader}"
-                                          Margin="50 5 10 5"
+                                          Margin="50 5 10 5" RowHeight="25" materialDesign:DataGridAssist.CellPadding="5 5 5 5 "
                                           ItemsSource="{Binding Sensors, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                  
                                           AutoGenerateColumns="False"  CanUserSortColumns="False"
                                           CanUserAddRows="False"  CanUserDeleteRows="False"  CanUserReorderColumns ="False">
 
-                                    <!--<DataGrid.Resources>
-                                        <Style BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}" TargetType="DataGridColumnHeader">
-                                            <Setter Property="Background" Value="#cccccc"/>
-                                            <Setter Property="Foreground" Value="Black"/>
-                                            <Setter Property="FontWeight" Value="SemiBold"/>
-                                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                                            <Setter Property="HorizontalAlignment" Value="Stretch"/>
-                                            <Setter Property="Padding" Value="10 5 5 5"/>
-                                            -->
-                                    <!--<Style.Triggers>
-                                            <Trigger Property="IsMouseOver" Value="true">
-                                                <Setter Property="Background" Value="DeepSkyBlue"/>
-                                                <Setter Property="Foreground" Value="AntiqueWhite"/>
-                                            </Trigger>
-                                        </Style.Triggers>-->
-                                    <!--
-                                        </Style>
-                                    </DataGrid.Resources>-->
-
                                     <DataGrid.RowValidationRules>
-                                        <validation:Sensor_Type_Validation 
-                                        ValidatesOnTargetUpdated="True"
-                                        ValidationStep="UpdatedValue"/>
+                                        <validation:Sensor_Type_Validation ValidatesOnTargetUpdated="True"  ValidationStep="UpdatedValue"/>
                                     </DataGrid.RowValidationRules>
 
                                     <DataGrid.Columns>
                                         <!--Sensor type-->
                                         <materialDesign:DataGridComboBoxColumn  
-                                            x:Name="SensorTyeDataGridComboBoxColumn"
-                                            Header="Loại đầu đo"      
+                                            x:Name="SensorTyeDataGridComboBoxColumn"  Header="Loại đầu đo"      
                                             SelectedValueBinding="{Binding SensorType}" 
                                             ItemsSourceBinding="{Binding RelativeSource={RelativeSource FindAncestor,                               
                                         AncestorType={x:Type UserControl}}, Path=DataContext.AvailableSensorTypes}"
-                                            DisplayMemberPath="Name"
-                                            Width="150" MinWidth="120" MaxWidth="200">
-
-
+                                            DisplayMemberPath="Name"  Width="150" MinWidth="120" MaxWidth="200">
+                                            
+                                            <DataGridComboBoxColumn.CellStyle>
+                                                <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource MaterialDesignDataGridCell}">
+                                                    <Setter Property="Padding" Value="5 0 5 0"/>
+                                                    <Style.Resources>
+                                                        <Style TargetType="ContentPresenter">
+                                                            <Setter Property="VerticalAlignment" Value="Center" />
+                                                            <Setter Property="HorizontalAlignment" Value="Stretch" />
+                                                        </Style>
+                                                    </Style.Resources>
+                                                </Style>
+                                            </DataGridComboBoxColumn.CellStyle>
 
                                             <!--Setting the editing element style allows access to all of the combo box's properties-->
                                             <materialDesign:DataGridComboBoxColumn.EditingElementStyle>
                                                 <Style TargetType="ComboBox" BasedOn="{StaticResource {ComponentResourceKey TypeInTargetAssembly={x:Type ComboBox}, ResourceId=MaterialDataGridComboBoxColumnEditingStyle}}" >
                                                     <Setter Property="DisplayMemberPath" Value="Name"/>
-                                                    <Setter Property="SelectedItem" Value="{Binding SensorType}"/>
-                                                    <Style.Triggers>
+                                                    <Setter Property="SelectedItem" Value="{Binding SensorType, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}"/>
+                                                    <!--<Style.Triggers>
                                                         <DataTrigger  Binding="{Binding Path=(Validation.HasError), 
                                                         RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGridRow}}}" Value="True">
                                                         </DataTrigger>
-                                                    </Style.Triggers>
+                                                    </Style.Triggers>-->
                                                 </Style>
                                             </materialDesign:DataGridComboBoxColumn.EditingElementStyle>
                                         </materialDesign:DataGridComboBoxColumn>
@@ -513,6 +503,7 @@
                                         <DataGridTextColumn Header="Model" Binding="{Binding Model}" 
                                                         CanUserResize="True"
                                                         Width="150" MinWidth="80" MaxWidth="200"
+                                                            CellStyle="{StaticResource MaterialDesignDataGridCell}"
                                                         ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
                                                         EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}"
                                                         />
@@ -635,8 +626,7 @@
                         <DataGrid Grid.Column="1" x:Name="CalibDataDataGrid"  
                                   Style="{StaticResource MaterialDesignDataGrid}"
                                   ColumnHeaderStyle="{StaticResource MaterialDesignDataGridColumnHeader}"
-                                  Margin="5 5 5 5"
-                                  RowHeight="25"
+                                  Margin="5 5 5 5"   RowHeight="25"
                                     materialDesign:DataGridAssist.CellPadding="5 5 5 5 "
                                   AutoGenerateColumns="False" 
                                   CanUserAddRows="False" CanUserDeleteRows="False" CanUserSortColumns="False"
@@ -646,7 +636,6 @@
                             <DataGrid.Resources>
                                 <!--<SolidColorBrush x:Key="MaterialDesignTextBoxBorder" Color="Transparent"/>-->
                             </DataGrid.Resources>
-
 
                             <DataGrid.Columns>
                                 <!-- STT -->
@@ -660,8 +649,7 @@
 
                                 <!-- Rad. Quantity -->
                                 <materialDesign:DataGridComboBoxColumn  
-                                    x:Name="RadQuantityDataGridComboBoxColumn"
-                                    Header="Bức xạ"      
+                                    x:Name="RadQuantityDataGridComboBoxColumn"     Header="Bức xạ"      
                                         SelectedValueBinding="{Binding RadQuantity}" 
                                         ItemsSourceBinding="{Binding  RelativeSource={RelativeSource FindAncestor,                               
                                         AncestorType={x:Type UserControl}}, Path=DataContext.AvailableRadQuantities}"
@@ -850,7 +838,7 @@
                     Command="{Binding CancelCertificateFormCommand}" IsCancel="True"
                      Margin="50 0 0 0">
                     <Button.Style>
-                        <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
+                        <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedDarkButton}">
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding IsCertificateSaved}" Value="true">
                                     <Setter Property="Content" Value="Đóng"/>

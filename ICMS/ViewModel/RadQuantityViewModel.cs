@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
@@ -244,7 +245,7 @@ namespace ICMS.ViewModel
                     if (CurrentOperationMode == OperationMode.NormalMode.ToString())
                     {
                         MessageBoxResult result = MessageBox.Show(
-                            messageBoxText: "Bạn có chắc chắn muốn xóa ?",
+                            messageBoxText: $"Thay vì xóa phẩm chất bức xạ này, hãy tạm khóa nó lại.\n\n Bạn có muốn xóa bức xạ \"{SelectedRadQuantity.NameVN}\" ?",
                             caption: "YES/NO",
                             button: MessageBoxButton.YesNo,
                             icon: MessageBoxImage.Warning,
@@ -253,23 +254,43 @@ namespace ICMS.ViewModel
 
                         if (result == MessageBoxResult.Yes)
                         {
-                            try
+                            MessageBoxResult result2 = MessageBox.Show(
+                            messageBoxText: "Bạn vẫn muốn xóa ?",
+                            caption: "YES/NO",
+                            button: MessageBoxButton.YesNo,
+                            icon: MessageBoxImage.Warning,
+                            defaultResult: MessageBoxResult.No
+                            );
+                            if (result2 == MessageBoxResult.Yes)
                             {
-                                GlobalConfig.Connection.RadQuantity_DeleteById(SelectedRadQuantity.RadQuantityId, GlobalConfig.CnnString("ICMSdatabase"));
-                                RadQuantities.Remove(SelectedRadQuantity);
-                                //TMs = new ObservableCollection<TM>(GlobalConfig.Connection.TM_GetAll(GlobalConfig.CnnString("ICMSdatabase")));
+                                try
+                                {
+                                    GlobalConfig.Connection.RadQuantity_DeleteById(SelectedRadQuantity.RadQuantityId, GlobalConfig.CnnString("ICMSdatabase"));
+                                    RadQuantities.Remove(SelectedRadQuantity);
+                                    //TMs = new ObservableCollection<TM>(GlobalConfig.Connection.TM_GetAll(GlobalConfig.CnnString("ICMSdatabase")));
+                                }
+                                catch (SqlException ex)
+                                {
+                                    if (ex.Number == 547)
+                                    {
+                                        MessageBox.Show(messageBoxText: $"Không thể xóa phẩm chất bức xạ \"{SelectedRadQuantity.NameVN}\"\n\nHãy tạm khóa phẩm chất bức xạ này.",
+                                                        caption: "SQL Error",
+                                                        button: MessageBoxButton.OK,
+                                                        icon: MessageBoxImage.Error
+                                                        );
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show(
+                                                                            messageBoxText: $"{ex.Number}\n{ex.Message}\n{ex.StackTrace}",
+                                                                            caption: "SQL Error",
+                                                                            button: MessageBoxButton.OK,
+                                                                            icon: MessageBoxImage.Error
+                                                                            );
+                                    }
+                                }
                             }
-                            catch (Exception ex)
-                            {
-                                // messageBoxText: "Không thể xóa phẩm chất bức xạ này này !",
-                                MessageBox.Show(
-                                   
-                                    messageBoxText: $"{ex.Message}\n{ex.StackTrace}",
-                                    caption: "SQL Error",
-                                    button: MessageBoxButton.OK,
-                                    icon: MessageBoxImage.Error
-                                    );
-                            }
+                               
                         }
                     }
                 }

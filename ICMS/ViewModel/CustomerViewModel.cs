@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
@@ -314,23 +315,43 @@ namespace ICMS.ViewModel
 
                         if (result == MessageBoxResult.Yes)
                         {
-                            try
+                            MessageBoxResult result2 = MessageBox.Show(
+                            messageBoxText: "Bạn vẫn muốn xóa ?",
+                            caption: "YES/NO",
+                            button: MessageBoxButton.YesNo,
+                            icon: MessageBoxImage.Warning,
+                            defaultResult: MessageBoxResult.No
+                            );
+
+                            if (result2 == MessageBoxResult.Yes)
                             {
-                                GlobalConfig.Connection.Customer_DeleteById(SelectedCustomer.CustomerId, GlobalConfig.CnnString("ICMSdatabase"));
-                                CustomerList.Remove(SelectedCustomer);
-                                //TMs = new ObservableCollection<TM>(GlobalConfig.Connection.TM_GetAll(GlobalConfig.CnnString("ICMSdatabase")));
-                            }
-                            catch (Exception ex)
-                            {
-                            //messageBoxText: "Không thể xóa thông tin về khách hàng này !",
-                           
-                                MessageBox.Show(
-                                    messageBoxText: $"{ex.Message}",
-                                    caption: "SQL Error",
-                                    button: MessageBoxButton.OK,
-                                    icon: MessageBoxImage.Error
-                                    );
-                            }
+                                try
+                                {
+                                    GlobalConfig.Connection.Customer_DeleteById(SelectedCustomer.CustomerId, GlobalConfig.CnnString("ICMSdatabase"));
+                                    CustomerList.Remove(SelectedCustomer);
+                                    FilterCustomerList.Remove(SelectedCustomer);
+                                }
+                                catch (SqlException ex)
+                                {
+                                    if (ex.Number == 547)
+                                    {
+                                        MessageBox.Show(messageBoxText: $"Không thể xóa đơn vị \"{SelectedCustomer.FullName}\"\n\nHãy đổi tên hoặc sửa các thông tin chưa chính xác.",
+                                                        caption: "SQL Error",
+                                                        button: MessageBoxButton.OK,
+                                                        icon: MessageBoxImage.Error
+                                                        );
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show(
+                                                                            messageBoxText: $"{ex.Number}\n{ex.Message}\n{ex.StackTrace}",
+                                                                            caption: "SQL Error",
+                                                                            button: MessageBoxButton.OK,
+                                                                            icon: MessageBoxImage.Error
+                                                                            );
+                                    }
+                                }
+                            }    
                         }
                     }
                 }

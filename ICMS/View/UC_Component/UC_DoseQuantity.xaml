@@ -223,7 +223,7 @@
 
                 <!--DoseQuantity NameVN-->
                 <TextBox x:Name="DoseQuantity_NameVN_txb" Grid.Column="0"
-                         Style="{StaticResource CustomMaterialDesignTextBox}"
+                          Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          Margin="20 0 0 10" 
                          Width="{Binding ElementName=DoseQuantity_NameVN, Path=ActualWidth}"
                          materialDesign:HintAssist.Hint="Tên tiếng Việt"  
@@ -242,7 +242,7 @@
 
                 <!--DoseQuantity NameEN-->
                 <TextBox x:Name="DoseQuantity_NameEN_txb" Grid.Column="1"
-                         Style="{StaticResource CustomMaterialDesignTextBox}"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          Margin="1 0 0 10" 
                          Width="{Binding ElementName=DoseQuantity_NameEN, Path=ActualWidth}"
                          materialDesign:HintAssist.Hint="Tên tiếng Anh"  
@@ -261,7 +261,7 @@
 
                 <!--DoseQuantity Notation-->
                 <TextBox x:Name="DoseQuantity_Notation_txb" Grid.Column="2"
-                         Style="{StaticResource CustomMaterialDesignTextBox}"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          Margin="1 0 0 10" 
                          Width="{Binding ElementName=DoseQuantity_Notation, Path=ActualWidth}"
                          materialDesign:HintAssist.Hint="Kí hiệu"  
@@ -279,7 +279,7 @@
                 </TextBox>
 
                 <!--Is Active-->
-                <Border Grid.Column="3" BorderThickness="0 0 0 1" BorderBrush="Black" Margin="1 0 1 10" >
+                <Border Grid.Column="3" BorderThickness="1" BorderBrush="Black" Margin="1 0 1 10" >
                     <StackPanel Orientation="Horizontal" 
                             HorizontalAlignment="Center" VerticalAlignment="Top"
                             Width="{Binding ElementName=DoseQuantity_IsActive, Path=ActualWidth}">

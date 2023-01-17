@@ -1,21 +1,28 @@
 ﻿using ICMS.Command;
+using ICMS.Model;
 using ICMS.Model.DataAccess;
+using ICMS.Model.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace ICMS.ViewModel
 {
-    public class DatabaseBackupViewModel: BaseViewModel
+    public class DatabaseBackupViewModel : BaseViewModel
     {
         private DateTime _LastBackupDate;
         public DateTime LastBackupDate { get => _LastBackupDate; set { _LastBackupDate = value; OnPropertyChanged(); } }
+
+        private string _BackupFileName;
+        public string BackupFileName { get => _BackupFileName; set { _BackupFileName = value; OnPropertyChanged(); } }
 
 
         private string _BackupFolder1;
@@ -25,9 +32,12 @@ namespace ICMS.ViewModel
         public string BackupFolder2 { get => _backupFolder2; set { _backupFolder2 = value; OnPropertyChanged(); } }
 
 
-        private int _SelectedBackupDBInterval;
-        public int SelectedBackupDBInterval { get => _SelectedBackupDBInterval; set { _SelectedBackupDBInterval = value; OnPropertyChanged(); } }
+        private string _SelectedBackupDBInterval;
+        public string SelectedBackupDBInterval { get => _SelectedBackupDBInterval; set { _SelectedBackupDBInterval = value; OnPropertyChanged(); } }
 
+
+        private ObservableCollection<string> _backupDBOptions;
+        public ObservableCollection<string> BackupDBOptions { get => _backupDBOptions; set { _backupDBOptions = value; OnPropertyChanged(); } }
 
 
 
@@ -43,13 +53,17 @@ namespace ICMS.ViewModel
         public DatabaseBackupViewModel()
         {
             #region init
+            BackupDBOptions = new ObservableCollection<string>(new List<string> { "2", "4", "6"});
+
+           
+
             LastBackupDate = Properties.Settings.Default.LastBackupDate;
 
             SetDefaultBackupFolder1();
 
             BackupFolder2 = Properties.Settings.Default.BackupFolder2;
 
-            SelectedBackupDBInterval = Properties.Settings.Default.BackupDBMonths;
+            SelectedBackupDBInterval = Properties.Settings.Default.BackupDBMonths.ToString();
             #endregion
 
 
@@ -97,6 +111,8 @@ namespace ICMS.ViewModel
                 {
                     Properties.Settings.Default.BackupFolder1 = BackupFolder1;
                     Properties.Settings.Default.BackupFolder2 = BackupFolder2;
+                    var test = SelectedBackupDBInterval;
+                    Properties.Settings.Default.BackupDBMonths = Int32.Parse(SelectedBackupDBInterval);
                     Properties.Settings.Default.Save();
                     Properties.Settings.Default.Reload();
                 }
@@ -173,7 +189,7 @@ namespace ICMS.ViewModel
             {
                 string databaseName = connection.Database;
 
-                string fileName = string.Format("{0}-backup-{1}.bak", databaseName, DateTime.Now.ToString("yyyy-MM-dd_HH_mm_ss"));
+                string fileName = string.Format("{0}-backup-{1}.bak", databaseName, DateTime.Now.ToString("yyyy-MMM-dd_HH_mm"));
 
                 string filePath = Path.Combine(backupFolderFullPath, fileName);
 

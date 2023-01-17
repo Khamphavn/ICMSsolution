@@ -2376,6 +2376,7 @@ namespace ICMS.Model.DataAccess
                 }
                 for (int i = nbrExistedSensors; i < nbrNewSensors; i++)
                 {
+                    model.Sensors[i].MachineId = model.MachineId;
                     insertSensorResult = Sensor_Insert(model.Sensors[i], conn);
                 }
             }

@@ -232,7 +232,7 @@
                                   AutoGenerateColumns="False"  CanUserAddRows="False"    CanUserDeleteRows="False"   IsReadOnly="True"
                                   HeadersVisibility="Column"    GridLinesVisibility="All"  HorizontalAlignment="Left" VerticalAlignment="Top"
                                    HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"
-                                  Margin="5 5 0 0">
+                                  Margin="15 15 0 0">
                             
                             <DataGrid.Resources>
                                 <ContextMenu x:Key="UserRowContextMenu" 
@@ -295,7 +295,7 @@
                                     </DataGridTextColumn.Binding>
                                 </DataGridTextColumn>
 
-                                <DataGridTextColumn Header="Mật khẩu" x:Name="User_Password" MinWidth="110"
+                                <!--<DataGridTextColumn Header="Mật khẩu" x:Name="User_Password" MinWidth="110"
                                             ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
                                             EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
                                     <DataGridTextColumn.Binding>
@@ -305,8 +305,7 @@
                                             </Binding.Converter>
                                         </Binding>
                                     </DataGridTextColumn.Binding>
-                                    
-                                </DataGridTextColumn>
+                                </DataGridTextColumn>-->
 
                                 <DataGridCheckBoxColumn Header="Kích hoạt" x:Name="User_IsActive" MinWidth="90"
                                                 ElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnStyle}"

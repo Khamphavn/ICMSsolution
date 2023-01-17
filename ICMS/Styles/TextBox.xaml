@@ -18,7 +18,7 @@
         <Setter Property="wpf:ValidationAssist.UsePopup" Value="True"/>
         <Setter Property="wpf:ValidationAssist.PopupPlacement" Value="Bottom"/>
         <Setter Property="wpf:TextFieldAssist.HasClearButton" Value="True"/>
-        <Setter Property="wpf:TextFieldAssist.TextBoxViewMargin" Value="3 3 5 3"/>
+        <Setter Property="wpf:TextFieldAssist.TextBoxViewMargin" Value="5 1 5 1"/>
         <Setter Property="wpf:HintAssist.FloatingScale" Value="0"/>
         <Setter Property="Padding" Value="3 3 2 3"/>
         <Setter Property="BorderThickness" Value="1"/>

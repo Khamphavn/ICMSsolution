@@ -193,21 +193,31 @@ namespace ICMS.ViewModel
 
                         if (result == MessageBoxResult.Yes)
                         {
-                            try
+                            MessageBoxResult result2 = MessageBox.Show(
+                            messageBoxText: "Bạn vẫn muốn xóa ?",
+                            caption: "YES/NO",
+                            button: MessageBoxButton.YesNo,
+                            icon: MessageBoxImage.Warning,
+                            defaultResult: MessageBoxResult.No
+                            );
+
+                            if (result2 == MessageBoxResult.Yes)
                             {
-                                GlobalConfig.Connection.TM_DeleteById(SelectedTM.TMId, GlobalConfig.CnnString("ICMSdatabase"));
-                                TMs.Remove(SelectedTM);
-                                //TMs = new ObservableCollection<TM>(GlobalConfig.Connection.TM_GetAll(GlobalConfig.CnnString("ICMSdatabase")));
-                            }
-                            catch (Exception ex)
-                            {
-                                MessageBox.Show(
-                                    messageBoxText: $"{ex.Message}\n{ex.StackTrace}",
-                                    caption: "SQL Error",
-                                    button: MessageBoxButton.OK,
-                                    icon: MessageBoxImage.Error
-                                    );
-                            }
+                                try
+                                {
+                                    GlobalConfig.Connection.TM_DeleteById(SelectedTM.TMId, GlobalConfig.CnnString("ICMSdatabase"));
+                                    TMs.Remove(SelectedTM);
+                                }
+                                catch (Exception ex)
+                                {
+                                    MessageBox.Show(
+                                        messageBoxText: $"{ex.Message}\n{ex.StackTrace}",
+                                        caption: "SQL Error",
+                                        button: MessageBoxButton.OK,
+                                        icon: MessageBoxImage.Error
+                                        );
+                                }
+                            }    
                         }
                     }
                 }

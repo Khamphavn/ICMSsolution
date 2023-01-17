@@ -1,5 +1,6 @@
 ﻿using ICMS.Command;
 using ICMS.Model.DataAccess;
+using System;
 using System.Data.SqlClient;
 using System.Windows;
 using System.Windows.Input;
@@ -32,8 +33,19 @@ namespace ICMS.ViewModel
 
         public LoginFormViewModel()
         {
-            IsAllCheckPass = true;
-            IsFinishChecking = true;
+
+            if (!CanConnectDatabase())
+            {
+                MessageBox.Show(
+                       messageBoxText: $"Không thể kết nối cơ sở dữ liệu \"{GlobalConfig.CnnString("ICMSdatabase")}\"",
+                       caption: "Error",
+                       button: MessageBoxButton.OK,
+                       icon: MessageBoxImage.Error,
+                       defaultResult: MessageBoxResult.OK
+                       );
+
+                Application.Current.Shutdown();
+            }
 
 
             #region NavigateAppShutdownCommand
@@ -59,6 +71,7 @@ namespace ICMS.ViewModel
                 try
                 {
                     connection.Open();
+                   
                     return true;
                 }
                 catch (SqlException)

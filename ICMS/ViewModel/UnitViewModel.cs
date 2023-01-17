@@ -272,7 +272,7 @@ namespace ICMS.ViewModel
                     if (CurrentOperationMode == OperationMode.NormalMode.ToString())
                     {
                         MessageBoxResult result = MessageBox.Show(
-                            messageBoxText: "Bạn có chắc chắn muốn xóa ?",
+                            messageBoxText: $"Hãy tạm khóa đơn vị \"{SelectedUnit.Name}\" nếu không muốn sử dụng.\n\n Bạn có muốn xóa đơn vị này ?",
                             caption: "YES/NO",
                             button: MessageBoxButton.YesNo,
                             icon: MessageBoxImage.Warning,
@@ -281,20 +281,30 @@ namespace ICMS.ViewModel
 
                         if (result == MessageBoxResult.Yes)
                         {
-                            try
+                            MessageBoxResult result2 = MessageBox.Show(
+                            messageBoxText: "Bạn có chắc chắn muốn xóa ?",
+                            caption: "YES/NO",
+                            button: MessageBoxButton.YesNo,
+                            icon: MessageBoxImage.Warning,
+                            defaultResult: MessageBoxResult.No
+                            );
+
+                            if (result2 == MessageBoxResult.Yes)
                             {
-                                GlobalConfig.Connection.Unit_DeleteById(SelectedUnit.UnitId, GlobalConfig.CnnString("ICMSdatabase"));
-                                AllUnitList.Remove(SelectedUnit);
-                                //TMs = new ObservableCollection<TM>(GlobalConfig.Connection.TM_GetAll(GlobalConfig.CnnString("ICMSdatabase")));
-                            }
-                            catch (Exception ex)
-                            {
-                                MessageBox.Show(
-                                    messageBoxText: $"{ex.Message}\n{ex.StackTrace}",
-                                    caption: "SQL Error",
-                                    button: MessageBoxButton.OK,
-                                    icon: MessageBoxImage.Error
-                                    );
+                                try
+                                {
+                                    GlobalConfig.Connection.Unit_DeleteById(SelectedUnit.UnitId, GlobalConfig.CnnString("ICMSdatabase"));
+                                    AllUnitList.Remove(SelectedUnit);
+                                }
+                                catch (Exception ex)
+                                {
+                                    MessageBox.Show(
+                                        messageBoxText: $"{ex.Message}\n{ex.StackTrace}",
+                                        caption: "SQL Error",
+                                        button: MessageBoxButton.OK,
+                                        icon: MessageBoxImage.Error
+                                        );
+                                }
                             }
                         }
                     }

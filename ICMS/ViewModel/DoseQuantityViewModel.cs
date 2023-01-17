@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
@@ -235,7 +236,7 @@ namespace ICMS.ViewModel
                     if (CurrentOperationMode == OperationMode.NormalMode.ToString())
                     {
                         MessageBoxResult result = MessageBox.Show(
-                            messageBoxText: "Bạn có chắc chắn muốn xóa ?",
+                            messageBoxText: $"Hãy tạm khóa đại lượng \"{SelectedDoseQuantity.NameVN}\" nếu không muốn sử dụng.\n\n Bạn có muốn xóa đại lượng này ?",
                             caption: "YES/NO",
                             button: MessageBoxButton.YesNo,
                             icon: MessageBoxImage.Warning,
@@ -244,21 +245,42 @@ namespace ICMS.ViewModel
 
                         if (result == MessageBoxResult.Yes)
                         {
-                            try
+                            MessageBoxResult result2 = MessageBox.Show(
+                            messageBoxText: "Bạn vẫn muốn xóa ?",
+                            caption: "YES/NO",
+                            button: MessageBoxButton.YesNo,
+                            icon: MessageBoxImage.Warning,
+                            defaultResult: MessageBoxResult.No
+                            );
+
+                            if (result2 == MessageBoxResult.Yes)
                             {
-                                GlobalConfig.Connection.DoseQuantity_DeleteById(SelectedDoseQuantity.DoseQuantityId, GlobalConfig.CnnString("ICMSdatabase"));
-                                DoseQuantities.Remove(SelectedDoseQuantity);
-                                //TMs = new ObservableCollection<TM>(GlobalConfig.Connection.TM_GetAll(GlobalConfig.CnnString("ICMSdatabase")));
-                            }
-                            catch (Exception ex)
-                            {
-                                //   messageBoxText: "Không thể xóa đại lượng liều bức xạ này !",
-                                MessageBox.Show(
-                                    messageBoxText: $"{ex.Message}\n{ex.StackTrace}",
-                                    caption: "SQL Error",
-                                    button: MessageBoxButton.OK,
-                                    icon: MessageBoxImage.Error
-                                    );
+                                try
+                                {
+                                    GlobalConfig.Connection.DoseQuantity_DeleteById(SelectedDoseQuantity.DoseQuantityId, GlobalConfig.CnnString("ICMSdatabase"));
+                                    DoseQuantities.Remove(SelectedDoseQuantity);
+                                    //TMs = new ObservableCollection<TM>(GlobalConfig.Connection.TM_GetAll(GlobalConfig.CnnString("ICMSdatabase")));
+                                }
+                                catch (SqlException ex)
+                                {
+                                    if (ex.Number == 547)
+                                    {
+                                        MessageBox.Show(messageBoxText: $"Không thể xóa đại lượng \"{SelectedDoseQuantity.NameVN}\"\n\nHãy tạm khóa đại lượng này này.",
+                                                        caption: "SQL Error",
+                                                        button: MessageBoxButton.OK,
+                                                        icon: MessageBoxImage.Error
+                                                        );
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show(
+                                                                            messageBoxText: $"{ex.Number}\n{ex.Message}\n{ex.StackTrace}",
+                                                                            caption: "SQL Error",
+                                                                            button: MessageBoxButton.OK,
+                                                                            icon: MessageBoxImage.Error
+                                                                            );
+                                    }
+                                }
                             }
                         }
                     }

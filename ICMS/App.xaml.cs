@@ -1,6 +1,8 @@
 ﻿using ICMS.Model.DataAccess;
 using ICMS.View;
+using ICMS.View.UC_Component;
 using ICMS.ViewModel;
+using System;
 using System.Globalization;
 using System.Threading;
 using System.Windows;
@@ -12,10 +14,16 @@ namespace ICMS
     /// </summary>
     public partial class App : Application
     {
+        DateTime LastBackup;
+
+
         public App()
         {
             //Register Syncfusion license
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NzA1NzE2QDMyMzAyZTMyMmUzMFNyMTNveWZnbkF6b0F2TFAwNzBVUVF1RThQakFHZnp0cW1MbjVNcWhYdkk9");
+
+
+            
         }
 
 
@@ -30,11 +38,11 @@ namespace ICMS
             AppSettings.AppSettings.InitializeAppSettings();
 
 
-
             MainWindow = new LoginFormWindow()
             {
                 DataContext = new LoginFormViewModel()
             };
+
             MainWindow.ShowDialog();
 
             base.OnStartup(e);

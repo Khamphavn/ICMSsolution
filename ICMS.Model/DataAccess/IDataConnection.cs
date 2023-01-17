@@ -143,7 +143,8 @@ namespace ICMS.Model.DataAccess
         //Certificate Certificate_GetById(int Id, string connectionString);
         //int Certificate_Update(Certificate model, string connectionString);
         int Certificate_Insert(Certificate model, string connectionString);
-        //int Certificate_Delete(Certificate certificate, string connectionString);
+        
+        int Certificate_Delete(Certificate model, string connectionString);
 
         int Certificate_Update(Certificate model, string connectionString);
 
