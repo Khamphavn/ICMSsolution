@@ -23,12 +23,13 @@ if not exists (SELECT * FROM  dbo.Unit where [Name] = N'mSv') BEGIN INSERT INTO 
 if not exists (SELECT * FROM  dbo.Unit where [Name] = N'mR') BEGIN INSERT INTO dbo.Unit ([Name], [IsActive], [Order]) VALUES (N'mR', 1,6); END
 if not exists (SELECT * FROM  dbo.Unit where [Name] = N'cps') BEGIN INSERT INTO dbo.Unit ([Name], [IsActive], [Order]) VALUES (N'cps', 1,7); END
 if not exists (SELECT * FROM  dbo.Unit where [Name] = N'cpm') BEGIN INSERT INTO dbo.Unit ([Name], [IsActive], [Order]) VALUES (N'cpm', 1,8); END
-if not exists (SELECT * FROM  dbo.Unit where [Name] = N'kBq') BEGIN INSERT INTO dbo.Unit ([Name], [IsActive], [Order]) VALUES (N'kBq', 1,9); END
-if not exists (SELECT * FROM  dbo.Unit where [Name] = N'Bq/s') BEGIN INSERT INTO dbo.Unit ([Name], [IsActive], [Order]) VALUES (N'Bq/s', 1,10); END
-if not exists (SELECT * FROM  dbo.Unit where [Name] = N'kBq/s') BEGIN INSERT INTO dbo.Unit ([Name], [IsActive], [Order]) VALUES (N'kBq/s', 1,11); END
-if not exists (SELECT * FROM  dbo.Unit where [Name] = N'Bq') BEGIN INSERT INTO dbo.Unit ([Name], [IsActive], [Order]) VALUES (N'Bq', 1,12); END
-if not exists (SELECT * FROM  dbo.Unit where [Name] = N'(µSv/h)/cps') BEGIN INSERT INTO dbo.Unit ([Name], [IsActive], [Order]) VALUES (N'(µSv/h)/cps', 1,13); END
-if not exists (SELECT * FROM  dbo.Unit where [Name] = N'(µSv/h)/cpm') BEGIN INSERT INTO dbo.Unit ([Name], [IsActive], [Order]) VALUES (N'(µSv/h)/cpm', 1,14); END
+--if not exists (SELECT * FROM  dbo.Unit where [Name] = N'kBq') BEGIN INSERT INTO dbo.Unit ([Name], [IsActive], [Order]) VALUES (N'kBq', 1,9); END
+--if not exists (SELECT * FROM  dbo.Unit where [Name] = N'Bq/s') BEGIN INSERT INTO dbo.Unit ([Name], [IsActive], [Order]) VALUES (N'Bq/s', 1,10); END
+--if not exists (SELECT * FROM  dbo.Unit where [Name] = N'kBq/s') BEGIN INSERT INTO dbo.Unit ([Name], [IsActive], [Order]) VALUES (N'kBq/s', 1,11); END
+--if not exists (SELECT * FROM  dbo.Unit where [Name] = N'Bq') BEGIN INSERT INTO dbo.Unit ([Name], [IsActive], [Order]) VALUES (N'Bq', 1,12); END
+--if not exists (SELECT * FROM  dbo.Unit where [Name] = N'(µSv/h)/cps') BEGIN INSERT INTO dbo.Unit ([Name], [IsActive], [Order]) VALUES (N'(µSv/h)/cps', 1,13); END
+--if not exists (SELECT * FROM  dbo.Unit where [Name] = N'(µSv/h)/cpm') BEGIN INSERT INTO dbo.Unit ([Name], [IsActive], [Order]) VALUES (N'(µSv/h)/cpm', 1,14); END
+
 end
 
 begin  -- City
@@ -219,7 +220,7 @@ end
 begin   -- Role
 if not exists (SELECT * FROM  dbo.Role where [Name] = N'Viewer') BEGIN INSERT INTO dbo.Role  ([Name], [User], [Permission],[BackupDB], [RestoreDB],[RadQuantity],[DoseQuantity],[Unit],[TM],[Certificate],[Customer],[City],[MachineName],[MachineType],[SensorType]) VALUES (N'Viewer', 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16); END																			
 if not exists (SELECT * FROM  dbo.Role where [Name] = N'Technical') BEGIN INSERT INTO dbo.Role  ([Name], [User], [Permission],[BackupDB], [RestoreDB],[RadQuantity],[DoseQuantity],[Unit],[TM],[Certificate],[Customer],[City],[MachineName],[MachineType],[SensorType]) VALUES (N'Technical', 0, 0, 0, 0, 16, 16, 16, 28, 31, 28, 28, 30, 28, 28); END																			
-if not exists (SELECT * FROM  dbo.Role where [Name] = N'TM') BEGIN INSERT INTO dbo.Role  ([Name], [User], [Permission],[BackupDB], [RestoreDB],[RadQuantity],[DoseQuantity],[Unit],[TM],[Certificate],[Customer],[City],[MachineName],[MachineType],[SensorType]) VALUES (N'TM', 28, 16, 28, 16, 30, 30, 30, 30, 31, 30, 30, 30, 30, 30); END																			
+if not exists (SELECT * FROM  dbo.Role where [Name] = N'Reviewer') BEGIN INSERT INTO dbo.Role  ([Name], [User], [Permission],[BackupDB], [RestoreDB],[RadQuantity],[DoseQuantity],[Unit],[TM],[Certificate],[Customer],[City],[MachineName],[MachineType],[SensorType]) VALUES (N'Reviewer', 28, 16, 28, 16, 30, 30, 30, 30, 31, 30, 30, 30, 30, 30); END																			
 if not exists (SELECT * FROM  dbo.Role where [Name] = N'QM') BEGIN INSERT INTO dbo.Role  ([Name], [User], [Permission],[BackupDB], [RestoreDB],[RadQuantity],[DoseQuantity],[Unit],[TM],[Certificate],[Customer],[City],[MachineName],[MachineType],[SensorType]) VALUES (N'QM', 30, 20, 30, 30, 30, 30, 30, 30, 31, 30, 30, 30, 30, 30); END																			
 if not exists (SELECT * FROM  dbo.Role where [Name] = N'Admin') BEGIN INSERT INTO dbo.Role  ([Name], [User], [Permission],[BackupDB], [RestoreDB],[RadQuantity],[DoseQuantity],[Unit],[TM],[Certificate],[Customer],[City],[MachineName],[MachineType],[SensorType]) VALUES (N'Admin', 30, 20, 30, 30, 30, 30, 30, 30, 31, 30, 30, 30, 30, 30); END																			
 											
@@ -234,51 +235,52 @@ if not exists (SELECT * FROM  dbo.RadQuantity where [NameVN] = N'Tia X ISO N60')
 if not exists (SELECT * FROM  dbo.RadQuantity where [NameVN] = N'Tia X ISO N80') BEGIN INSERT INTO dbo.RadQuantity  ([NameVN], [NameEN],[Energy],[ReUnc], [IsActive]) VALUES (N'Tia X ISO N80', N'X-ray ISO N80',65.2,0.04, 1); END												
 if not exists (SELECT * FROM  dbo.RadQuantity where [NameVN] = N'Tia X ISO N120') BEGIN INSERT INTO dbo.RadQuantity  ([NameVN], [NameEN],[Energy],[ReUnc], [IsActive]) VALUES (N'Tia X ISO N120', N'X-ray ISO N120',100,0.04, 1); END												
 if not exists (SELECT * FROM  dbo.RadQuantity where [NameVN] = N'Tia X ISO N150') BEGIN INSERT INTO dbo.RadQuantity  ([NameVN], [NameEN],[Energy],[ReUnc], [IsActive]) VALUES (N'Tia X ISO N150', N'X-ray ISO N150',118,0.04, 1); END												
-if not exists (SELECT * FROM  dbo.RadQuantity where [NameVN] = N'Tia X ISO L55') BEGIN INSERT INTO dbo.RadQuantity  ([NameVN], [NameEN],[Energy],[ReUnc], [IsActive]) VALUES (N'Tia X ISO L55', N'X-ray ISO L55',47.8,0.04, 1); END												
-if not exists (SELECT * FROM  dbo.RadQuantity where [NameVN] = N'Tia X ISO L70') BEGIN INSERT INTO dbo.RadQuantity  ([NameVN], [NameEN],[Energy],[ReUnc], [IsActive]) VALUES (N'Tia X ISO L70', N'X-ray ISO L70',60.6,0.04, 1); END												
-if not exists (SELECT * FROM  dbo.RadQuantity where [NameVN] = N'Tia X ISO L100') BEGIN INSERT INTO dbo.RadQuantity  ([NameVN], [NameEN],[Energy],[ReUnc], [IsActive]) VALUES (N'Tia X ISO L100', N'X-ray ISO L100',86.8,0.04, 0); END												
-if not exists (SELECT * FROM  dbo.RadQuantity where [NameVN] = N'Tia X ISO L125') BEGIN INSERT INTO dbo.RadQuantity  ([NameVN], [NameEN],[Energy],[ReUnc], [IsActive]) VALUES (N'Tia X ISO L125', N'X-ray ISO L125',109,0.04, 0); END												
-if not exists (SELECT * FROM  dbo.RadQuantity where [NameVN] = N'Tia X ISO H40') BEGIN INSERT INTO dbo.RadQuantity  ([NameVN], [NameEN],[Energy],[ReUnc], [IsActive]) VALUES (N'Tia X ISO H40', N'X-ray ISO H40',25.4,0.04, 0); END												
-if not exists (SELECT * FROM  dbo.RadQuantity where [NameVN] = N'Tia X ISO H60') BEGIN INSERT INTO dbo.RadQuantity  ([NameVN], [NameEN],[Energy],[ReUnc], [IsActive]) VALUES (N'Tia X ISO H60', N'X-ray ISO H60',38,0.04, 0); END												
-if not exists (SELECT * FROM  dbo.RadQuantity where [NameVN] = N'Tia X ISO H80') BEGIN INSERT INTO dbo.RadQuantity  ([NameVN], [NameEN],[Energy],[ReUnc], [IsActive]) VALUES (N'Tia X ISO H80', N'X-ray ISO H80',48.8,0.04, 0); END												
-if not exists (SELECT * FROM  dbo.RadQuantity where [NameVN] = N'Tia X ISO H100') BEGIN INSERT INTO dbo.RadQuantity  ([NameVN], [NameEN],[Energy],[ReUnc], [IsActive]) VALUES (N'Tia X ISO H100', N'X-ray ISO H100',57.3,0.04, 0); END												
-if not exists (SELECT * FROM  dbo.RadQuantity where [NameVN] = N'Tia X ISO H150') BEGIN INSERT INTO dbo.RadQuantity  ([NameVN], [NameEN],[Energy],[ReUnc], [IsActive]) VALUES (N'Tia X ISO H150', N'X-ray ISO H150',78,0.04, 0); END												
-if not exists (SELECT * FROM  dbo.RadQuantity where [NameVN] = N'Tia X ISO W40') BEGIN INSERT INTO dbo.RadQuantity  ([NameVN], [NameEN],[Energy],[ReUnc], [IsActive]) VALUES (N'Tia X ISO W40', N'X-ray ISO W40',29.8,0.04, 0); END												
-if not exists (SELECT * FROM  dbo.RadQuantity where [NameVN] = N'Tia X ISO W60') BEGIN INSERT INTO dbo.RadQuantity  ([NameVN], [NameEN],[Energy],[ReUnc], [IsActive]) VALUES (N'Tia X ISO W60', N'X-ray ISO W60',44.8,0.04, 0); END												
-if not exists (SELECT * FROM  dbo.RadQuantity where [NameVN] = N'Tia X ISO W80') BEGIN INSERT INTO dbo.RadQuantity  ([NameVN], [NameEN],[Energy],[ReUnc], [IsActive]) VALUES (N'Tia X ISO W80', N'X-ray ISO W80',56.5,0.04, 0); END												
-if not exists (SELECT * FROM  dbo.RadQuantity where [NameVN] = N'Tia X ISO W110') BEGIN INSERT INTO dbo.RadQuantity  ([NameVN], [NameEN],[Energy],[ReUnc], [IsActive]) VALUES (N'Tia X ISO W110', N'X-ray ISO W110',79.1,0.04, 0); END												
-if not exists (SELECT * FROM  dbo.RadQuantity where [NameVN] = N'Tia X ISO W150') BEGIN INSERT INTO dbo.RadQuantity  ([NameVN], [NameEN],[Energy],[ReUnc], [IsActive]) VALUES (N'Tia X ISO W150', N'X-ray ISO W150',105,0.04, 0); END												
-if not exists (SELECT * FROM  dbo.RadQuantity where [NameVN] = N'Sr-90/Y-90') BEGIN INSERT INTO dbo.RadQuantity  ([NameVN], [NameEN],[Energy],[ReUnc], [IsActive]) VALUES (N'Sr-90/Y-90', N'Sr-90/Y-90',1404,0.05, 0); END												
-if not exists (SELECT * FROM  dbo.RadQuantity where [NameVN] = N'Am-241') BEGIN INSERT INTO dbo.RadQuantity  ([NameVN], [NameEN],[Energy],[ReUnc], [IsActive]) VALUES (N'Am-241', N'Am-241',59.5,0.05, 0); END												
+--if not exists (SELECT * FROM  dbo.RadQuantity where [NameVN] = N'Tia X ISO L55') BEGIN INSERT INTO dbo.RadQuantity  ([NameVN], [NameEN],[Energy],[ReUnc], [IsActive]) VALUES (N'Tia X ISO L55', N'X-ray ISO L55',47.8,0.04, 1); END												
+--if not exists (SELECT * FROM  dbo.RadQuantity where [NameVN] = N'Tia X ISO L70') BEGIN INSERT INTO dbo.RadQuantity  ([NameVN], [NameEN],[Energy],[ReUnc], [IsActive]) VALUES (N'Tia X ISO L70', N'X-ray ISO L70',60.6,0.04, 1); END												
+--if not exists (SELECT * FROM  dbo.RadQuantity where [NameVN] = N'Tia X ISO L100') BEGIN INSERT INTO dbo.RadQuantity  ([NameVN], [NameEN],[Energy],[ReUnc], [IsActive]) VALUES (N'Tia X ISO L100', N'X-ray ISO L100',86.8,0.04, 0); END												
+--if not exists (SELECT * FROM  dbo.RadQuantity where [NameVN] = N'Tia X ISO L125') BEGIN INSERT INTO dbo.RadQuantity  ([NameVN], [NameEN],[Energy],[ReUnc], [IsActive]) VALUES (N'Tia X ISO L125', N'X-ray ISO L125',109,0.04, 0); END												
+--if not exists (SELECT * FROM  dbo.RadQuantity where [NameVN] = N'Tia X ISO H40') BEGIN INSERT INTO dbo.RadQuantity  ([NameVN], [NameEN],[Energy],[ReUnc], [IsActive]) VALUES (N'Tia X ISO H40', N'X-ray ISO H40',25.4,0.04, 0); END												
+--if not exists (SELECT * FROM  dbo.RadQuantity where [NameVN] = N'Tia X ISO H60') BEGIN INSERT INTO dbo.RadQuantity  ([NameVN], [NameEN],[Energy],[ReUnc], [IsActive]) VALUES (N'Tia X ISO H60', N'X-ray ISO H60',38,0.04, 0); END												
+--if not exists (SELECT * FROM  dbo.RadQuantity where [NameVN] = N'Tia X ISO H80') BEGIN INSERT INTO dbo.RadQuantity  ([NameVN], [NameEN],[Energy],[ReUnc], [IsActive]) VALUES (N'Tia X ISO H80', N'X-ray ISO H80',48.8,0.04, 0); END												
+--if not exists (SELECT * FROM  dbo.RadQuantity where [NameVN] = N'Tia X ISO H100') BEGIN INSERT INTO dbo.RadQuantity  ([NameVN], [NameEN],[Energy],[ReUnc], [IsActive]) VALUES (N'Tia X ISO H100', N'X-ray ISO H100',57.3,0.04, 0); END												
+--if not exists (SELECT * FROM  dbo.RadQuantity where [NameVN] = N'Tia X ISO H150') BEGIN INSERT INTO dbo.RadQuantity  ([NameVN], [NameEN],[Energy],[ReUnc], [IsActive]) VALUES (N'Tia X ISO H150', N'X-ray ISO H150',78,0.04, 0); END												
+--if not exists (SELECT * FROM  dbo.RadQuantity where [NameVN] = N'Tia X ISO W40') BEGIN INSERT INTO dbo.RadQuantity  ([NameVN], [NameEN],[Energy],[ReUnc], [IsActive]) VALUES (N'Tia X ISO W40', N'X-ray ISO W40',29.8,0.04, 0); END												
+--if not exists (SELECT * FROM  dbo.RadQuantity where [NameVN] = N'Tia X ISO W60') BEGIN INSERT INTO dbo.RadQuantity  ([NameVN], [NameEN],[Energy],[ReUnc], [IsActive]) VALUES (N'Tia X ISO W60', N'X-ray ISO W60',44.8,0.04, 0); END												
+--if not exists (SELECT * FROM  dbo.RadQuantity where [NameVN] = N'Tia X ISO W80') BEGIN INSERT INTO dbo.RadQuantity  ([NameVN], [NameEN],[Energy],[ReUnc], [IsActive]) VALUES (N'Tia X ISO W80', N'X-ray ISO W80',56.5,0.04, 0); END												
+--if not exists (SELECT * FROM  dbo.RadQuantity where [NameVN] = N'Tia X ISO W110') BEGIN INSERT INTO dbo.RadQuantity  ([NameVN], [NameEN],[Energy],[ReUnc], [IsActive]) VALUES (N'Tia X ISO W110', N'X-ray ISO W110',79.1,0.04, 0); END												
+--if not exists (SELECT * FROM  dbo.RadQuantity where [NameVN] = N'Tia X ISO W150') BEGIN INSERT INTO dbo.RadQuantity  ([NameVN], [NameEN],[Energy],[ReUnc], [IsActive]) VALUES (N'Tia X ISO W150', N'X-ray ISO W150',105,0.04, 0); END												
+--if not exists (SELECT * FROM  dbo.RadQuantity where [NameVN] = N'Sr-90/Y-90') BEGIN INSERT INTO dbo.RadQuantity  ([NameVN], [NameEN],[Energy],[ReUnc], [IsActive]) VALUES (N'Sr-90/Y-90', N'Sr-90/Y-90',1404,0.05, 0); END												
+--if not exists (SELECT * FROM  dbo.RadQuantity where [NameVN] = N'Am-241') BEGIN INSERT INTO dbo.RadQuantity  ([NameVN], [NameEN],[Energy],[ReUnc], [IsActive]) VALUES (N'Am-241', N'Am-241',59.5,0.05, 0); END												
 
 end
 
 begin   -- DosimetryQuantity
-if not exists (SELECT * FROM  dbo.DoseQuantity where [NameVN] = N'Kerma không khí') BEGIN INSERT INTO dbo.DoseQuantity  ([NameVN],[NameEN],[Notation],[IsActive]) VALUES (N'Kerma không khí ' ,'Air-Kerma', N'Kₐ',1); END															
+--if not exists (SELECT * FROM  dbo.DoseQuantity where [NameVN] = N'Kerma không khí') BEGIN INSERT INTO dbo.DoseQuantity  ([NameVN],[NameEN],[Notation],[IsActive]) VALUES (N'Kerma không khí ' ,'Air-Kerma', N'Kₐ',1); END															
 if not exists (SELECT * FROM  dbo.DoseQuantity where [NameVN] = N'Tương đương liều môi trường') BEGIN INSERT INTO dbo.DoseQuantity  ([NameVN],[NameEN],[Notation],[IsActive]) VALUES (N'Tương đương liều môi trường ' ,'Ambient Dose Equivalent', N'H*(10)',1); END															
 if not exists (SELECT * FROM  dbo.DoseQuantity where [NameVN] = N'Tương đương liều cá nhân') BEGIN INSERT INTO dbo.DoseQuantity  ([NameVN],[NameEN],[Notation],[IsActive]) VALUES (N'Tương đương liều cá nhân ' ,'Personal Dose Equivalent', N'Hₚ(10)',1); END															
-if not exists (SELECT * FROM  dbo.DoseQuantity where [NameVN] = N'Liều hấp thụ') BEGIN INSERT INTO dbo.DoseQuantity  ([NameVN],[NameEN],[Notation],[IsActive]) VALUES (N'Liều hấp thụ ' ,'Absorbed Dose', 'D',1); END															
-if not exists (SELECT * FROM  dbo.DoseQuantity where [NameVN] = N'Liều môi trường') BEGIN INSERT INTO dbo.DoseQuantity  ([NameVN],[NameEN],[Notation],[IsActive]) VALUES (N'Liều môi trường ' ,'Ambient Dose', N'H*',1); END															
-if not exists (SELECT * FROM  dbo.DoseQuantity where [NameVN] = N'Liều cá nhân') BEGIN INSERT INTO dbo.DoseQuantity  ([NameVN],[NameEN],[Notation],[IsActive]) VALUES (N'Liều cá nhân ' ,'Personal Dose', N'Hₚ',1); END															
+--if not exists (SELECT * FROM  dbo.DoseQuantity where [NameVN] = N'Liều hấp thụ') BEGIN INSERT INTO dbo.DoseQuantity  ([NameVN],[NameEN],[Notation],[IsActive]) VALUES (N'Liều hấp thụ ' ,'Absorbed Dose', 'D',1); END															
+--if not exists (SELECT * FROM  dbo.DoseQuantity where [NameVN] = N'Liều môi trường') BEGIN INSERT INTO dbo.DoseQuantity  ([NameVN],[NameEN],[Notation],[IsActive]) VALUES (N'Liều môi trường ' ,'Ambient Dose', N'H*',1); END															
+--if not exists (SELECT * FROM  dbo.DoseQuantity where [NameVN] = N'Liều cá nhân') BEGIN INSERT INTO dbo.DoseQuantity  ([NameVN],[NameEN],[Notation],[IsActive]) VALUES (N'Liều cá nhân ' ,'Personal Dose', N'Hₚ',1); END															
 																						
 end
 
-begin   -- TM
-if not exists (SELECT * FROM  dbo.TM where [Name] = N'Hồ Quang Tuấn') BEGIN INSERT INTO dbo.TM ([Name]) VALUES (N'Hồ Quang Tuấn'); END
-if not exists (SELECT * FROM  dbo.TM where [Name] = N'Bùi Đức Kỳ') BEGIN INSERT INTO dbo.TM ([Name]) VALUES (N'Bùi Đức Kỳ'); END
-end
+--begin   -- TM
+--if not exists (SELECT * FROM  dbo.TM where [Name] = N'Hồ Quang Tuấn') BEGIN INSERT INTO dbo.TM ([Name]) VALUES (N'Hồ Quang Tuấn'); END
+--if not exists (SELECT * FROM  dbo.TM where [Name] = N'Bùi Đức Kỳ') BEGIN INSERT INTO dbo.TM ([Name]) VALUES (N'Bùi Đức Kỳ'); END
+
+--end
 
 begin  -- SensorType
 if not exists (SELECT * FROM  dbo.SensorType where [Name] = N'Ống đếm GM') BEGIN INSERT INTO dbo.SensorType ([Name],[IsActive]) VALUES (N'Ống đếm GM',1); END
 if not exists (SELECT * FROM  dbo.SensorType where [Name] = N'Đầu dò nhấp nháy') BEGIN INSERT INTO dbo.SensorType ([Name],[IsActive]) VALUES (N'Đầu dò nhấp nháy',1); END
 if not exists (SELECT * FROM  dbo.SensorType where [Name] = N'Buồng ion hóa') BEGIN INSERT INTO dbo.SensorType ([Name],[IsActive]) VALUES (N'Buồng ion hóa',1); END
 if not exists (SELECT * FROM  dbo.SensorType where [Name] = N'Diode bán dẫn') BEGIN INSERT INTO dbo.SensorType ([Name],[IsActive]) VALUES (N'Diode bán dẫn',1); END
-if not exists (SELECT * FROM  dbo.SensorType where [Name] = N'Ống đếm tỷ lệ') BEGIN INSERT INTO dbo.SensorType ([Name],[IsActive]) VALUES (N'Ống đếm tỷ lệ',1); END
-if not exists (SELECT * FROM  dbo.SensorType where [Name] = N'Tinh thể NaI') BEGIN INSERT INTO dbo.SensorType ([Name],[IsActive]) VALUES (N'Tinh thể NaI',1); END
-if not exists (SELECT * FROM  dbo.SensorType where [Name] = N'Tinh thể HPGe') BEGIN INSERT INTO dbo.SensorType ([Name],[IsActive]) VALUES (N'Tinh thể HPGe',1); END
-if not exists (SELECT * FROM  dbo.SensorType where [Name] = N'Ống đếm chứa khí He-3') BEGIN INSERT INTO dbo.SensorType ([Name],[IsActive]) VALUES (N'Ống đếm chứa khí He-3',1); END
-if not exists (SELECT * FROM  dbo.SensorType where [Name] = N'Tinh thể LiI(Eu)') BEGIN INSERT INTO dbo.SensorType ([Name],[IsActive]) VALUES (N'Tinh thể LiI(Eu)',1); END
-if not exists (SELECT * FROM  dbo.SensorType where [Name] = N'N/A') BEGIN INSERT INTO dbo.SensorType ([Name],[IsActive]) VALUES (N'N/A',1); END
+--if not exists (SELECT * FROM  dbo.SensorType where [Name] = N'Ống đếm tỷ lệ') BEGIN INSERT INTO dbo.SensorType ([Name],[IsActive]) VALUES (N'Ống đếm tỷ lệ',1); END
+--if not exists (SELECT * FROM  dbo.SensorType where [Name] = N'Tinh thể NaI') BEGIN INSERT INTO dbo.SensorType ([Name],[IsActive]) VALUES (N'Tinh thể NaI',1); END
+--if not exists (SELECT * FROM  dbo.SensorType where [Name] = N'Tinh thể HPGe') BEGIN INSERT INTO dbo.SensorType ([Name],[IsActive]) VALUES (N'Tinh thể HPGe',1); END
+--if not exists (SELECT * FROM  dbo.SensorType where [Name] = N'Ống đếm chứa khí He-3') BEGIN INSERT INTO dbo.SensorType ([Name],[IsActive]) VALUES (N'Ống đếm chứa khí He-3',1); END
+--if not exists (SELECT * FROM  dbo.SensorType where [Name] = N'Tinh thể LiI(Eu)') BEGIN INSERT INTO dbo.SensorType ([Name],[IsActive]) VALUES (N'Tinh thể LiI(Eu)',1); END
+--if not exists (SELECT * FROM  dbo.SensorType where [Name] = N'N/A') BEGIN INSERT INTO dbo.SensorType ([Name],[IsActive]) VALUES (N'N/A',1); END
 
 end
 
@@ -301,15 +303,15 @@ begin   -- User
 
 
 if not exists (SELECT * FROM  dbo.[User] WHERE [LoginName] = 'Admin') BEGIN INSERT INTO dbo.[User]  ([LoginName],[FullName],[Password],[RoleId],[IsActive]) VALUES ('Admin' , N'Admin ' ,'PJkJr+wlNU1VHa4hWQuybjjVPyFzuNPcPu5MBH56scHri4UQPjvnumE7MbtcnDYhTcnxSkL9ei/bhIVrylxEwg==', 5,1); END															
-if not exists (SELECT * FROM  dbo.[User] WHERE [LoginName] = 'lnThiem') BEGIN INSERT INTO dbo.[User]  ([LoginName],[FullName],[Password],[RoleId],[IsActive]) VALUES ('lnThiem' , N'Lê Ngọc Thiệm ' ,'PJkJr+wlNU1VHa4hWQuybjjVPyFzuNPcPu5MBH56scHri4UQPjvnumE7MbtcnDYhTcnxSkL9ei/bhIVrylxEwg==', 4,1); END															
-if not exists (SELECT * FROM  dbo.[User] WHERE [LoginName] = 'hqTuan') BEGIN INSERT INTO dbo.[User]  ([LoginName],[FullName],[Password],[RoleId],[IsActive]) VALUES ('hqTuan' , N'Hồ Quang Tuấn ' ,'Qpg33dheP8YId/V227rSwJBGsaFBiCiS+gSmH7v3UGe/srMWJLKxaXixYtGn8bVjDTAZUTLkUWd2gozVxGdL4Q==', 3,1); END															
-if not exists (SELECT * FROM  dbo.[User] WHERE [LoginName] = 'bdKy') BEGIN INSERT INTO dbo.[User]  ([LoginName],[FullName],[Password],[RoleId],[IsActive]) VALUES ('bdKy' , N'Bùi Đức Kỳ ' ,'mrPKbRbcgI3Y7GyXhTJ1YGYtYmDPiyLMTBcVQr44EKNCqt7iQv6QJj8syq5r5E2Kz+E99I8XDod1fMb+QgOWQA==', 3,1); END															
-if not exists (SELECT * FROM  dbo.[User] WHERE [LoginName] = 'nnQuynh') BEGIN INSERT INTO dbo.[User]  ([LoginName],[FullName],[Password],[RoleId],[IsActive]) VALUES ('nnQuynh' , N'Nguyễn Ngọc Quỳnh ' ,'PJkJr+wlNU1VHa4hWQuybjjVPyFzuNPcPu5MBH56scHri4UQPjvnumE7MbtcnDYhTcnxSkL9ei/bhIVrylxEwg==', 2,1); END															
-if not exists (SELECT * FROM  dbo.[User] WHERE [LoginName] = 'dtmLinh') BEGIN INSERT INTO dbo.[User]  ([LoginName],[FullName],[Password],[RoleId],[IsActive]) VALUES ('dtmLinh' , N'Đặng Thị Mỹ Linh ' ,'PJkJr+wlNU1VHa4hWQuybjjVPyFzuNPcPu5MBH56scHri4UQPjvnumE7MbtcnDYhTcnxSkL9ei/bhIVrylxEwg==', 2,1); END															
-if not exists (SELECT * FROM  dbo.[User] WHERE [LoginName] = 'dtNhung') BEGIN INSERT INTO dbo.[User]  ([LoginName],[FullName],[Password],[RoleId],[IsActive]) VALUES ('dtNhung' , N'Dương Thị Nhung ' ,'PJkJr+wlNU1VHa4hWQuybjjVPyFzuNPcPu5MBH56scHri4UQPjvnumE7MbtcnDYhTcnxSkL9ei/bhIVrylxEwg==', 2,1); END															
-if not exists (SELECT * FROM  dbo.[User] WHERE [LoginName] = 'tvTrung') BEGIN INSERT INTO dbo.[User]  ([LoginName],[FullName],[Password],[RoleId],[IsActive]) VALUES ('tvTrung' , N'Trần Văn Trung ' ,'PJkJr+wlNU1VHa4hWQuybjjVPyFzuNPcPu5MBH56scHri4UQPjvnumE7MbtcnDYhTcnxSkL9ei/bhIVrylxEwg==', 2,1); END															
-if not exists (SELECT * FROM  dbo.[User] WHERE [LoginName] = 'ndNguyen') BEGIN INSERT INTO dbo.[User]  ([LoginName],[FullName],[Password],[RoleId],[IsActive]) VALUES ('ndNguyen' , N'Nguyễn Đăng Nguyên ' ,'PJkJr+wlNU1VHa4hWQuybjjVPyFzuNPcPu5MBH56scHri4UQPjvnumE7MbtcnDYhTcnxSkL9ei/bhIVrylxEwg===', 2,1); END															
-if not exists (SELECT * FROM  dbo.[User] WHERE [LoginName] = 'btaDuong') BEGIN INSERT INTO dbo.[User]  ([LoginName],[FullName],[Password],[RoleId],[IsActive]) VALUES ('btaDuong' , N'Bùi Thị Ánh Dương ' ,'YU8M7uEnGPjxcgFRhsIYY0zmZ2R27HhKSOPhctSc1Xo6DN7uCucjctayrOFEychlsVjWevlpywZAubG41J8Wyw==', 1,1); END															
+--if not exists (SELECT * FROM  dbo.[User] WHERE [LoginName] = 'lnThiem') BEGIN INSERT INTO dbo.[User]  ([LoginName],[FullName],[Password],[RoleId],[IsActive]) VALUES ('lnThiem' , N'Lê Ngọc Thiệm ' ,'PJkJr+wlNU1VHa4hWQuybjjVPyFzuNPcPu5MBH56scHri4UQPjvnumE7MbtcnDYhTcnxSkL9ei/bhIVrylxEwg==', 4,1); END															
+--if not exists (SELECT * FROM  dbo.[User] WHERE [LoginName] = 'hqTuan') BEGIN INSERT INTO dbo.[User]  ([LoginName],[FullName],[Password],[RoleId],[IsActive]) VALUES ('hqTuan' , N'Hồ Quang Tuấn ' ,'Qpg33dheP8YId/V227rSwJBGsaFBiCiS+gSmH7v3UGe/srMWJLKxaXixYtGn8bVjDTAZUTLkUWd2gozVxGdL4Q==', 3,1); END															
+--if not exists (SELECT * FROM  dbo.[User] WHERE [LoginName] = 'bdKy') BEGIN INSERT INTO dbo.[User]  ([LoginName],[FullName],[Password],[RoleId],[IsActive]) VALUES ('bdKy' , N'Bùi Đức Kỳ ' ,'mrPKbRbcgI3Y7GyXhTJ1YGYtYmDPiyLMTBcVQr44EKNCqt7iQv6QJj8syq5r5E2Kz+E99I8XDod1fMb+QgOWQA==', 3,1); END															
+--if not exists (SELECT * FROM  dbo.[User] WHERE [LoginName] = 'nnQuynh') BEGIN INSERT INTO dbo.[User]  ([LoginName],[FullName],[Password],[RoleId],[IsActive]) VALUES ('nnQuynh' , N'Nguyễn Ngọc Quỳnh ' ,'PJkJr+wlNU1VHa4hWQuybjjVPyFzuNPcPu5MBH56scHri4UQPjvnumE7MbtcnDYhTcnxSkL9ei/bhIVrylxEwg==', 2,1); END															
+--if not exists (SELECT * FROM  dbo.[User] WHERE [LoginName] = 'dtmLinh') BEGIN INSERT INTO dbo.[User]  ([LoginName],[FullName],[Password],[RoleId],[IsActive]) VALUES ('dtmLinh' , N'Đặng Thị Mỹ Linh ' ,'PJkJr+wlNU1VHa4hWQuybjjVPyFzuNPcPu5MBH56scHri4UQPjvnumE7MbtcnDYhTcnxSkL9ei/bhIVrylxEwg==', 2,1); END															
+--if not exists (SELECT * FROM  dbo.[User] WHERE [LoginName] = 'dtNhung') BEGIN INSERT INTO dbo.[User]  ([LoginName],[FullName],[Password],[RoleId],[IsActive]) VALUES ('dtNhung' , N'Dương Thị Nhung ' ,'PJkJr+wlNU1VHa4hWQuybjjVPyFzuNPcPu5MBH56scHri4UQPjvnumE7MbtcnDYhTcnxSkL9ei/bhIVrylxEwg==', 2,1); END															
+--if not exists (SELECT * FROM  dbo.[User] WHERE [LoginName] = 'tvTrung') BEGIN INSERT INTO dbo.[User]  ([LoginName],[FullName],[Password],[RoleId],[IsActive]) VALUES ('tvTrung' , N'Trần Văn Trung ' ,'PJkJr+wlNU1VHa4hWQuybjjVPyFzuNPcPu5MBH56scHri4UQPjvnumE7MbtcnDYhTcnxSkL9ei/bhIVrylxEwg==', 2,1); END															
+--if not exists (SELECT * FROM  dbo.[User] WHERE [LoginName] = 'ndNguyen') BEGIN INSERT INTO dbo.[User]  ([LoginName],[FullName],[Password],[RoleId],[IsActive]) VALUES ('ndNguyen' , N'Nguyễn Đăng Nguyên ' ,'PJkJr+wlNU1VHa4hWQuybjjVPyFzuNPcPu5MBH56scHri4UQPjvnumE7MbtcnDYhTcnxSkL9ei/bhIVrylxEwg===', 2,1); END															
+--if not exists (SELECT * FROM  dbo.[User] WHERE [LoginName] = 'btaDuong') BEGIN INSERT INTO dbo.[User]  ([LoginName],[FullName],[Password],[RoleId],[IsActive]) VALUES ('btaDuong' , N'Bùi Thị Ánh Dương ' ,'YU8M7uEnGPjxcgFRhsIYY0zmZ2R27HhKSOPhctSc1Xo6DN7uCucjctayrOFEychlsVjWevlpywZAubG41J8Wyw==', 1,1); END															
 
 end
 

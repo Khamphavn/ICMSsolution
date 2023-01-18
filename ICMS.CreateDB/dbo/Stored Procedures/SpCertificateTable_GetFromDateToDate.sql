@@ -11,5 +11,5 @@ BEGIN
 	FROM [dbo].[Certificate] 
 
 	WHERE [CalibDate] BETWEEN @FromDate AND  @ToDate
-
+	ORDER BY [CalibDate] DESC
 END

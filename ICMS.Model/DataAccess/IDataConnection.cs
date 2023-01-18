@@ -34,7 +34,7 @@ namespace ICMS.Model.DataAccess
         //Customer Customer_GetById(int Id, string connectionString);
         //Customer Customer_GetByFullName(string FullName, string connectionString);
         int Customer_Update(Customer model, string connectionString);
-        //int Customer_Insert(Customer model, string connectionString);
+        int Customer_Insert(Customer model, string connectionString);
         int Customer_DeleteById(int Id, string connectionString);
         #endregion
 

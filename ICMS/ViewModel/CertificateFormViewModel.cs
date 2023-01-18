@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Input;
 using DocumentFormat.OpenXml.Office2010.ExcelAc;
 using ICMS.Command;
+using ICMS.HelperFunction;
 using ICMS.Model;
 using ICMS.Model.DataAccess;
 using ICMS.Model.Models;
@@ -216,7 +217,6 @@ namespace ICMS.ViewModel
                 PerformedBy = certificate.PerformedBy;
                 SelectedTM = AvailableTMs.FirstOrDefault(s => s.Name == certificate.TM);
 
-
                 SelectedMachineName = AvailableMachineNames.FirstOrDefault(s => s.Name == certificate.Machine.Name);
                 SelectedMachineType = AvailableMachineTypes.FirstOrDefault(s => s.Name == certificate.Machine.MachineType.Name);
                 MachineModel = certificate.Machine.Model;
@@ -236,8 +236,12 @@ namespace ICMS.ViewModel
                     
                 }
 
-                SelectedRefUnit = AvailableUnits.FirstOrDefault(s => s.Name == certificate.CalibDatas[0].RefUnit);
-                SelectedMachineUnit = AvailableUnits.FirstOrDefault(s => s.Name == certificate.CalibDatas[0].MachineUnit);
+                if (certificate.CalibDatas.Count() >= 1)
+                {
+                    SelectedRefUnit = AvailableUnits.FirstOrDefault(s => s.Name == certificate.CalibDatas[0].RefUnit);
+                    SelectedMachineUnit = AvailableUnits.FirstOrDefault(s => s.Name == certificate.CalibDatas[0].MachineUnit);
+
+                }
 
                 List<CalibDataDTO> calibDatasDTO = new List<CalibDataDTO>();
 
@@ -550,14 +554,14 @@ namespace ICMS.ViewModel
 
             newCertificate.DoseQuantity = SelectedDoseQuantity;
 
-            newCertificate.Temperature = Math.Round(double.Parse(Temperature), 2, MidpointRounding.AwayFromZero) ;
+            newCertificate.Temperature = Math.Round(double.Parse(Temperature), 1, MidpointRounding.AwayFromZero) ;
 
-            newCertificate.Humidity = Math.Round(double.Parse(Humidity), 2, MidpointRounding.AwayFromZero)  ;
+            newCertificate.Humidity = Math.Round(double.Parse(Humidity), 1, MidpointRounding.AwayFromZero)  ;
 
-            newCertificate.Pressure = Math.Round(double.Parse(Pressure), 2, MidpointRounding.AwayFromZero);
+            newCertificate.Pressure = Math.Round(double.Parse(Pressure), 1, MidpointRounding.AwayFromZero);
 
             newCertificate.CalibDate = CalibDate;
-            newCertificate.CertificateNumber = CertificateNo;
+            newCertificate.CertificateNumber = StringExtensions.RemoveAllWhiteSpaces(CertificateNo); // CertificateNo;
             newCertificate.PerformedBy = PerformedBy;
             if (SelectedTM != null)
             {

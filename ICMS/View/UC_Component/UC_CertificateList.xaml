@@ -247,7 +247,7 @@
                         <DataGrid Style="{StaticResource MaterialDesignDataGrid}"
                             ColumnHeaderStyle="{StaticResource MaterialDesignDataGridColumnHeader}"
                             RowHeight="27"
-                                    materialDesign:DataGridAssist.CellPadding="5 5 5 5 "
+                            materialDesign:DataGridAssist.CellPadding="5 5 5 5 "
                             AutoGenerateColumns="False" 
                             CanUserAddRows="False" CanUserDeleteRows="False" CanUserSortColumns="True"
                             CanUserReorderColumns="False" CanUserResizeColumns="True"  CanUserResizeRows="False"

@@ -13,6 +13,17 @@ namespace ICMS.Converter
         // Data to UI
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            if (value != null)
+            {
+                string stringValue = (string)value;
+                double number = double.Parse(stringValue);
+
+                number = Math.Round(number, 1, MidpointRounding.AwayFromZero);
+
+                return number;
+                
+            }
+            
             return value;
 
         }

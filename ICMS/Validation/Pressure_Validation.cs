@@ -11,7 +11,7 @@ namespace ICMS.Validation
     public class Pressure_Validation : ValidationRule
     {
         public double MinPressure { get; set; } = AppSettings.AppSettings.MINPRESSURE; // giá trị tối thiểu của nhiệt độ
-        public double MaxPressure { get; set; } = AppSettings.AppSettings.MAXHUMIDITY;// giá trị tối đa của nhiệt độ
+        public double MaxPressure { get; set; } = AppSettings.AppSettings.MAXPRESSURE;// giá trị tối đa của nhiệt độ
 
 
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)

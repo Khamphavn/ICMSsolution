@@ -126,11 +126,10 @@
                                     <TextBox.Text>
                                         <Binding Path="Temperature" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
                                             <Binding.ValidationRules>
-                                                <validation:Temperature_Validation ValidationStep="RawProposedValue"
-                                                                                   ValidatesOnTargetUpdated="True"/>
+                                                <validation:Temperature_Validation ValidatesOnTargetUpdated="True"/>
                                             </Binding.ValidationRules>
                                             <Binding.Converter>
-                                                <converter:OneDecimalText_Converter/>
+                                                <converter:OneDecimalText_Converter />
                                             </Binding.Converter>
                                         </Binding>
                                     </TextBox.Text>
@@ -145,8 +144,7 @@
                                     <TextBox.Text>
                                         <Binding Path="Pressure" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
                                             <Binding.ValidationRules>
-                                                <validation:Pressure_Validation MinPressure="990"    MaxPressure="1030"
-                                                                                ValidationStep="RawProposedValue"
+                                                <validation:Pressure_Validation ValidationStep="RawProposedValue"
                                                                                 ValidatesOnTargetUpdated="True"/>
                                             </Binding.ValidationRules>
                                             <Binding.Converter>
@@ -164,7 +162,7 @@
                                     <TextBox.Text>
                                         <Binding Path="Humidity" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
                                             <Binding.ValidationRules>
-                                                <validation:Humidity_Validation MinHumidity="30" MaxHumidity="70"
+                                                <validation:Humidity_Validation ValidationStep="RawProposedValue"
                                                                                 ValidatesOnTargetUpdated="True"/>
                                             </Binding.ValidationRules>
                                             <Binding.Converter>
@@ -226,6 +224,9 @@
                                             <Binding.ValidationRules>
                                                 <validation:TextBoxNotNull  ValidatesOnTargetUpdated="True"/>
                                             </Binding.ValidationRules>
+                                            <Binding.Converter>
+                                                <converter:StringRemoveWhiteSpaceConverter/>
+                                            </Binding.Converter>
                                         </Binding>
                                     </TextBox.Text>
                                 </TextBox>
@@ -263,7 +264,7 @@
                                 </TextBox>
 
                                 <!-- TM -->
-                                <Label Content="Quản lý kỹ thuật"  Grid.Row="1" Grid.Column="0"  Margin="-5 7 0 20" Foreground="Black"/>
+                                <Label Content="Người kiểm tra"  Grid.Row="1" Grid.Column="0"  Margin="-5 7 0 20" Foreground="Black"/>
                                 <ComboBox Grid.Row="1" Grid.Column="1"  Margin="0 4 -5 20"   x:Name="TMTextBox"
                                           Style="{StaticResource MaterialDesignComboBox}"
                                           ItemsSource="{Binding AvailableTMs}"   DisplayMemberPath="Name">

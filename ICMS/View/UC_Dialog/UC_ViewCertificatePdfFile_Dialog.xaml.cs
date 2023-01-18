@@ -99,7 +99,7 @@ namespace ICMS.View.UC_Dialog
             Button goFirstPageButton = (Button)toolbar.Template.FindName("PART_ButtonGoToFirstPage", toolbar);
             goFirstPageButton.Visibility = System.Windows.Visibility.Collapsed;
 
-            // FLast Page Tool
+            // Last Page Tool
             Button goLastPageButton = (Button)toolbar.Template.FindName("PART_ButtonGoToLastPage", toolbar);
             goLastPageButton.Visibility = System.Windows.Visibility.Collapsed;
 

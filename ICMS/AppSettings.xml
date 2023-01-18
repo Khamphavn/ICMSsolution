@@ -3,7 +3,7 @@
 <appSettings>
 	<!-- Temperature in Celcius unit -->
 	<add key="MINTEMPERATURE" value="15"/>
-	<!--<add key="MAXTEMPERATURE" value="30"/>-->
+	<add key="MAXTEMPERATURE" value="30"/>
 
 	<!-- Pressure in hPa unit -->
 	<add key="MINPRESSURE" value="990"/>

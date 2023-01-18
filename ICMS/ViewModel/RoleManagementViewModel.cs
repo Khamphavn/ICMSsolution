@@ -22,10 +22,8 @@ namespace ICMS.ViewModel
         private ObservableCollection<Role> _Roles;
         public ObservableCollection<Role> Roles { get => _Roles; set { _Roles = value; OnPropertyChanged(); } }
 
-
         private RoleAction _SelectedRoleAction;
         public RoleAction SelectedRoleAction { get => _SelectedRoleAction; set { _SelectedRoleAction = value; OnPropertyChanged(); } }
-
 
         private Role _SelectedRole;
         public Role SelectedRole { get => _SelectedRole; set 
@@ -39,7 +37,6 @@ namespace ICMS.ViewModel
                 OnPropertyChanged(); 
             
             } }
-
 
         private List<RoleAction> _RoleActions;
         public List<RoleAction> RoleActions { get => _RoleActions; set { _RoleActions = value; OnPropertyChanged(); } }
@@ -59,17 +56,12 @@ namespace ICMS.ViewModel
         {
             #region Init
             CurrentUser = currentUser;
-
-
-
+            
             Roles = new ObservableCollection<Role>(GlobalConfig.Connection.Role_GetAll(GlobalConfig.CnnString("ICMSdatabase")));
 
             Roles.Remove(Roles.Where(s => s.Name.ToLower() == "admin").Single());
 
-
-
             SelectedRole = Roles[1];
-
 
             #endregion
 
@@ -108,8 +100,6 @@ namespace ICMS.ViewModel
                 );
             #endregion
 
-
-
             #region CancelCommand
             CancelCommand = new RelayCommand<object>
                 (
@@ -123,9 +113,7 @@ namespace ICMS.ViewModel
                 );
             #endregion
 
-
             #endregion
-
 
         }
 
@@ -134,22 +122,7 @@ namespace ICMS.ViewModel
 
         #region private function
 
-        //private void GetDefaultRolePermission()
-        //{
-        //    Role viewer = Roles.FirstOrDefault(s => s.Name == "Viewer");
-            
-        //    List<RoleAction> viewerRoleActions = new List<RoleAction>() 
-        //    { 
-        //        new RoleAction()
-        //        {
-        //            ActionCode = "User",
 
-        //        }
-        //    }
-
-
-
-        //}
 
 
         #endregion

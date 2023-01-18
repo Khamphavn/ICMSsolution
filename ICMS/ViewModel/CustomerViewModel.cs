@@ -166,7 +166,7 @@ namespace ICMS.ViewModel
                             Customer updateCustomer = new Customer()
                             {
                                 CustomerId = SelectedCustomer.CustomerId,
-                                ShortName = Customer_ShortName.Trim(),
+                                ShortName = Customer_ShortName,
                                 FullName = Customer_FullName.Trim(),
                                 Address = Customer_Address.Trim(),
                                 City = new City() { Name = Customer_CityName.Trim() },
@@ -234,7 +234,7 @@ namespace ICMS.ViewModel
                     }
                     else
                     {
-                        Customer updateCustomer = new Customer()
+                        Customer newCustomer = new Customer()
                         {
                             ShortName = Customer_ShortName,
                             FullName = Customer_FullName.Trim(),
@@ -243,15 +243,15 @@ namespace ICMS.ViewModel
                         };
 
                         // check unique Customer.FullName
-                        bool isUniqueCustomerFullName = IsUniqueCustomerFullName(updateCustomer.FullName, CustomerList.ToList());
+                        bool isUniqueCustomerFullName = IsUniqueCustomerFullName(newCustomer.FullName, CustomerList.ToList());
 
                         if (isUniqueCustomerFullName)
                         {
                             try
                             {
-                                GlobalConfig.Connection.Customer_Update(updateCustomer, GlobalConfig.CnnString("ICMSdatabase"));
-                                CustomerList.Add(updateCustomer);
-                                SelectedCustomer = (Customer)CustomerList.FirstOrDefault(s => s.CustomerId == updateCustomer.CustomerId);
+                                GlobalConfig.Connection.Customer_Insert(newCustomer, GlobalConfig.CnnString("ICMSdatabase"));
+                                CustomerList.Add(newCustomer);
+                                SelectedCustomer = (Customer)CustomerList.FirstOrDefault(s => s.CustomerId == newCustomer.CustomerId);
                                 CurrentOperationMode = OperationMode.NormalMode.ToString();
                             }
                             catch (Exception ex)

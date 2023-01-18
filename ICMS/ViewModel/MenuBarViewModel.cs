@@ -158,7 +158,9 @@ namespace ICMS.ViewModel
                 (p) => { return true; },
                 (p) =>
                 {
+                    Mouse.OverrideCursor = System.Windows.Input.Cursors.Wait;
                     mainViewModel.CurrentControl = new CertificateListViewModel(mainViewModel);
+                    Mouse.OverrideCursor = null;
                 }
                 );
             #endregion
