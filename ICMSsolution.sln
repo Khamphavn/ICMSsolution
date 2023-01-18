@@ -15,6 +15,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utils", "Utils", "{6E350A16
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeneratePassword", "GeneratePassword\GeneratePassword.csproj", "{EE85EB92-47D2-439F-8AB6-71D372A9CDC4}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "ICMS Setup", "ICMS Setup\ICMS Setup.vdproj", "{108715F1-9100-41D3-92BA-CA7EBFA4E521}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,11 +40,11 @@ Global
 		{7CE5DE0F-34DE-40A7-82C0-55237A241243}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7CE5DE0F-34DE-40A7-82C0-55237A241243}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7CE5DE0F-34DE-40A7-82C0-55237A241243}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7CE5DE0F-34DE-40A7-82C0-55237A241243}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EE85EB92-47D2-439F-8AB6-71D372A9CDC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EE85EB92-47D2-439F-8AB6-71D372A9CDC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE85EB92-47D2-439F-8AB6-71D372A9CDC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EE85EB92-47D2-439F-8AB6-71D372A9CDC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{108715F1-9100-41D3-92BA-CA7EBFA4E521}.Debug|Any CPU.ActiveCfg = Debug
+		{108715F1-9100-41D3-92BA-CA7EBFA4E521}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

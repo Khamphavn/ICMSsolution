@@ -123,10 +123,6 @@ namespace ICMS.ViewModel
                 Application.Current.Shutdown();
             }
 
-
-
-
-
             IsAllCheckPass = true;
 
 
