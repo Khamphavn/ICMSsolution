@@ -93,9 +93,14 @@ namespace ICMS.HelperFunction
                 result = Math.Round(number, 1, MidpointRounding.AwayFromZero);   // 1 decimal number
                 return result;
             }
-            else if (number < 100)
+            else if (number < 100 & number >= 10)
             {
-                result = Math.Round(number, 1, MidpointRounding.AwayFromZero);   // 1 decimal number
+                result = Math.Round(number, 2, MidpointRounding.AwayFromZero);   // 1 decimal number
+                return result;
+            }
+            else if (number < 10)
+            {
+                result = Math.Round(number, 3, MidpointRounding.AwayFromZero);   // 1 decimal number
                 return result;
             }
             else

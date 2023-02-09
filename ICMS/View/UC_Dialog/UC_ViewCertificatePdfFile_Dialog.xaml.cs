@@ -64,6 +64,9 @@ namespace ICMS.View.UC_Dialog
             // Get the instance of the file menu button using its template name.
             ToggleButton FileButton = (ToggleButton)toolbar.Template.FindName("PART_FileToggleButton", toolbar);
 
+            
+
+
             //Get the instance of the file menu button context menu and the item collection.
             ContextMenu FileContextMenu = FileButton.ContextMenu;
             foreach (MenuItem FileMenuItem in FileContextMenu.Items)
@@ -72,7 +75,7 @@ namespace ICMS.View.UC_Dialog
                 if (FileMenuItem.Name == "PART_OpenMenuItem")
                 {
                     //Set the visibility of the item to collapsed.
-                    FileMenuItem.Visibility = Visibility.Collapsed;
+                    //FileMenuItem.Visibility = Visibility.Collapsed;
                 }
             }
         }
@@ -81,6 +84,39 @@ namespace ICMS.View.UC_Dialog
         private void HideUnnecessaryButton()
         {
             DocumentToolbar toolbar = pdfViewer.Template.FindName("PART_Toolbar", pdfViewer) as DocumentToolbar;
+
+            ToggleButton stickyNoteButton = (ToggleButton)toolbar.Template.FindName("PART_StickyNote", toolbar);
+            stickyNoteButton.Visibility = System.Windows.Visibility.Collapsed;
+
+            ToggleButton shapeToolButton = (ToggleButton)toolbar.Template.FindName("PART_Shapes", toolbar);
+            shapeToolButton.Visibility = System.Windows.Visibility.Collapsed;
+
+            ToggleButton fillToolButton = (ToggleButton)toolbar.Template.FindName("PART_Fill", toolbar);
+            fillToolButton.Visibility = System.Windows.Visibility.Collapsed;
+
+            ToggleButton inkToolButton = (ToggleButton)toolbar.Template.FindName("PART_Ink", toolbar);
+            inkToolButton.Visibility = System.Windows.Visibility.Collapsed;
+
+            ToggleButton inkEraserToolButton = (ToggleButton)toolbar.Template.FindName("PART_InkEraser", toolbar);
+            inkEraserToolButton.Visibility = System.Windows.Visibility.Collapsed;
+
+
+
+            Button handwrittenSignatureButton = (Button)toolbar.Template.FindName("PART_ButtonSignature", toolbar);
+            handwrittenSignatureButton.Visibility = System.Windows.Visibility.Collapsed;
+
+
+            ToggleButton stampButton = (ToggleButton)toolbar.Template.FindName("PART_Stamp", toolbar);
+            stampButton.Visibility = System.Windows.Visibility.Collapsed;
+
+            ToggleButton addTextBoxButton = (ToggleButton)toolbar.Template.FindName("PART_FreeText", toolbar);
+            addTextBoxButton.Visibility = System.Windows.Visibility.Collapsed;
+
+            Button textPropertiesButton = (Button)toolbar.Template.FindName("PART_ButtonTextBoxFont", toolbar);
+            textPropertiesButton.Visibility = System.Windows.Visibility.Collapsed;
+
+            ToggleButton marqueeZoomButton = (ToggleButton)toolbar.Template.FindName("PART_MarqueeZoom", toolbar);
+            marqueeZoomButton.Visibility = System.Windows.Visibility.Collapsed;
 
             // HideOpenTool
             ToggleButton FileButton = (ToggleButton)toolbar.Template.FindName("PART_FileToggleButton", toolbar);
@@ -92,8 +128,6 @@ namespace ICMS.View.UC_Dialog
                     FileMenuItem.Visibility = Visibility.Collapsed;
                 }
             }
-
-
 
             // First Page Tool
             Button goFirstPageButton = (Button)toolbar.Template.FindName("PART_ButtonGoToFirstPage", toolbar);
@@ -112,9 +146,6 @@ namespace ICMS.View.UC_Dialog
             ToggleButton thumbnailButton = (ToggleButton)outlinePane.Template.FindName("PART_ThumbnailButton", outlinePane);
             thumbnailButton.Visibility = Visibility.Collapsed;
 
-            // Sticky note tool
-            ToggleButton stickyNoteButton = (ToggleButton)toolbar.Template.FindName("PART_StickyNote", toolbar);
-            stickyNoteButton.Visibility = Visibility.Collapsed;
 
         }
 

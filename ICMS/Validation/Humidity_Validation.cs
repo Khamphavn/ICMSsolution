@@ -18,7 +18,7 @@ namespace ICMS.Validation
 
             if (String.IsNullOrEmpty((string)value))
             {
-                return new ValidationResult(false, $"Không thể để trống");
+                return new ValidationResult(false, $"Field is required");
             }
 
             if (((string)value).Length > 0)
@@ -28,12 +28,12 @@ namespace ICMS.Validation
 
             if (!isValid)
             {
-                return new ValidationResult(false, $"Phải là số");
+                return new ValidationResult(false, $"Must be a number");
             }
 
             if (tempValue < MinHumidity || tempValue > MaxHumidity)
             {
-                return new ValidationResult(false, $"Phải nằm trong khoảng {MinHumidity} - {MaxHumidity}");
+                return new ValidationResult(false, $"Must be a number between {MinHumidity} and {MaxHumidity}");
             }
 
             return ValidationResult.ValidResult;

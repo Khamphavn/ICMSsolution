@@ -138,6 +138,8 @@ namespace ICMS.ViewModel
                         if (DocumentStream != null)
                         {
                             DocumentStream.Close();
+                            DocumentStream.Dispose();
+                            DocumentStream = null;
                         }
                         createTempoCertificatePdfSuccess = processingCertificate.CreateTemporaryCertificatePdf(SelectedCertificate);
 
@@ -166,7 +168,21 @@ namespace ICMS.ViewModel
                     if (createTempoCertificatePdfSuccess == 1)
                     {
                         certificatePdfFileFullPath = CertificateHelper.GetTempoFilePdfFullPath(SelectedCertificate);
-                        OpenViewCertificatePdfDialog(certificatePdfFileFullPath);
+
+                        if (File.Exists(certificatePdfFileFullPath))
+                        {
+                            OpenViewCertificatePdfDialog(certificatePdfFileFullPath);
+                        }
+                        else
+                        {
+                            MessageBoxResult result = System.Windows.MessageBox.Show(
+                           messageBoxText: "File chứng chỉ pdf không tồn tại\n\n",
+                           caption: "Error",
+                           button: MessageBoxButton.OK,
+                           icon: MessageBoxImage.Error,
+                           defaultResult: MessageBoxResult.OK
+                           );
+                        }
                     }
                     else
                     {
@@ -388,6 +404,8 @@ namespace ICMS.ViewModel
                     SelectedCertificate.PerformedBy = null;
                     SelectedCertificate.TM = null;
 
+                    SelectedCertificate.PerformedBy = CurrentUser.FullName;
+
                     foreach (CalibData calibdata in SelectedCertificate.CalibDatas)
                     {
                         calibdata.MachineReading = null;
@@ -502,15 +520,49 @@ namespace ICMS.ViewModel
         #region private
         private void OpenViewCertificatePdfDialog(string certificatePdfFileFullPath)
         {
+            //System.Windows.MessageBox.Show(
+            //   messageBoxText: certificatePdfFileFullPath,
+            //   caption: "Error",
+            //   button: MessageBoxButton.OK,
+            //   icon: MessageBoxImage.Error,
+            //   defaultResult: MessageBoxResult.OK
+            //   );
 
-                DocumentStream = new FileStream(certificatePdfFileFullPath, FileMode.Open, FileAccess.Read);
-                        
-
-            DialogContent = new UC_ViewCertificatePdfFile_Dialog()
+            try
             {
-                DataContext = new ViewCertificatePdfFileDialogViewModel(DocumentStream)
-            };
-            IsDialogOpen = true;
+                DocumentStream = null;
+                DocumentStream = new FileStream(certificatePdfFileFullPath, FileMode.Open, FileAccess.Read);
+
+
+                //System.Windows.MessageBox.Show(
+                //    messageBoxText: "Open file " + certificatePdfFileFullPath,
+                //    caption: "Error",
+                //    button: MessageBoxButton.OK,
+                //    icon: MessageBoxImage.Error,
+                //    defaultResult: MessageBoxResult.OK
+                //    );
+
+
+
+                DialogContent = new UC_ViewCertificatePdfFile_Dialog()
+                {
+                    DataContext = new ViewCertificatePdfFileDialogViewModel(DocumentStream)
+                };
+                IsDialogOpen = true;
+               
+
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show(
+                   messageBoxText: ex.Message,
+                   caption: "Error",
+                   button: MessageBoxButton.OK,
+                   icon: MessageBoxImage.Error,
+                   defaultResult: MessageBoxResult.OK
+                   );
+            }
+
         }
 
         private void ExportFilterCertificatesToCSV(ObservableCollection<Certificate> FilterCertificates, string path)

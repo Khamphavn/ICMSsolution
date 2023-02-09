@@ -126,11 +126,11 @@
                                     <TextBox.Text>
                                         <Binding Path="Temperature" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
                                             <Binding.ValidationRules>
-                                                <validation:Temperature_Validation ValidatesOnTargetUpdated="True"/>
+                                                <validation:Temperature_Validation ValidatesOnTargetUpdated="True" ValidationStep="ConvertedProposedValue"/>
                                             </Binding.ValidationRules>
-                                            <Binding.Converter>
+                                            <!--<Binding.Converter>
                                                 <converter:OneDecimalText_Converter />
-                                            </Binding.Converter>
+                                            </Binding.Converter>-->
                                         </Binding>
                                     </TextBox.Text>
                                 </TextBox>
@@ -147,9 +147,9 @@
                                                 <validation:Pressure_Validation ValidationStep="RawProposedValue"
                                                                                 ValidatesOnTargetUpdated="True"/>
                                             </Binding.ValidationRules>
-                                            <Binding.Converter>
+                                            <!--<Binding.Converter>
                                                 <converter:OneDecimalText_Converter/>
-                                            </Binding.Converter>
+                                            </Binding.Converter>-->
                                         </Binding>
                                     </TextBox.Text>
                                 </TextBox>
@@ -165,9 +165,9 @@
                                                 <validation:Humidity_Validation ValidationStep="RawProposedValue"
                                                                                 ValidatesOnTargetUpdated="True"/>
                                             </Binding.ValidationRules>
-                                            <Binding.Converter>
+                                            <!--<Binding.Converter>
                                                 <converter:OneDecimalText_Converter/>
-                                            </Binding.Converter>
+                                            </Binding.Converter>-->
                                         </Binding>
                                     </TextBox.Text>
                                 </TextBox>
@@ -591,20 +591,34 @@
                                   CanUserAddRows="False" CanUserDeleteRows="False" CanUserSortColumns="False"
                                   CanUserReorderColumns="False" CanUserResizeColumns="True"  CanUserResizeRows="False"
                                   EnableRowVirtualization="True"  VirtualizingPanel.VirtualizationMode="Recycling"
+                                  SelectedItem="{Binding SelectedDataRow}"
                                   ItemsSource="{Binding CalibDatas, Mode=OneWay, IsAsync=True, UpdateSourceTrigger=PropertyChanged}">
                             <DataGrid.Resources>
-                                <!--<SolidColorBrush x:Key="MaterialDesignTextBoxBorder" Color="Transparent"/>-->
+                                <ContextMenu x:Key="CalibDataRowContextMenu" 
+                                     DataContext="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}, Path=DataContext.CurrentControl}">
+                                    <Separator/>
+                                    <MenuItem Header="Xóa"  Foreground="Red"  Command="{Binding RemoveSelectedCalibDataRowCommand}"/>
+
+                                    <Separator/>
+                                </ContextMenu>
                             </DataGrid.Resources>
+
+                            <!--Context menu appear only on row, not on header-->
+                            <DataGrid.RowStyle>
+                                <Style BasedOn="{StaticResource MaterialDesignDataGridRow}" TargetType="DataGridRow" >
+                                    <Setter Property="ContextMenu" Value="{StaticResource CalibDataRowContextMenu}" />
+                                </Style>
+                            </DataGrid.RowStyle>
 
                             <DataGrid.Columns>
                                 <!-- STT -->
-                                <DataGridTextColumn Header="STT" Binding="{Binding STT}"  
+                                <!--<DataGridTextColumn Header="STT" Binding="{Binding STT}"  
                                                     CellStyle="{StaticResource MaterialDesignDataGridCell}"
                                                     ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
                                                     IsReadOnly="True" CanUserResize="False"
                                                     
                                                     Width="auto">
-                                </DataGridTextColumn>
+                                </DataGridTextColumn>-->
 
                                 <!-- Rad. Quantity -->
                                 <materialDesign:DataGridComboBoxColumn  

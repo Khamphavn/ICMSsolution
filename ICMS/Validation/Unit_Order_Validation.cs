@@ -16,7 +16,7 @@ namespace ICMS.Validation
 
             bool isPositiveNumber = int.TryParse((string)value, out  number) && number >0;
 
-            return isPositiveNumber ? ValidationResult.ValidResult : new ValidationResult(false, "Phải là số nguyên dương");
+            return isPositiveNumber ? ValidationResult.ValidResult : new ValidationResult(false, "Must a positive integer");
 
             //return inputString.All(c => Char.IsDigit(c) || Char.IsControl(c))
             //    ? ValidationResult.ValidResult    

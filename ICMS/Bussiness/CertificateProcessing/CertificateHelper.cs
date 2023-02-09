@@ -22,7 +22,7 @@ namespace ICMS.Bussiness.CertificateProcessing
         {
             string fileName;
             //fileName = "tmp." + certificate.CertificateNumber + ".pdf";
-            fileName = "tmp.pdf";
+            fileName = "tmp_certificate.pdf";
 
             return fileName;
         }
@@ -64,22 +64,23 @@ namespace ICMS.Bussiness.CertificateProcessing
 
             string currentDirectoryPath = Directory.GetCurrentDirectory();
 
-            string tempoFilePath = Path.Combine(currentDirectoryPath, "tmp", tempoFileName);
+            string tempoFilePath = Path.Combine(Path.GetTempPath(), tempoFileName);
 
             return tempoFilePath;
         }
 
-        public static void CreateTmpFolderIfNotExist()
-        {
-            string tmpFolder = Path.Combine(Directory.GetCurrentDirectory(), "tmp");
+        //public static void CreateTmpFolderIfNotExist()
+        //{
+        //    string tmpFolder = Path.Combine(Directory.GetCurrentDirectory(), "tmp");
 
-            bool isExist = Directory.Exists(tmpFolder);
+        //    bool isExist = Directory.Exists(tmpFolder);
 
-            if (!isExist)
-            {
-                Directory.CreateDirectory(tmpFolder);
-            }
-        }
+        //    if (!isExist)
+        //    {
+        //        Directory.CreateDirectory(tmpFolder);
+        //    }
+        //}
+
         public static string SelectTemplateWordFile(Certificate certificate)
         {
             List<RadQuantity> radQuantities = certificate.CalibDatas.Select(o => o.RadQuantity).ToList();

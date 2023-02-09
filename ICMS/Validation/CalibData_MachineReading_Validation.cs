@@ -20,7 +20,7 @@ namespace ICMS.Validation
 
             if (String.IsNullOrWhiteSpace(stringNumber))
             {
-                return new ValidationResult(false, $"Không thể để trống");
+                return new ValidationResult(false, $"Field is required");
             }
 
 
@@ -30,13 +30,13 @@ namespace ICMS.Validation
 
                 if (expData == null)
                 {
-                    return new ValidationResult(false, $"Không thể chuyển thành số");
+                    return new ValidationResult(false, $"Can not convert to number");
                 }
             }
 
             if (expData.Count < MinDataNumber)
             {
-                return new ValidationResult(false, $"Phải có tối thiểu {MinDataNumber} số đọc !");
+                return new ValidationResult(false, $"Must have at least {MinDataNumber} reading !");
             }
 
             return ValidationResult.ValidResult;

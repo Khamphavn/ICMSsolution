@@ -27,7 +27,7 @@ namespace ICMS.Validation
             }
             else
             {
-                return new ValidationResult(false, "Phải là số dương");
+                return new ValidationResult(false, "Must be a positive number");
             }
         }
 }

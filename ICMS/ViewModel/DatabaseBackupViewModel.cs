@@ -58,8 +58,9 @@ namespace ICMS.ViewModel
 
             LastBackupDate = Properties.Settings.Default.LastBackupDate;
 
-            SetDefaultBackupFolder1();
+            //SetDefaultBackupFolder1();
 
+            BackupFolder1 = Properties.Settings.Default.BackupFolder1;
             BackupFolder2 = Properties.Settings.Default.BackupFolder2;
 
             SelectedBackupDBInterval = Properties.Settings.Default.BackupDBMonths.ToString();
@@ -133,23 +134,18 @@ namespace ICMS.ViewModel
                             BackupDB.BackupDatabase(BackupFolder1);
                         }
 
-                        if (Directory.Exists(BackupFolder2))
-                        {
-                            BackupDB.BackupDatabase(BackupFolder2);
-                        }
                         LastBackupDate = DateTime.Now;
                         Properties.Settings.Default.LastBackupDate = LastBackupDate;
                         Properties.Settings.Default.Save();
                         Properties.Settings.Default.Reload();
 
                         MessageBox.Show(
-                           messageBoxText: "Database backup successfully !",
+                           messageBoxText: $"Database backup successfully to {BackupFolder1}!",
                            caption: "",
                            button: MessageBoxButton.OK,
                            icon: MessageBoxImage.Information,
                            defaultResult: MessageBoxResult.OK
                            );
-
                     }
                     catch (Exception ex)
                     {
@@ -161,6 +157,39 @@ namespace ICMS.ViewModel
                          defaultResult: MessageBoxResult.OK
                          );
                     }
+
+
+                    try
+                    {
+                        if (Directory.Exists(BackupFolder2))
+                        {
+                            BackupDB.BackupDatabase(BackupFolder2);
+                        }
+                        LastBackupDate = DateTime.Now;
+                        Properties.Settings.Default.LastBackupDate = LastBackupDate;
+                        Properties.Settings.Default.Save();
+                        Properties.Settings.Default.Reload();
+
+                        MessageBox.Show(
+                           messageBoxText: $"Database backup successfully to {BackupFolder2}!",
+                           caption: "",
+                           button: MessageBoxButton.OK,
+                           icon: MessageBoxImage.Information,
+                           defaultResult: MessageBoxResult.OK
+                           );
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(
+                            messageBoxText: ex.Message,
+                            caption: "Error",
+                            button: MessageBoxButton.OK,
+                            icon: MessageBoxImage.Error,
+                            defaultResult: MessageBoxResult.OK
+                        );
+                    }
+
+
 
                 }
                 );

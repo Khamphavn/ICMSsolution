@@ -10,7 +10,7 @@ namespace ICMS.Validation
             string str = (string)value;
 
             return string.IsNullOrWhiteSpace(str)
-           ? new ValidationResult(false, "Không thể để trống")
+           ? new ValidationResult(false, "Field is required")
            : new ValidationResult(true, null);
         }
     }

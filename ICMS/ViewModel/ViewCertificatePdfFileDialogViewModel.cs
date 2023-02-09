@@ -1,4 +1,7 @@
-﻿using System.IO;
+﻿using ICMS.Command;
+using MaterialDesignThemes.Wpf;
+using System.IO;
+using System.Windows.Input;
 
 namespace ICMS.ViewModel
 {
@@ -12,12 +15,27 @@ namespace ICMS.ViewModel
         public Stream DocumentStream { get => _DocumentStream; set { _DocumentStream = value; OnPropertyChanged(); } }
 
 
-
+        public ICommand CloseDocumentStream { get; set; }
 
         public ViewCertificatePdfFileDialogViewModel(Stream documentStream)
         {
 
             DocumentStream = documentStream;
+
+            CloseDocumentStream = new RelayCommand<object>
+                    (
+                       (p) => {
+                                 return true;
+                           
+                       },
+                       (p) =>
+                       {
+                           DocumentStream.Close();
+
+                           DialogHost.CloseDialogCommand.Execute(null, null);
+                          
+                       }
+                   );
 
         }
     }

@@ -42,6 +42,19 @@ namespace Convert_DB_QLCM_ICMS
             int Nbr_OldCertificate_No_Organization = OldCertificates.Count(s => s.Organization == null);
             OldCertificates.RemoveAll(s => s.Organization == null);
 
+            for (int i = 0; i < OldCertificates.Count(); i++)
+            {
+                //Console.WriteLine($"     + No: {OldCertificates[i].CertificateNumber}   -  data: {OldCertificates[i].CalibrationDate} ");
+
+                if (OldCertificates[i].Organization == null)
+                {
+                    OldCertificates.RemoveAt(i);
+                }
+
+  
+            }
+           
+
             Console.WriteLine("  - No machine serial");
             // No machine Serial
             int Nbr_OldCertificate_No_Machine_Serial = OldCertificates.Count(s => s.Machine.Seri == null);
@@ -81,8 +94,11 @@ namespace Convert_DB_QLCM_ICMS
                 {
                     OldCertificates.RemoveAt(i);
                 }
+
+ 
             }
 
+            
 
             Console.WriteLine("  - No machine type");
             // REMOVE MachineModel = null  (in new database: MachineType)
@@ -113,7 +129,7 @@ namespace Convert_DB_QLCM_ICMS
                 //}
             }
 
-
+            OldCertificate test = OldCertificates[3137];
 
             #endregion
 
@@ -156,24 +172,21 @@ namespace Convert_DB_QLCM_ICMS
                     OldCertificates[i].Organization = organ;
                 }
 
-                //Công ty trách nhiệm hữu hạn Bell Việt Nam      Id:172
-                // REMOVE Công ty trách nhiệm hữu hạn BEL Việt Nam   Id: 147
-                if (OldCertificates[i].Organization.OrganizationId == 147)
-                {
-                    organ = sqlConnector.OldOrganization_GetById(172, QLCMold_connString);
-                    OldCertificates[i].Organization = organ;
-                }
 
                 //Công ty trách nhiệm hữu hạn Bell Việt Nam      Id:172
                 // REMOVE Công ty trách nhiệm hữu hạn BEL Việt Nam   Id: 147
-                if (OldCertificates[i].Organization.OrganizationId == 147)
-                {
-                    organ = sqlConnector.OldOrganization_GetById(172, QLCMold_connString);
-                    OldCertificates[i].Organization = organ;
-                }
+                //if (OldCertificates[i].Organization.OrganizationId == 147)
+                //{
+                //    organ = sqlConnector.OldOrganization_GetById(172, QLCMold_connString);
+                //    OldCertificates[i].Organization = organ;
+                //}
 
                 // Liên Đoàn Địa Chất Xạ  Hiếm      Id:47
                 // REMOVE Liên Đoàn Địa Chất Xạ  Hiếm   Id: 496
+
+                OldCertificates.RemoveAll(s => s.Organization == null);
+                OldCertificate test2 = OldCertificates[i];
+                int j = i;
                 if (OldCertificates[i].Organization.OrganizationId == 496)
                 {
                     organ = sqlConnector.OldOrganization_GetById(47, QLCMold_connString);
@@ -467,6 +480,11 @@ namespace Convert_DB_QLCM_ICMS
                     if (certificateRadiation.Radiation.Name == "Sr-90") { calibData.RadQuantity = (RadQuantity)newRadQuantityList.FirstOrDefault(s => s.RadQuantityId == 23); }
                     if (certificateRadiation.Radiation.Name == "Am-241") { calibData.RadQuantity = (RadQuantity)newRadQuantityList.FirstOrDefault(s => s.RadQuantityId == 24); }
 
+                    if (string.IsNullOrWhiteSpace(certificateRadiation.Radiation.Name))
+                    {
+                        calibData.RadQuantity = (RadQuantity)newRadQuantityList.FirstOrDefault(s => s.RadQuantityId == 1);
+                    }
+
                     // Machine reading
                     calibData.MachineReading = certificateRadiation.Input2;
 
@@ -548,13 +566,19 @@ namespace Convert_DB_QLCM_ICMS
                 newCertificate.CalibDatas = newCalibDatas;
 
 
+                if (newCertificate.CertificateNumber == "21728")
+                {
+
+                    int i2 = 1;
+                }
+
                 newCertificateList.Add(newCertificate);
             }
 
 
             OldCertificate oldCertificate1 = OldCertificates.FirstOrDefault(s => s.CertificateNumber == "18290");
             Certificate newCertificate1 = newCertificateList.FirstOrDefault(s => s.CertificateNumber == "18290");
-
+           
 
             #endregion
 
@@ -596,7 +620,9 @@ namespace Convert_DB_QLCM_ICMS
                 }
                 catch (Exception ex)
                 {
+                    //insertCertificateResult = 0;
                     //Console.Write(ex.Message);
+                    //Certificate certificate2 = certificate;
                 }
 
                 try
@@ -606,7 +632,7 @@ namespace Convert_DB_QLCM_ICMS
                 catch (Exception ex)
                 {
                     insertCertificateResult = 0;
-                    Console.Write(ex.Message);
+                    //Console.Write(ex.Message);
                     //Console.WriteLine(ex.StackTrace);
 
                     //Console.WriteLine("\n\nPress any key to continue ... \n\n");

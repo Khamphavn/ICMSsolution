@@ -26,6 +26,7 @@
                 <ResourceDictionary Source="/Styles/Button.xaml"/>
                 <ResourceDictionary Source="/Styles/DataGrid.ComboBox.xaml"/>
                 <ResourceDictionary Source="/Styles/DataGrid.xaml"/>
+                <ResourceDictionary Source="/Styles/PasswordBox.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

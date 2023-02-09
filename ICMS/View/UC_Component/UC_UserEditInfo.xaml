@@ -101,13 +101,14 @@
                              Style="{StaticResource MaterialDesignOutlinedPasswordBox}"
                                  Margin="5 5 0 0" Width="280"
                                  BorderThickness="2" BorderBrush="LightGray"
-                                
+                                Background="White"
                                  materialDesign:TextFieldAssist.HasClearButton="True"/>
 
                 <Label Grid.Row="1" Grid.Column="0" Content="Mật khẩu mới" Margin="0 25 0 10"/>
                 <PasswordBox Grid.Row="1" Grid.Column="1"  x:Name="NewPasswordBox1"  
                              Style="{StaticResource MaterialDesignOutlinedPasswordBox}"
                                  Margin="5 10 0 0" Width="280"
+                             Background="White"
                                  BorderThickness="2" BorderBrush="LightGray"
                                  materialDesign:TextFieldAssist.HasClearButton="True"/>
 
@@ -116,6 +117,7 @@
                 <PasswordBox Grid.Row="2" Grid.Column="1"  x:Name="NewPasswordBox2"  
                              Style="{StaticResource MaterialDesignOutlinedPasswordBox}"
                                  Margin="5 10 0 0" Width="280"
+                             Background="White"
                                  BorderThickness="2" BorderBrush="LightGray"
                                  materialDesign:TextFieldAssist.HasClearButton="True"
                                   />

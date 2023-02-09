@@ -15,7 +15,7 @@ namespace ICMS.Validation
             //bool success = String.IsNullOrWhiteSpace((string)value);
 
             return String.IsNullOrWhiteSpace((string)value)
-           ? new ValidationResult(false, "Không thể để trống")
+           ? new ValidationResult(false, "Field is required")
            : new ValidationResult(true, null);
         }
     }

@@ -1,6 +1,7 @@
 ﻿using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
+using ICMS.HelperFunction;
 using ICMS.Model.Models;
 using Syncfusion.DocIO;
 using Syncfusion.DocIO.DLS;
@@ -35,11 +36,11 @@ namespace ICMS.Bussiness.CertificateProcessing
                     // Create word file
                     CreateTmpCertificateWord_OpenXML(certificate, templateFilePath);
 
-
-                    // COnvert to pdf using interop.word
-                    string tmpFolder = Path.Combine(Directory.GetCurrentDirectory(), "tmp");
-                    string tmpWordFile = Path.Combine(tmpFolder, "tmp.docx");
-                    string tmppdfFile = Path.Combine(tmpFolder, "tmp.pdf");
+                    // Convert to pdf using interop.word
+                    //string tmpFolder = Path.Combine(Directory.GetCurrentDirectory(), "tmp");
+                    string tmpFolder = Path.Combine(Path.GetTempPath());
+                    string tmpWordFile = Path.Combine(tmpFolder, "tmp_certificate.docx");
+                    string tmppdfFile = Path.Combine(tmpFolder, "tmp_certificate.pdf");
 
                     CertificateHelper.ConvertWordToPdf(tmpWordFile, tmppdfFile);
 
@@ -73,7 +74,8 @@ namespace ICMS.Bussiness.CertificateProcessing
                 {
                     CreateTmpCertificateWord_OpenXML(certificate, templateFilePath);
 
-                    string tempWordDoc = Path.Combine(Directory.GetCurrentDirectory(), "tmp", "tmp.docx");
+
+                    string tempWordDoc = Path.Combine(Path.GetTempPath(), "tmp_certificate.docx");
                     File.Copy(tempWordDoc, saveFileNamePath, true);
 
                     return 1;
@@ -93,8 +95,14 @@ namespace ICMS.Bussiness.CertificateProcessing
 
         public int CreateTmpCertificateWord_OpenXML(Certificate certificate, string templateFilePath)
         {
-            CertificateHelper.CreateTmpFolderIfNotExist();
-            string tempWordDoc = Path.Combine(Directory.GetCurrentDirectory(), "tmp", "tmp.docx");
+            //CertificateHelper.CreateTmpFolderIfNotExist();
+            //string tempWordDoc = Path.Combine(Directory.GetCurrentDirectory(), "tmp", "tmp.docx");
+            string tempWordDoc = Path.Combine(Path.GetTempPath(), "tmp_certificate.docx");
+
+            if (File.Exists(tempWordDoc))
+            {
+                File.Delete(tempWordDoc);
+            }
 
             File.Copy(templateFilePath, tempWordDoc, true);
 
@@ -218,7 +226,7 @@ namespace ICMS.Bussiness.CertificateProcessing
                 regexText = new Regex("\\[\\[TM]]");
                 docText = regexText.Replace(docText, certificate.TM);
 
-                regexText = new Regex("\\[\\[PerformBy]]");
+                regexText = new Regex("\\[\\[PerformedBy]]");
                 docText = regexText.Replace(docText, certificate.PerformedBy);
 
 
@@ -675,8 +683,12 @@ namespace ICMS.Bussiness.CertificateProcessing
             Text text17 = new Text();
             text17.Text = certificate.CalibDatas[0].CF_unit;
 
-            run23.Append(runPropertiesNormal.CloneNode(true));
-            run23.Append(text17);
+            if (!string.IsNullOrEmpty(certificate.CalibDatas[0].CF_unit))
+            {
+                run23.Append(runPropertiesNormal.CloneNode(true));
+                run23.Append(text17);
+            }
+           
             
 
 
@@ -687,8 +699,13 @@ namespace ICMS.Bussiness.CertificateProcessing
             paragraph5.Append(run19);
             paragraph5.Append(run20);
             paragraph5.Append(run21);
-            paragraph5.Append(run22);
-            paragraph5.Append(run23);
+           
+            if (!string.IsNullOrWhiteSpace(certificate.CalibDatas[0].CF_unit))
+            {
+                paragraph5.Append(run22);
+                paragraph5.Append(run23);
+            }
+            
 
             tableCell5.Append(tableCellProperties5);
             tableCell5.Append(paragraph5);
@@ -901,7 +918,10 @@ namespace ICMS.Bussiness.CertificateProcessing
 
                 Run run6 = new Run();
                 Text text5 = new Text();
-                text5.Text = CertificateHelper.DoubleToStringWithDecimalNumber(CalibDatas[i].AvgReading, 2).ToString();
+
+                //double roundNumber = ConvertStringNumberHelper.RoundDouble(CalibDatas[i].AvgReading);
+
+                text5.Text = CertificateHelper.DoubleToStringWithDecimalNumber(CalibDatas[i].AvgReading, 1).ToString();
 
                 run6.Append(runPropertiesNormal.CloneNode(true));
                 run6.Append(text5);
@@ -953,6 +973,8 @@ namespace ICMS.Bussiness.CertificateProcessing
         private void GenerateComment(Table table, Certificate certificate)
         {
             #region Common properties
+            Indentation indentation1 = new Indentation() { Left = "167", Right = "167" };
+
             Justification justificationCenter = new Justification() { Val = JustificationValues.Center };
             Justification justificationBoth = new Justification() { Val = JustificationValues.Both };
 
@@ -988,6 +1010,7 @@ namespace ICMS.Bussiness.CertificateProcessing
             paragraphPropertiesItalic.Append(spacingBetweenLines18);
             paragraphPropertiesItalic.Append(justificationBoth);
             paragraphPropertiesItalic.Append(paragraphMarkRunPropertiesItalic);
+            paragraphPropertiesItalic.Append(indentation1);
 
 
             //
@@ -999,9 +1022,12 @@ namespace ICMS.Bussiness.CertificateProcessing
             paragraphMarkRunPropertiesItalicSmall.Append(italicFont.CloneNode(true));
             paragraphMarkRunPropertiesItalicSmall.Append(italicComplexScript.CloneNode(true));
 
+            
+
             paragraphPropertiesItalicSmall.Append(spacingBetweenLinesSmall);
             paragraphPropertiesItalicSmall.Append(justificationBoth.CloneNode(true));
             paragraphPropertiesItalicSmall.Append(paragraphMarkRunPropertiesItalicSmall);
+            paragraphPropertiesItalicSmall.Append(indentation1.CloneNode(true));
 
 
             //
@@ -1053,8 +1079,11 @@ namespace ICMS.Bussiness.CertificateProcessing
 
             //tableCellProperties16.Append(tableCellWidth16);
             tableCellProperties16.Append(gridSpan1);
+            tableCellProperties16.Append(indentation1.CloneNode(true));
 
             tableCell16.Append(tableCellProperties16);
+
+            
 
             #endregion
 
@@ -1159,7 +1188,7 @@ namespace ICMS.Bussiness.CertificateProcessing
 
             Run run43 = new Run();
             Text text43 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-            text43.Text = "  is the expanded uncertainty corresponding to a coverage factor, k=2 and a confidence level, P ~ 95% )";
+            text43.Text = "  is the expanded uncertainty corresponding to a coverage factor, k = 2 and a confidence level, P ~ 95% )";
             run43.Append(runPropertiesItalic11.CloneNode(true));
             run43.Append(text43);
 

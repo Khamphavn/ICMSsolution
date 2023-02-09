@@ -22,7 +22,7 @@ namespace ICMS.Validation
 
             if (String.IsNullOrEmpty((string)value))
             {
-                return new ValidationResult(false, $"Không thể để trống");
+                return new ValidationResult(false, $"Field is required");
             }
 
             if (((string)value).Length > 0)
@@ -32,12 +32,12 @@ namespace ICMS.Validation
 
             if (!isValid)
             {
-                return new ValidationResult(false, $"Phải là số");
+                return new ValidationResult(false, $"Must be a number");
             }
 
             if (tempValue < MinPressure || tempValue > MaxPressure)
             {
-                return new ValidationResult(false, $"Phải nằm trong khoảng {MinPressure} - {MaxPressure}");
+                return new ValidationResult(false, $"Must be between {MinPressure} - {MaxPressure}");
             }
 
             return ValidationResult.ValidResult;

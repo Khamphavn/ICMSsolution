@@ -24,7 +24,7 @@ namespace ICMS.Validation
                 {
                     if (roleAction.Add == true | roleAction.Edit == true | roleAction.Delete == true | roleAction.Print == true)
                     {
-                        return new ValidationResult(false, $"Không thể để trống");
+                        return new ValidationResult(false, $"Field is required");
                     }
                 }
             }

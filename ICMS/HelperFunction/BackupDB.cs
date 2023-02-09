@@ -17,7 +17,7 @@ namespace ICMS.HelperFunction
             {
                 string databaseName = connection.Database;
 
-                string fileName = string.Format("{0}-autobackup-{1}.bak", databaseName, DateTime.Now.ToString("yyyy-MMM-dd_HH_mm"));
+                string fileName = string.Format("{0}-database-{1}.bak", databaseName, DateTime.Now.ToString("yyyy-MMM-dd_HH_mm"));
 
                 string filePath = Path.Combine(backupFolderFullPath, fileName);
 

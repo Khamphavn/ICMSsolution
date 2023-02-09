@@ -4,6 +4,7 @@ using ICMS.View.UC_Component;
 using ICMS.ViewModel;
 using System;
 using System.Globalization;
+using System.IO;
 using System.Threading;
 using System.Windows;
 
@@ -31,7 +32,16 @@ namespace ICMS
 
             AppSettings.AppSettings.InitializeAppSettings();
 
-           
+    
+
+            //Create [User]/Docuemnts/ICMS for database backup
+            string myDocumentFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments));
+            string ICMSDefaultFolder = Path.Combine(myDocumentFolder, "ICMS");
+           if (!Directory.Exists(ICMSDefaultFolder))
+            {
+                Directory.CreateDirectory(ICMSDefaultFolder);
+               
+            }
 
             MainWindow = new LoginFormWindow()
             {
@@ -41,6 +51,31 @@ namespace ICMS
             MainWindow.ShowDialog();
 
             base.OnStartup(e);
+        }
+
+        protected override void OnExit(ExitEventArgs e)
+        {
+            base.OnExit(e);
+
+
+            
+
+            try
+            {
+                // remove temporary certificate file
+                string tmpFolder = Path.GetTempPath();
+
+                string tempoFilePath = Path.Combine(Path.GetTempPath(), "tmp_certificate.pdf");
+
+                File.Delete(tempoFilePath);
+                File.Delete(Path.Combine(Path.GetTempPath(), "tmp_certificate.docx"));
+            }
+            catch (Exception)
+            {
+
+                //throw;
+            }
+            
         }
 
 

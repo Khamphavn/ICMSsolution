@@ -31,18 +31,17 @@ namespace ICMS.Converter
         // UI to Data
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            //string stringNumber = (string)value;
-            //if (!string.IsNullOrEmpty(stringNumber))
-            //{
-            //    stringNumber = String.Concat(stringNumber.Where(c => !Char.IsWhiteSpace(c))); // remove all white space
+            if (value != null)
+            {
+                string stringValue = (string)value;
+                double number = double.Parse(stringValue);
 
-            //    double.TryParse(stringNumber, out double number);
+                number = Math.Round(number, 1, MidpointRounding.AwayFromZero);
 
-            //    stringNumber = String.Format("{0:0.0}", number); // format
+                return number;
 
-            //    return stringNumber;
-            //}
-            //return Binding.DoNothing;
+            }
+
             return value;
         }
     }

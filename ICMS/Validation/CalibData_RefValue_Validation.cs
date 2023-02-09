@@ -15,7 +15,7 @@ namespace ICMS.Validation
             var stringNumber = value as String;
 
             if (string.IsNullOrEmpty(stringNumber)){
-                return new ValidationResult(false, $"Phải là số dương");
+                return new ValidationResult(false, $"Must be a positive number");
             }
 
             stringNumber.Trim();
@@ -24,13 +24,13 @@ namespace ICMS.Validation
 
             if (!isNumeric)
             {
-                return new ValidationResult(false, $"Phải là số dương");
+                return new ValidationResult(false, $"Must be a positive number");
             }
             else
             {
                 if (number <= 0)
                 {
-                    return new ValidationResult(false, $"Phải là số dương");
+                    return new ValidationResult(false, $"Must be a positive number");
                 }
             }
 

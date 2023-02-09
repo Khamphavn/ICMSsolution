@@ -139,11 +139,13 @@ namespace ICMS.ViewModel
         private RadQuantity _SelectedRadQuantity;
         private Unit _SelectedRefUnit;
         private Unit _SelectedMachineUnit;
+        private CalibDataDTO _SelectedDataRow;
 
         private ObservableCollection<RadQuantity> _AvailableRadQuantities;
         private ObservableCollection<Unit> _AvailableUnits;
 
         public ObservableCollection<CalibDataDTO> CalibDatas { get => _CalibDatas; set { _CalibDatas = value; OnPropertyChanged(); } }
+        public CalibDataDTO SelectedDataRow { get => _SelectedDataRow; set { _SelectedDataRow = value; OnPropertyChanged(); } }
         public RadQuantity SelectedRadQuantity { get => _SelectedRadQuantity; set { _SelectedRadQuantity = value; OnPropertyChanged(); } }
         public Unit SelectedRefUnit { get => _SelectedRefUnit; set { _SelectedRefUnit = value; OnPropertyChanged(); OnPropertyChanged(nameof(CF_Unit)); } }
         public Unit SelectedMachineUnit { get => _SelectedMachineUnit; set { _SelectedMachineUnit = value; OnPropertyChanged(); OnPropertyChanged(nameof(CF_Unit)); } }
@@ -174,6 +176,7 @@ namespace ICMS.ViewModel
         public ICommand RemoveSensorRowCommand { get; set; }
         public ICommand AddCalibDataRowCommand { get; set; }
         public ICommand RemoveCalibDataRowCommand { get; set; }
+        public ICommand RemoveSelectedCalibDataRowCommand { get; set; }
         public ICommand UpdateAvgReadingCommand { get; set; }
 
         public ICommand SaveCertificateFormCommand { get; set; }
@@ -206,9 +209,10 @@ namespace ICMS.ViewModel
             if (certificate != null)
             {
                 SelectedCustomer = Customers.FirstOrDefault(s => s.FullName == certificate.Customer.FullName);
-                Temperature = certificate.Temperature.ToString();
-                Pressure = certificate.Pressure.ToString();
-                Humidity = certificate.Humidity.ToString();
+                
+                Temperature = Math.Round(certificate.Temperature, 1, MidpointRounding.AwayFromZero).ToString();
+                Pressure = Math.Round(certificate.Pressure, 1, MidpointRounding.AwayFromZero).ToString();  
+                Humidity = Math.Round(certificate.Humidity, 1, MidpointRounding.AwayFromZero).ToString();  
 
                 SelectedDoseQuantity = AvailableDoseQuantities.FirstOrDefault(s => s.DoseQuantityId == certificate.DoseQuantity.DoseQuantityId);   // certificate.DoseQuantity;
                 CalibDate = certificate.CalibDate;
@@ -286,11 +290,8 @@ namespace ICMS.ViewModel
                 CalibDatas = new ObservableCollection<CalibDataDTO>(new List<CalibDataDTO>());
 
                 CalibDatas.Add(new CalibDataDTO() { STT = 1, RefValue = 20.0 });
-                CalibDatas.Add(new CalibDataDTO() { STT = 2, RefValue = 80.0 });
-                CalibDatas.Add(new CalibDataDTO() { STT = 3, RefValue = 200.0 });
-                CalibDatas.Add(new CalibDataDTO() { STT = 4, RefValue = 800.0 });
 
-                CreateDemoCertificate();
+                //CreateDemoCertificate();
             }
             Mouse.OverrideCursor = null;
 
@@ -369,6 +370,24 @@ namespace ICMS.ViewModel
                                 CalibDatas.RemoveAt(CalibDatas.Count - 1);
                             }
 
+                        }
+                    );
+            #endregion
+
+            #region RemoveSelectedCalibDataRowCommand
+            RemoveSelectedCalibDataRowCommand = new RelayCommand<object>
+                     (
+                        (p) =>
+                        {
+                            if (CalibDatas == null) { return false; }
+                            if (CalibDatas.Count <= 1) { return false; }
+                            if (SelectedDataRow == null) { return false; }
+
+                            return true;
+                        },
+                        (p) =>
+                        {
+                            CalibDatas.Remove(SelectedDataRow);
                         }
                     );
             #endregion

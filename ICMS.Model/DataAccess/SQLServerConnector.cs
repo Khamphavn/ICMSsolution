@@ -2665,7 +2665,7 @@ namespace ICMS.Model.DataAccess
 
                 CalibData calibData = new CalibData()
                 {
-                    CalibDataId = Id,
+                    CalibDataId = calibDataTable.CalibDataId,
                     CertificateId = calibDataTable.CertificateId,
                     RadQuantity = radQuantity,
                     MachineReading = calibDataTable.MachineReading,
@@ -2750,7 +2750,16 @@ namespace ICMS.Model.DataAccess
 
             var p = new DynamicParameters();
             p.Add("@CertificateId", model.CertificateId);
-            p.Add("@RadQuantityId", model.RadQuantity.RadQuantityId);
+
+            if (model.RadQuantity == null)
+            {
+                p.Add("@RadQuantityId", 1);
+            }
+            else
+            {
+                p.Add("@RadQuantityId", model.RadQuantity.RadQuantityId);
+            }
+            
             p.Add("@MachineReading", model.MachineReading);
             p.Add("@AvgReading", model.AvgReading);
             p.Add("@MachineUnit", model.MachineUnit);
@@ -3074,6 +3083,7 @@ namespace ICMS.Model.DataAccess
                     exsitedCalibDatas[i].CertificateId = newCalibDatas[i].CertificateId;
                     exsitedCalibDatas[i].RadQuantity = newCalibDatas[i].RadQuantity;
                     exsitedCalibDatas[i].MachineReading = newCalibDatas[i].MachineReading;
+                    exsitedCalibDatas[i].AvgReading = newCalibDatas[i].AvgReading;
                     exsitedCalibDatas[i].MachineUnit = newCalibDatas[i].MachineUnit;
                     exsitedCalibDatas[i].RefValue = newCalibDatas[i].RefValue;
                     exsitedCalibDatas[i].RefUnit = newCalibDatas[i].RefUnit;

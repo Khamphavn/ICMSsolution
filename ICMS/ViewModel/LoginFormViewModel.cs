@@ -38,6 +38,14 @@ namespace ICMS.ViewModel
         {
             DateTime LastBackupDate = Properties.Settings.Default.LastBackupDate;
 
+            // set BackupFolder1
+            string myDocumentFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments));
+            string ICMSDefaultFolder = Path.Combine(myDocumentFolder, "ICMS");
+            Properties.Settings.Default.BackupFolder1 = ICMSDefaultFolder;
+            Properties.Settings.Default.Save();
+            Properties.Settings.Default.Reload();
+
+
             string BackupFolder1 = Properties.Settings.Default.BackupFolder1;
             string BackupFolder2 = Properties.Settings.Default.BackupFolder2;
 
@@ -46,7 +54,7 @@ namespace ICMS.ViewModel
             if (!Directory.Exists(BackupFolder1))
             {
                 MessageBox.Show(
-                       messageBoxText: $"Thư mục \"{BackupFolder1}\" không tồn tại ! \n\n Không thể tự động sao lưu cơ sở dữ liệu !",
+                       messageBoxText: $"Thư mục sao lưu CSDL mặc định không tồn tại ! \n\n Không thể tự động sao lưu cơ sở dữ liệu !",
                        caption: "Error",
                        button: MessageBoxButton.OK,
                        icon: MessageBoxImage.Warning,
@@ -57,8 +65,8 @@ namespace ICMS.ViewModel
             if (!Directory.Exists(BackupFolder2))
             {
                 MessageBox.Show(
-                       messageBoxText: $"Thư mục \"{BackupFolder2}\" không tồn tại ! \n\n Không thể tự động sao lưu cơ sở dữ liệu !",
-                       caption: "Error",
+                       messageBoxText: $"Thư mục sao lưu CSDL thứ 2 không tồn tại ! \n\n Không thể tự động sao lưu cơ sở dữ liệu !",
+                       caption: "Warning",
                        button: MessageBoxButton.OK,
                        icon: MessageBoxImage.Warning,
                        defaultResult: MessageBoxResult.OK
@@ -88,7 +96,7 @@ namespace ICMS.ViewModel
 
                     MessageBox.Show(
                        messageBoxText: "The database has been automatically backed up successfully !",
-                       caption: "",
+                       caption: "Backup database",
                        button: MessageBoxButton.OK,
                        icon: MessageBoxImage.Information,
                        defaultResult: MessageBoxResult.OK

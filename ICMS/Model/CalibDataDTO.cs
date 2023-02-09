@@ -101,6 +101,7 @@ namespace ICMS.Model
                 if (ReadingValues != null)
                 {
                     double result = ReadingValues.Count() > 0 ? ReadingValues.Average() : 0.0;
+
                     return ConvertStringNumberHelper.RoundDouble(result);
                 }
                 else

@@ -26,7 +26,7 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="220"/>
         </Grid.ColumnDefinitions>
 
         <!-- Full Name -->
@@ -83,7 +83,7 @@
         <Label Grid.Row="3" Grid.Column="0" Content="Kích hoạt"  
                                        Margin="5 5 5 5" Foreground="Black" VerticalAlignment="Center"/>
         <CheckBox Grid.Row="3" Grid.Column="1" 
-                  VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="10 0 0 5" 
+                  VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="30 0 0 5" 
                               IsThreeState="False"
                               IsChecked="{Binding User_IsActive}"/>
 
@@ -92,9 +92,11 @@
         <PasswordBox Grid.Row="4" Grid.Column="1"  x:Name="NewPasswordBox1"  
                              Style="{StaticResource MaterialDesignOutlinedPasswordBox}"
                                  Margin="5 5 0 0" MinWidth="200"
-                                 BorderThickness="2" BorderBrush="LightGray"
+                                 BorderThickness="1" BorderBrush="LightGray"
+                     Height="35" Padding="10 8 5 5"
+                     Background="White"
                                 materialDesign:HintAssist.IsFloating="False"
-                     materialDesign:HintAssist.Hint="Bỏ trống nếu không thay đổi mật khẩu"
+                     materialDesign:HintAssist.Hint="Bỏ trống nếu không thay đổi"
                      materialDesign:TextFieldAssist.HasClearButton="True"/>
 
         <!-- New password 2 -->
@@ -102,7 +104,9 @@
         <PasswordBox Grid.Row="5" Grid.Column="1"  x:Name="NewPasswordBox2"  
                              Style="{StaticResource MaterialDesignOutlinedPasswordBox}"
                                  Margin="5 5 0 0"  
-                                 BorderThickness="2" BorderBrush="LightGray"
+                     Height="35" Padding="10 8 5 5"
+                     Background="White"
+                                 BorderThickness="1" BorderBrush="LightGray"
                                 materialDesign:HintAssist.HelperText="Bỏ trống nếu không thay đổi mật khẩu"
                                  materialDesign:TextFieldAssist.HasClearButton="True"/>
         

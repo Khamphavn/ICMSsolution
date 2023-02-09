@@ -60,6 +60,11 @@ namespace Convert_DB_QLCM_ICMS.DataAccess
                         {
                             OldOrganization organization = OldOrganization_GetById(certificate.Machine.OrganizationId, connectionString);
                             certificate.Organization = organization;
+
+                            //if (organization == null)
+                            //{
+                            //    int i = 1;
+                            //}
                         }
                         else
                         {

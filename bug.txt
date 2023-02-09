@@ -4,4 +4,9 @@ Sửa chứng chỉ không lưu lại số cc cũ được                DONE
 Sửa lại thông tin đầu đo ko được                         DONE
 
 
-Không có ô chú thích các thông tin trên cc 
+Không có ô chú thích các thông tin trên cc                DONE
+
+
+Ko truy cap vao file tmp
+
+Thu don phan chu thich

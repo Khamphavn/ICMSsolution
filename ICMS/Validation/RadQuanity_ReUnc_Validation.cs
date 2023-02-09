@@ -27,7 +27,7 @@ namespace ICMS.Validation
             }
             else
             {
-                return new ValidationResult(false, "Phải là số nằm trong khoảng (0,1]");
+                return new ValidationResult(false, "Must be a number between (0,1]");
             }
         }
     }

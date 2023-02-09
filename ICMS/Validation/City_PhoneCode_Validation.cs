@@ -18,18 +18,18 @@ namespace ICMS.Validation
 
             if (string.IsNullOrWhiteSpace(str))
             {
-                return new ValidationResult(false, "Không thể để trống");
+                return new ValidationResult(false, "Field is required");
             }
 
             str = str.Trim();
             if (str.Length != 3)
             {
-                return new ValidationResult(false, "Phải có 3 chữ số");
+                return new ValidationResult(false, "Must have at least 3 digits");
             }
 
             if (!str.All(x => allowedChars.Contains(x)))
             {
-                return new ValidationResult(false, "Phải có 3 chữ số");
+                return new ValidationResult(false, "Must have at least 3 digits");
             }
 
             return new ValidationResult(true, null);

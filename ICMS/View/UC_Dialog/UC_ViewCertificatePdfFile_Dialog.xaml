@@ -29,15 +29,15 @@
                 <syncfusion:PdfViewerControl x:Name="pdfViewer" ItemSource="{Binding DocumentStream}" 
                                              EnableNotificationBar="False" 
                                              ShowToolbar="True" ShowHorizontalScrollBar ="True" 
-                                             ZoomMode="FitPage"
-
+                                             ZoomMode="Default"
+                                             
                                              >
 
                 </syncfusion:PdfViewerControl>
 
 
-                <Button Grid.Row="1" Content="Close" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" IsCancel="true"/>
-                <!--<ProgressBar  Grid.Row="1" Style="{StaticResource MaterialDesignCircularProgressBar}"  Value="50"  IsIndeterminate="True" Height="100" Width="100" BorderThickness="20" />-->
+                <!--<Button Grid.Row="1" Content="Close" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" IsCancel="true"/>-->
+                <Button Grid.Row="1" Content="Close" Command="{Binding CloseDocumentStream}" IsCancel="true"/>
             </Grid>
 
         </StackPanel>
