@@ -442,6 +442,7 @@
     <None Include="BackupDB\ICMSv1_init.bak">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="BackupDB\QLCM_30-Jan-2023.bak" />
     <None Include="Docs\UserManual.pdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
